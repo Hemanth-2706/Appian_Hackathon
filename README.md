@@ -80,16 +80,6 @@ Built to scale with flexible components and a robust backend for product ranking
 
 ---
 
-## 📈 Evaluation Criteria
-
-✅ **Accuracy & Relevance** of recommendations  
-✅ **Ease of Use** for image uploads, feedback, and checkout  
-✅ **Innovation**: Going beyond standard filters — make shopping magical  
-✅ **Scalability**: Designed for real-world e-commerce needs  
-✅ **Tech Integration**: From CV to Conversational AI to APIs
-
----
-
 ## 🧠 Future Ideas
 
 -    🧑‍🎨 Style Quiz for preference learning
