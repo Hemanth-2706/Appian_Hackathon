@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,7 +19,7 @@ app.add_middleware(
 app.mount("/images", StaticFiles(directory="Images"), name="images")
 
 @app.post("/recommend")
-async def recommend(file: UploadFile = File(...)):
+async def recommend(file: UploadFile = File(None), query: str = Form(None)):
     # [✓] Dummy logic: return first 5 images in folder
     image_dir = "Images"
     image_paths = sorted([
