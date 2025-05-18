@@ -1,11 +1,136 @@
 <!DOCTYPE html>
-<html><head><title>ShopSmarter - Home</title><link rel="stylesheet" href="/styles.css"></head>
-<body><h1>Welcome to ShopSmarter</h1><h2>Featured Products</h2>
-<div class="product-list"><% products.forEach(product => { %>
-  <div class="product-card">
-    <img src="<%= product.image %>" alt="product" />
-    <h3><%= product.name %></h3>
-    <p>$<%= product.price %></p>
-    <a href="/product/<%= product._id %>">View</a>
-  </div><% }) %></div>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopSmarter - Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- Header with Search on Left and Login/Cart on Right -->
+  <header class="header">
+    <div class="left-section">
+      <div class="logo">🛍️ ShopSmarter</div>
+      <div class="search-section">
+        <input type="text" placeholder="Search for products..." id="searchInput">
+        <button onclick="search()">Search</button>
+        <button onclick="uploadImage()">📷 Search with Photo</button>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+      </div>
+    </div>
+    <div class="right-section">
+      <button class="header-btn">Login</button>
+      <button class="header-btn">Cart 🛒</button>
+    </div>
+  </header>
+
+  <!-- Category Navbar -->
+  <section class="category-navbar">
+    <ul class="categories">
+      <li class="category-item">
+        Electronics
+        <ul class="subcategory-dropdown">
+          <li>Mobiles</li>
+          <li>Laptops</li>
+          <li>Wearables</li>
+          <li>Audio</li>
+          <li>Gaming</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Fashion
+        <ul class="subcategory-dropdown">
+          <li>Men</li>
+          <li>Women</li>
+          <li>Kids</li>
+          <li>Footwear</li>
+          <li>Accessories</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Home & Kitchen
+        <ul class="subcategory-dropdown">
+          <li>Furniture</li>
+          <li>Appliances</li>
+          <li>Cookware</li>
+          <li>Decor</li>
+          <li>Lighting</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Books & Media
+        <ul class="subcategory-dropdown">
+          <li>Books</li>
+          <li>Magazines</li>
+          <li>Stationery</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Sports & Outdoors
+        <ul class="subcategory-dropdown">
+          <li>Fitness</li>
+          <li>Camping</li>
+          <li>Outdoor Gear</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Healthcare
+        <ul class="subcategory-dropdown">
+          <li>Supplements</li>
+          <li>Personal Care</li>
+          <li>Medical Equipment</li>
+          <li>Wellness Devices</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Car & Motorbike
+        <ul class="subcategory-dropdown">
+          <li>Car Accessories</li>
+          <li>Bike Accessories</li>
+          <li>Lubricants</li>
+          <li>Spare Parts</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- Marquee Banner -->
+  <section class="banner">
+    <marquee behavior="scroll" direction="right">
+      ✨ Discover Your Style • Personalized Recommendations • AI Shopping Assistant ✨
+    </marquee>
+  </section>
+
+  <!-- Sliding Banner Section -->
+  <section class="banner-carousel">
+    <div class="carousel-wrapper">
+      <button class="nav left" onclick="prevSlide()">&#10094;</button>
+      <div class="carousel-track" id="carouselTrack">
+        <% bannerImages.forEach(img => { %>
+          <div class="carousel-slide" style="background-image: url('/images/banner/<%= img %>');"></div>
+        <% }) %>
+      </div>
+      <button class="nav right" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <main>
+    <h2 class="section-title">Featured Products</h2>
+    <div class="product-list">
+      <% products.forEach(product => { %>
+        <a href="/product/<%= product._id %>" class="product-link">
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="product" />
+            <h3><%= product.name %></h3>
+            <p>$<%= product.price %></p>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </main>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
