@@ -1,4 +1,14 @@
 console.log("Loaded cart_script.js");
+
+function showToast(message = "Notification") {
+	const toast = document.getElementById("toast");
+	if (!toast) return;
+
+	toast.textContent = message;
+	toast.classList.add("show");
+	setTimeout(() => toast.classList.remove("show"), 2000);
+}
+
 document.querySelectorAll(".remove-btn").forEach((button) => {
 	button.addEventListener("click", (event) => {
 		event.preventDefault();
@@ -13,15 +23,15 @@ document.querySelectorAll(".remove-btn").forEach((button) => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success) {
-					alert(data.message);
+					showToast(data.message || "Item removed from cart.");
 					button.closest(".cart-item").remove();
 				} else {
-					alert("Failed to remove item from cart.");
+					showToast("Failed to remove item from cart.");
 				}
 			})
 			.catch((err) => {
 				console.error("Error:", err);
-				alert("Server error");
+				showToast("Server error. Try again.");
 			});
 	});
 });

@@ -94,7 +94,7 @@ router.post("/cart/remove", (req, res) => {
 	);
 
 	console.log("Updated cart after removal:", req.session.cart);
-	res.json({ success: true, message: "Item removed from cart" }); // ✅ FIXED
+	res.json({ success: true, message: "Item removed from cart" });
 });
 
 module.exports = router;

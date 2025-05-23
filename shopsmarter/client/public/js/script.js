@@ -45,6 +45,16 @@ if (slides.length > 0 && track) {
 	}, 5000);
 }
 
+function showToast(message) {
+	const toast = document.getElementById("toast");
+	toast.textContent = message;
+	toast.classList.add("show");
+
+	setTimeout(() => {
+		toast.classList.remove("show");
+	}, 3000); // Toast visible for 3 seconds
+}
+
 const buttons = document.querySelectorAll(".add-to-cart-btn");
 const toast = document.getElementById("toast");
 const cartIcon = document.getElementById("cart-icon"); // Ensure your cart icon has this ID
@@ -52,27 +62,31 @@ const cartIcon = document.getElementById("cart-icon"); // Ensure your cart icon 
 buttons.forEach((btn) => {
 	btn.addEventListener("click", async () => {
 		const productId = btn.dataset.productId;
-		// Send add to cart request with quantity = 1
+
 		try {
-			await fetch("/cart/add", {
+			const res = await fetch("/cart/add", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ productId, quantity: 1 }), // <-- added quantity here
+				body: JSON.stringify({ productId, quantity: 1 }),
 			});
-			console.log("Product added to cart:", productId);
-			// Show toast
-			toast.classList.add("show");
-			setTimeout(() => toast.classList.remove("show"), 2000);
 
-			// Jingle cart
+			if (!res.ok) throw new Error("Failed to add");
+
+			console.log("Product added to cart:", productId);
+
+			// ✅ Show toast
+			showToast("Added to Cart!");
+
+			// ✅ Jingle cart
 			if (cartIcon) {
 				cartIcon.classList.add("jingle");
 				setTimeout(() => cartIcon.classList.remove("jingle"), 500);
 			}
 		} catch (err) {
 			console.error("Add to cart failed:", err);
+			showToast("Failed to Add to Cart");
 		}
 	});
 });
