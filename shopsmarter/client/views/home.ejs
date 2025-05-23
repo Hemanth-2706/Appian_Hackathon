@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>ShopSmarter - Home</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+
+<div class="sticky-container">
 
   <!-- Header with Search on Left and Login/Cart on Right -->
   <header class="header">
     <div class="left-section">
-      <div class="logo">🛍️ HSM ShopSmarter</div>
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">🛍️ HSM ShopSmarter</a>
       <div class="search-section">
         <input type="text" placeholder="Search for products..." id="searchInput">
         <button onclick="search()">Search</button>
@@ -20,7 +22,7 @@
     </div>
     <div class="right-section">
       <button class="header-btn">Login</button>
-      <button class="header-btn">Cart 🛒</button>
+      <a href="/cart" class="header-btn cart-icon" style="text-decoration: none;">Cart 🛒</a>
     </div>
   </header>
 
@@ -102,6 +104,8 @@
     </marquee>
   </section>
 
+</div>
+
   <!-- Sliding Banner Section -->
   <section class="banner-carousel">
     <div class="carousel-wrapper">
@@ -120,17 +124,23 @@
     <h2 class="section-title">Featured Products</h2>
     <div class="product-list">
       <% products.forEach(product => { %>
-        <a href="/product/<%= product._id %>" class="product-link">
+        <div class="product-card-container">
           <div class="product-card">
-            <img src="<%= product.image %>" alt="product" />
-            <h3><%= product.name %></h3>
-            <p>$<%= product.price %></p>
+            <a href="/product/<%= product.productId %>" class="product-link">
+              <img src="<%= product.image %>" alt="product" />
+              <h3><%= product.name %></h3>
+              <p>$<%= product.price %></p>
+            </a>
+            <button class="add-to-cart-btn" data-product-id="<%= product.productId %>">Add to Cart</button>
           </div>
-        </a>
+        </div>
       <% }) %>
     </div>
   </main>
 
-  <script src="/script.js" defer></script>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Added to Cart</div>
+
+  <script src="/js/script.js" defer></script>
 </body>
 </html>
