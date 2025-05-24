@@ -1,11 +1,16 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+
+const { products, similarProducts, recommendedProducts } = require(path.join(
+	__dirname,
+	"../data/products"
+));
+
 const router = express.Router();
 
 router.use(express.json()); // Needed to parse JSON body
 router.use(express.urlencoded({ extended: true }));
-const products = require("../data/products"); // Adjust path as needed
 
 // Home Route - loads product data and banner images
 router.get("/", (req, res) => {
@@ -25,15 +30,92 @@ router.get("/", (req, res) => {
 });
 
 router.get("/recommend", (req, res) => {
-	res.render("recommendations", { recommended: products });
+	// Pass both similar and recommended products to the template
+	res.render("recommendations", {
+		similarProducts,
+		recommendedProducts,
+	});
+});
+
+// Add an alias route for /recommendations
+router.get("/recommendations", (req, res) => {
+	res.render("recommendations", {
+		similarProducts,
+		recommendedProducts,
+	});
 });
 
 router.get("/product/:id", (req, res) => {
-	const product = products.find((p) => p.productId === req.params.id);
+	console.log("Product route accessed with id:", req.params.id);
+
+	// Search for the product across all product arrays
+	let foundInArray = "";
+	const product =
+		products.find((p) => {
+			if (p.productId === req.params.id) {
+				foundInArray = "products";
+				return true;
+			}
+			return false;
+		}) ||
+		similarProducts.find((p) => {
+			if (p.productId === req.params.id) {
+				foundInArray = "similarProducts";
+				return true;
+			}
+			return false;
+		}) ||
+		recommendedProducts.find((p) => {
+			if (p.productId === req.params.id) {
+				foundInArray = "recommendedProducts";
+				return true;
+			}
+			return false;
+		});
+
 	if (!product) {
+		console.log("Product not found. Available IDs:", {
+			products: products.map((p) => p.productId),
+			similarProducts: similarProducts.map((p) => p.productId),
+			recommendedProducts: recommendedProducts.map((p) => p.productId),
+		});
 		return res.status(404).send("Product not found");
 	}
-	res.render("product", { product });
+
+	console.log("Found product in array:", foundInArray);
+	console.log("Found product:", product);
+	console.log("Product category:", product.category);
+
+	// Get similar products based on category (keep this category-based)
+	const filteredSimilarProducts = similarProducts.filter((p) => {
+		const matches =
+			p.productId !== product.productId &&
+			p.category === product.category;
+		console.log(
+			`Similar product ${p.productId} category: ${p.category}, matches: ${matches}`
+		);
+		return matches;
+	});
+
+	// Show all recommended products except the current one
+	const filteredRecommendedProducts = recommendedProducts.filter(
+		(p) => p.productId !== product.productId
+	);
+
+	console.log(
+		"Filtered similar products:",
+		filteredSimilarProducts.map((p) => p.productId)
+	);
+	console.log(
+		"Filtered recommended products:",
+		filteredRecommendedProducts.map((p) => p.productId)
+	);
+
+	res.render("product", {
+		product,
+		similarProducts: filteredSimilarProducts,
+		recommendedProducts: filteredRecommendedProducts,
+	});
 });
 
 router.get("/cart", (req, res) => {
@@ -61,7 +143,17 @@ router.get("/checkout/:id", (req, res) => {
 
 router.post("/cart/add", (req, res) => {
 	console.log("post to /cart/add triggered");
+	console.log("Request body:", req.body);
+
 	const { productId, quantity } = req.body;
+
+	if (!productId || !quantity) {
+		console.error("Missing required fields:", { productId, quantity });
+		return res.status(400).json({
+			success: false,
+			message: "Missing required fields",
+		});
+	}
 
 	// Initialize cart if not present
 	if (!req.session.cart) {
@@ -77,8 +169,9 @@ router.post("/cart/add", (req, res) => {
 	} else {
 		req.session.cart.push({ productId, quantity: parseInt(quantity) });
 	}
+
 	console.log("Updated cart:", req.session.cart);
-	res.redirect("/cart");
+	res.json({ success: true, message: "Product added to cart successfully" });
 });
 
 router.post("/cart/remove", (req, res) => {
