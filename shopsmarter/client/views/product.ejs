@@ -1,1 +1,27 @@
-<h1><%= product.name %></h1><img src='<%= product.image %>' /><p><%= product.description %></p><p>Price: $<%= product.price %></p><a href='/checkout/<%= product._id %>'>Buy Now</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= product.name %> - ShopSmarter</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🛍️ HSM ShopSmarter</div>
+    <button class="header-btn" onclick="location.href='/'">Home</button>
+  </header>
+
+  <main class="product-page">
+    <div class="product-detail-card">
+      <img src="<%= product.image %>" alt="Product Image" class="product-image"/>
+      <div class="product-info">
+        <h1><%= product.name %></h1>
+        <p><strong>Category:</strong> <%= product.category %></p>
+        <p><strong>Price:</strong> $<%= product.price %></p>
+        <p><strong>Likes:</strong> <%= product.likes %></p>
+        <p><strong>Details:</strong> <%= product.description %></p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

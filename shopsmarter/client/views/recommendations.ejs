@@ -1,1 +1,47 @@
-<h1>Recommended Products</h1><% recommended.forEach(p => { %><div><%= p.name %> - $<%= p.price %></div><% }) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recommendations</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Style Assistant</h3>
+      <div class="chat-box">
+  <p>👕 Here's a perfect look for you today!</p>
+  <input type="text" placeholder="Ask your stylist...">
+  <div class="panel-controls">
+    <button onclick="location.href='/recommendations'" class="header-btn">Show Recommendation</button>
+  </div>
+</div>
+
+      <div class="upload-section">
+  <label for="uploadImage">Upload Image</label>
+  <input type="file" id="imageInput" />
+  <button onclick="location.href='/recommendations'" class="header-btn" style="margin-top: 10px;">Show Recommendation</button>
+</div>
+
+    </aside>
+
+    <main class="product-display">
+      <h2>Suggested Outfit</h2>
+      <div class="product-grid">
+        <% recommended.forEach(product => { %>
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>" />
+            <h3><%= product.name %></h3>
+            <p><%= product.description %></p>
+            <p>₹<%= product.price %></p>
+            <button class="add-to-cart" data-id="<%= product._id %>">Add to Cart</button>
+          </div>
+        <% }) %>
+      </div>
+      <button id="addAllBtn">Add All to Cart</button>
+    </main>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

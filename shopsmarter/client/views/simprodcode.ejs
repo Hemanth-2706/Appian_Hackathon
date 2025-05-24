@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Similar Products - ShopSmarter</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .product-list {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    .product-name {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+    .product-price {
+      color: #e91e63;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🛍️ HSM ShopSmarter</div>
+  </header>
+
+  <h1 style="text-align:center; margin-top:1rem;">Similar Product Recommendations</h1>
+
+  <div class="product-list">
+    <% products.forEach(function(product) { %>
+      <div class="product-card">
+        <a href="/product/<%= product._id %>">
+          <img src="<%= product.image %>" alt="<%= product.name %>" />
+          <p class="product-name"><%= product.name %></p>
+          <p class="product-price">₹<%= product.price %></p>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
