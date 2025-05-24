@@ -1,8 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-
-const { products, similarProducts, recommendedProducts } = require(path.join(
+const { products, similarProducts, recommendProducts } = require(path.join(
 	__dirname,
 	"../data/products"
 ));
@@ -30,18 +29,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/recommend", (req, res) => {
-	// Pass both similar and recommended products to the template
-	res.render("recommendations", {
+	res.render("recommend", {
 		similarProducts,
-		recommendedProducts,
-	});
-});
-
-// Add an alias route for /recommendations
-router.get("/recommendations", (req, res) => {
-	res.render("recommendations", {
-		similarProducts,
-		recommendedProducts,
+		recommendProducts,
 	});
 });
 
@@ -65,9 +55,9 @@ router.get("/product/:id", (req, res) => {
 			}
 			return false;
 		}) ||
-		recommendedProducts.find((p) => {
+		recommendProducts.find((p) => {
 			if (p.productId === req.params.id) {
-				foundInArray = "recommendedProducts";
+				foundInArray = "recommendProducts";
 				return true;
 			}
 			return false;
@@ -77,7 +67,7 @@ router.get("/product/:id", (req, res) => {
 		console.log("Product not found. Available IDs:", {
 			products: products.map((p) => p.productId),
 			similarProducts: similarProducts.map((p) => p.productId),
-			recommendedProducts: recommendedProducts.map((p) => p.productId),
+			recommendProducts: recommendProducts.map((p) => p.productId),
 		});
 		return res.status(404).send("Product not found");
 	}
@@ -98,7 +88,7 @@ router.get("/product/:id", (req, res) => {
 	});
 
 	// Show all recommended products except the current one
-	const filteredRecommendedProducts = recommendedProducts.filter(
+	const filteredRecommendProducts = recommendProducts.filter(
 		(p) => p.productId !== product.productId
 	);
 
@@ -107,14 +97,14 @@ router.get("/product/:id", (req, res) => {
 		filteredSimilarProducts.map((p) => p.productId)
 	);
 	console.log(
-		"Filtered recommended products:",
-		filteredRecommendedProducts.map((p) => p.productId)
+		"Filtered recommend products:",
+		filteredRecommendProducts.map((p) => p.productId)
 	);
 
 	res.render("product", {
 		product,
 		similarProducts: filteredSimilarProducts,
-		recommendedProducts: filteredRecommendedProducts,
+		recommendProducts: filteredRecommendProducts,
 	});
 });
 
