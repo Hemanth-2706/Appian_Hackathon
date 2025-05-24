@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.use(express.json()); // Needed to parse JSON body
 router.use(express.urlencoded({ extended: true }));
-const products = require("../data/product"); // Adjust path as needed
+const products = require("../data/products"); // Adjust path as needed
 
 // Home Route - loads product data and banner images
 router.get("/", (req, res) => {
@@ -95,6 +95,21 @@ router.post("/cart/remove", (req, res) => {
 
 	console.log("Updated cart after removal:", req.session.cart);
 	res.json({ success: true, message: "Item removed from cart" });
+});
+
+router.post("/chatbot/image", (req, res) => {
+	console.log("post to /chatbot/image triggered");
+	const { image } = req.body;
+	if (image) {
+		req.session.uploadedImage = image; // Store in session
+		res.json({ success: true });
+	} else {
+		res.json({ success: false });
+	}
+});
+
+router.get("/session-debug", (req, res) => {
+	res.json(req.session);
 });
 
 module.exports = router;

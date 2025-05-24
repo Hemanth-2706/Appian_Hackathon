@@ -132,6 +132,14 @@
               <h3><%= product.name %></h3>
               <p>$<%= product.price %></p>
             </a>
+
+            <!-- Quantity Control -->
+            <div class="quantity-control">
+              <button class="quantity-btn decrease" data-product-id="<%= product.productId %>">−</button>
+              <span class="quantity-number" id="qty-<%= product.productId %>">1</span>
+              <button class="quantity-btn increase" data-product-id="<%= product.productId %>">+</button>
+            </div>
+
             <button class="add-to-cart-btn" data-product-id="<%= product.productId %>">Add to Cart</button>
           </div>
         </div>

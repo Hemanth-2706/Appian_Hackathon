@@ -11,6 +11,10 @@ const app = express();
 const session = require("express-session");
 const routes = require("./routes/mockRoutes");
 
+// ✅ Set JSON and URL-encoded limits globally
+app.use(express.json({ limit: "5mb" }));
+app.use(express.urlencoded({ extended: true, limit: "5mb" }));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../client/views"));
 app.use(express.static(path.join(__dirname, "../client/public")));

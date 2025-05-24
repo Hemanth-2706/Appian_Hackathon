@@ -90,3 +90,44 @@ closeBtn.onclick = () => {
 		chatbot.style.display = "none"; // hide after animation
 	}, 400); // match the CSS transition duration
 };
+
+// Chatbot Image Upload Feature$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+const imageBtn = document.getElementById("chatbot-image-btn");
+const imageInput = document.getElementById("chatbot-image-upload");
+
+imageBtn.addEventListener("click", () => {
+	imageInput.click();
+});
+
+imageInput.addEventListener("change", (e) => {
+	const file = e.target.files[0];
+	if (file && file.type.startsWith("image/")) {
+		const reader = new FileReader();
+		reader.onload = function (event) {
+			appendImage(event.target.result, "user");
+			// Send image to server to store in session (optional)
+			fetch("/chatbot/image", {
+				method: "POST",
+				body: JSON.stringify({ image: event.target.result }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}).catch((err) => console.error("Upload error", err));
+		};
+		reader.readAsDataURL(file);
+	}
+});
+
+function appendImage(imageUrl, sender) {
+	const msg = document.createElement("div");
+	msg.className = sender + "-message";
+	const img = document.createElement("img");
+	img.src = imageUrl;
+	img.alt = "Uploaded";
+	img.style.maxWidth = "200px";
+	img.style.borderRadius = "8px";
+	msg.appendChild(img);
+	messages.appendChild(msg);
+	messages.scrollTop = messages.scrollHeight;
+}

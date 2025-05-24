@@ -55,6 +55,22 @@ function showToast(message) {
 	}, 3000); // Toast visible for 3 seconds
 }
 
+document.querySelectorAll(".quantity-control").forEach((control) => {
+	const decreaseBtn = control.querySelector(".decrease");
+	const increaseBtn = control.querySelector(".increase");
+	const qtySpan = control.querySelector(".quantity-number");
+
+	decreaseBtn.addEventListener("click", () => {
+		let qty = parseInt(qtySpan.textContent);
+		if (qty > 1) qtySpan.textContent = qty - 1;
+	});
+
+	increaseBtn.addEventListener("click", () => {
+		let qty = parseInt(qtySpan.textContent);
+		qtySpan.textContent = qty + 1;
+	});
+});
+
 const buttons = document.querySelectorAll(".add-to-cart-btn");
 const toast = document.getElementById("toast");
 const cartIcon = document.getElementById("cart-icon"); // Ensure your cart icon has this ID
@@ -62,6 +78,10 @@ const cartIcon = document.getElementById("cart-icon"); // Ensure your cart icon 
 buttons.forEach((btn) => {
 	btn.addEventListener("click", async () => {
 		const productId = btn.dataset.productId;
+		const quantity = parseInt(
+			btn.closest(".product-card").querySelector(".quantity-number")
+				.textContent
+		);
 
 		try {
 			const res = await fetch("/cart/add", {
@@ -69,7 +89,7 @@ buttons.forEach((btn) => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ productId, quantity: 1 }),
+				body: JSON.stringify({ productId, quantity: quantity }),
 			});
 
 			if (!res.ok) throw new Error("Failed to add");
