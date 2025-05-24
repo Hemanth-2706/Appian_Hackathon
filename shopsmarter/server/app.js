@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../client/views"));
 app.use(express.static(path.join(__dirname, "../client/public")));
+app.use("/images", express.static(path.join(__dirname, "data/images")));
 
 app.use(
 	session({

@@ -1,28 +1,63 @@
 console.log("Loaded product.js");
 
 document.addEventListener("DOMContentLoaded", function () {
-	const addToCartButton = document.querySelectorAll(".add-to-cart");
-	const quantitySelect = document.getElementById("quantity");
+	const addToCartButtons = document.querySelectorAll(".add-to-cart");
 
-	console.log("Add to Cart Button:", addToCartButton);
-	console.log("Quantity Select:", quantitySelect);
+	console.log("Add to Cart Buttons found:", addToCartButtons.length);
+	console.log("Add to Cart Buttons:", addToCartButtons);
 
-	if (!addToCartButton) {
-		console.error("Add to Cart button not found!");
+	if (addToCartButtons.length === 0) {
+		console.error("No Add to Cart buttons found!");
 		return;
 	}
 
-	if (!quantitySelect) {
-		console.error("Quantity select not found!");
-		return;
-	}
-
-	addToCartButtons.forEach((button) => {
-		button.addEventListener("click", async () => {
+	// Add event listener to each button
+	addToCartButtons.forEach(function (button) {
+		button.addEventListener("click", async function () {
 			const productId = this.getAttribute("data-product-id");
+
+			console.log("Button clicked for product:", productId);
+
+			// Find the corresponding quantity select for this specific product
+			let quantitySelect;
+
+			// Check if this is the main product (has id="quantity")
+			if (
+				document.getElementById("quantity") &&
+				this.closest(".product-detail-card")
+			) {
+				quantitySelect = document.getElementById("quantity");
+				console.log("Using main product quantity selector");
+			} else {
+				// For similar/recommended products, find the specific quantity select
+				quantitySelect = document.getElementById(
+					`quantity-${productId}`
+				);
+				console.log(
+					"Using product-specific quantity selector:",
+					`quantity-${productId}`
+				);
+			}
+
+			if (!quantitySelect) {
+				console.error(
+					`Quantity select not found for product ${productId}!`
+				);
+				showNotification(
+					"Error: Could not find quantity selector",
+					"error"
+				);
+				return;
+			}
+
 			const quantity = parseInt(quantitySelect.value);
 
 			console.log("Adding to cart:", { productId, quantity });
+
+			// Disable button during request to prevent double-clicks
+			this.disabled = true;
+			const originalText = this.textContent;
+			this.textContent = "Adding...";
 
 			try {
 				const response = await fetch("/cart/add", {
@@ -55,6 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			} catch (error) {
 				console.error("Error details:", error);
 				showNotification("Error adding product to cart", "error");
+			} finally {
+				// Re-enable button
+				this.disabled = false;
+				this.textContent = originalText;
 			}
 		});
 	});

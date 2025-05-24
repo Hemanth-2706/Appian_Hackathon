@@ -11,6 +11,20 @@ const router = express.Router();
 router.use(express.json()); // Needed to parse JSON body
 router.use(express.urlencoded({ extended: true }));
 
+// Function to get images from directory
+function getImagesFromDirectory(dirPath) {
+	try {
+		const files = fs.readdirSync(dirPath);
+		return files.filter((file) => {
+			const ext = path.extname(file).toLowerCase();
+			return [".jpg", ".jpeg", ".png", ".gif"].includes(ext);
+		});
+	} catch (err) {
+		console.error(`Error reading directory ${dirPath}:`, err);
+		return [];
+	}
+}
+
 // Home Route - loads product data and banner images
 router.get("/", (req, res) => {
 	const bannerDir = path.join(
@@ -29,9 +43,42 @@ router.get("/", (req, res) => {
 });
 
 router.get("/recommend", (req, res) => {
+	// Get images from the specified directories
+	const similarProductsDir = path.join(
+		__dirname,
+		"../data/images/similarProducts"
+	);
+	const recommendProductsDir = path.join(
+		__dirname,
+		"../data/images/recommendationProducts"
+	);
+
+	const similarImages = getImagesFromDirectory(similarProductsDir);
+	const recommendImages = getImagesFromDirectory(recommendProductsDir);
+
+	// Create product objects for similar products
+	const similarProductsWithImages = similarImages.map((image, index) => ({
+		productId: `similar-${index + 1}`,
+		name: `Similar Product ${index + 1}`,
+		description: "A similar product you might like",
+		price: Math.floor(Math.random() * 1000) + 100,
+		image: `/images/similarProducts/${image}`,
+	}));
+
+	// Create product objects for recommended products
+	const recommendProductsWithImages = recommendImages.map(
+		(image, index) => ({
+			productId: `recommend-${index + 1}`,
+			name: `Recommended Product ${index + 1}`,
+			description: "A product we recommend for you",
+			price: Math.floor(Math.random() * 1000) + 100,
+			image: `/images/recommendationProducts/${image}`,
+		})
+	);
+
 	res.render("recommend", {
-		similarProducts,
-		recommendProducts,
+		similarProducts: similarProductsWithImages,
+		recommendProducts: recommendProductsWithImages,
 	});
 });
 
