@@ -155,11 +155,11 @@ cd MainRecommendationSystem
 python -m pytest
 ```
 
-## 👥 Team
-
-- Smitali Bhandari
+## 👥 Team HSM
 - Hemanth
+- Mothish
 - Shaurya
+- Smitali
 
 ## 📝 License
 
