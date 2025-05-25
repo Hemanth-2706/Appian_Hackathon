@@ -110,48 +110,60 @@ class FashionRecommender:
 
     def create_product_object(self, row, image_path):
         """Create a product object with all features"""
-        return {
-            "productId": str(row["productId"]),
-            "productName": row.get("productDisplayName", ""),
-            "gender": row.get("gender", ""),
-            "masterCategory": row.get("masterCategory", ""),
-            "subCategory": row.get("subCategory", ""),
-            "articleType": row.get("articleType", ""),
-            "baseColour": row.get("baseColour", ""),
-            "season": row.get("season", ""),
-            "usage": row.get("usage", ""),
-            "image": image_path,
-            "price": float(row.get("price", 0))
-        }
+        try:
+            return {
+                "productId": str(row["productId"]),
+                "productName": str(row.get("productDisplayName", "")),
+                "gender": str(row.get("gender", "")),
+                "masterCategory": str(row.get("masterCategory", "")),
+                "subCategory": str(row.get("subCategory", "")),
+                "articleType": str(row.get("articleType", "")),
+                "baseColour": str(row.get("baseColour", "")),
+                "season": str(row.get("season", "")),
+                "usage": str(row.get("usage", "")),
+                "image": image_path,
+                "price": float(row.get("price", 0))
+            }
+        except Exception as e:
+            logger.error(f"Error creating product object: {str(e)}")
+            raise
 
     def create_products_js(self, similar_ids, recommend_ids, similar_extensions, recommend_extensions):
         """Create the products.js file with dynamic data"""
-        # Get base products (first 3 products from dataset)
-        base_products = self.df.head(3).apply(
-            lambda row: self.create_product_object(row, f"/images/products/{row['productId']}.jpg"),
-            axis=1
-        ).tolist()
+        logger.info("Creating products.js file...")
+        try:
+            # Get base products (first 3 products from dataset)
+            base_products = self.df.head(3).apply(
+                lambda row: self.create_product_object(
+                    row,
+                    os.path.join("/images", "products", f"{row['productId']}.jpg").replace("\\", "/")
+                ),
+                axis=1
+            ).tolist()
+            logger.info(f"Created {len(base_products)} base products")
 
-        # Get similar products
-        similar_products = self.df[self.df["productId"].isin(similar_ids)].apply(
-            lambda row: self.create_product_object(
-                row,
-                f"/images/similarProducts/{row['productId']}{similar_extensions.get(str(row['productId']), '.jpg')}"
-            ),
-            axis=1
-        ).tolist()
+            # Get similar products
+            similar_products = self.df[self.df["productId"].isin(similar_ids)].apply(
+                lambda row: self.create_product_object(
+                    row,
+                    os.path.join("/images", "similarProducts", f"{row['productId']}{similar_extensions.get(str(row['productId']), '.jpg')}").replace("\\", "/")
+                ),
+                axis=1
+            ).tolist()
+            logger.info(f"Created {len(similar_products)} similar products")
 
-        # Get recommended products
-        recommend_products = self.df[self.df["productId"].isin(recommend_ids)].apply(
-            lambda row: self.create_product_object(
-                row,
-                f"/images/recommendProducts/{row['productId']}{recommend_extensions.get(str(row['productId']), '.jpg')}"
-            ),
-            axis=1
-        ).tolist()
+            # Get recommended products
+            recommend_products = self.df[self.df["productId"].isin(recommend_ids)].apply(
+                lambda row: self.create_product_object(
+                    row,
+                    os.path.join("/images", "recommendProducts", f"{row['productId']}{recommend_extensions.get(str(row['productId']), '.jpg')}").replace("\\", "/")
+                ),
+                axis=1
+            ).tolist()
+            logger.info(f"Created {len(recommend_products)} recommended products")
 
-        # Create the JavaScript content
-        js_content = f"""const products = {json.dumps(base_products, indent=2)};
+            # Create the JavaScript content with proper formatting
+            js_content = f"""const products = {json.dumps(base_products, indent=2)};
 
 const similarProducts = {json.dumps(similar_products, indent=2)};
 
@@ -163,33 +175,68 @@ module.exports = {{
     recommendProducts,
 }};
 """
-        
-        # Write to products.js
-        with open(PRODUCTS_JS_PATH, 'w', encoding='utf-8') as f:
-            f.write(js_content)
-        
-        logger.info(f"✅ Created products.js at {PRODUCTS_JS_PATH}")
+            
+            # Write to products.js
+            with open(PRODUCTS_JS_PATH, 'w', encoding='utf-8') as f:
+                f.write(js_content)
+            
+            logger.info(f"✅ Created products.js at {PRODUCTS_JS_PATH}")
+        except Exception as e:
+            logger.error(f"Error creating products.js: {str(e)}")
+            raise
+
+    def clear_output_directories(self):
+        """Clear existing images from output directories"""
+        logger.info("Clearing output directories...")
+        try:
+            # Clear similarProducts directory
+            if os.path.exists(OUTPUT_SIMILAR_FOLDER):
+                for file in os.listdir(OUTPUT_SIMILAR_FOLDER):
+                    file_path = os.path.join(OUTPUT_SIMILAR_FOLDER, file)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+                logger.info(f"Cleared {OUTPUT_SIMILAR_FOLDER}")
+            
+            # Clear recommendProducts directory
+            if os.path.exists(OUTPUT_RECOMMENDATION_FOLDER):
+                for file in os.listdir(OUTPUT_RECOMMENDATION_FOLDER):
+                    file_path = os.path.join(OUTPUT_RECOMMENDATION_FOLDER, file)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+                logger.info(f"Cleared {OUTPUT_RECOMMENDATION_FOLDER}")
+        except Exception as e:
+            logger.error(f"Error clearing directories: {str(e)}")
+            raise
 
     def process_recommendations(self, sim_results, comp_results):
         """Process recommendation results and create products.js"""
-        # Ensure output directories exist
-        os.makedirs(OUTPUT_RECOMMENDATION_FOLDER, exist_ok=True)
-        os.makedirs(OUTPUT_SIMILAR_FOLDER, exist_ok=True)
+        try:
+            # Clear existing images first
+            self.clear_output_directories()
+            
+            # Ensure output directories exist
+            os.makedirs(OUTPUT_RECOMMENDATION_FOLDER, exist_ok=True)
+            os.makedirs(OUTPUT_SIMILAR_FOLDER, exist_ok=True)
 
-        # Extract product IDs from results
-        similar_ids = sim_results["id"].astype(str).tolist() if sim_results is not None else []
-        recommend_ids = comp_results["id"].astype(str).tolist() if comp_results is not None else []
+            # Extract product IDs from results
+            similar_ids = sim_results["id"].astype(str).tolist() if sim_results is not None else []
+            recommend_ids = comp_results["id"].astype(str).tolist() if comp_results is not None else []
 
-        # Download images
-        logger.info("\n--- Downloading Recommendation Product Images ---")
-        recommend_extensions = self.download_images(recommend_ids, OUTPUT_RECOMMENDATION_FOLDER)
+            # Download images
+            logger.info("\n--- Downloading Recommendation Product Images ---")
+            recommend_extensions = self.download_images(recommend_ids, OUTPUT_RECOMMENDATION_FOLDER)
 
-        logger.info("\n--- Downloading Similar Product Images ---")
-        similar_extensions = self.download_images(similar_ids, OUTPUT_SIMILAR_FOLDER)
+            logger.info("\n--- Downloading Similar Product Images ---")
+            similar_extensions = self.download_images(similar_ids, OUTPUT_SIMILAR_FOLDER)
 
-        # Create products.js
-        logger.info("\n--- Creating products.js file ---")
-        self.create_products_js(similar_ids, recommend_ids, similar_extensions, recommend_extensions)
+            # Create products.js
+            logger.info("\n--- Creating products.js file ---")
+            self.create_products_js(similar_ids, recommend_ids, similar_extensions, recommend_extensions)
+            
+            logger.info("Successfully processed recommendations")
+        except Exception as e:
+            logger.error(f"Error processing recommendations: {str(e)}")
+            raise
 
     def load_models(self):
         """Load all models needed for inference"""

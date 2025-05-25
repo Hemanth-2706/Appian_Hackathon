@@ -245,8 +245,9 @@ router.get("/recommend", (req, res) => {
 		} recommended products`
 	);
 	res.render("recommend", {
-		similarProducts: results.similarProducts,
-		recommendProducts: results.recommendProducts,
+		products: products, // Base products
+		similarProducts: results?.similarProducts || [], // Similar products if available
+		recommendProducts: results?.recommendProducts || [], // Recommended products if available
 	});
 });
 
