@@ -1,0 +1,15 @@
+2025-05-25T07:10:08.366Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
+2025-05-25T07:10:08.375Z - INFO - Found 3 images in directory
+2025-05-25T07:10:17.352Z - INFO - Received recommendation request
+2025-05-25T07:10:17.353Z - INFO - Session data - Text: Present, Image: None
+2025-05-25T07:10:17.355Z - INFO - Calling FastAPI endpoint for recommendations
+2025-05-25T07:10:19.177Z - ERROR - Error processing recommendations: [object Object]
+2025-05-25T07:15:51.924Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
+2025-05-25T07:15:51.927Z - INFO - Found 3 images in directory
+2025-05-25T07:16:01.686Z - INFO - Received recommendation request
+2025-05-25T07:16:01.688Z - INFO - Session data - Text: Present, Image: None
+2025-05-25T07:16:01.689Z - INFO - Calling FastAPI endpoint for recommendations
+2025-05-25T07:16:43.000Z - INFO - Storing recommendation results in session
+2025-05-25T07:16:43.000Z - INFO - Processed 10 similar products and 10 recommended products
+2025-05-25T07:16:43.086Z - INFO - Recommend page requested
+2025-05-25T07:16:43.087Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products

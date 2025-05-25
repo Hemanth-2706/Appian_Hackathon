@@ -184,3 +184,31 @@
   cursor: se-resize;
   background: transparent;
 }
+
+#chatbot-actions {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+#chatbot-recommend-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-weight: bold;
+}
+
+#chatbot-recommend-btn:hover {
+    background: #218838;
+}
+
+#chatbot-recommend-btn:active {
+    background: #1e7e34;
+}

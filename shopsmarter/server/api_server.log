@@ -1,0 +1,162 @@
+2025-05-25 12:34:27,328 - faiss.loader - INFO - Loading faiss.
+2025-05-25 12:34:27,364 - faiss.loader - INFO - Successfully loaded faiss.
+2025-05-25 12:34:41,712 - data.model - INFO - Using device: cpu
+2025-05-25 12:34:41,712 - data.model - INFO - Loading CLIP model...
+2025-05-25 12:34:45,274 - data.model - INFO - CLIP model loaded successfully
+2025-05-25 12:34:45,274 - data.model - INFO - Loading SBERT model...
+2025-05-25 12:34:45,274 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-MiniLM-L3-v2
+2025-05-25 12:34:48,636 - data.model - INFO - SBERT model loaded successfully
+2025-05-25 12:34:48,636 - data.model - INFO - Loading BLIP model...
+2025-05-25 12:34:52,253 - data.model - INFO - BLIP model loaded successfully
+2025-05-25 12:34:52,253 - data.model - INFO - Configuring Gemini API...
+2025-05-25 12:34:52,253 - data.model - INFO - Gemini API configured successfully
+2025-05-25 12:34:52,253 - __main__ - INFO - Initializing FashionRecommender...
+2025-05-25 12:34:52,253 - data.model - INFO - Initializing FashionRecommender...
+2025-05-25 12:34:52,253 - data.model - INFO - Loading models...
+2025-05-25 12:34:58,422 - data.model - INFO - Models loaded successfully!
+2025-05-25 12:34:58,422 - data.model - INFO - Loading embeddings and metadata...
+2025-05-25 12:34:58,467 - data.model - INFO - Loaded 5000 products with embeddings
+2025-05-25 12:34:58,467 - data.model - INFO - Image embeddings shape: (5000, 512)
+2025-05-25 12:34:58,469 - data.model - INFO - Text embeddings shape: (5000, 512)
+2025-05-25 12:34:58,469 - data.model - INFO - Building FAISS indexes...
+2025-05-25 12:34:58,506 - data.model - INFO - Indexes built successfully!
+2025-05-25 12:34:58,511 - data.model - INFO - Loading dataset...
+2025-05-25 12:34:58,676 - data.model - INFO - Dataset loaded with 44445 records
+2025-05-25 12:34:58,676 - data.model - INFO - FashionRecommender initialized successfully
+2025-05-25 12:34:58,676 - __main__ - INFO - FashionRecommender initialized successfully
+2025-05-25 12:34:58,685 - __main__ - INFO - Starting FastAPI server...
+2025-05-25 12:40:17,502 - __main__ - INFO - Received recommendation request
+2025-05-25 12:40:17,505 - __main__ - INFO - Request data - Text: Shirt images, Image: None
+2025-05-25 12:40:17,506 - __main__ - INFO - Calling recommender.recommend()
+2025-05-25 12:40:17,507 - data.model - INFO - Starting recommendation process
+2025-05-25 12:40:17,515 - data.model - INFO - Processing text-only input...
+2025-05-25 12:40:19,153 - __main__ - ERROR - Error in process_recommendations: "None of [Index(['id', 'text'], dtype='object')] are in the [columns]"
+Traceback (most recent call last):
+  File "C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\api_server.py", line 111, in process_recommendations
+    sim_results, comp_results = recommender.recommend(
+  File "C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\model.py", line 367, in recommend
+    sim_df = self.df.iloc[It[0]][["id", "text"]].copy()
+  File "C:\Users\ihema\anaconda3\envs\Neural_Networks\lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "C:\Users\ihema\anaconda3\envs\Neural_Networks\lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "C:\Users\ihema\anaconda3\envs\Neural_Networks\lib\site-packages\pandas\core\indexes\base.py", line 6249, in _raise_if_missing
+    raise KeyError(f"None of [{key}] are in the [{axis_name}]")
+KeyError: "None of [Index(['id', 'text'], dtype='object')] are in the [columns]"
+2025-05-25 12:44:50,638 - faiss.loader - INFO - Loading faiss.
+2025-05-25 12:44:50,685 - faiss.loader - INFO - Successfully loaded faiss.
+2025-05-25 12:45:04,612 - data.model - INFO - Using device: cpu
+2025-05-25 12:45:04,612 - data.model - INFO - Loading CLIP model...
+2025-05-25 12:45:09,376 - data.model - INFO - CLIP model loaded successfully
+2025-05-25 12:45:09,377 - data.model - INFO - Loading SBERT model...
+2025-05-25 12:45:09,377 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-MiniLM-L3-v2
+2025-05-25 12:45:12,476 - data.model - INFO - SBERT model loaded successfully
+2025-05-25 12:45:12,476 - data.model - INFO - Loading BLIP model...
+2025-05-25 12:45:16,418 - data.model - INFO - BLIP model loaded successfully
+2025-05-25 12:45:16,418 - data.model - INFO - Configuring Gemini API...
+2025-05-25 12:45:16,418 - data.model - INFO - Gemini API configured successfully
+2025-05-25 12:45:16,422 - __main__ - INFO - Initializing FashionRecommender...
+2025-05-25 12:45:16,422 - data.model - INFO - Initializing FashionRecommender...
+2025-05-25 12:45:16,422 - data.model - INFO - Loading models...
+2025-05-25 12:45:22,381 - data.model - INFO - Models loaded successfully!
+2025-05-25 12:45:22,381 - data.model - INFO - Loading embeddings and metadata...
+2025-05-25 12:45:22,432 - data.model - INFO - Loaded 5000 products with embeddings
+2025-05-25 12:45:22,437 - data.model - INFO - Image embeddings shape: (5000, 512)
+2025-05-25 12:45:22,437 - data.model - INFO - Text embeddings shape: (5000, 512)
+2025-05-25 12:45:22,437 - data.model - INFO - Building FAISS indexes...
+2025-05-25 12:45:22,498 - data.model - INFO - Indexes built successfully!
+2025-05-25 12:45:22,502 - data.model - INFO - Loading dataset...
+2025-05-25 12:45:22,694 - data.model - INFO - Dataset loaded with 44445 records
+2025-05-25 12:45:22,694 - data.model - INFO - FashionRecommender initialized successfully
+2025-05-25 12:45:22,694 - __main__ - INFO - FashionRecommender initialized successfully
+2025-05-25 12:45:22,694 - __main__ - INFO - Starting FastAPI server...
+2025-05-25 12:46:01,812 - __main__ - INFO - Received recommendation request
+2025-05-25 12:46:01,816 - __main__ - INFO - Request data - Text: Shirt images, Image: None
+2025-05-25 12:46:01,817 - __main__ - INFO - Calling recommender.recommend()
+2025-05-25 12:46:01,820 - data.model - INFO - Starting recommendation process
+2025-05-25 12:46:01,826 - data.model - INFO - Processing text-only input...
+2025-05-25 12:46:03,354 - data.model - INFO - Found 10 similar product IDs
+2025-05-25 12:46:03,359 - data.model - INFO - Created similar products DataFrame with columns: ['id', 'text', 'score_txt']
+2025-05-25 12:46:03,375 - data.model - INFO - Saved similar products to: ./similarProducts.csv
+2025-05-25 12:46:03,375 - data.model - INFO - Generating complementary recommendations...
+2025-05-25 12:46:06,975 - data.model - INFO - Generated 5 complementary categories
+2025-05-25 12:46:36,027 - data.model - INFO - Found 10 unique complementary products
+2025-05-25 12:46:36,032 - data.model - INFO - Saved recommendations to: ./recommendProducts.csv
+2025-05-25 12:46:36,032 - data.model - INFO - Processing final results...
+2025-05-25 12:46:36,036 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-05-25 12:46:36,038 - data.model - INFO - Downloading images for 10 products to C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts
+2025-05-25 12:46:36,047 - data.model - INFO - Downloading image for Product ID 17249...
+2025-05-25 12:46:36,365 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\17249.jpg
+2025-05-25 12:46:36,366 - data.model - INFO - Downloading image for Product ID 42678...
+2025-05-25 12:46:36,741 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\42678.jpg
+2025-05-25 12:46:36,741 - data.model - INFO - Downloading image for Product ID 49690...
+2025-05-25 12:46:37,142 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\49690.jpg
+2025-05-25 12:46:37,142 - data.model - INFO - Downloading image for Product ID 15382...
+2025-05-25 12:46:37,321 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\15382.jpg
+2025-05-25 12:46:37,325 - data.model - INFO - Downloading image for Product ID 40970...
+2025-05-25 12:46:37,716 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\40970.jpg
+2025-05-25 12:46:37,720 - data.model - INFO - Downloading image for Product ID 41869...
+2025-05-25 12:46:38,082 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\41869.jpg
+2025-05-25 12:46:38,085 - data.model - INFO - Downloading image for Product ID 17848...
+2025-05-25 12:46:38,692 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\17848.jpg
+2025-05-25 12:46:38,692 - data.model - INFO - Downloading image for Product ID 54529...
+2025-05-25 12:46:38,901 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\54529.jpg
+2025-05-25 12:46:38,902 - data.model - INFO - Downloading image for Product ID 7551...
+2025-05-25 12:46:39,406 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\7551.jpg
+2025-05-25 12:46:39,406 - data.model - INFO - Downloading image for Product ID 57360...
+2025-05-25 12:46:39,612 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\recommendProducts\57360.jpg
+2025-05-25 12:46:39,618 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-05-25 12:46:39,618 - data.model - INFO - Downloading images for 10 products to C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts
+2025-05-25 12:46:39,626 - data.model - INFO - Downloading image for Product ID 2627...
+2025-05-25 12:46:39,902 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\2627.jpg
+2025-05-25 12:46:39,907 - data.model - INFO - Downloading image for Product ID 20260...
+2025-05-25 12:46:40,272 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\20260.jpg
+2025-05-25 12:46:40,278 - data.model - INFO - Downloading image for Product ID 29548...
+2025-05-25 12:46:40,573 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\29548.jpg
+2025-05-25 12:46:40,583 - data.model - INFO - Downloading image for Product ID 58146...
+2025-05-25 12:46:41,051 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\58146.jpg
+2025-05-25 12:46:41,052 - data.model - INFO - Downloading image for Product ID 57961...
+2025-05-25 12:46:41,284 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\57961.jpg
+2025-05-25 12:46:41,285 - data.model - INFO - Downloading image for Product ID 39321...
+2025-05-25 12:46:41,598 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\39321.jpg
+2025-05-25 12:46:41,601 - data.model - INFO - Downloading image for Product ID 17846...
+2025-05-25 12:46:41,825 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\17846.jpg
+2025-05-25 12:46:41,825 - data.model - INFO - Downloading image for Product ID 42081...
+2025-05-25 12:46:42,317 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\42081.jpg
+2025-05-25 12:46:42,317 - data.model - INFO - Downloading image for Product ID 30036...
+2025-05-25 12:46:42,550 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\30036.jpg
+2025-05-25 12:46:42,553 - data.model - INFO - Downloading image for Product ID 16394...
+2025-05-25 12:46:42,872 - data.model - INFO - Successfully saved image: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images\similarProducts\16394.jpg
+2025-05-25 12:46:42,872 - data.model - INFO - 
+--- Creating products.js file ---
+2025-05-25 12:46:42,934 - data.model - INFO - Recommendation process completed successfully
+2025-05-25 12:46:42,934 - __main__ - INFO - Received results from recommender
+2025-05-25 12:46:42,934 - __main__ - INFO - Converting similar products to dictionary
+2025-05-25 12:46:42,934 - __main__ - INFO - Starting DataFrame conversion
+2025-05-25 12:46:42,934 - __main__ - INFO - Original DataFrame columns: ['id', 'text', 'score_txt']
+2025-05-25 12:46:42,934 - __main__ - INFO - Renaming column id to productId
+2025-05-25 12:46:42,951 - __main__ - INFO - Renaming column text to productName
+2025-05-25 12:46:42,958 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-05-25 12:46:42,963 - __main__ - INFO - Adding missing column: articleType
+2025-05-25 12:46:42,963 - __main__ - INFO - Adding missing column: subCategory
+2025-05-25 12:46:42,963 - __main__ - INFO - Adding missing column: season
+2025-05-25 12:46:42,966 - __main__ - INFO - Adding missing column: usage
+2025-05-25 12:46:42,968 - __main__ - INFO - Adding missing column: image
+2025-05-25 12:46:42,971 - __main__ - INFO - Adding missing column: price
+2025-05-25 12:46:42,978 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-05-25 12:46:42,983 - __main__ - INFO - Converting recommended products to dictionary
+2025-05-25 12:46:42,983 - __main__ - INFO - Starting DataFrame conversion
+2025-05-25 12:46:42,983 - __main__ - INFO - Original DataFrame columns: ['id', 'text', 'score_txt']
+2025-05-25 12:46:42,983 - __main__ - INFO - Renaming column id to productId
+2025-05-25 12:46:42,983 - __main__ - INFO - Renaming column text to productName
+2025-05-25 12:46:42,983 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-05-25 12:46:42,983 - __main__ - INFO - Adding missing column: articleType
+2025-05-25 12:46:42,983 - __main__ - INFO - Adding missing column: subCategory
+2025-05-25 12:46:42,990 - __main__ - INFO - Adding missing column: season
+2025-05-25 12:46:42,991 - __main__ - INFO - Adding missing column: usage
+2025-05-25 12:46:42,991 - __main__ - INFO - Adding missing column: image
+2025-05-25 12:46:42,991 - __main__ - INFO - Adding missing column: price
+2025-05-25 12:46:42,996 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-05-25 12:46:42,996 - __main__ - INFO - Processed 10 similar products and 10 recommended products

@@ -115,22 +115,31 @@
             <% } else { %>
             <% cartItems.forEach(item => { %>
                 <div class="cart-item">
-                <img src="<%= item.image %>" alt="Product Image" class="cart-image">
-                <div class="item-details">
-                    <h2 class="item-name"><%= item.name %></h2>
-                    <p class="item-price">Price: ₹<%= item.price %></p>
-                    <p class="item-qty">Quantity: <%= item.quantity %></p>
-                    <form action="/cart/remove" method="POST">
-                    <input type="hidden" name="productId" value="<%= item.productId %>">
-                    <button type="submit" class="remove-btn">Remove</button>
-                    </form>
-                </div>
+                    <img src="<%= item.image %>" alt="<%= item.productName %>" class="cart-image">
+                    <div class="item-details">
+                        <h2 class="item-name"><%= item.productName %></h2>
+                        <p class="item-category"><%= item.articleType %> | <%= item.subCategory %></p>
+                        <p class="item-season">Season: <%= item.season %></p>
+                        <p class="item-usage">Usage: <%= item.usage %></p>
+                        <p class="item-price">Price: ₹<%= item.price %></p>
+                        <p class="item-qty">Quantity: <%= item.quantity %></p>
+                        <form action="/cart/remove" method="POST">
+                            <input type="hidden" name="productId" value="<%= item.productId %>">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
+                    </div>
                 </div>
             <% }) %>
             <% } %>
         </div>
         <% if (cartItems.length > 0) { %>
-            <button class="checkout-btn">Proceed to Payment</button>
+            <div class="cart-summary">
+                <div class="total-price">
+                    <span>Total Price:</span>
+                    <span>₹<%= cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2) %></span>
+                </div>
+                <button class="checkout-btn">Proceed to Payment</button>
+            </div>
         <% } %>
     </main>
     <div id="toast" class="toast"></div>

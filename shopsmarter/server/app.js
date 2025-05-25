@@ -18,7 +18,21 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../client/views"));
 app.use(express.static(path.join(__dirname, "../client/public")));
+
+// Serve static files from data/images and its subdirectories
 app.use("/images", express.static(path.join(__dirname, "data/images")));
+app.use(
+	"/images/similarProducts",
+	express.static(path.join(__dirname, "data/images/similarProducts"))
+);
+app.use(
+	"/images/recommendProducts",
+	express.static(path.join(__dirname, "data/images/recommendProducts"))
+);
+app.use(
+	"/images/banner",
+	express.static(path.join(__dirname, "data/images/banner"))
+);
 
 app.use(
 	session({

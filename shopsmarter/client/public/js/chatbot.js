@@ -27,6 +27,16 @@ input.addEventListener("keydown", (e) => {
 function sendMessage() {
 	const text = input.value.trim();
 	if (!text) return;
+
+	// Send text to server to store in session
+	fetch("/chatbot/text", {
+		method: "POST",
+		body: JSON.stringify({ text: text }),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	}).catch((err) => console.error("Text storage error:", err));
+
 	appendMessage(text, "user");
 	input.value = "";
 	setTimeout(() => {
@@ -131,3 +141,43 @@ function appendImage(imageUrl, sender) {
 	messages.appendChild(msg);
 	messages.scrollTop = messages.scrollHeight;
 }
+
+// Recommendations Button
+const recommendBtn = document.getElementById("chatbot-recommend-btn");
+
+recommendBtn.addEventListener("click", async () => {
+	// Check if we have either text or image in the session
+	if (!document.querySelector(".user-message")) {
+		appendMessage(
+			"Please describe what you're looking for or upload an image first!",
+			"bot"
+		);
+		return;
+	}
+
+	// Show processing message
+	appendMessage("Processing your request...", "bot");
+
+	try {
+		// Call the process endpoint
+		const response = await fetch("/process-recommendations", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error("Failed to process recommendations");
+		}
+
+		// Redirect to recommendations page
+		window.location.href = "/recommend";
+	} catch (error) {
+		console.error("Error:", error);
+		appendMessage(
+			"Sorry, there was an error processing your request. Please try again.",
+			"bot"
+		);
+	}
+});

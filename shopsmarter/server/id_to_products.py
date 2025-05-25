@@ -60,9 +60,9 @@ def download_images(product_ids, output_folder):
 
 def create_product_object(row, image_path):
     """Create a product object with all features from the dataset"""
-    print(f"Creating product object for {row}")
     return {
         "productId": str(row["productId"]),
+        "productName": row.get("productDisplayName", ""),
         "gender": row.get("gender", ""),
         "masterCategory": row.get("masterCategory", ""),
         "subCategory": row.get("subCategory", ""),
@@ -95,7 +95,7 @@ def create_products_js(similar_extensions, recommend_extensions):
     recommend_products = df[df["productId"].isin(recommendation_ids)].apply(
         lambda row: create_product_object(
             row,
-            f"/images/recommendationProducts/{row['productId']}{recommend_extensions.get(str(row['productId']), '.jpg')}"
+            f"/images/recommendProducts/{row['productId']}{recommend_extensions.get(str(row['productId']), '.jpg')}"
         ),
         axis=1
     ).tolist()
