@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopSmarter - Home</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/cart_styles.css">
+</head>
+<body>
+<div class="sticky-container">
+  
+  <!-- Header with Search on Left and Login/Cart on Right -->
+  <header class="header">
+    <div class="left-section">
+      <a href="/" class="logo" style="text-decoration: none; color: inherit;">🛍️ HSM ShopSmarter</a>
+      <div class="search-section">
+        <input type="text" placeholder="Search for products..." id="searchInput">
+        <button onclick="search()">Search</button>
+        <button onclick="uploadImage()">📷 Search with Photo</button>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+      </div>
+    </div>
+    <div class="right-section">
+      <button class="header-btn">Login</button>
+      <a href="/cart" class="header-btn cart-icon" style="text-decoration: none;">Cart 🛒</a>
+    </div>
+  </header>
+
+  <!-- Category Navbar -->
+  <section class="category-navbar">
+    <ul class="categories">
+      <li class="category-item">
+        Electronics
+        <ul class="subcategory-dropdown">
+          <li>Mobiles</li>
+          <li>Laptops</li>
+          <li>Wearables</li>
+          <li>Audio</li>
+          <li>Gaming</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Fashion
+        <ul class="subcategory-dropdown">
+          <li>Men</li>
+          <li>Women</li>
+          <li>Kids</li>
+          <li>Footwear</li>
+          <li>Accessories</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Home & Kitchen
+        <ul class="subcategory-dropdown">
+          <li>Furniture</li>
+          <li>Appliances</li>
+          <li>Cookware</li>
+          <li>Decor</li>
+          <li>Lighting</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Books & Media
+        <ul class="subcategory-dropdown">
+          <li>Books</li>
+          <li>Magazines</li>
+          <li>Stationery</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Sports & Outdoors
+        <ul class="subcategory-dropdown">
+          <li>Fitness</li>
+          <li>Camping</li>
+          <li>Outdoor Gear</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Healthcare
+        <ul class="subcategory-dropdown">
+          <li>Supplements</li>
+          <li>Personal Care</li>
+          <li>Medical Equipment</li>
+          <li>Wellness Devices</li>
+        </ul>
+      </li>
+      <li class="category-item">
+        Car & Motorbike
+        <ul class="subcategory-dropdown">
+          <li>Car Accessories</li>
+          <li>Bike Accessories</li>
+          <li>Lubricants</li>
+          <li>Spare Parts</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- Marquee Banner -->
+  <section class="banner">
+    <marquee behavior="scroll" direction="right">
+      ✨ Discover Your Style • Personalized Recommendations • AI Shopping Assistant ✨
+    </marquee>
+  </section>
+
+</div>
+
+
+    <main class="cart-container">
+        <h1 class="cart-title">My Cart</h1>
+        <div class="cart-items">
+            <% if (cartItems.length === 0) { %>
+            <p>Your cart is empty.</p>
+            <% } else { %>
+            <% cartItems.forEach(item => { %>
+                <div class="cart-item">
+                    <img src="<%= item.image %>" alt="<%= item.productName %>" class="cart-image">
+                    <div class="item-details">
+                        <h2 class="item-name"><%= item.productName %></h2>
+                        <p class="item-category"><%= item.articleType %> | <%= item.subCategory %></p>
+                        <p class="item-season">Season: <%= item.season %></p>
+                        <p class="item-usage">Usage: <%= item.usage %></p>
+                        <p class="item-price">Price: ₹<%= item.price %></p>
+                        <p class="item-qty">Quantity: <%= item.quantity %></p>
+                        <form action="/cart/remove" method="POST">
+                            <input type="hidden" name="productId" value="<%= item.productId %>">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+            <% } %>
+        </div>
+        <% if (cartItems.length > 0) { %>
+            <div class="cart-summary">
+                <div class="total-price">
+                    <span>Total Price:</span>
+                    <span>₹<%= cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2) %></span>
+                </div>
+                <button class="checkout-btn">Proceed to Payment</button>
+            </div>
+        <% } %>
+    </main>
+    <div id="toast" class="toast"></div>
+
+  <script src="/js/script.js" defer></script>
+  <script src="/js/cart_script.js" defer></script>
+</body>
+</html>
