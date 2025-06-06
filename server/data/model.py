@@ -259,12 +259,12 @@ module.exports = {{
         logger.info("Loading embeddings and metadata...")
         
         # Load embeddings
-        self.img_embs = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\img_embs.npy"))
-        self.txt_embs = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\txt_embs.npy"))
+        self.img_embs = np.load(os.path.join(self.embeddings_dir, "data/img_embs.npy"))
+        self.txt_embs = np.load(os.path.join(self.embeddings_dir, "data/txt_embs.npy"))
         
         # Load metadata
-        self.df = pd.read_csv(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\filtered_df.csv"), dtype=str)
-        self.valid_indices = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\valid_indices.npy"))
+        self.df = pd.read_csv(os.path.join(self.embeddings_dir, "data/filtered_df.csv"), dtype=str)
+        self.valid_indices = np.load(os.path.join(self.embeddings_dir, "data/valid_indices.npy"))
         
         logger.info(f"Loaded {len(self.df)} products with embeddings")
         logger.info(f"Image embeddings shape: {self.img_embs.shape}")
