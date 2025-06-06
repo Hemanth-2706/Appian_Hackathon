@@ -62,6 +62,7 @@ class FashionRecommender:
         logger.info("Initializing FashionRecommender...")
         self.embeddings_dir = embeddings_dir
         self.output_dir = output_dir
+        self.models_loaded = False
         self.load_models()
         self.load_embeddings()
         self.build_indexes()
@@ -71,9 +72,15 @@ class FashionRecommender:
     def load_dataset(self):
         """Load the main dataset"""
         logger.info("Loading dataset...")
-        self.df = pd.read_csv(os.path.join(DATA_DIR, "dataset.csv"))
+        self.df = pd.read_csv(os.path.join(DATA_DIR, "filtered_df.csv"), dtype=str)
+        # Robust column renaming for productId
+        if "productId" not in self.df.columns and "id" in self.df.columns:
+            self.df = self.df.rename(columns={"id": "productId"})
         self.df["productId"] = self.df["productId"].astype(str)
-        logger.info(f"Dataset loaded with {len(self.df)} records")
+        logger.info(f"DF shape: {self.df.shape}")
+        logger.info(f"DF head: {self.df.head()}\n")
+        logger.info(f"DF columns: {self.df.columns.tolist()}")
+        logger.info("Dataset loaded with %d records", len(self.df))
     
     def download_images(self, product_ids, output_folder):
         """Download images for given product IDs"""
@@ -219,8 +226,8 @@ module.exports = {{
             os.makedirs(OUTPUT_SIMILAR_FOLDER, exist_ok=True)
 
             # Extract product IDs from results
-            similar_ids = sim_results["id"].astype(str).tolist() if sim_results is not None else []
-            recommend_ids = comp_results["id"].astype(str).tolist() if comp_results is not None else []
+            similar_ids = sim_results["productId"].astype(str).tolist() if sim_results is not None else []
+            recommend_ids = comp_results["productId"].astype(str).tolist() if comp_results is not None else []
 
             # Download images
             logger.info("\n--- Downloading Recommendation Product Images ---")
@@ -240,6 +247,9 @@ module.exports = {{
 
     def load_models(self):
         """Load all models needed for inference"""
+        if self.models_loaded:
+            return
+            
         logger.info("Loading models...")
         
         # CLIP for embeddings
@@ -252,23 +262,18 @@ module.exports = {{
             "Salesforce/blip-image-captioning-base"
         ).to(DEVICE).half()
         
+        self.models_loaded = True
         logger.info("Models loaded successfully!")
     
     def load_embeddings(self):
         """Load pre-computed embeddings and metadata"""
         logger.info("Loading embeddings and metadata...")
-        
-        # Load embeddings
-        self.img_embs = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\img_embs.npy"))
-        self.txt_embs = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\txt_embs.npy"))
-        
-        # Load metadata
-        self.df = pd.read_csv(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\filtered_df.csv"), dtype=str)
-        self.valid_indices = np.load(os.path.join(self.embeddings_dir, r"C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\valid_indices.npy"))
-        
-        logger.info(f"Loaded {len(self.df)} products with embeddings")
-        logger.info(f"Image embeddings shape: {self.img_embs.shape}")
-        logger.info(f"Text embeddings shape: {self.txt_embs.shape}")
+        self.img_embs = np.load(os.path.join(DATA_DIR, "img_embs.npy"))
+        self.txt_embs = np.load(os.path.join(DATA_DIR, "txt_embs.npy"))
+        self.valid_indices = np.load(os.path.join(DATA_DIR, "valid_indices.npy"))
+        logger.info(f"img_embs shape: {self.img_embs.shape}, sample: {self.img_embs[0][:5]}")
+        logger.info(f"txt_embs shape: {self.txt_embs.shape}, sample: {self.txt_embs[0][:5]}")
+        logger.info(f"valid_indices shape: {self.valid_indices.shape}, sample: {self.valid_indices[:10]}")
     
     def build_indexes(self):
         """Build FAISS indexes from loaded embeddings"""
@@ -351,8 +356,8 @@ module.exports = {{
         return numbered_items
     
     def recommend(self, img=None, prompt=None, k=K):
-        """Complete recommendation function with integrated product processing"""
-        logger.info("Starting recommendation process")
+        """Complete recommendation function"""
+        logger.info(f"recommend called with img: {img}, prompt: {prompt}")
         has_img = img is not None
         has_txt = prompt is not None
         
@@ -363,20 +368,17 @@ module.exports = {{
         sim_df = pd.DataFrame()
         rec_df = pd.DataFrame()
         
-        # ── A) Visual or Text Similarity ─────────────────────────
+        # Visual or Text Similarity
         if has_img:
             logger.info("Processing image input...")
             img_emb = self.embed_image(img)
             if img_emb is None:
                 logger.error("Could not process image")
                 return None, None
-            
-            # Ensure proper data type and shape for FAISS
             img_emb = img_emb.astype('float32')
             if len(img_emb.shape) == 1:
                 img_emb = img_emb.reshape(1, -1)
             faiss.normalize_L2(img_emb)
-            
             if has_txt:
                 logger.info("Processing combined image and text input...")
                 txt_emb = self.embed_text(prompt)
@@ -392,24 +394,8 @@ module.exports = {{
                 qv = np.concatenate([img_emb, zero_txt], axis=1).astype("float32")
                 faiss.normalize_L2(qv)
                 Dv, Iv = self.sim_index.search(qv, k)
-            
-            # Get the product IDs from the indices
-            product_ids = self.df.iloc[Iv[0]]['productId'].tolist()
-            logger.info(f"Found {len(product_ids)} similar product IDs")
-            
-            # Create DataFrame with required columns
-            sim_df = pd.DataFrame({
-                'id': product_ids,
-                'text': self.df.iloc[Iv[0]]['productDisplayName'].tolist(),
-                'score_img': Dv[0]
-            })
-            logger.info(f"Created similar products DataFrame with columns: {sim_df.columns.tolist()}")
-            
-            # Save to CSV
-            output_path = os.path.join(self.output_dir, "similarProducts.csv")
-            sim_df[["id"]].to_csv(output_path, index=False)
-            logger.info(f"Saved similar products to: {output_path}")
-            
+            sim_df = self.df.iloc[Iv[0]][["productId", "text"]].copy()
+            sim_df["score_img"] = Dv[0]
         elif has_txt:
             logger.info("Processing text-only input...")
             txt_emb = self.embed_text(prompt)
@@ -418,34 +404,20 @@ module.exports = {{
                 txt_emb = txt_emb.reshape(1, -1)
             faiss.normalize_L2(txt_emb)
             Dt, It = self.txt_index.search(txt_emb, k)
-            
-            # Get the product IDs from the indices
-            product_ids = self.df.iloc[It[0]]['productId'].tolist()
-            logger.info(f"Found {len(product_ids)} similar product IDs")
-            
-            # Create DataFrame with required columns
-            sim_df = pd.DataFrame({
-                'id': product_ids,
-                'text': self.df.iloc[It[0]]['productDisplayName'].tolist(),
-                'score_txt': Dt[0]
-            })
-            logger.info(f"Created similar products DataFrame with columns: {sim_df.columns.tolist()}")
-            
-            # Save to CSV
-            output_path = os.path.join(self.output_dir, "similarProducts.csv")
-            sim_df[["id"]].to_csv(output_path, index=False)
-            logger.info(f"Saved similar products to: {output_path}")
-        
-        # ── B) Caption + Complementary Retrieval ─────────────
+            sim_df = self.df.iloc[It[0]][["productId", "text"]].copy()
+            sim_df["score_txt"] = Dt[0]
+        logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
+        # Save similarProducts.csv
+        if not sim_df.empty:
+            sim_df[["productId"]].to_csv(os.path.join(self.output_dir, "similar.csv"), index=False)
+        # Caption + Complementary Retrieval
         if has_txt or has_img:
             logger.info("Generating complementary recommendations...")
             caption = self.generate_caption(img) if has_img else ""
             if caption:
                 logger.info(f"Generated caption: {caption}")
-            
             cats = self.ask_complements_local(caption, prompt if has_txt else "")
             logger.info(f"Generated {len(cats)} complementary categories")
-            
             cand = []
             for cat in cats:
                 q_t = self.embed_text(cat)
@@ -453,39 +425,22 @@ module.exports = {{
                 if len(q_t.shape) == 1:
                     q_t = q_t.reshape(1, -1)
                 faiss.normalize_L2(q_t)
-                
                 Dt, It = self.txt_index.search(q_t, k)
-                # Get the product IDs and names from the indices
-                product_ids = self.df.iloc[It[0]]['productId'].tolist()
-                product_names = self.df.iloc[It[0]]['productDisplayName'].tolist()
-                
-                dfc = pd.DataFrame({
-                    'id': product_ids,
-                    'text': product_names,
-                    'score_txt': Dt[0]
-                })
+                dfc = self.df.iloc[It[0]][["productId", "text"]].copy()
+                dfc["score_txt"] = Dt[0]
                 cand.append(dfc)
-            
             if cand:
                 all_rec = pd.concat(cand, ignore_index=True)
                 unique_rec = (
                     all_rec
                     .sort_values("score_txt", ascending=False)
-                    .drop_duplicates(subset="id", keep="first")
+                    .drop_duplicates(subset="productId", keep="first")
                 )
                 rec_df = unique_rec.head(k)
-                
-                logger.info(f"Found {len(rec_df)} unique complementary products")
-                
-                # Save to CSV
-                output_path = os.path.join(self.output_dir, "recommendProducts.csv")
-                rec_df[["id"]].to_csv(output_path, index=False)
-                logger.info(f"Saved recommendations to: {output_path}")
-        
-        # Process the results to create products.js
-        logger.info("Processing final results...")
-        self.process_recommendations(sim_df, rec_df)
-        
+        logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
+        # Save recommendProducts.csv
+        if not rec_df.empty:
+            rec_df[["productId"]].to_csv(os.path.join(self.output_dir, "recommend.csv"), index=False)
         logger.info("Recommendation process completed successfully")
         return sim_df, rec_df
     
@@ -496,7 +451,7 @@ module.exports = {{
         
         results = []
         for pid in product_ids:
-            mask = self.df['id'] == str(pid)
+            mask = self.df['productId'] == str(pid)
             if mask.any():
                 results.append(self.df[mask].iloc[0])
         

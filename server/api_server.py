@@ -9,6 +9,7 @@ import uvicorn
 import json
 import pandas as pd
 import logging
+import base64
 
 # Configure logging
 logging.basicConfig(
@@ -44,7 +45,7 @@ logger.info("FashionRecommender initialized successfully")
 
 class RecommendationRequest(BaseModel):
     text: Optional[str] = None
-    image: Optional[str] = None
+    image: Optional[str] = None  # This will be a base64 encoded image
 
 class ProductDetailsRequest(BaseModel):
     product_ids: List[str]
@@ -115,16 +116,46 @@ def convert_dataframe_to_dict(df):
         logger.error(f"Error converting DataFrame: {str(e)}", exc_info=True)
         return []
 
+def save_base64_image(base64_string: str) -> str:
+    """Save base64 image to a temporary file and return the path"""
+    try:
+        # Remove data URL prefix if present
+        if base64_string.startswith("data:image"):
+            base64_string = base64_string.split(",", 1)[1]
+        logger.info(f"First 100 chars of base64 image: {base64_string[:100]}")
+        # Create temp directory if it doesn't exist
+        temp_dir = os.path.join(os.path.dirname(__file__), "temp")
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        # Generate unique filename
+        temp_path = os.path.join(temp_dir, f"temp_image_{hash(base64_string)}.jpg")
+        
+        # Decode and save image
+        image_data = base64.b64decode(base64_string)
+        with open(temp_path, "wb") as f:
+            f.write(image_data)
+        
+        return temp_path
+    except Exception as e:
+        logger.error(f"Error saving base64 image: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to process image")
+
 @app.post("/process-recommendations")
 async def process_recommendations(request: RecommendationRequest):
     logger.info("Received recommendation request")
     logger.info(f"Request data - Text: {request.text}, Image: {'Present' if request.image else 'None'}")
     
     try:
+        # Process image if present
+        image_path = None
+        if request.image:
+            image_path = save_base64_image(request.image)
+            logger.info(f"Saved image to: {image_path}")
+        
         # Get recommendations using the model
         logger.info("Calling recommender.recommend()")
         sim_results, comp_results = recommender.recommend(
-            img=request.image,
+            img=image_path,
             prompt=request.text,
             k=10
         )
@@ -137,6 +168,11 @@ async def process_recommendations(request: RecommendationRequest):
         recommend_products = convert_dataframe_to_dict(comp_results)
 
         logger.info(f"Processed {len(similar_products)} similar products and {len(recommend_products)} recommended products")
+
+        # Clean up temporary image if it exists
+        if image_path and os.path.exists(image_path):
+            os.remove(image_path)
+            logger.info(f"Cleaned up temporary image: {image_path}")
 
         return JSONResponse(
             content={

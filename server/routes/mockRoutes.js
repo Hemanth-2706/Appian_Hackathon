@@ -6,9 +6,9 @@ const { products, similarProducts, recommendProducts } = require(path.join(
 	__dirname,
 	"../data/products"
 ));
-// console.log("finding model");
+// log("finding model");
 // const { FashionRecommender } = require(path.join(__dirname, "../data/model"));
-// console.log("model found");
+// log("model found");
 
 const router = express.Router();
 
@@ -121,7 +121,8 @@ router.post("/process-recommendations", async (req, res) => {
 
 		if (!response.data.success) {
 			throw new Error(
-				response.data.detail || "Failed to process recommendations"
+				response.data.detail ||
+					"Failed to process recommendations. Failed axios.post()"
 			);
 		}
 
@@ -237,22 +238,34 @@ router.get("/recommend", (req, res) => {
 		return res.redirect("/"); // Redirect to home if no results
 	}
 
+	// Process similar products to ensure proper image paths
+	const processedSimilarProducts = (results?.similarProducts || []).map(
+		(product) => ({
+			...product,
+			image: `/images/similarProducts/${product.productId}.jpg`,
+		})
+	);
+
+	// Process recommended products to ensure proper image paths
+	const processedRecommendProducts = (results?.recommendProducts || []).map(
+		(product) => ({
+			...product,
+			image: `/images/recommendProducts/${product.productId}.jpg`,
+		})
+	);
+
 	log(
-		`Rendering recommend page with ${
-			results.similarProducts?.length || 0
-		} similar products and ${
-			results.recommendProducts?.length || 0
-		} recommended products`
+		`Rendering recommend page with ${processedSimilarProducts.length} similar products and ${processedRecommendProducts.length} recommended products`
 	);
 	res.render("recommend", {
 		products: products, // Base products
-		similarProducts: results?.similarProducts || [], // Similar products if available
-		recommendProducts: results?.recommendProducts || [], // Recommended products if available
+		similarProducts: processedSimilarProducts, // Similar products with proper image paths
+		recommendProducts: processedRecommendProducts, // Recommended products with proper image paths
 	});
 });
 
 router.get("/product/:id", (req, res) => {
-	console.log("Product route accessed with id:", req.params.id);
+	log("Product route accessed with id:", req.params.id);
 
 	// Search for the product across all product arrays
 	let foundInArray = "";
@@ -280,7 +293,7 @@ router.get("/product/:id", (req, res) => {
 		});
 
 	if (!product) {
-		console.log("Product not found. Available IDs:", {
+		log("Product not found. Available IDs:", {
 			products: products.map((p) => p.productId),
 			similarProducts: similarProducts.map((p) => p.productId),
 			recommendProducts: recommendProducts.map((p) => p.productId),
@@ -288,16 +301,16 @@ router.get("/product/:id", (req, res) => {
 		return res.status(404).send("Product not found");
 	}
 
-	console.log("Found product in array:", foundInArray);
-	console.log("Found product:", product);
-	console.log("Product category:", product.category);
+	log("Found product in array:", foundInArray);
+	log("Found product:", product);
+	log("Product category:", product.category);
 
 	// Get similar products based on category (keep this category-based)
 	const filteredSimilarProducts = similarProducts.filter((p) => {
 		const matches =
 			p.productId !== product.productId &&
 			p.category === product.category;
-		console.log(
+		log(
 			`Similar product ${p.productId} category: ${p.category}, matches: ${matches}`
 		);
 		return matches;
@@ -308,11 +321,11 @@ router.get("/product/:id", (req, res) => {
 		(p) => p.productId !== product.productId
 	);
 
-	console.log(
+	log(
 		"Filtered similar products:",
 		filteredSimilarProducts.map((p) => p.productId)
 	);
-	console.log(
+	log(
 		"Filtered recommend products:",
 		filteredRecommendProducts.map((p) => p.productId)
 	);
@@ -325,7 +338,7 @@ router.get("/product/:id", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-	console.log("get to /cart triggered");
+	log("get to /cart triggered");
 
 	const sessionCart = req.session.cart || [];
 
@@ -381,8 +394,8 @@ router.get("/checkout/:id", (req, res) => {
 });
 
 router.post("/cart/add", (req, res) => {
-	console.log("post to /cart/add triggered");
-	console.log("Request body:", req.body);
+	log("post to /cart/add triggered");
+	log("Request body:", req.body);
 
 	const { productId, quantity } = req.body;
 
@@ -409,12 +422,12 @@ router.post("/cart/add", (req, res) => {
 		req.session.cart.push({ productId, quantity: parseInt(quantity) });
 	}
 
-	console.log("Updated cart:", req.session.cart);
+	log("Updated cart:", req.session.cart);
 	res.json({ success: true, message: "Product added to cart successfully" });
 });
 
 router.post("/cart/remove", (req, res) => {
-	console.log("post to /cart/remove triggered");
+	log("post to /cart/remove triggered");
 	const { productId } = req.body;
 
 	if (!req.session.cart) {
@@ -425,12 +438,12 @@ router.post("/cart/remove", (req, res) => {
 		(item) => item.productId !== productId
 	);
 
-	console.log("Updated cart after removal:", req.session.cart);
+	log("Updated cart after removal:", req.session.cart);
 	res.json({ success: true, message: "Item removed from cart" });
 });
 
 router.post("/chatbot/image", (req, res) => {
-	console.log("post to /chatbot/image triggered");
+	log("post to /chatbot/image triggered");
 	const { image } = req.body;
 	if (image) {
 		req.session.uploadedImage = image; // Store in session
@@ -441,7 +454,7 @@ router.post("/chatbot/image", (req, res) => {
 });
 
 router.post("/chatbot/text", (req, res) => {
-	console.log("post to /chatbot/text triggered");
+	log("post to /chatbot/text triggered");
 	const { text } = req.body;
 	if (text) {
 		req.session.userText = text; // Store in session
