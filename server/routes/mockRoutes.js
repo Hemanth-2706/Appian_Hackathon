@@ -238,17 +238,29 @@ router.get("/recommend", (req, res) => {
 		return res.redirect("/"); // Redirect to home if no results
 	}
 
+	// Process similar products to ensure proper image paths
+	const processedSimilarProducts = (results?.similarProducts || []).map(
+		(product) => ({
+			...product,
+			image: `/images/similarProducts/${product.productId}.jpg`,
+		})
+	);
+
+	// Process recommended products to ensure proper image paths
+	const processedRecommendProducts = (results?.recommendProducts || []).map(
+		(product) => ({
+			...product,
+			image: `/images/recommendProducts/${product.productId}.jpg`,
+		})
+	);
+
 	log(
-		`Rendering recommend page with ${
-			results.similarProducts?.length || 0
-		} similar products and ${
-			results.recommendProducts?.length || 0
-		} recommended products`
+		`Rendering recommend page with ${processedSimilarProducts.length} similar products and ${processedRecommendProducts.length} recommended products`
 	);
 	res.render("recommend", {
 		products: products, // Base products
-		similarProducts: results?.similarProducts || [], // Similar products if available
-		recommendProducts: results?.recommendProducts || [], // Recommended products if available
+		similarProducts: processedSimilarProducts, // Similar products with proper image paths
+		recommendProducts: processedRecommendProducts, // Recommended products with proper image paths
 	});
 });
 
