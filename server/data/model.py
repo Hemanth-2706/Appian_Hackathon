@@ -407,9 +407,7 @@ module.exports = {{
             sim_df = self.df.iloc[It[0]][["productId", "text"]].copy()
             sim_df["score_txt"] = Dt[0]
         logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
-        # Save similarProducts.csv
-        if not sim_df.empty:
-            sim_df[["productId"]].to_csv(os.path.join(self.output_dir, "similar.csv"), index=False)
+        
         # Caption + Complementary Retrieval
         if has_txt or has_img:
             logger.info("Generating complementary recommendations...")
@@ -438,9 +436,10 @@ module.exports = {{
                 )
                 rec_df = unique_rec.head(k)
         logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
-        # Save recommendProducts.csv
-        if not rec_df.empty:
-            rec_df[["productId"]].to_csv(os.path.join(self.output_dir, "recommend.csv"), index=False)
+        
+        # Process recommendations and download images
+        self.process_recommendations(sim_df, rec_df)
+        
         logger.info("Recommendation process completed successfully")
         return sim_df, rec_df
     

@@ -2438,3 +2438,1540 @@ PermissionError: [Errno 13] Permission denied: './similar.csv'
 2025-06-06 17:24:24,618 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
 2025-06-06 17:24:24,619 - __main__ - INFO - Processed 10 similar products and 10 recommended products
 2025-06-06 17:24:24,621 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_7837154681980548639.jpg
+2025-06-06 22:16:44,995 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-06-06 22:16:45,546 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-06 22:16:45,573 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-06-06 22:18:19,480 - tensorflow - WARNING - From C:\Users\shaur\AppData\Local\Programs\Python\Python312\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-06-06 22:18:20,939 - data.model - INFO - Using device: cuda
+2025-06-06 22:18:20,939 - data.model - INFO - Loading CLIP model...
+2025-06-06 22:18:26,482 - data.model - INFO - CLIP model loaded successfully
+2025-06-06 22:18:26,483 - data.model - INFO - Loading SBERT model...
+2025-06-06 22:18:26,491 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-MiniLM-L3-v2
+2025-06-06 22:18:32,209 - data.model - INFO - SBERT model loaded successfully
+2025-06-06 22:18:32,209 - data.model - INFO - Loading BLIP model...
+2025-06-06 22:18:38,996 - data.model - INFO - BLIP model loaded successfully
+2025-06-06 22:18:38,997 - data.model - INFO - Configuring Gemini API...
+2025-06-06 22:18:38,997 - data.model - INFO - Gemini API configured successfully
+2025-06-06 22:18:38,999 - __main__ - INFO - Initializing FashionRecommender...
+2025-06-06 22:18:39,000 - data.model - INFO - Initializing FashionRecommender...
+2025-06-06 22:18:39,001 - data.model - INFO - Loading models...
+2025-06-06 22:18:51,902 - data.model - INFO - Models loaded successfully!
+2025-06-06 22:18:51,903 - data.model - INFO - Loading embeddings and metadata...
+2025-06-06 22:18:52,060 - data.model - INFO - img_embs shape: (5000, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-06 22:18:52,063 - data.model - INFO - txt_embs shape: (5000, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-06 22:18:52,064 - data.model - INFO - valid_indices shape: (5000,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-06 22:18:52,065 - data.model - INFO - Building FAISS indexes...
+2025-06-06 22:18:52,179 - data.model - INFO - Indexes built successfully!
+2025-06-06 22:18:52,186 - data.model - INFO - Loading dataset...
+2025-06-06 22:18:52,641 - data.model - INFO - DF shape: (44446, 13)
+2025-06-06 22:18:52,719 - data.model - INFO - DF head:   productId  ...                                               link
+0     15970  ...  http://assets.myntassets.com/v1/images/style/p...
+1     39386  ...  http://assets.myntassets.com/v1/images/style/p...
+2     59263  ...  http://assets.myntassets.com/v1/images/style/p...
+3     21379  ...  http://assets.myntassets.com/v1/images/style/p...
+4     53759  ...  http://assets.myntassets.com/v1/images/style/p...
+
+[5 rows x 13 columns]
+
+2025-06-06 22:18:52,721 - data.model - INFO - DF columns: ['productId', 'gender', 'masterCategory', 'subCategory', 'articleType', 'baseColour', 'season', 'year', 'usage', 'productDisplayName', 'image_path', 'text', 'link']
+2025-06-06 22:18:52,721 - data.model - INFO - Dataset loaded with 44446 records
+2025-06-06 22:18:52,721 - data.model - INFO - FashionRecommender initialized successfully
+2025-06-06 22:18:52,722 - __main__ - INFO - FashionRecommender initialized successfully
+2025-06-06 22:18:52,785 - __main__ - INFO - Starting FastAPI server...
+2025-06-06 22:19:18,321 - __main__ - INFO - Received recommendation request
+2025-06-06 22:19:18,322 - __main__ - INFO - Request data - Text: None, Image: Present
+2025-06-06 22:19:18,322 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:19:18,326 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:19:18,326 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:19:18,328 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg, prompt: None
+2025-06-06 22:19:18,330 - data.model - INFO - Processing image input...
+2025-06-06 22:19:20,518 - data.model - INFO - Processing image-only input...
+2025-06-06 22:19:20,693 - data.model - INFO - Similar product IDs: ['15349', '3730', '2274', '3731', '4124', '3338', '3330', '10054', '14001', '12792']
+2025-06-06 22:19:20,694 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:19:22,063 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:19:27,085 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:19:27,567 - data.model - INFO - Recommended product IDs: ['54516', '26536', '54517', '24260', '30233', '13073', '11517', '54542', '20895', '54521']
+2025-06-06 22:19:27,568 - data.model - INFO - Clearing output directories...
+2025-06-06 22:19:27,568 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:19:27,569 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:19:27,571 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:19:27,571 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:19:27,583 - data.model - INFO - Downloading image for Product ID 30233...
+2025-06-06 22:19:27,969 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30233.jpg
+2025-06-06 22:19:27,970 - data.model - INFO - Downloading image for Product ID 13073...
+2025-06-06 22:19:28,674 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\13073.jpg
+2025-06-06 22:19:28,675 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:19:29,167 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
+2025-06-06 22:19:29,169 - data.model - INFO - Downloading image for Product ID 54521...
+2025-06-06 22:19:29,574 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54521.jpg
+2025-06-06 22:19:29,574 - data.model - INFO - Downloading image for Product ID 54517...
+2025-06-06 22:19:29,929 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54517.jpg
+2025-06-06 22:19:29,930 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:19:30,371 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:19:30,372 - data.model - INFO - Downloading image for Product ID 24260...
+2025-06-06 22:19:30,617 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\24260.jpg
+2025-06-06 22:19:30,620 - data.model - INFO - Downloading image for Product ID 11517...
+2025-06-06 22:19:31,130 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\11517.jpg
+2025-06-06 22:19:31,130 - data.model - INFO - Downloading image for Product ID 54542...
+2025-06-06 22:19:31,399 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54542.jpg
+2025-06-06 22:19:31,401 - data.model - INFO - Downloading image for Product ID 54516...
+2025-06-06 22:19:32,009 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54516.jpg
+2025-06-06 22:19:32,009 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:19:32,009 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:19:32,011 - data.model - INFO - Downloading image for Product ID 10054...
+2025-06-06 22:19:32,482 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10054.jpg
+2025-06-06 22:19:32,483 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:19:33,060 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:19:33,061 - data.model - INFO - Downloading image for Product ID 3338...
+2025-06-06 22:19:33,401 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3338.jpg
+2025-06-06 22:19:33,403 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:19:33,823 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:19:33,825 - data.model - INFO - Downloading image for Product ID 12792...
+2025-06-06 22:19:34,109 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\12792.jpg
+2025-06-06 22:19:34,111 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:19:34,555 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:19:34,557 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:19:34,709 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:19:34,710 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:19:35,121 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:19:35,123 - data.model - INFO - Downloading image for Product ID 3330...
+2025-06-06 22:19:35,296 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3330.jpg
+2025-06-06 22:19:35,298 - data.model - INFO - Downloading image for Product ID 4124...
+2025-06-06 22:19:35,705 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4124.jpg
+2025-06-06 22:19:35,707 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:19:35,707 - data.model - INFO - Creating products.js file...
+2025-06-06 22:19:35,708 - data.model - INFO - Created 3 base products
+2025-06-06 22:19:35,709 - data.model - INFO - Created 10 similar products
+2025-06-06 22:19:35,716 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:19:36,238 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:19:36,239 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:19:36,239 - __main__ - INFO - Received results from recommender
+2025-06-06 22:19:36,239 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:19:36,239 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:19:36,240 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:19:36,240 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:19:36,241 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:19:36,246 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:19:36,247 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:19:36,249 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:19:36,250 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:19:36,251 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:19:36,253 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:19:36,265 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:19:36,266 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:19:36,266 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:19:36,266 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:19:36,267 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:19:36,269 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:19:36,272 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:19:36,272 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:19:36,273 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:19:36,275 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:19:36,276 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:19:36,279 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:19:36,284 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:19:36,285 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:19:36,287 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:20:15,151 - __main__ - INFO - Received recommendation request
+2025-06-06 22:20:15,152 - __main__ - INFO - Request data - Text: Blue shirt, Image: Present
+2025-06-06 22:20:15,153 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:20:15,156 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:20:15,157 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:20:15,157 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg, prompt: Blue shirt
+2025-06-06 22:20:15,158 - data.model - INFO - Processing image input...
+2025-06-06 22:20:15,294 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:20:15,375 - data.model - INFO - Similar product IDs: ['15349', '2272', '14001', '10490', '7535', '16793', '2274', '38639', '14037', '10430']
+2025-06-06 22:20:15,376 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:20:16,248 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:20:19,143 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:20:19,502 - data.model - INFO - Recommended product IDs: ['26536', '54516', '54517', '13073', '30233', '24260', '11517', '54542', '54521', '26539']
+2025-06-06 22:20:19,503 - data.model - INFO - Clearing output directories...
+2025-06-06 22:20:19,511 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:20:19,515 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:20:19,517 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:20:19,517 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:20:19,524 - data.model - INFO - Downloading image for Product ID 30233...
+2025-06-06 22:20:19,697 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30233.jpg
+2025-06-06 22:20:19,699 - data.model - INFO - Downloading image for Product ID 13073...
+2025-06-06 22:20:20,098 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\13073.jpg
+2025-06-06 22:20:20,098 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:20:20,510 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
+2025-06-06 22:20:20,512 - data.model - INFO - Downloading image for Product ID 54521...
+2025-06-06 22:20:20,615 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54521.jpg
+2025-06-06 22:20:20,616 - data.model - INFO - Downloading image for Product ID 54517...
+2025-06-06 22:20:20,741 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54517.jpg
+2025-06-06 22:20:20,741 - data.model - INFO - Downloading image for Product ID 24260...
+2025-06-06 22:20:20,869 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\24260.jpg
+2025-06-06 22:20:20,869 - data.model - INFO - Downloading image for Product ID 11517...
+2025-06-06 22:20:21,247 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\11517.jpg
+2025-06-06 22:20:21,247 - data.model - INFO - Downloading image for Product ID 26539...
+2025-06-06 22:20:21,376 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\26539.jpg
+2025-06-06 22:20:21,376 - data.model - INFO - Downloading image for Product ID 54542...
+2025-06-06 22:20:21,508 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54542.jpg
+2025-06-06 22:20:21,508 - data.model - INFO - Downloading image for Product ID 54516...
+2025-06-06 22:20:21,928 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54516.jpg
+2025-06-06 22:20:21,929 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:20:21,929 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:20:21,933 - data.model - INFO - Downloading image for Product ID 2272...
+2025-06-06 22:20:22,361 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2272.jpg
+2025-06-06 22:20:22,362 - data.model - INFO - Downloading image for Product ID 10430...
+2025-06-06 22:20:22,722 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10430.jpg
+2025-06-06 22:20:22,723 - data.model - INFO - Downloading image for Product ID 38639...
+2025-06-06 22:20:23,066 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\38639.jpg
+2025-06-06 22:20:23,067 - data.model - INFO - Downloading image for Product ID 7535...
+2025-06-06 22:20:23,282 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\7535.jpg
+2025-06-06 22:20:23,283 - data.model - INFO - Downloading image for Product ID 14037...
+2025-06-06 22:20:23,799 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14037.jpg
+2025-06-06 22:20:23,800 - data.model - INFO - Downloading image for Product ID 10490...
+2025-06-06 22:20:24,367 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10490.jpg
+2025-06-06 22:20:24,367 - data.model - INFO - Downloading image for Product ID 16793...
+2025-06-06 22:20:24,903 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\16793.jpg
+2025-06-06 22:20:24,904 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:20:25,265 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:20:25,266 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:20:25,448 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:20:25,451 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:20:25,594 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:20:25,595 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:20:25,595 - data.model - INFO - Creating products.js file...
+2025-06-06 22:20:25,598 - data.model - INFO - Created 3 base products
+2025-06-06 22:20:25,604 - data.model - INFO - Created 10 similar products
+2025-06-06 22:20:25,608 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:20:25,620 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:20:25,620 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:20:25,621 - __main__ - INFO - Received results from recommender
+2025-06-06 22:20:25,621 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:20:25,621 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:20:25,622 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:20:25,622 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:20:25,624 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:20:25,625 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:20:25,625 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:20:25,626 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:20:25,626 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:20:25,628 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:20:25,631 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:20:25,638 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:20:25,638 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:20:25,639 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:20:25,640 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:20:25,640 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:20:25,641 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:20:25,646 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:20:25,647 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:20:25,649 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:20:25,651 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:20:25,652 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:20:25,655 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:20:25,659 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:20:25,660 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:20:25,662 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:20:40,470 - __main__ - INFO - Received recommendation request
+2025-06-06 22:20:40,471 - __main__ - INFO - Request data - Text: Blue shirt, Image: Present
+2025-06-06 22:20:40,471 - __main__ - INFO - First 100 chars of base64 image: /9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QOJaHR0cDovL25zLmFkb2JlLmNvbS94YXAv
+2025-06-06 22:20:40,476 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg
+2025-06-06 22:20:40,477 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:20:40,477 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg, prompt: Blue shirt
+2025-06-06 22:20:40,478 - data.model - INFO - Processing image input...
+2025-06-06 22:20:40,709 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:20:40,777 - data.model - INFO - Similar product IDs: ['39727', '32393', '27884', '43538', '27885', '11714', '49652', '26369', '28492', '26795']
+2025-06-06 22:20:40,778 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:20:41,816 - data.model - INFO - Generated caption: a woman wearing a black cardigan jacket
+2025-06-06 22:20:44,613 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:20:44,935 - data.model - INFO - Recommended product IDs: ['39974', '39973', '12509', '12508', '12506', '30258', '30261', '56410', '24463', '13074']
+2025-06-06 22:20:44,936 - data.model - INFO - Clearing output directories...
+2025-06-06 22:20:44,942 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:20:44,949 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:20:44,951 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:20:44,952 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:20:44,957 - data.model - INFO - Downloading image for Product ID 12509...
+2025-06-06 22:20:45,668 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\12509.jpg
+2025-06-06 22:20:45,669 - data.model - INFO - Downloading image for Product ID 13074...
+2025-06-06 22:20:46,699 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\13074.jpg
+2025-06-06 22:20:46,701 - data.model - INFO - Downloading image for Product ID 24463...
+2025-06-06 22:20:47,066 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\24463.jpg
+2025-06-06 22:20:47,067 - data.model - INFO - Downloading image for Product ID 30258...
+2025-06-06 22:20:47,330 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30258.jpg
+2025-06-06 22:20:47,332 - data.model - INFO - Downloading image for Product ID 12508...
+2025-06-06 22:20:47,884 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\12508.jpg
+2025-06-06 22:20:47,885 - data.model - INFO - Downloading image for Product ID 39974...
+2025-06-06 22:20:48,154 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\39974.jpg
+2025-06-06 22:20:48,155 - data.model - INFO - Downloading image for Product ID 39973...
+2025-06-06 22:20:48,639 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\39973.jpg
+2025-06-06 22:20:48,640 - data.model - INFO - Downloading image for Product ID 12506...
+2025-06-06 22:20:49,521 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\12506.jpg
+2025-06-06 22:20:49,521 - data.model - INFO - Downloading image for Product ID 30261...
+2025-06-06 22:20:50,000 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30261.jpg
+2025-06-06 22:20:50,002 - data.model - INFO - Downloading image for Product ID 56410...
+2025-06-06 22:20:50,836 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\56410.jpg
+2025-06-06 22:20:50,837 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:20:50,838 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:20:50,843 - data.model - INFO - Downloading image for Product ID 43538...
+2025-06-06 22:20:51,253 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\43538.jpg
+2025-06-06 22:20:51,254 - data.model - INFO - Downloading image for Product ID 26369...
+2025-06-06 22:20:52,391 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\26369.jpg
+2025-06-06 22:20:52,392 - data.model - INFO - Downloading image for Product ID 39727...
+2025-06-06 22:20:52,899 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\39727.jpg
+2025-06-06 22:20:52,901 - data.model - INFO - Downloading image for Product ID 27884...
+2025-06-06 22:20:53,522 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\27884.jpg
+2025-06-06 22:20:53,522 - data.model - INFO - Downloading image for Product ID 26795...
+2025-06-06 22:20:54,530 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\26795.jpg
+2025-06-06 22:20:54,531 - data.model - INFO - Downloading image for Product ID 27885...
+2025-06-06 22:20:55,363 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\27885.jpg
+2025-06-06 22:20:55,365 - data.model - INFO - Downloading image for Product ID 28492...
+2025-06-06 22:20:57,617 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\28492.jpg
+2025-06-06 22:20:57,618 - data.model - INFO - Downloading image for Product ID 49652...
+2025-06-06 22:20:58,042 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\49652.jpg
+2025-06-06 22:20:58,044 - data.model - INFO - Downloading image for Product ID 11714...
+2025-06-06 22:20:58,425 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\11714.jpg
+2025-06-06 22:20:58,426 - data.model - INFO - Downloading image for Product ID 32393...
+2025-06-06 22:20:58,978 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\32393.jpg
+2025-06-06 22:20:58,979 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:20:58,979 - data.model - INFO - Creating products.js file...
+2025-06-06 22:20:58,979 - data.model - INFO - Created 3 base products
+2025-06-06 22:20:58,982 - data.model - INFO - Created 10 similar products
+2025-06-06 22:20:58,984 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:20:58,991 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:20:58,991 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:20:58,991 - __main__ - INFO - Received results from recommender
+2025-06-06 22:20:58,992 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:20:58,992 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:20:58,992 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:20:58,992 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:20:58,992 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:20:58,993 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:20:58,994 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:20:58,994 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:20:58,994 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:20:58,995 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:20:58,995 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:20:58,996 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:20:58,996 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:20:58,996 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:20:58,996 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:20:58,996 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:20:58,997 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:20:58,998 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:20:58,998 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:20:58,999 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:20:58,999 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:20:59,000 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:20:59,000 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:20:59,001 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:20:59,002 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:20:59,002 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg
+2025-06-06 22:21:15,325 - __main__ - INFO - Received recommendation request
+2025-06-06 22:21:15,326 - __main__ - INFO - Request data - Text: Heels, Image: Present
+2025-06-06 22:21:15,326 - __main__ - INFO - First 100 chars of base64 image: /9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QOJaHR0cDovL25zLmFkb2JlLmNvbS94YXAv
+2025-06-06 22:21:15,336 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg
+2025-06-06 22:21:15,336 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:21:15,337 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg, prompt: Heels
+2025-06-06 22:21:15,341 - data.model - INFO - Processing image input...
+2025-06-06 22:21:15,553 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:21:15,630 - data.model - INFO - Similar product IDs: ['27884', '27885', '2874', '30694', '53136', '42640', '27075', '39727', '39584', '43933']
+2025-06-06 22:21:15,631 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:21:16,708 - data.model - INFO - Generated caption: a woman wearing a black cardigan jacket
+2025-06-06 22:21:19,861 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:21:20,213 - data.model - INFO - Recommended product IDs: ['17670', '2874', '46614', '30694', '27075', '39570', '43933', '39584', '41667', '43934']
+2025-06-06 22:21:20,214 - data.model - INFO - Clearing output directories...
+2025-06-06 22:21:20,219 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:21:20,223 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:21:20,224 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:21:20,226 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:21:20,235 - data.model - INFO - Downloading image for Product ID 43934...
+2025-06-06 22:21:20,622 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\43934.jpg
+2025-06-06 22:21:20,623 - data.model - INFO - Downloading image for Product ID 17670...
+2025-06-06 22:21:21,150 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\17670.jpg
+2025-06-06 22:21:21,151 - data.model - INFO - Downloading image for Product ID 41667...
+2025-06-06 22:21:21,284 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\41667.jpg
+2025-06-06 22:21:21,285 - data.model - INFO - Downloading image for Product ID 39584...
+2025-06-06 22:21:21,611 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\39584.jpg
+2025-06-06 22:21:21,612 - data.model - INFO - Downloading image for Product ID 43933...
+2025-06-06 22:21:21,943 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\43933.jpg
+2025-06-06 22:21:21,944 - data.model - INFO - Downloading image for Product ID 39570...
+2025-06-06 22:21:22,057 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\39570.jpg
+2025-06-06 22:21:22,059 - data.model - INFO - Downloading image for Product ID 27075...
+2025-06-06 22:21:22,197 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\27075.jpg
+2025-06-06 22:21:22,202 - data.model - INFO - Downloading image for Product ID 30694...
+2025-06-06 22:21:22,502 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30694.jpg
+2025-06-06 22:21:22,503 - data.model - INFO - Downloading image for Product ID 46614...
+2025-06-06 22:21:22,597 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\46614.jpg
+2025-06-06 22:21:22,601 - data.model - INFO - Downloading image for Product ID 2874...
+2025-06-06 22:21:22,964 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\2874.jpg
+2025-06-06 22:21:22,965 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:21:22,965 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:21:22,970 - data.model - INFO - Downloading image for Product ID 39727...
+2025-06-06 22:21:23,099 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\39727.jpg
+2025-06-06 22:21:23,100 - data.model - INFO - Downloading image for Product ID 27884...
+2025-06-06 22:21:23,263 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\27884.jpg
+2025-06-06 22:21:23,264 - data.model - INFO - Downloading image for Product ID 42640...
+2025-06-06 22:21:24,045 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\42640.jpg
+2025-06-06 22:21:24,046 - data.model - INFO - Downloading image for Product ID 39584...
+2025-06-06 22:21:24,463 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\39584.jpg
+2025-06-06 22:21:24,464 - data.model - INFO - Downloading image for Product ID 43933...
+2025-06-06 22:21:25,165 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\43933.jpg
+2025-06-06 22:21:25,166 - data.model - INFO - Downloading image for Product ID 27885...
+2025-06-06 22:21:25,748 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\27885.jpg
+2025-06-06 22:21:25,749 - data.model - INFO - Downloading image for Product ID 27075...
+2025-06-06 22:21:26,564 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\27075.jpg
+2025-06-06 22:21:26,565 - data.model - INFO - Downloading image for Product ID 30694...
+2025-06-06 22:21:26,924 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\30694.jpg
+2025-06-06 22:21:26,925 - data.model - INFO - Downloading image for Product ID 2874...
+2025-06-06 22:21:27,220 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2874.jpg
+2025-06-06 22:21:27,221 - data.model - INFO - Downloading image for Product ID 53136...
+2025-06-06 22:21:27,314 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\53136.jpg
+2025-06-06 22:21:27,316 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:21:27,316 - data.model - INFO - Creating products.js file...
+2025-06-06 22:21:27,317 - data.model - INFO - Created 3 base products
+2025-06-06 22:21:27,321 - data.model - INFO - Created 10 similar products
+2025-06-06 22:21:27,324 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:21:27,334 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:21:27,334 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:21:27,334 - __main__ - INFO - Received results from recommender
+2025-06-06 22:21:27,334 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:21:27,336 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:21:27,336 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:21:27,336 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:21:27,337 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:21:27,338 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:21:27,338 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:21:27,339 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:21:27,339 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:21:27,340 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:21:27,341 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:21:27,342 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:21:27,343 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:21:27,343 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:21:27,343 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:21:27,344 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:21:27,344 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:21:27,346 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:21:27,346 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:21:27,347 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:21:27,347 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:21:27,347 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:21:27,349 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:21:27,350 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:21:27,350 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:21:27,351 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_6741481414470939675.jpg
+2025-06-06 22:22:09,623 - __main__ - INFO - Received recommendation request
+2025-06-06 22:22:09,624 - __main__ - INFO - Request data - Text: Heels, Image: Present
+2025-06-06 22:22:09,626 - __main__ - INFO - First 100 chars of base64 image: /9j/4RwGRXhpZgAATU0AKgAAAAgADAEAAAMAAAABBwgAAAEBAAMAAAABCWAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:22:09,634 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-1567100107268218797.jpg
+2025-06-06 22:22:09,635 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:22:09,635 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-1567100107268218797.jpg, prompt: Heels
+2025-06-06 22:22:09,637 - data.model - INFO - Processing image input...
+2025-06-06 22:22:10,054 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:22:10,125 - data.model - INFO - Similar product IDs: ['30694', '51266', '52678', '52683', '11516', '30260', '39584', '23285', '36768', '44982']
+2025-06-06 22:22:10,126 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:22:11,302 - data.model - INFO - Generated caption: a black watch with a black leather band
+2025-06-06 22:22:14,369 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:22:14,624 - data.model - INFO - Recommended product IDs: ['56885', '56882', '42847', '42840', '52648', '52647', '30260', '4743', '47303', '38435']
+2025-06-06 22:22:14,625 - data.model - INFO - Clearing output directories...
+2025-06-06 22:22:14,631 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:22:14,635 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:22:14,637 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:22:14,637 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:22:14,641 - data.model - INFO - Downloading image for Product ID 52647...
+2025-06-06 22:22:15,405 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52647.jpg
+2025-06-06 22:22:15,407 - data.model - INFO - Downloading image for Product ID 47303...
+2025-06-06 22:22:15,805 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\47303.jpg
+2025-06-06 22:22:15,807 - data.model - INFO - Downloading image for Product ID 56882...
+2025-06-06 22:22:16,442 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\56882.jpg
+2025-06-06 22:22:16,442 - data.model - INFO - Downloading image for Product ID 30260...
+2025-06-06 22:22:16,841 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30260.jpg
+2025-06-06 22:22:16,842 - data.model - INFO - Downloading image for Product ID 56885...
+2025-06-06 22:22:17,285 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\56885.jpg
+2025-06-06 22:22:17,286 - data.model - INFO - Downloading image for Product ID 52648...
+2025-06-06 22:22:17,651 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52648.jpg
+2025-06-06 22:22:17,654 - data.model - INFO - Downloading image for Product ID 38435...
+2025-06-06 22:22:18,069 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\38435.jpg
+2025-06-06 22:22:18,070 - data.model - INFO - Downloading image for Product ID 42847...
+2025-06-06 22:22:18,632 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\42847.jpg
+2025-06-06 22:22:18,634 - data.model - INFO - Downloading image for Product ID 42840...
+2025-06-06 22:22:19,046 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\42840.jpg
+2025-06-06 22:22:19,047 - data.model - INFO - Downloading image for Product ID 4743...
+2025-06-06 22:22:29,078 - data.model - ERROR - Failed to download image for 4743: HTTPConnectionPool(host='assets.myntassets.com', port=80): Read timed out. (read timeout=10)
+2025-06-06 22:22:29,079 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:22:29,079 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:22:29,083 - data.model - INFO - Downloading image for Product ID 52678...
+2025-06-06 22:22:29,476 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52678.jpg
+2025-06-06 22:22:29,477 - data.model - INFO - Downloading image for Product ID 11516...
+2025-06-06 22:22:30,074 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\11516.jpg
+2025-06-06 22:22:30,075 - data.model - INFO - Downloading image for Product ID 36768...
+2025-06-06 22:22:30,246 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36768.jpg
+2025-06-06 22:22:30,247 - data.model - INFO - Downloading image for Product ID 23285...
+2025-06-06 22:22:30,880 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\23285.jpg
+2025-06-06 22:22:30,881 - data.model - INFO - Downloading image for Product ID 51266...
+2025-06-06 22:22:31,290 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\51266.jpg
+2025-06-06 22:22:31,291 - data.model - INFO - Downloading image for Product ID 30260...
+2025-06-06 22:22:31,373 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\30260.jpg
+2025-06-06 22:22:31,374 - data.model - INFO - Downloading image for Product ID 39584...
+2025-06-06 22:22:31,452 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\39584.jpg
+2025-06-06 22:22:31,453 - data.model - INFO - Downloading image for Product ID 52683...
+2025-06-06 22:22:31,717 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52683.jpg
+2025-06-06 22:22:31,718 - data.model - INFO - Downloading image for Product ID 30694...
+2025-06-06 22:22:32,135 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\30694.jpg
+2025-06-06 22:22:32,136 - data.model - INFO - Downloading image for Product ID 44982...
+2025-06-06 22:22:42,191 - data.model - ERROR - Failed to download image for 44982: HTTPConnectionPool(host='assets.myntassets.com', port=80): Read timed out. (read timeout=10)
+2025-06-06 22:22:42,192 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:22:42,192 - data.model - INFO - Creating products.js file...
+2025-06-06 22:22:42,194 - data.model - INFO - Created 3 base products
+2025-06-06 22:22:42,199 - data.model - INFO - Created 10 similar products
+2025-06-06 22:22:42,202 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:22:42,212 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:22:42,213 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:22:42,213 - __main__ - INFO - Received results from recommender
+2025-06-06 22:22:42,213 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:22:42,213 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:22:42,213 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:22:42,214 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:22:42,215 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:22:42,217 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:22:42,217 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:22:42,218 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:22:42,219 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:22:42,220 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:22:42,222 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:22:42,238 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:22:42,245 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:22:42,246 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:22:42,247 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:22:42,254 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:22:42,257 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:22:42,259 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:22:42,259 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:22:42,260 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:22:42,260 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:22:42,261 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:22:42,261 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:22:42,263 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:22:42,263 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:22:42,263 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-1567100107268218797.jpg
+2025-06-06 22:23:15,104 - __main__ - INFO - Received recommendation request
+2025-06-06 22:23:15,105 - __main__ - INFO - Request data - Text: Heels, Image: Present
+2025-06-06 22:23:15,105 - __main__ - INFO - First 100 chars of base64 image: /9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAOgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABwUFBQUFBwUFBwoGBQYK
+2025-06-06 22:23:15,107 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:23:15,107 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:23:15,108 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg, prompt: Heels
+2025-06-06 22:23:15,108 - data.model - INFO - Processing image input...
+2025-06-06 22:23:15,435 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:23:15,500 - data.model - INFO - Similar product IDs: ['45030', '47995', '10099', '44977', '52678', '32366', '36794', '45008', '36761', '52683']
+2025-06-06 22:23:15,501 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:23:16,826 - data.model - INFO - Generated caption: a watch with a black strap and orange hands
+2025-06-06 22:23:19,593 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:23:19,944 - data.model - INFO - Recommended product IDs: ['27846', '20895', '52647', '52648', '42847', '2672', '16768', '59432', '47303', '38435']
+2025-06-06 22:23:19,945 - data.model - INFO - Clearing output directories...
+2025-06-06 22:23:19,950 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:23:19,956 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:23:19,958 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:23:19,960 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:23:19,964 - data.model - INFO - Downloading image for Product ID 27846...
+2025-06-06 22:23:20,587 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\27846.jpg
+2025-06-06 22:23:20,589 - data.model - INFO - Downloading image for Product ID 59432...
+2025-06-06 22:23:20,858 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\59432.jpg
+2025-06-06 22:23:20,859 - data.model - INFO - Downloading image for Product ID 52647...
+2025-06-06 22:23:21,221 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52647.jpg
+2025-06-06 22:23:21,223 - data.model - INFO - Downloading image for Product ID 47303...
+2025-06-06 22:23:21,487 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\47303.jpg
+2025-06-06 22:23:21,489 - data.model - INFO - Downloading image for Product ID 52648...
+2025-06-06 22:23:22,010 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52648.jpg
+2025-06-06 22:23:22,010 - data.model - INFO - Downloading image for Product ID 38435...
+2025-06-06 22:23:22,331 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\38435.jpg
+2025-06-06 22:23:22,332 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:23:22,645 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:23:22,647 - data.model - INFO - Downloading image for Product ID 42847...
+2025-06-06 22:23:23,166 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\42847.jpg
+2025-06-06 22:23:23,166 - data.model - INFO - Downloading image for Product ID 2672...
+2025-06-06 22:23:23,340 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\2672.jpg
+2025-06-06 22:23:23,342 - data.model - INFO - Downloading image for Product ID 16768...
+2025-06-06 22:23:23,761 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16768.jpg
+2025-06-06 22:23:23,762 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:23:23,762 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:23:23,767 - data.model - INFO - Downloading image for Product ID 36761...
+2025-06-06 22:23:24,252 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36761.jpg
+2025-06-06 22:23:24,254 - data.model - INFO - Downloading image for Product ID 52678...
+2025-06-06 22:23:24,501 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52678.jpg
+2025-06-06 22:23:24,502 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:23:24,774 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\44977.jpg
+2025-06-06 22:23:24,775 - data.model - INFO - Downloading image for Product ID 47995...
+2025-06-06 22:23:34,882 - data.model - ERROR - Failed to download image for 47995: HTTPConnectionPool(host='assets.myntassets.com', port=80): Read timed out. (read timeout=10)
+2025-06-06 22:23:34,884 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:23:35,102 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45008.jpg
+2025-06-06 22:23:35,103 - data.model - INFO - Downloading image for Product ID 45030...
+2025-06-06 22:23:35,651 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45030.jpg
+2025-06-06 22:23:35,653 - data.model - INFO - Downloading image for Product ID 32366...
+2025-06-06 22:23:35,903 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\32366.jpg
+2025-06-06 22:23:35,903 - data.model - INFO - Downloading image for Product ID 10099...
+2025-06-06 22:23:36,420 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10099.jpg
+2025-06-06 22:23:36,420 - data.model - INFO - Downloading image for Product ID 52683...
+2025-06-06 22:23:36,536 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52683.jpg
+2025-06-06 22:23:36,537 - data.model - INFO - Downloading image for Product ID 36794...
+2025-06-06 22:23:36,997 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36794.jpg
+2025-06-06 22:23:36,997 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:23:36,997 - data.model - INFO - Creating products.js file...
+2025-06-06 22:23:36,999 - data.model - INFO - Created 3 base products
+2025-06-06 22:23:37,003 - data.model - INFO - Created 10 similar products
+2025-06-06 22:23:37,005 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:23:37,013 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:23:37,014 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:23:37,015 - __main__ - INFO - Received results from recommender
+2025-06-06 22:23:37,015 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:23:37,015 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:23:37,016 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:23:37,016 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:23:37,017 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:23:37,020 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:23:37,021 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:23:37,021 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:23:37,022 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:23:37,023 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:23:37,024 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:23:37,029 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:23:37,030 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:23:37,031 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:23:37,032 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:23:37,033 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:23:37,035 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:23:37,038 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:23:37,039 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:23:37,040 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:23:37,042 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:23:37,043 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:23:37,046 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:23:37,051 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:23:37,053 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:23:37,054 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:24:03,057 - __main__ - INFO - Received recommendation request
+2025-06-06 22:24:03,057 - __main__ - INFO - Request data - Text: Heels, Image: Present
+2025-06-06 22:24:03,058 - __main__ - INFO - First 100 chars of base64 image: /9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAOgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABwUFBQUFBwUFBwoGBQYK
+2025-06-06 22:24:03,060 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:24:03,061 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:24:03,061 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg, prompt: Heels
+2025-06-06 22:24:03,062 - data.model - INFO - Processing image input...
+2025-06-06 22:24:03,337 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:24:03,408 - data.model - INFO - Similar product IDs: ['45030', '47995', '10099', '44977', '52678', '32366', '36794', '45008', '36761', '52683']
+2025-06-06 22:24:03,409 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:24:04,749 - data.model - INFO - Generated caption: a watch with a black strap and orange hands
+2025-06-06 22:24:08,621 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:24:08,979 - data.model - INFO - Recommended product IDs: ['27846', '20895', '52647', '52648', '2672', '59432', '16768', '3135', '42847', '47368']
+2025-06-06 22:24:08,979 - data.model - INFO - Clearing output directories...
+2025-06-06 22:24:08,984 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:24:08,990 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:24:08,992 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:24:08,992 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:24:08,996 - data.model - INFO - Downloading image for Product ID 27846...
+2025-06-06 22:24:09,415 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\27846.jpg
+2025-06-06 22:24:09,416 - data.model - INFO - Downloading image for Product ID 59432...
+2025-06-06 22:24:09,795 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\59432.jpg
+2025-06-06 22:24:09,796 - data.model - INFO - Downloading image for Product ID 52647...
+2025-06-06 22:24:09,996 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52647.jpg
+2025-06-06 22:24:09,997 - data.model - INFO - Downloading image for Product ID 47368...
+2025-06-06 22:24:10,436 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\47368.jpg
+2025-06-06 22:24:10,437 - data.model - INFO - Downloading image for Product ID 3135...
+2025-06-06 22:24:10,675 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\3135.jpg
+2025-06-06 22:24:10,676 - data.model - INFO - Downloading image for Product ID 52648...
+2025-06-06 22:24:11,061 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52648.jpg
+2025-06-06 22:24:11,061 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:24:11,194 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:24:11,196 - data.model - INFO - Downloading image for Product ID 42847...
+2025-06-06 22:24:11,583 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\42847.jpg
+2025-06-06 22:24:11,584 - data.model - INFO - Downloading image for Product ID 2672...
+2025-06-06 22:24:11,866 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\2672.jpg
+2025-06-06 22:24:11,866 - data.model - INFO - Downloading image for Product ID 16768...
+2025-06-06 22:24:12,076 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16768.jpg
+2025-06-06 22:24:12,077 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:24:12,077 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:24:12,081 - data.model - INFO - Downloading image for Product ID 36761...
+2025-06-06 22:24:12,477 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36761.jpg
+2025-06-06 22:24:12,479 - data.model - INFO - Downloading image for Product ID 52678...
+2025-06-06 22:24:13,020 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52678.jpg
+2025-06-06 22:24:13,021 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:24:14,056 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\44977.jpg
+2025-06-06 22:24:14,057 - data.model - INFO - Downloading image for Product ID 47995...
+2025-06-06 22:24:15,185 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\47995.jpg
+2025-06-06 22:24:15,185 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:24:15,328 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45008.jpg
+2025-06-06 22:24:15,329 - data.model - INFO - Downloading image for Product ID 45030...
+2025-06-06 22:24:15,665 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45030.jpg
+2025-06-06 22:24:15,666 - data.model - INFO - Downloading image for Product ID 32366...
+2025-06-06 22:24:16,027 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\32366.jpg
+2025-06-06 22:24:16,029 - data.model - INFO - Downloading image for Product ID 10099...
+2025-06-06 22:24:16,185 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10099.jpg
+2025-06-06 22:24:16,186 - data.model - INFO - Downloading image for Product ID 52683...
+2025-06-06 22:24:16,338 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52683.jpg
+2025-06-06 22:24:16,338 - data.model - INFO - Downloading image for Product ID 36794...
+2025-06-06 22:24:16,760 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36794.jpg
+2025-06-06 22:24:16,761 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:24:16,761 - data.model - INFO - Creating products.js file...
+2025-06-06 22:24:16,762 - data.model - INFO - Created 3 base products
+2025-06-06 22:24:16,766 - data.model - INFO - Created 10 similar products
+2025-06-06 22:24:16,768 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:24:16,774 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:24:16,774 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:24:16,774 - __main__ - INFO - Received results from recommender
+2025-06-06 22:24:16,775 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:24:16,775 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:24:16,776 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:24:16,776 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:24:16,777 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:24:16,779 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:24:16,779 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:24:16,780 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:24:16,780 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:24:16,781 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:24:16,782 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:24:16,784 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:24:16,784 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:24:16,784 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:24:16,785 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:24:16,785 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:24:16,785 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:24:16,787 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:24:16,787 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:24:16,787 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:24:16,787 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:24:16,788 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:24:16,789 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:24:16,791 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:24:16,791 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:24:16,791 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:24:43,661 - __main__ - INFO - Received recommendation request
+2025-06-06 22:24:43,662 - __main__ - INFO - Request data - Text: heels, Image: Present
+2025-06-06 22:24:43,662 - __main__ - INFO - First 100 chars of base64 image: /9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAOgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABwUFBQUFBwUFBwoGBQYK
+2025-06-06 22:24:43,666 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:24:43,666 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:24:43,666 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg, prompt: heels
+2025-06-06 22:24:43,667 - data.model - INFO - Processing image input...
+2025-06-06 22:24:43,936 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:24:44,012 - data.model - INFO - Similar product IDs: ['45030', '47995', '10099', '44977', '52678', '32366', '36794', '45008', '36761', '52683']
+2025-06-06 22:24:44,012 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:24:45,317 - data.model - INFO - Generated caption: a watch with a black strap and orange hands
+2025-06-06 22:24:47,762 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:24:48,102 - data.model - INFO - Recommended product IDs: ['27846', '43760', '52647', '52648', '20895', '2672', '42847', '47368', '59432', '16768']
+2025-06-06 22:24:48,102 - data.model - INFO - Clearing output directories...
+2025-06-06 22:24:48,105 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:24:48,115 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:24:48,118 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:24:48,118 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:24:48,122 - data.model - INFO - Downloading image for Product ID 27846...
+2025-06-06 22:24:48,214 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\27846.jpg
+2025-06-06 22:24:48,215 - data.model - INFO - Downloading image for Product ID 59432...
+2025-06-06 22:24:48,330 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\59432.jpg
+2025-06-06 22:24:48,330 - data.model - INFO - Downloading image for Product ID 52647...
+2025-06-06 22:24:48,682 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52647.jpg
+2025-06-06 22:24:48,683 - data.model - INFO - Downloading image for Product ID 47368...
+2025-06-06 22:24:48,820 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\47368.jpg
+2025-06-06 22:24:48,821 - data.model - INFO - Downloading image for Product ID 52648...
+2025-06-06 22:24:49,189 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\52648.jpg
+2025-06-06 22:24:49,190 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:24:49,591 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:24:49,593 - data.model - INFO - Downloading image for Product ID 42847...
+2025-06-06 22:24:49,994 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\42847.jpg
+2025-06-06 22:24:49,996 - data.model - INFO - Downloading image for Product ID 2672...
+2025-06-06 22:24:50,115 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\2672.jpg
+2025-06-06 22:24:50,116 - data.model - INFO - Downloading image for Product ID 16768...
+2025-06-06 22:24:50,584 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16768.jpg
+2025-06-06 22:24:50,585 - data.model - INFO - Downloading image for Product ID 43760...
+2025-06-06 22:24:51,046 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\43760.jpg
+2025-06-06 22:24:51,046 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:24:51,047 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:24:51,048 - data.model - INFO - Downloading image for Product ID 36761...
+2025-06-06 22:24:51,497 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36761.jpg
+2025-06-06 22:24:51,498 - data.model - INFO - Downloading image for Product ID 52678...
+2025-06-06 22:24:51,666 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52678.jpg
+2025-06-06 22:24:51,667 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:24:51,804 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\44977.jpg
+2025-06-06 22:24:51,806 - data.model - INFO - Downloading image for Product ID 47995...
+2025-06-06 22:24:51,965 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\47995.jpg
+2025-06-06 22:24:51,966 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:24:52,157 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45008.jpg
+2025-06-06 22:24:52,160 - data.model - INFO - Downloading image for Product ID 45030...
+2025-06-06 22:24:52,303 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45030.jpg
+2025-06-06 22:24:52,304 - data.model - INFO - Downloading image for Product ID 32366...
+2025-06-06 22:24:52,455 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\32366.jpg
+2025-06-06 22:24:52,456 - data.model - INFO - Downloading image for Product ID 10099...
+2025-06-06 22:24:52,869 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10099.jpg
+2025-06-06 22:24:52,870 - data.model - INFO - Downloading image for Product ID 52683...
+2025-06-06 22:24:53,322 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52683.jpg
+2025-06-06 22:24:53,324 - data.model - INFO - Downloading image for Product ID 36794...
+2025-06-06 22:24:53,729 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36794.jpg
+2025-06-06 22:24:53,731 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:24:53,732 - data.model - INFO - Creating products.js file...
+2025-06-06 22:24:53,734 - data.model - INFO - Created 3 base products
+2025-06-06 22:24:53,741 - data.model - INFO - Created 10 similar products
+2025-06-06 22:24:53,745 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:24:53,757 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:24:53,757 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:24:53,758 - __main__ - INFO - Received results from recommender
+2025-06-06 22:24:53,758 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:24:53,758 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:24:53,759 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:24:53,759 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:24:53,759 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:24:53,761 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:24:53,761 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:24:53,762 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:24:53,762 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:24:53,762 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:24:53,763 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:24:53,765 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:24:53,765 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:24:53,765 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:24:53,765 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:24:53,766 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:24:53,766 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:24:53,770 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:24:53,772 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:24:53,773 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:24:53,775 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:24:53,777 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:24:53,780 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:24:53,786 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:24:53,787 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:24:53,788 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-3496350046040649411.jpg
+2025-06-06 22:25:17,729 - __main__ - INFO - Received recommendation request
+2025-06-06 22:25:17,729 - __main__ - INFO - Request data - Text: heels, Image: Present
+2025-06-06 22:25:17,730 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:25:17,731 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:25:17,732 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:25:17,732 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg, prompt: heels
+2025-06-06 22:25:17,732 - data.model - INFO - Processing image input...
+2025-06-06 22:25:17,889 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:25:17,962 - data.model - INFO - Similar product IDs: ['15349', '3731', '3730', '2274', '10602', '14001', '14006', '1897', '46271', '26536']
+2025-06-06 22:25:17,963 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:25:18,869 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:25:23,060 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:25:23,435 - data.model - INFO - Recommended product IDs: ['28404', '28405', '48388', '48387', '28298', '28296', '16950', '16957', '16958', '16961']
+2025-06-06 22:25:23,435 - data.model - INFO - Clearing output directories...
+2025-06-06 22:25:23,444 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:25:23,449 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:25:23,452 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:25:23,453 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:25:23,458 - data.model - INFO - Downloading image for Product ID 16957...
+2025-06-06 22:25:24,046 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16957.jpg
+2025-06-06 22:25:24,048 - data.model - INFO - Downloading image for Product ID 16950...
+2025-06-06 22:25:24,674 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16950.jpg
+2025-06-06 22:25:24,675 - data.model - INFO - Downloading image for Product ID 16961...
+2025-06-06 22:25:24,932 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16961.jpg
+2025-06-06 22:25:24,933 - data.model - INFO - Downloading image for Product ID 28296...
+2025-06-06 22:25:25,221 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28296.jpg
+2025-06-06 22:25:25,222 - data.model - INFO - Downloading image for Product ID 48387...
+2025-06-06 22:25:25,582 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\48387.jpg
+2025-06-06 22:25:25,584 - data.model - INFO - Downloading image for Product ID 28298...
+2025-06-06 22:25:26,305 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28298.jpg
+2025-06-06 22:25:26,307 - data.model - INFO - Downloading image for Product ID 28405...
+2025-06-06 22:25:26,783 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28405.jpg
+2025-06-06 22:25:26,785 - data.model - INFO - Downloading image for Product ID 16958...
+2025-06-06 22:25:27,194 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\16958.jpg
+2025-06-06 22:25:27,196 - data.model - INFO - Downloading image for Product ID 48388...
+2025-06-06 22:25:27,517 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\48388.jpg
+2025-06-06 22:25:27,517 - data.model - INFO - Downloading image for Product ID 28404...
+2025-06-06 22:25:27,750 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28404.jpg
+2025-06-06 22:25:27,750 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:25:27,750 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:25:27,753 - data.model - INFO - Downloading image for Product ID 46271...
+2025-06-06 22:25:28,177 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\46271.jpg
+2025-06-06 22:25:28,178 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:25:28,327 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\26536.jpg
+2025-06-06 22:25:28,329 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:25:28,990 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:25:28,991 - data.model - INFO - Downloading image for Product ID 10602...
+2025-06-06 22:25:29,806 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10602.jpg
+2025-06-06 22:25:29,807 - data.model - INFO - Downloading image for Product ID 1897...
+2025-06-06 22:25:30,221 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\1897.jpg
+2025-06-06 22:25:30,222 - data.model - INFO - Downloading image for Product ID 14006...
+2025-06-06 22:25:30,575 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14006.jpg
+2025-06-06 22:25:30,576 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:25:31,089 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:25:31,090 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:25:31,557 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:25:31,559 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:25:31,933 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:25:31,934 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:25:32,350 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:25:32,350 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:25:32,351 - data.model - INFO - Creating products.js file...
+2025-06-06 22:25:32,352 - data.model - INFO - Created 3 base products
+2025-06-06 22:25:32,355 - data.model - INFO - Created 10 similar products
+2025-06-06 22:25:32,357 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:25:32,367 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:25:32,367 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:25:32,367 - __main__ - INFO - Received results from recommender
+2025-06-06 22:25:32,368 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:25:32,368 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:25:32,369 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:25:32,369 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:25:32,370 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:25:32,370 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:25:32,371 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:25:32,371 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:25:32,372 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:25:32,372 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:25:32,374 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:25:32,376 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:25:32,377 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:25:32,377 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:25:32,377 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:25:32,378 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:25:32,379 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:25:32,380 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:25:32,381 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:25:32,382 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:25:32,382 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:25:32,382 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:25:32,384 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:25:32,385 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:25:32,386 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:25:32,386 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:25:55,635 - __main__ - INFO - Received recommendation request
+2025-06-06 22:25:55,639 - __main__ - INFO - Request data - Text: shoes, Image: Present
+2025-06-06 22:25:55,640 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:25:55,643 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:25:55,644 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:25:55,645 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg, prompt: shoes
+2025-06-06 22:25:55,646 - data.model - INFO - Processing image input...
+2025-06-06 22:25:55,792 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:25:55,865 - data.model - INFO - Similar product IDs: ['15349', '3731', '2274', '3730', '10602', '26536', '14001', '12956', '14006', '54517']
+2025-06-06 22:25:55,866 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:25:56,790 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:25:59,556 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:25:59,919 - data.model - INFO - Recommended product IDs: ['26536', '20895', '54516', '54544', '46824', '46080', '30233', '13073', '24260', '11517']
+2025-06-06 22:25:59,921 - data.model - INFO - Clearing output directories...
+2025-06-06 22:25:59,929 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:25:59,939 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:25:59,942 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:25:59,942 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:25:59,947 - data.model - INFO - Downloading image for Product ID 54544...
+2025-06-06 22:26:00,108 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54544.jpg
+2025-06-06 22:26:00,109 - data.model - INFO - Downloading image for Product ID 30233...
+2025-06-06 22:26:00,202 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30233.jpg
+2025-06-06 22:26:00,204 - data.model - INFO - Downloading image for Product ID 13073...
+2025-06-06 22:26:00,604 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\13073.jpg
+2025-06-06 22:26:00,605 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:26:00,963 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
+2025-06-06 22:26:00,964 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:26:01,373 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:26:01,374 - data.model - INFO - Downloading image for Product ID 24260...
+2025-06-06 22:26:01,713 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\24260.jpg
+2025-06-06 22:26:01,714 - data.model - INFO - Downloading image for Product ID 11517...
+2025-06-06 22:26:02,085 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\11517.jpg
+2025-06-06 22:26:02,086 - data.model - INFO - Downloading image for Product ID 46080...
+2025-06-06 22:26:02,488 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\46080.jpg
+2025-06-06 22:26:02,490 - data.model - INFO - Downloading image for Product ID 54516...
+2025-06-06 22:26:02,596 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54516.jpg
+2025-06-06 22:26:02,596 - data.model - INFO - Downloading image for Product ID 46824...
+2025-06-06 22:26:02,761 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\46824.jpg
+2025-06-06 22:26:02,764 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:26:02,765 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:26:02,767 - data.model - INFO - Downloading image for Product ID 12956...
+2025-06-06 22:26:02,961 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\12956.jpg
+2025-06-06 22:26:02,962 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:26:03,043 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\26536.jpg
+2025-06-06 22:26:03,043 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:26:03,461 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:26:03,462 - data.model - INFO - Downloading image for Product ID 10602...
+2025-06-06 22:26:03,887 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10602.jpg
+2025-06-06 22:26:03,887 - data.model - INFO - Downloading image for Product ID 14006...
+2025-06-06 22:26:13,932 - data.model - ERROR - Failed to download image for 14006: HTTPConnectionPool(host='assets.myntassets.com', port=80): Read timed out. (read timeout=10)
+2025-06-06 22:26:13,934 - data.model - INFO - Downloading image for Product ID 54517...
+2025-06-06 22:26:14,455 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\54517.jpg
+2025-06-06 22:26:14,458 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:26:14,651 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:26:14,653 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:26:14,790 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:26:14,791 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:26:14,963 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:26:14,965 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:26:15,346 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:26:15,348 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:26:15,348 - data.model - INFO - Creating products.js file...
+2025-06-06 22:26:15,350 - data.model - INFO - Created 3 base products
+2025-06-06 22:26:15,353 - data.model - INFO - Created 10 similar products
+2025-06-06 22:26:15,356 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:26:15,365 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:26:15,365 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:26:15,365 - __main__ - INFO - Received results from recommender
+2025-06-06 22:26:15,366 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:26:15,366 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:26:15,366 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:26:15,367 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:26:15,367 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:26:15,369 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:26:15,369 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:26:15,370 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:26:15,371 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:26:15,371 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:26:15,372 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:26:15,374 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:26:15,374 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:26:15,375 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:26:15,375 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:26:15,376 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:26:15,377 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:26:15,379 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:26:15,379 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:26:15,381 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:26:15,381 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:26:15,382 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:26:15,383 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:26:15,385 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:26:15,385 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:26:15,387 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-2923383303966044120.jpg
+2025-06-06 22:29:29,773 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-06-06 22:29:29,902 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-06-06 22:29:29,927 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-06-06 22:30:18,423 - tensorflow - WARNING - From C:\Users\shaur\AppData\Local\Programs\Python\Python312\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-06-06 22:30:19,947 - data.model - INFO - Using device: cuda
+2025-06-06 22:30:19,948 - data.model - INFO - Loading CLIP model...
+2025-06-06 22:30:26,318 - data.model - INFO - CLIP model loaded successfully
+2025-06-06 22:30:26,319 - data.model - INFO - Loading SBERT model...
+2025-06-06 22:30:26,325 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-MiniLM-L3-v2
+2025-06-06 22:30:32,089 - data.model - INFO - SBERT model loaded successfully
+2025-06-06 22:30:32,089 - data.model - INFO - Loading BLIP model...
+2025-06-06 22:30:39,105 - data.model - INFO - BLIP model loaded successfully
+2025-06-06 22:30:39,106 - data.model - INFO - Configuring Gemini API...
+2025-06-06 22:30:39,107 - data.model - INFO - Gemini API configured successfully
+2025-06-06 22:30:39,109 - __main__ - INFO - Initializing FashionRecommender...
+2025-06-06 22:30:39,109 - data.model - INFO - Initializing FashionRecommender...
+2025-06-06 22:30:39,110 - data.model - INFO - Loading models...
+2025-06-06 22:30:51,110 - data.model - INFO - Models loaded successfully!
+2025-06-06 22:30:51,111 - data.model - INFO - Loading embeddings and metadata...
+2025-06-06 22:30:51,139 - data.model - INFO - img_embs shape: (5000, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-06 22:30:51,143 - data.model - INFO - txt_embs shape: (5000, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-06 22:30:51,144 - data.model - INFO - valid_indices shape: (5000,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-06 22:30:51,144 - data.model - INFO - Building FAISS indexes...
+2025-06-06 22:30:51,249 - data.model - INFO - Indexes built successfully!
+2025-06-06 22:30:51,254 - data.model - INFO - Loading dataset...
+2025-06-06 22:30:51,766 - data.model - INFO - DF shape: (44446, 13)
+2025-06-06 22:30:51,823 - data.model - INFO - DF head:   productId  ...                                               link
+0     15970  ...  http://assets.myntassets.com/v1/images/style/p...
+1     39386  ...  http://assets.myntassets.com/v1/images/style/p...
+2     59263  ...  http://assets.myntassets.com/v1/images/style/p...
+3     21379  ...  http://assets.myntassets.com/v1/images/style/p...
+4     53759  ...  http://assets.myntassets.com/v1/images/style/p...
+
+[5 rows x 13 columns]
+
+2025-06-06 22:30:51,824 - data.model - INFO - DF columns: ['productId', 'gender', 'masterCategory', 'subCategory', 'articleType', 'baseColour', 'season', 'year', 'usage', 'productDisplayName', 'image_path', 'text', 'link']
+2025-06-06 22:30:51,825 - data.model - INFO - Dataset loaded with 44446 records
+2025-06-06 22:30:51,826 - data.model - INFO - FashionRecommender initialized successfully
+2025-06-06 22:30:51,827 - __main__ - INFO - FashionRecommender initialized successfully
+2025-06-06 22:30:51,838 - __main__ - INFO - Starting FastAPI server...
+2025-06-06 22:31:47,067 - __main__ - INFO - Received recommendation request
+2025-06-06 22:31:47,068 - __main__ - INFO - Request data - Text: None, Image: Present
+2025-06-06 22:31:47,069 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:31:47,071 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:31:47,072 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:31:47,072 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg, prompt: None
+2025-06-06 22:31:47,073 - data.model - INFO - Processing image input...
+2025-06-06 22:31:49,164 - data.model - INFO - Processing image-only input...
+2025-06-06 22:31:49,256 - data.model - INFO - Similar product IDs: ['15349', '3730', '2274', '3731', '4124', '3338', '3330', '10054', '14001', '12792']
+2025-06-06 22:31:49,256 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:31:50,758 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:31:55,630 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:31:56,104 - data.model - INFO - Recommended product IDs: ['54516', '26536', '54517', '13073', '30233', '24260', '11517', '20895', '54542', '54521']
+2025-06-06 22:31:56,104 - data.model - INFO - Clearing output directories...
+2025-06-06 22:31:56,111 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:31:56,118 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:31:56,120 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:31:56,121 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:31:56,134 - data.model - INFO - Downloading image for Product ID 30233...
+2025-06-06 22:31:56,945 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\30233.jpg
+2025-06-06 22:31:56,947 - data.model - INFO - Downloading image for Product ID 13073...
+2025-06-06 22:31:57,875 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\13073.jpg
+2025-06-06 22:31:57,876 - data.model - INFO - Downloading image for Product ID 26536...
+2025-06-06 22:31:58,274 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
+2025-06-06 22:31:58,274 - data.model - INFO - Downloading image for Product ID 54521...
+2025-06-06 22:31:58,611 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54521.jpg
+2025-06-06 22:31:58,612 - data.model - INFO - Downloading image for Product ID 54517...
+2025-06-06 22:31:59,004 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54517.jpg
+2025-06-06 22:31:59,005 - data.model - INFO - Downloading image for Product ID 20895...
+2025-06-06 22:31:59,641 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\20895.jpg
+2025-06-06 22:31:59,643 - data.model - INFO - Downloading image for Product ID 24260...
+2025-06-06 22:31:59,882 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\24260.jpg
+2025-06-06 22:31:59,890 - data.model - INFO - Downloading image for Product ID 11517...
+2025-06-06 22:32:00,248 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\11517.jpg
+2025-06-06 22:32:00,249 - data.model - INFO - Downloading image for Product ID 54542...
+2025-06-06 22:32:00,491 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54542.jpg
+2025-06-06 22:32:00,492 - data.model - INFO - Downloading image for Product ID 54516...
+2025-06-06 22:32:00,760 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\54516.jpg
+2025-06-06 22:32:00,761 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:32:00,761 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:32:00,763 - data.model - INFO - Downloading image for Product ID 10054...
+2025-06-06 22:32:01,291 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10054.jpg
+2025-06-06 22:32:01,291 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:32:01,667 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:32:01,669 - data.model - INFO - Downloading image for Product ID 3338...
+2025-06-06 22:32:02,126 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3338.jpg
+2025-06-06 22:32:02,128 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:32:02,321 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:32:02,322 - data.model - INFO - Downloading image for Product ID 12792...
+2025-06-06 22:32:02,507 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\12792.jpg
+2025-06-06 22:32:02,507 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:32:02,687 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:32:02,689 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:32:03,107 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:32:03,108 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:32:03,310 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:32:03,312 - data.model - INFO - Downloading image for Product ID 3330...
+2025-06-06 22:32:03,673 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3330.jpg
+2025-06-06 22:32:03,674 - data.model - INFO - Downloading image for Product ID 4124...
+2025-06-06 22:32:04,030 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4124.jpg
+2025-06-06 22:32:04,031 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:32:04,032 - data.model - INFO - Creating products.js file...
+2025-06-06 22:32:04,034 - data.model - INFO - Created 3 base products
+2025-06-06 22:32:04,038 - data.model - INFO - Created 10 similar products
+2025-06-06 22:32:04,047 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:32:04,085 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:32:04,086 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:32:04,087 - __main__ - INFO - Received results from recommender
+2025-06-06 22:32:04,087 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:32:04,089 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:32:04,090 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:32:04,091 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:32:04,092 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:32:04,096 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:32:04,097 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:32:04,098 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:32:04,098 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:32:04,099 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:32:04,101 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:32:04,106 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:32:04,107 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:32:04,107 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:32:04,107 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:32:04,108 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:32:04,108 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:32:04,109 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:32:04,112 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:32:04,113 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:32:04,114 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:32:04,116 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:32:04,120 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:32:04,127 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:32:04,127 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:32:04,129 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:33:26,248 - __main__ - INFO - Received recommendation request
+2025-06-06 22:33:26,249 - __main__ - INFO - Request data - Text: watches, Image: Present
+2025-06-06 22:33:26,250 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:33:26,252 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:33:26,252 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:33:26,252 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg, prompt: watches
+2025-06-06 22:33:26,253 - data.model - INFO - Processing image input...
+2025-06-06 22:33:26,427 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:33:26,509 - data.model - INFO - Similar product IDs: ['15349', '3731', '2274', '3730', '14001', '14006', '10602', '1897', '4124', '4125']
+2025-06-06 22:33:26,510 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:33:27,421 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:33:30,738 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:33:31,102 - data.model - INFO - Recommended product IDs: ['45008', '44977', '45892', '53562', '45006', '29917', '36794', '45039', '36769', '56677']
+2025-06-06 22:33:31,104 - data.model - INFO - Clearing output directories...
+2025-06-06 22:33:31,115 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:33:31,126 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:33:31,130 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:33:31,130 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:33:31,138 - data.model - INFO - Downloading image for Product ID 29917...
+2025-06-06 22:33:31,433 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\29917.jpg
+2025-06-06 22:33:31,434 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:33:31,537 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44977.jpg
+2025-06-06 22:33:31,538 - data.model - INFO - Downloading image for Product ID 56677...
+2025-06-06 22:33:31,773 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\56677.jpg
+2025-06-06 22:33:31,774 - data.model - INFO - Downloading image for Product ID 53562...
+2025-06-06 22:33:32,182 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\53562.jpg
+2025-06-06 22:33:32,183 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:33:32,343 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45008.jpg
+2025-06-06 22:33:32,344 - data.model - INFO - Downloading image for Product ID 45006...
+2025-06-06 22:33:32,523 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45006.jpg
+2025-06-06 22:33:32,523 - data.model - INFO - Downloading image for Product ID 45039...
+2025-06-06 22:33:42,559 - data.model - ERROR - Failed to download image for 45039: HTTPConnectionPool(host='assets.myntassets.com', port=80): Read timed out. (read timeout=10)
+2025-06-06 22:33:42,561 - data.model - INFO - Downloading image for Product ID 36769...
+2025-06-06 22:33:43,010 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\36769.jpg
+2025-06-06 22:33:43,011 - data.model - INFO - Downloading image for Product ID 45892...
+2025-06-06 22:33:43,406 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45892.jpg
+2025-06-06 22:33:43,407 - data.model - INFO - Downloading image for Product ID 36794...
+2025-06-06 22:33:43,744 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\36794.jpg
+2025-06-06 22:33:43,745 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:33:43,747 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:33:43,750 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:33:44,104 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:33:44,105 - data.model - INFO - Downloading image for Product ID 10602...
+2025-06-06 22:33:44,477 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10602.jpg
+2025-06-06 22:33:44,481 - data.model - INFO - Downloading image for Product ID 1897...
+2025-06-06 22:33:44,882 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\1897.jpg
+2025-06-06 22:33:44,882 - data.model - INFO - Downloading image for Product ID 4125...
+2025-06-06 22:33:45,233 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4125.jpg
+2025-06-06 22:33:45,236 - data.model - INFO - Downloading image for Product ID 14006...
+2025-06-06 22:33:45,396 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14006.jpg
+2025-06-06 22:33:45,397 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:33:45,875 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:33:45,876 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:33:46,320 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:33:46,321 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:33:46,478 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:33:46,480 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:33:46,976 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:33:46,980 - data.model - INFO - Downloading image for Product ID 4124...
+2025-06-06 22:33:47,099 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4124.jpg
+2025-06-06 22:33:47,101 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:33:47,101 - data.model - INFO - Creating products.js file...
+2025-06-06 22:33:47,103 - data.model - INFO - Created 3 base products
+2025-06-06 22:33:47,107 - data.model - INFO - Created 10 similar products
+2025-06-06 22:33:47,112 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:33:47,126 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:33:47,127 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:33:47,127 - __main__ - INFO - Received results from recommender
+2025-06-06 22:33:47,128 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:33:47,130 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:33:47,132 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:33:47,133 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:33:47,135 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:33:47,138 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:33:47,140 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:33:47,141 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:33:47,142 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:33:47,143 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:33:47,144 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:33:47,146 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:33:47,146 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:33:47,146 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:33:47,147 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:33:47,147 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:33:47,150 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:33:47,155 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:33:47,156 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:33:47,157 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:33:47,159 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:33:47,160 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:33:47,161 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:33:47,165 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:33:47,165 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:33:47,167 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:34:46,411 - __main__ - INFO - Received recommendation request
+2025-06-06 22:34:46,411 - __main__ - INFO - Request data - Text: perfume, Image: Present
+2025-06-06 22:34:46,411 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:34:46,413 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:34:46,414 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:34:46,418 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg, prompt: perfume
+2025-06-06 22:34:46,420 - data.model - INFO - Processing image input...
+2025-06-06 22:34:46,576 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:34:46,663 - data.model - INFO - Similar product IDs: ['15349', '3731', '3730', '2274', '14001', '14006', '10602', '4124', '1897', '46271']
+2025-06-06 22:34:46,663 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:34:47,377 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:34:50,143 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:34:50,516 - data.model - INFO - Recommended product IDs: ['45008', '28405', '28404', '44977', '45892', '45006', '44144', '44143', '29917', '36794']
+2025-06-06 22:34:50,518 - data.model - INFO - Clearing output directories...
+2025-06-06 22:34:50,529 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:34:50,535 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:34:50,537 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:34:50,538 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:34:50,544 - data.model - INFO - Downloading image for Product ID 29917...
+2025-06-06 22:34:50,915 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\29917.jpg
+2025-06-06 22:34:50,916 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:34:51,043 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44977.jpg
+2025-06-06 22:34:51,043 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:34:51,168 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45008.jpg
+2025-06-06 22:34:51,170 - data.model - INFO - Downloading image for Product ID 45006...
+2025-06-06 22:34:51,286 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45006.jpg
+2025-06-06 22:34:51,291 - data.model - INFO - Downloading image for Product ID 28405...
+2025-06-06 22:34:51,384 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28405.jpg
+2025-06-06 22:34:51,387 - data.model - INFO - Downloading image for Product ID 44144...
+2025-06-06 22:34:51,556 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44144.jpg
+2025-06-06 22:34:51,556 - data.model - INFO - Downloading image for Product ID 45892...
+2025-06-06 22:34:51,636 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45892.jpg
+2025-06-06 22:34:51,637 - data.model - INFO - Downloading image for Product ID 44143...
+2025-06-06 22:34:52,036 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44143.jpg
+2025-06-06 22:34:52,037 - data.model - INFO - Downloading image for Product ID 36794...
+2025-06-06 22:34:52,170 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\36794.jpg
+2025-06-06 22:34:52,170 - data.model - INFO - Downloading image for Product ID 28404...
+2025-06-06 22:34:52,293 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28404.jpg
+2025-06-06 22:34:52,294 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:34:52,295 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:34:52,297 - data.model - INFO - Downloading image for Product ID 46271...
+2025-06-06 22:34:52,424 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\46271.jpg
+2025-06-06 22:34:52,424 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:34:52,592 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:34:52,593 - data.model - INFO - Downloading image for Product ID 10602...
+2025-06-06 22:34:53,043 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10602.jpg
+2025-06-06 22:34:53,043 - data.model - INFO - Downloading image for Product ID 1897...
+2025-06-06 22:34:53,482 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\1897.jpg
+2025-06-06 22:34:53,482 - data.model - INFO - Downloading image for Product ID 14006...
+2025-06-06 22:34:53,649 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14006.jpg
+2025-06-06 22:34:53,651 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:34:53,867 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:34:53,869 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:34:54,269 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:34:54,270 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:34:54,641 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:34:54,642 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:34:55,104 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:34:55,105 - data.model - INFO - Downloading image for Product ID 4124...
+2025-06-06 22:34:55,485 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4124.jpg
+2025-06-06 22:34:55,485 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:34:55,486 - data.model - INFO - Creating products.js file...
+2025-06-06 22:34:55,487 - data.model - INFO - Created 3 base products
+2025-06-06 22:34:55,491 - data.model - INFO - Created 10 similar products
+2025-06-06 22:34:55,493 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:34:55,504 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:34:55,504 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:34:55,505 - __main__ - INFO - Received results from recommender
+2025-06-06 22:34:55,505 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:34:55,505 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:34:55,505 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:34:55,506 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:34:55,507 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:34:55,509 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:34:55,510 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:34:55,511 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:34:55,512 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:34:55,515 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:34:55,517 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:34:55,520 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:34:55,520 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:34:55,520 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:34:55,521 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:34:55,522 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:34:55,522 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:34:55,523 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:34:55,525 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:34:55,525 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:34:55,526 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:34:55,526 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:34:55,529 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:34:55,545 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:34:55,545 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:34:55,551 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:36:06,660 - __main__ - INFO - Received recommendation request
+2025-06-06 22:36:06,661 - __main__ - INFO - Request data - Text: perfume, Image: Present
+2025-06-06 22:36:06,663 - __main__ - INFO - First 100 chars of base64 image: /9j/4Rx+RXhpZgAATU0AKgAAAAgADAEAAAMAAAABBDgAAAEBAAMAAAABBaAAAAECAAMAAAADAAAAngEGAAMAAAABAAIAAAESAAMA
+2025-06-06 22:36:06,665 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:36:06,665 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:36:06,665 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg, prompt: perfume
+2025-06-06 22:36:06,666 - data.model - INFO - Processing image input...
+2025-06-06 22:36:06,818 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:36:06,903 - data.model - INFO - Similar product IDs: ['15349', '3731', '3730', '2274', '14001', '14006', '10602', '4124', '1897', '46271']
+2025-06-06 22:36:06,904 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:36:07,846 - data.model - INFO - Generated caption: the new nike india cricket jersey
+2025-06-06 22:36:10,721 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:36:11,082 - data.model - INFO - Recommended product IDs: ['28404', '28405', '45008', '44144', '44143', '44977', '45892', '45006', '43993', '21349']
+2025-06-06 22:36:11,083 - data.model - INFO - Clearing output directories...
+2025-06-06 22:36:11,088 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:36:11,093 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:36:11,094 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:36:11,095 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:36:11,102 - data.model - INFO - Downloading image for Product ID 43993...
+2025-06-06 22:36:11,283 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\43993.jpg
+2025-06-06 22:36:11,283 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:36:11,584 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44977.jpg
+2025-06-06 22:36:11,585 - data.model - INFO - Downloading image for Product ID 45008...
+2025-06-06 22:36:11,689 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45008.jpg
+2025-06-06 22:36:11,692 - data.model - INFO - Downloading image for Product ID 45006...
+2025-06-06 22:36:11,852 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45006.jpg
+2025-06-06 22:36:11,853 - data.model - INFO - Downloading image for Product ID 28405...
+2025-06-06 22:36:12,177 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28405.jpg
+2025-06-06 22:36:12,178 - data.model - INFO - Downloading image for Product ID 44144...
+2025-06-06 22:36:12,587 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44144.jpg
+2025-06-06 22:36:12,588 - data.model - INFO - Downloading image for Product ID 21349...
+2025-06-06 22:36:12,840 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\21349.jpg
+2025-06-06 22:36:12,842 - data.model - INFO - Downloading image for Product ID 45892...
+2025-06-06 22:36:13,007 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\45892.jpg
+2025-06-06 22:36:13,009 - data.model - INFO - Downloading image for Product ID 44143...
+2025-06-06 22:36:13,135 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44143.jpg
+2025-06-06 22:36:13,135 - data.model - INFO - Downloading image for Product ID 28404...
+2025-06-06 22:36:13,239 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28404.jpg
+2025-06-06 22:36:13,241 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:36:13,242 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:36:13,245 - data.model - INFO - Downloading image for Product ID 46271...
+2025-06-06 22:36:13,638 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\46271.jpg
+2025-06-06 22:36:13,639 - data.model - INFO - Downloading image for Product ID 3730...
+2025-06-06 22:36:13,783 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3730.jpg
+2025-06-06 22:36:13,785 - data.model - INFO - Downloading image for Product ID 10602...
+2025-06-06 22:36:13,917 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\10602.jpg
+2025-06-06 22:36:13,918 - data.model - INFO - Downloading image for Product ID 1897...
+2025-06-06 22:36:14,106 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\1897.jpg
+2025-06-06 22:36:14,107 - data.model - INFO - Downloading image for Product ID 14006...
+2025-06-06 22:36:14,289 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14006.jpg
+2025-06-06 22:36:14,291 - data.model - INFO - Downloading image for Product ID 14001...
+2025-06-06 22:36:14,470 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\14001.jpg
+2025-06-06 22:36:14,472 - data.model - INFO - Downloading image for Product ID 15349...
+2025-06-06 22:36:14,847 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\15349.jpg
+2025-06-06 22:36:14,847 - data.model - INFO - Downloading image for Product ID 2274...
+2025-06-06 22:36:14,986 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\2274.jpg
+2025-06-06 22:36:14,988 - data.model - INFO - Downloading image for Product ID 3731...
+2025-06-06 22:36:15,391 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\3731.jpg
+2025-06-06 22:36:15,392 - data.model - INFO - Downloading image for Product ID 4124...
+2025-06-06 22:36:15,520 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\4124.jpg
+2025-06-06 22:36:15,520 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:36:15,521 - data.model - INFO - Creating products.js file...
+2025-06-06 22:36:15,522 - data.model - INFO - Created 3 base products
+2025-06-06 22:36:15,524 - data.model - INFO - Created 10 similar products
+2025-06-06 22:36:15,526 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:36:15,534 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:36:15,534 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:36:15,535 - __main__ - INFO - Received results from recommender
+2025-06-06 22:36:15,535 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:36:15,536 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:36:15,536 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:36:15,536 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:36:15,537 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:36:15,539 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:36:15,539 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:36:15,540 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:36:15,540 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:36:15,541 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:36:15,542 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:36:15,543 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:36:15,544 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:36:15,544 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:36:15,544 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:36:15,545 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:36:15,545 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:36:15,546 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:36:15,546 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:36:15,546 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:36:15,548 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:36:15,548 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:36:15,549 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:36:15,552 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:36:15,552 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:36:15,553 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_-7759460041711234524.jpg
+2025-06-06 22:37:44,802 - __main__ - INFO - Received recommendation request
+2025-06-06 22:37:44,802 - __main__ - INFO - Request data - Text: perfume, Image: Present
+2025-06-06 22:37:44,803 - __main__ - INFO - First 100 chars of base64 image: /9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAOAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABwUFBQUFBwUFBwoHBgcK
+2025-06-06 22:37:44,805 - __main__ - INFO - Saved image to: F:\Appian_Hackathon\server\temp\temp_image_1690164003196651299.jpg
+2025-06-06 22:37:44,805 - __main__ - INFO - Calling recommender.recommend()
+2025-06-06 22:37:44,805 - data.model - INFO - recommend called with img: F:\Appian_Hackathon\server\temp\temp_image_1690164003196651299.jpg, prompt: perfume
+2025-06-06 22:37:44,806 - data.model - INFO - Processing image input...
+2025-06-06 22:37:45,111 - data.model - INFO - Processing combined image and text input...
+2025-06-06 22:37:45,181 - data.model - INFO - Similar product IDs: ['52678', '23285', '45030', '44977', '38032', '32366', '38033', '36761', '36768', '36795']
+2025-06-06 22:37:45,181 - data.model - INFO - Generating complementary recommendations...
+2025-06-06 22:37:46,634 - data.model - INFO - Generated caption: a watch with a white face and black rubber band
+2025-06-06 22:37:49,660 - data.model - INFO - Generated 5 complementary categories
+2025-06-06 22:37:50,003 - data.model - INFO - Recommended product IDs: ['44144', '44143', '28262', '44127', '46646', '43993', '44126', '59004', '58980', '44384']
+2025-06-06 22:37:50,003 - data.model - INFO - Clearing output directories...
+2025-06-06 22:37:50,010 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:37:50,017 - data.model - INFO - Cleared F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:37:50,018 - data.model - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-06 22:37:50,019 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-06 22:37:50,025 - data.model - INFO - Downloading image for Product ID 43993...
+2025-06-06 22:37:50,939 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\43993.jpg
+2025-06-06 22:37:50,944 - data.model - INFO - Downloading image for Product ID 58980...
+2025-06-06 22:37:51,830 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\58980.jpg
+2025-06-06 22:37:51,830 - data.model - INFO - Downloading image for Product ID 44384...
+2025-06-06 22:37:52,615 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44384.jpg
+2025-06-06 22:37:52,617 - data.model - INFO - Downloading image for Product ID 46646...
+2025-06-06 22:37:53,345 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\46646.jpg
+2025-06-06 22:37:53,346 - data.model - INFO - Downloading image for Product ID 28262...
+2025-06-06 22:37:53,724 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\28262.jpg
+2025-06-06 22:37:53,726 - data.model - INFO - Downloading image for Product ID 44127...
+2025-06-06 22:37:54,113 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44127.jpg
+2025-06-06 22:37:54,115 - data.model - INFO - Downloading image for Product ID 44144...
+2025-06-06 22:37:54,499 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44144.jpg
+2025-06-06 22:37:54,501 - data.model - INFO - Downloading image for Product ID 44143...
+2025-06-06 22:37:54,930 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44143.jpg
+2025-06-06 22:37:54,931 - data.model - INFO - Downloading image for Product ID 44126...
+2025-06-06 22:37:55,352 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\44126.jpg
+2025-06-06 22:37:55,354 - data.model - INFO - Downloading image for Product ID 59004...
+2025-06-06 22:37:55,894 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\recommendProducts\59004.jpg
+2025-06-06 22:37:55,894 - data.model - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-06 22:37:55,895 - data.model - INFO - Downloading images for 10 products to F:\Appian_Hackathon\server\data\images\similarProducts
+2025-06-06 22:37:55,899 - data.model - INFO - Downloading image for Product ID 36795...
+2025-06-06 22:37:56,400 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36795.jpg
+2025-06-06 22:37:56,402 - data.model - INFO - Downloading image for Product ID 36761...
+2025-06-06 22:37:56,601 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36761.jpg
+2025-06-06 22:37:56,601 - data.model - INFO - Downloading image for Product ID 52678...
+2025-06-06 22:37:56,743 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\52678.jpg
+2025-06-06 22:37:56,744 - data.model - INFO - Downloading image for Product ID 44977...
+2025-06-06 22:37:57,003 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\44977.jpg
+2025-06-06 22:37:57,004 - data.model - INFO - Downloading image for Product ID 36768...
+2025-06-06 22:37:57,365 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\36768.jpg
+2025-06-06 22:37:57,367 - data.model - INFO - Downloading image for Product ID 23285...
+2025-06-06 22:37:57,580 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\23285.jpg
+2025-06-06 22:37:57,584 - data.model - INFO - Downloading image for Product ID 45030...
+2025-06-06 22:37:57,725 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\45030.jpg
+2025-06-06 22:37:57,726 - data.model - INFO - Downloading image for Product ID 32366...
+2025-06-06 22:37:58,087 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\32366.jpg
+2025-06-06 22:37:58,088 - data.model - INFO - Downloading image for Product ID 38032...
+2025-06-06 22:37:58,339 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\38032.jpg
+2025-06-06 22:37:58,341 - data.model - INFO - Downloading image for Product ID 38033...
+2025-06-06 22:37:58,571 - data.model - INFO - Successfully saved image: F:\Appian_Hackathon\server\data\images\similarProducts\38033.jpg
+2025-06-06 22:37:58,573 - data.model - INFO - 
+--- Creating products.js file ---
+2025-06-06 22:37:58,574 - data.model - INFO - Creating products.js file...
+2025-06-06 22:37:58,575 - data.model - INFO - Created 3 base products
+2025-06-06 22:37:58,579 - data.model - INFO - Created 10 similar products
+2025-06-06 22:37:58,582 - data.model - INFO - Created 10 recommended products
+2025-06-06 22:37:58,593 - data.model - INFO - Successfully processed recommendations
+2025-06-06 22:37:58,595 - data.model - INFO - Recommendation process completed successfully
+2025-06-06 22:37:58,597 - __main__ - INFO - Received results from recommender
+2025-06-06 22:37:58,599 - __main__ - INFO - Converting similar products to dictionary
+2025-06-06 22:37:58,601 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:37:58,602 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_img']
+2025-06-06 22:37:58,602 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:37:58,603 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:37:58,605 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:37:58,606 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:37:58,608 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:37:58,609 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:37:58,609 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:37:58,611 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:37:58,612 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:37:58,612 - __main__ - INFO - Converting recommended products to dictionary
+2025-06-06 22:37:58,613 - __main__ - INFO - Starting DataFrame conversion
+2025-06-06 22:37:58,613 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'score_txt']
+2025-06-06 22:37:58,614 - __main__ - INFO - Renaming column text to productName
+2025-06-06 22:37:58,618 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-06 22:37:58,621 - __main__ - INFO - Adding missing column: articleType
+2025-06-06 22:37:58,621 - __main__ - INFO - Adding missing column: subCategory
+2025-06-06 22:37:58,622 - __main__ - INFO - Adding missing column: season
+2025-06-06 22:37:58,622 - __main__ - INFO - Adding missing column: usage
+2025-06-06 22:37:58,623 - __main__ - INFO - Adding missing column: image
+2025-06-06 22:37:58,624 - __main__ - INFO - Adding missing column: price
+2025-06-06 22:37:58,626 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-06 22:37:58,626 - __main__ - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06 22:37:58,627 - __main__ - INFO - Cleaned up temporary image: F:\Appian_Hackathon\server\temp\temp_image_1690164003196651299.jpg
