@@ -5,6 +5,20 @@ REM Create necessary directories if they don't exist
 if not exist "server\data\images\recommendProducts" mkdir "server\data\images\recommendProducts"
 if not exist "server\data\images\similarProducts" mkdir "server\data\images\similarProducts"
 if not exist "server\data\images\banner" mkdir "server\data\images\banner"
+if not exist "server\logs" mkdir "server\logs"
+if not exist "server\temp" mkdir "server\temp"
+
+REM Clear temp directory
+echo Clearing temp directory...
+if exist "server\temp\*.*" del /f /q "server\temp\*.*"
+
+REM Clear log files
+echo Clearing log files...
+if exist "server\logs\all_logs.log" type nul > "server\logs\all_logs.log"
+if exist "server\logs\api_server.log" type nul > "server\logs\api_server.log"
+if exist "server\logs\model.log" type nul > "server\logs\model.log"
+if exist "server\logs\mockRoutes.log" type nul > "server\logs\mockRoutes.log"
+echo Log files cleared.
 
 REM Start the Node.js server (main application)
 echo Starting Node.js server...

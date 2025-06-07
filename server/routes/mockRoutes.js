@@ -22,10 +22,25 @@ const logFile = fs.createWriteStream(path.join(logsDir, "mockRoutes.log"), {
 	flags: "a",
 });
 
-function log(message, type = "INFO") {
+const allLogFile = fs.createWriteStream(path.join(logsDir, "all_logs.log"), {
+	flags: "a",
+});
+
+function log(message, type = "INFO", data = null) {
 	const timestamp = new Date().toISOString();
-	const logMessage = `${timestamp} - ${type} - ${message}\n`;
+	let logMessage = `${timestamp} - ${type} - ${message}`;
+
+	if (data) {
+		if (typeof data === "object") {
+			logMessage += `\nData: ${JSON.stringify(data, null, 2)}`;
+		} else {
+			logMessage += `\nData: ${data}`;
+		}
+	}
+
+	logMessage += "\n";
 	logFile.write(logMessage);
+	allLogFile.write(logMessage);
 	console.log(logMessage);
 }
 
@@ -34,14 +49,16 @@ router.use(express.urlencoded({ extended: true }));
 
 // Function to get images from directory
 function getImagesFromDirectory(dirPath) {
-	log(`Reading images from directory: ${dirPath}`);
+	log(`=== Reading Images from Directory ===`);
+	log(`Directory path: ${dirPath}`);
 	try {
 		const files = fs.readdirSync(dirPath);
 		const images = files.filter((file) => {
 			const ext = path.extname(file).toLowerCase();
 			return [".jpg", ".jpeg", ".png", ".gif"].includes(ext);
 		});
-		log(`Found ${images.length} images in directory`);
+		log(`Found ${images.length} images in directory`, "INFO", images);
+		log(`=== Directory Reading Complete ===`);
 		return images;
 	} catch (err) {
 		log(`Error reading directory ${dirPath}: ${err.message}`, "ERROR");
@@ -51,6 +68,7 @@ function getImagesFromDirectory(dirPath) {
 
 // Home Route - loads product data and banner images
 router.get("/", (req, res) => {
+	log(`=== Processing Home Route Request ===`);
 	const bannerDir = path.join(
 		__dirname,
 		"../../client/public/images/banner"
@@ -59,25 +77,41 @@ router.get("/", (req, res) => {
 	let bannerImages = [];
 
 	try {
+		log(`Reading banner images from: ${bannerDir}`);
 		bannerImages = fs.readdirSync(bannerDir);
+		log(
+			`Found ${bannerImages.length} banner images`,
+			"INFO",
+			bannerImages
+		);
 	} catch (err) {
-		console.error("Error reading banner images folder:", err);
+		log(`Error reading banner images folder: ${err.message}`, "ERROR");
 	}
 
 	// Get only the images from the root of data/images directory
+	log(`Reading root images from: ${dataImagesDir}`);
 	const rootImages = getImagesFromDirectory(dataImagesDir);
 
 	// Create featured products using product details from products.js and root images
+	log(
+		`Creating featured products from ${products.length} available products`
+	);
 	const featuredProducts = products
 		.map((product, index) => {
-			// Use the image from root of data/images
-			const imageName = rootImages[index % rootImages.length]; // Cycle through available root images
+			const imageName = rootImages[index % rootImages.length];
 			return {
 				...product,
-				image: `/images/${imageName}`, // This will point to images in the root directory
+				image: `/images/${imageName}`,
 			};
 		})
-		.slice(0, 8); // Show first 8 products as featured
+		.slice(0, 8);
+
+	log(
+		`Created ${featuredProducts.length} featured products`,
+		"INFO",
+		featuredProducts
+	);
+	log(`=== Home Route Processing Complete ===`);
 
 	res.render("home", {
 		products: featuredProducts,
@@ -87,16 +121,15 @@ router.get("/", (req, res) => {
 
 // Process recommendations endpoint
 router.post("/process-recommendations", async (req, res) => {
-	log("Received recommendation request");
+	log(`=== Processing Recommendation Request ===`);
 	try {
 		// Get user input from session
 		const userText = req.session.userText || null;
 		const userImage = req.session.uploadedImage || null;
-		log(
-			`Session data - Text: ${userText ? "Present" : "None"}, Image: ${
-				userImage ? "Present" : "None"
-			}`
-		);
+		log(`Session data retrieved`, "INFO", {
+			hasText: !!userText,
+			hasImage: !!userImage,
+		});
 
 		if (!userText && !userImage) {
 			log("No input provided in session", "WARN");
@@ -129,14 +162,13 @@ router.post("/process-recommendations", async (req, res) => {
 		// Store the results in session
 		log("Storing recommendation results in session");
 		req.session.recommendationResults = response.data;
-		log(
-			`Processed ${
-				response.data.similarProducts?.length || 0
-			} similar products and ${
-				response.data.recommendProducts?.length || 0
-			} recommended products`
-		);
+		log(`Recommendation results stored`, "INFO", {
+			similarProductsCount: response.data.similarProducts?.length || 0,
+			recommendProductsCount:
+				response.data.recommendProducts?.length || 0,
+		});
 
+		log(`=== Recommendation Processing Complete ===`);
 		res.json({ success: true });
 	} catch (error) {
 		log(
@@ -154,12 +186,13 @@ router.post("/process-recommendations", async (req, res) => {
 
 // Get product details endpoint
 router.post("/get-product-details", async (req, res) => {
-	log(`Received product details request for IDs: ${req.body.product_ids}`);
+	log(`=== Processing Product Details Request ===`);
+	log(`Requested product IDs:`, "INFO", req.body.product_ids);
 	try {
 		const { product_ids } = req.body;
 
 		if (!product_ids || !Array.isArray(product_ids)) {
-			log("Invalid product IDs provided", "WARN");
+			log("Invalid product IDs provided", "WARN", { product_ids });
 			return res.status(400).json({ error: "Invalid product IDs" });
 		}
 
@@ -182,11 +215,10 @@ router.post("/get-product-details", async (req, res) => {
 			);
 		}
 
-		log(
-			`Retrieved details for ${
-				response.data.products?.length || 0
-			} products`
-		);
+		log(`Product details retrieved successfully`, "INFO", {
+			productsCount: response.data.products?.length || 0,
+		});
+		log(`=== Product Details Request Complete ===`);
 		res.json(response.data);
 	} catch (error) {
 		log(
@@ -204,14 +236,15 @@ router.post("/get-product-details", async (req, res) => {
 
 // Health check endpoint
 router.get("/model-health", async (req, res) => {
-	log("Health check requested");
+	log(`=== Processing Health Check Request ===`);
 	try {
 		const response = await axios.get("http://localhost:5001/health", {
 			headers: {
 				Accept: "application/json",
 			},
 		});
-		log("Health check successful");
+		log("Health check successful", "INFO", response.data);
+		log(`=== Health Check Complete ===`);
 		res.json(response.data);
 	} catch (error) {
 		log(
@@ -229,7 +262,7 @@ router.get("/model-health", async (req, res) => {
 
 // Recommend page route
 router.get("/recommend", (req, res) => {
-	log("Recommend page requested");
+	log(`=== Processing Recommend Page Request ===`);
 	// Get the processed results from session
 	const results = req.session.recommendationResults;
 
@@ -239,6 +272,7 @@ router.get("/recommend", (req, res) => {
 	}
 
 	// Process similar products to ensure proper image paths
+	log("Processing similar products");
 	const processedSimilarProducts = (results?.similarProducts || []).map(
 		(product) => ({
 			...product,
@@ -247,6 +281,7 @@ router.get("/recommend", (req, res) => {
 	);
 
 	// Process recommended products to ensure proper image paths
+	log("Processing recommended products");
 	const processedRecommendProducts = (results?.recommendProducts || []).map(
 		(product) => ({
 			...product,
@@ -254,18 +289,26 @@ router.get("/recommend", (req, res) => {
 		})
 	);
 
-	log(
-		`Rendering recommend page with ${processedSimilarProducts.length} similar products and ${processedRecommendProducts.length} recommended products`
-	);
+	// Log detailed product information
+	log("Similar Products Details:", "INFO", processedSimilarProducts);
+	log("Recommended Products Details:", "INFO", processedRecommendProducts);
+
+	log(`Rendering recommend page`, "INFO", {
+		similarProductsCount: processedSimilarProducts.length,
+		recommendProductsCount: processedRecommendProducts.length,
+	});
+	log(`=== Recommend Page Processing Complete ===`);
+
 	res.render("recommend", {
-		products: products, // Base products
-		similarProducts: processedSimilarProducts, // Similar products with proper image paths
-		recommendProducts: processedRecommendProducts, // Recommended products with proper image paths
+		products: products,
+		similarProducts: processedSimilarProducts,
+		recommendProducts: processedRecommendProducts,
 	});
 });
 
 router.get("/product/:id", (req, res) => {
-	log("Product route accessed with id:", req.params.id);
+	log(`=== Processing Product Details Page Request ===`);
+	log(`Requested product ID: ${req.params.id}`);
 
 	// Search for the product across all product arrays
 	let foundInArray = "";
@@ -293,42 +336,40 @@ router.get("/product/:id", (req, res) => {
 		});
 
 	if (!product) {
-		log("Product not found. Available IDs:", {
-			products: products.map((p) => p.productId),
-			similarProducts: similarProducts.map((p) => p.productId),
-			recommendProducts: recommendProducts.map((p) => p.productId),
+		log("Product not found", "WARN", {
+			availableIds: {
+				products: products.map((p) => p.productId),
+				similarProducts: similarProducts.map((p) => p.productId),
+				recommendProducts: recommendProducts.map(
+					(p) => p.productId
+				),
+			},
 		});
 		return res.status(404).send("Product not found");
 	}
 
-	log("Found product in array:", foundInArray);
-	log("Found product:", product);
-	log("Product category:", product.category);
+	log(`Product found in ${foundInArray} array`, "INFO", product);
 
-	// Get similar products based on category (keep this category-based)
+	// Get similar products based on category
+	log("Filtering similar products by category");
 	const filteredSimilarProducts = similarProducts.filter((p) => {
 		const matches =
 			p.productId !== product.productId &&
 			p.category === product.category;
-		log(
-			`Similar product ${p.productId} category: ${p.category}, matches: ${matches}`
-		);
 		return matches;
 	});
 
 	// Show all recommended products except the current one
+	log("Filtering recommended products");
 	const filteredRecommendProducts = recommendProducts.filter(
 		(p) => p.productId !== product.productId
 	);
 
-	log(
-		"Filtered similar products:",
-		filteredSimilarProducts.map((p) => p.productId)
-	);
-	log(
-		"Filtered recommend products:",
-		filteredRecommendProducts.map((p) => p.productId)
-	);
+	log(`Filtered products`, "INFO", {
+		similarProductsCount: filteredSimilarProducts.length,
+		recommendProductsCount: filteredRecommendProducts.length,
+	});
+	log(`=== Product Details Page Processing Complete ===`);
 
 	res.render("product", {
 		product,
@@ -338,10 +379,10 @@ router.get("/product/:id", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-	log("get to /cart triggered");
-
+	log(`=== Processing Cart Page Request ===`);
 	const sessionCart = req.session.cart || [];
 
+	log(`Processing ${sessionCart.length} cart items`);
 	const cartItems = sessionCart
 		.map((cartItem) => {
 			// Search for the product across all product arrays
@@ -383,7 +424,13 @@ router.get("/cart", (req, res) => {
 			}
 			return null;
 		})
-		.filter((item) => item !== null); // Remove any null items (products not found)
+		.filter((item) => item !== null);
+
+	log(`Cart items processed`, "INFO", {
+		totalItems: cartItems.length,
+		items: cartItems,
+	});
+	log(`=== Cart Page Processing Complete ===`);
 
 	res.render("cart", { cartItems });
 });
@@ -394,13 +441,13 @@ router.get("/checkout/:id", (req, res) => {
 });
 
 router.post("/cart/add", (req, res) => {
-	log("post to /cart/add triggered");
-	log("Request body:", req.body);
+	log(`=== Processing Add to Cart Request ===`);
+	log(`Request body:`, "INFO", req.body);
 
 	const { productId, quantity } = req.body;
 
 	if (!productId || !quantity) {
-		console.error("Missing required fields:", { productId, quantity });
+		log("Missing required fields", "WARN", { productId, quantity });
 		return res.status(400).json({
 			success: false,
 			message: "Missing required fields",
@@ -418,16 +465,20 @@ router.post("/cart/add", (req, res) => {
 	);
 	if (index !== -1) {
 		req.session.cart[index].quantity += parseInt(quantity);
+		log(`Updated existing cart item`, "INFO", req.session.cart[index]);
 	} else {
 		req.session.cart.push({ productId, quantity: parseInt(quantity) });
+		log(`Added new item to cart`, "INFO", { productId, quantity });
 	}
 
-	log("Updated cart:", req.session.cart);
+	log(`Cart updated`, "INFO", req.session.cart);
+	log(`=== Add to Cart Request Complete ===`);
 	res.json({ success: true, message: "Product added to cart successfully" });
 });
 
 router.post("/cart/remove", (req, res) => {
-	log("post to /cart/remove triggered");
+	log(`=== Processing Remove from Cart Request ===`);
+	log(`Request body:`, "INFO", req.body);
 	const { productId } = req.body;
 
 	if (!req.session.cart) {
@@ -438,33 +489,43 @@ router.post("/cart/remove", (req, res) => {
 		(item) => item.productId !== productId
 	);
 
-	log("Updated cart after removal:", req.session.cart);
+	log(`Cart updated after removal`, "INFO", req.session.cart);
+	log(`=== Remove from Cart Request Complete ===`);
 	res.json({ success: true, message: "Item removed from cart" });
 });
 
 router.post("/chatbot/image", (req, res) => {
-	log("post to /chatbot/image triggered");
+	log(`=== Processing Chatbot Image Upload ===`);
 	const { image } = req.body;
 	if (image) {
-		req.session.uploadedImage = image; // Store in session
+		req.session.uploadedImage = image;
+		log(`Image stored in session`, "INFO", { hasImage: true });
 		res.json({ success: true });
 	} else {
+		log("No image provided", "WARN");
 		res.json({ success: false });
 	}
+	log(`=== Chatbot Image Upload Complete ===`);
 });
 
 router.post("/chatbot/text", (req, res) => {
-	log("post to /chatbot/text triggered");
+	log(`=== Processing Chatbot Text Input ===`);
 	const { text } = req.body;
 	if (text) {
-		req.session.userText = text; // Store in session
+		req.session.userText = text;
+		log(`Text stored in session`, "INFO", { hasText: true });
 		res.json({ success: true });
 	} else {
+		log("No text provided", "WARN");
 		res.json({ success: false });
 	}
+	log(`=== Chatbot Text Input Complete ===`);
 });
 
 router.get("/session-debug", (req, res) => {
+	log(`=== Processing Session Debug Request ===`);
+	log(`Session data:`, "INFO", req.session);
+	log(`=== Session Debug Complete ===`);
 	res.json(req.session);
 });
 
