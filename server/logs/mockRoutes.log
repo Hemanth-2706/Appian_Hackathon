@@ -698,3 +698,311 @@
 2025-06-06T17:07:58.630Z - INFO - Processed 10 similar products and 10 recommended products
 2025-06-06T17:07:58.650Z - INFO - Recommend page requested
 2025-06-06T17:07:58.651Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:24:18.339Z - INFO - Recommend page requested
+2025-06-06T17:24:18.341Z - WARN - No recommendation results found in session
+2025-06-06T17:24:18.359Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:24:18.360Z - INFO - Found 3 images in directory
+2025-06-06T17:24:34.385Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:24:35.455Z - INFO - Received recommendation request
+2025-06-06T17:24:35.455Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:24:35.456Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:24:39.925Z - ERROR - Error processing recommendations: [object Object]
+2025-06-06T17:27:18.028Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:27:18.031Z - INFO - Found 3 images in directory
+2025-06-06T17:27:25.500Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:27:27.005Z - INFO - Received recommendation request
+2025-06-06T17:27:27.006Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:27:27.006Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:27:31.124Z - ERROR - Error processing recommendations: [object Object]
+2025-06-06T17:30:56.355Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:30:56.357Z - INFO - Found 3 images in directory
+2025-06-06T17:31:01.312Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:31:03.508Z - INFO - Received recommendation request
+2025-06-06T17:31:03.509Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:31:03.509Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:31:12.913Z - ERROR - Error processing recommendations: [object Object]
+2025-06-06T17:35:19.716Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:35:19.719Z - INFO - Found 3 images in directory
+2025-06-06T17:38:46.078Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:38:46.079Z - INFO - Found 3 images in directory
+2025-06-06T17:38:52.172Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:38:53.468Z - INFO - Received recommendation request
+2025-06-06T17:38:53.469Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:38:53.469Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:39:00.942Z - ERROR - Error processing recommendations: [object Object]
+2025-06-06T17:45:56.148Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:45:56.158Z - INFO - Found 3 images in directory
+2025-06-06T17:46:52.521Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:46:54.155Z - INFO - Received recommendation request
+2025-06-06T17:46:54.156Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:46:54.156Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:47:20.131Z - INFO - Storing recommendation results in session
+2025-06-06T17:47:20.132Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:47:20.161Z - INFO - Recommend page requested
+2025-06-06T17:47:20.162Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:47:51.739Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:47:51.739Z - INFO - Found 3 images in directory
+2025-06-06T17:47:52.330Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:47:52.331Z - INFO - Found 3 images in directory
+2025-06-06T17:47:52.511Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:47:52.512Z - INFO - Found 3 images in directory
+2025-06-06T17:47:52.678Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:47:52.678Z - INFO - Found 3 images in directory
+2025-06-06T17:47:52.820Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:47:52.821Z - INFO - Found 3 images in directory
+2025-06-06T17:48:11.263Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:48:13.414Z - INFO - Received recommendation request
+2025-06-06T17:48:13.414Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:48:13.414Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:48:34.383Z - INFO - Storing recommendation results in session
+2025-06-06T17:48:34.387Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:48:34.409Z - INFO - Recommend page requested
+2025-06-06T17:48:34.410Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:49:16.629Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:49:16.629Z - INFO - Found 3 images in directory
+2025-06-06T17:49:50.409Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:49:52.119Z - INFO - Received recommendation request
+2025-06-06T17:49:52.120Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:49:52.121Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:50:05.316Z - INFO - Storing recommendation results in session
+2025-06-06T17:50:05.316Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:50:05.338Z - INFO - Recommend page requested
+2025-06-06T17:50:05.338Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:50:32.480Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:50:32.480Z - INFO - Found 3 images in directory
+2025-06-06T17:50:51.213Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:50:54.004Z - INFO - Received recommendation request
+2025-06-06T17:50:54.005Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:50:54.005Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:51:24.054Z - INFO - Storing recommendation results in session
+2025-06-06T17:51:24.055Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:51:24.076Z - INFO - Recommend page requested
+2025-06-06T17:51:24.077Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:52:02.372Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:52:02.372Z - INFO - Found 3 images in directory
+2025-06-06T17:52:02.601Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:52:02.602Z - INFO - Found 3 images in directory
+2025-06-06T17:52:06.033Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:52:07.637Z - INFO - Received recommendation request
+2025-06-06T17:52:07.637Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:52:07.637Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:52:29.943Z - INFO - Storing recommendation results in session
+2025-06-06T17:52:29.943Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:52:29.960Z - INFO - Recommend page requested
+2025-06-06T17:52:29.960Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:53:00.805Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:53:00.806Z - INFO - Found 3 images in directory
+2025-06-06T17:53:04.098Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:53:09.191Z - INFO - Received recommendation request
+2025-06-06T17:53:09.192Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:53:09.192Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:53:23.112Z - INFO - Storing recommendation results in session
+2025-06-06T17:53:23.114Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:53:23.140Z - INFO - Recommend page requested
+2025-06-06T17:53:23.141Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:54:23.875Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:54:23.876Z - INFO - Found 3 images in directory
+2025-06-06T17:54:52.077Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:54:58.349Z - INFO - Received recommendation request
+2025-06-06T17:54:58.349Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:54:58.349Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:55:18.778Z - INFO - Storing recommendation results in session
+2025-06-06T17:55:18.779Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:55:18.796Z - INFO - Recommend page requested
+2025-06-06T17:55:18.796Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:55:35.232Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:55:35.232Z - INFO - Found 3 images in directory
+2025-06-06T17:55:40.146Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:55:44.108Z - INFO - Received recommendation request
+2025-06-06T17:55:44.109Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:55:44.109Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:56:03.994Z - INFO - Storing recommendation results in session
+2025-06-06T17:56:03.994Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:56:04.014Z - INFO - Recommend page requested
+2025-06-06T17:56:04.015Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:56:34.539Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:56:36.946Z - INFO - Received recommendation request
+2025-06-06T17:56:36.946Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:56:36.947Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T17:57:12.428Z - INFO - Storing recommendation results in session
+2025-06-06T17:57:12.429Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T17:57:12.450Z - INFO - Recommend page requested
+2025-06-06T17:57:12.451Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T17:58:37.296Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T17:58:37.296Z - INFO - Found 3 images in directory
+2025-06-06T17:59:34.522Z - INFO - post to /chatbot/image triggered
+2025-06-06T17:59:38.095Z - INFO - Received recommendation request
+2025-06-06T17:59:38.095Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T17:59:38.096Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:00:01.695Z - INFO - Storing recommendation results in session
+2025-06-06T18:00:01.696Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:00:01.715Z - INFO - Recommend page requested
+2025-06-06T18:00:01.716Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:00:19.369Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:00:26.282Z - INFO - Received recommendation request
+2025-06-06T18:00:26.282Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:00:26.283Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:00:41.557Z - INFO - Storing recommendation results in session
+2025-06-06T18:00:41.558Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:00:41.568Z - INFO - Recommend page requested
+2025-06-06T18:00:41.568Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:01:05.295Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:01:19.988Z - INFO - Received recommendation request
+2025-06-06T18:01:19.988Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:01:19.989Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:01:31.713Z - INFO - Storing recommendation results in session
+2025-06-06T18:01:31.713Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:01:31.730Z - INFO - Recommend page requested
+2025-06-06T18:01:31.730Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:02:57.579Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T18:02:57.579Z - INFO - Found 3 images in directory
+2025-06-06T18:03:02.736Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:03:32.008Z - INFO - Received recommendation request
+2025-06-06T18:03:32.009Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:03:32.009Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:03:51.919Z - INFO - Storing recommendation results in session
+2025-06-06T18:03:51.919Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:03:51.939Z - INFO - Recommend page requested
+2025-06-06T18:03:51.940Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:04:24.983Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:04:31.101Z - INFO - Received recommendation request
+2025-06-06T18:04:31.101Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:04:31.101Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:04:42.468Z - INFO - Storing recommendation results in session
+2025-06-06T18:04:42.469Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:04:42.484Z - INFO - Recommend page requested
+2025-06-06T18:04:42.484Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:05:26.249Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:05:32.394Z - INFO - Received recommendation request
+2025-06-06T18:05:32.395Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:05:32.395Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:05:44.491Z - INFO - Storing recommendation results in session
+2025-06-06T18:05:44.492Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:05:44.511Z - INFO - Recommend page requested
+2025-06-06T18:05:44.511Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-06T18:06:08.140Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:07:48.126Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-06T18:07:48.127Z - INFO - Found 3 images in directory
+2025-06-06T18:07:51.138Z - INFO - post to /chatbot/image triggered
+2025-06-06T18:07:56.600Z - INFO - Received recommendation request
+2025-06-06T18:07:56.600Z - INFO - Session data - Text: None, Image: Present
+2025-06-06T18:07:56.600Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-06T18:08:08.935Z - INFO - Storing recommendation results in session
+2025-06-06T18:08:08.936Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-06T18:08:08.952Z - INFO - Recommend page requested
+2025-06-06T18:08:08.952Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:33:48.776Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:33:48.778Z - INFO - Found 3 images in directory
+2025-06-07T06:33:56.944Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:33:58.065Z - INFO - Received recommendation request
+2025-06-07T06:33:58.065Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:33:58.066Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:34:14.888Z - INFO - Storing recommendation results in session
+2025-06-07T06:34:14.888Z - INFO - Processed 0 similar products and 10 recommended products
+2025-06-07T06:34:14.931Z - INFO - Recommend page requested
+2025-06-07T06:34:14.932Z - INFO - Rendering recommend page with 0 similar products and 10 recommended products
+2025-06-07T06:34:57.162Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:34:58.441Z - INFO - Received recommendation request
+2025-06-07T06:34:58.442Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:34:58.442Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:35:10.423Z - INFO - Storing recommendation results in session
+2025-06-07T06:35:10.423Z - INFO - Processed 0 similar products and 10 recommended products
+2025-06-07T06:35:10.458Z - INFO - Recommend page requested
+2025-06-07T06:35:10.458Z - INFO - Rendering recommend page with 0 similar products and 10 recommended products
+2025-06-07T06:35:27.548Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:35:28.638Z - INFO - Received recommendation request
+2025-06-07T06:35:28.639Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:35:28.639Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:35:55.340Z - INFO - Storing recommendation results in session
+2025-06-07T06:35:55.340Z - INFO - Processed 0 similar products and 10 recommended products
+2025-06-07T06:35:55.356Z - INFO - Recommend page requested
+2025-06-07T06:35:55.357Z - INFO - Rendering recommend page with 0 similar products and 10 recommended products
+2025-06-07T06:36:11.106Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:36:12.780Z - INFO - Received recommendation request
+2025-06-07T06:36:12.781Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:36:12.781Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:36:32.736Z - INFO - Storing recommendation results in session
+2025-06-07T06:36:32.737Z - INFO - Processed 0 similar products and 10 recommended products
+2025-06-07T06:36:32.772Z - INFO - Recommend page requested
+2025-06-07T06:36:32.773Z - INFO - Rendering recommend page with 0 similar products and 10 recommended products
+2025-06-07T06:36:43.412Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:36:44.368Z - INFO - Received recommendation request
+2025-06-07T06:36:44.368Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:36:44.368Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:37:00.733Z - INFO - Storing recommendation results in session
+2025-06-07T06:37:00.733Z - INFO - Processed 0 similar products and 10 recommended products
+2025-06-07T06:37:00.756Z - INFO - Recommend page requested
+2025-06-07T06:37:00.759Z - INFO - Rendering recommend page with 0 similar products and 10 recommended products
+2025-06-07T06:40:13.962Z - INFO - Recommend page requested
+2025-06-07T06:40:13.964Z - WARN - No recommendation results found in session
+2025-06-07T06:40:13.976Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:40:13.976Z - INFO - Found 3 images in directory
+2025-06-07T06:40:17.070Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:40:17.892Z - INFO - Received recommendation request
+2025-06-07T06:40:17.892Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:40:17.892Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:40:41.335Z - INFO - Storing recommendation results in session
+2025-06-07T06:40:41.335Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:40:41.356Z - INFO - Recommend page requested
+2025-06-07T06:40:41.357Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:41:05.638Z - INFO - Recommend page requested
+2025-06-07T06:41:05.639Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:41:13.467Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:41:17.148Z - INFO - Received recommendation request
+2025-06-07T06:41:17.148Z - INFO - Session data - Text: None, Image: Present
+2025-06-07T06:41:17.148Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:41:31.557Z - INFO - Storing recommendation results in session
+2025-06-07T06:41:31.557Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:41:31.579Z - INFO - Recommend page requested
+2025-06-07T06:41:31.581Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:42:07.183Z - INFO - post to /chatbot/text triggered
+2025-06-07T06:42:09.528Z - INFO - Received recommendation request
+2025-06-07T06:42:09.529Z - INFO - Session data - Text: Present, Image: Present
+2025-06-07T06:42:09.529Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:42:19.288Z - INFO - Storing recommendation results in session
+2025-06-07T06:42:19.293Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:42:19.341Z - INFO - Recommend page requested
+2025-06-07T06:42:19.342Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:42:58.730Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:42:58.730Z - INFO - Found 3 images in directory
+2025-06-07T06:43:10.274Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:43:20.995Z - INFO - Received recommendation request
+2025-06-07T06:43:20.995Z - INFO - Session data - Text: Present, Image: Present
+2025-06-07T06:43:20.995Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:43:31.709Z - INFO - Storing recommendation results in session
+2025-06-07T06:43:31.709Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:43:31.728Z - INFO - Recommend page requested
+2025-06-07T06:43:31.729Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:43:52.263Z - INFO - post to /chatbot/text triggered
+2025-06-07T06:43:52.913Z - INFO - Received recommendation request
+2025-06-07T06:43:52.914Z - INFO - Session data - Text: Present, Image: Present
+2025-06-07T06:43:52.915Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:44:01.662Z - INFO - Storing recommendation results in session
+2025-06-07T06:44:01.663Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:44:01.685Z - INFO - Recommend page requested
+2025-06-07T06:44:01.685Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:44:14.736Z - INFO - Recommend page requested
+2025-06-07T06:44:14.736Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:44:14.901Z - INFO - Recommend page requested
+2025-06-07T06:44:14.902Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:44:15.083Z - INFO - Recommend page requested
+2025-06-07T06:44:15.083Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:44:15.229Z - INFO - Recommend page requested
+2025-06-07T06:44:15.229Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:44:15.935Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:44:15.936Z - INFO - Found 3 images in directory
+2025-06-07T06:44:29.242Z - INFO - post to /chatbot/image triggered
+2025-06-07T06:44:40.602Z - INFO - post to /chatbot/text triggered
+2025-06-07T06:44:41.529Z - INFO - Received recommendation request
+2025-06-07T06:44:41.530Z - INFO - Session data - Text: Present, Image: Present
+2025-06-07T06:44:41.530Z - INFO - Calling FastAPI endpoint for recommendations
+2025-06-07T06:44:54.103Z - INFO - Storing recommendation results in session
+2025-06-07T06:44:54.104Z - INFO - Processed 10 similar products and 10 recommended products
+2025-06-07T06:44:54.159Z - INFO - Recommend page requested
+2025-06-07T06:44:54.160Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-07T06:45:54.199Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:45:54.200Z - INFO - Found 3 images in directory
+2025-06-07T06:54:27.803Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:54:27.804Z - INFO - Found 3 images in directory
+2025-06-07T06:55:23.905Z - INFO - Reading images from directory: F:\Appian_Hackathon\server\data\images
+2025-06-07T06:55:23.905Z - INFO - Found 3 images in directory

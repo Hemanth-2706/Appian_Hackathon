@@ -8,6 +8,7 @@ import logging
 from transformers import CLIPProcessor, CLIPModel, BlipProcessor, BlipForConditionalGeneration
 import google.generativeai as genai
 from sentence_transformers import SentenceTransformer
+import regex as re
 
 # Configure logging
 logging.basicConfig(
@@ -353,6 +354,15 @@ module.exports = {{
         out = self.generate_with_gemini(prompt)
         items = [itm.strip() for itm in out.split('//') if itm.strip()][:k]
         numbered_items = [f"{i+1}. {itm}" for i, itm in enumerate(items)]
+        # items = []
+        # for line in out.splitlines():
+        #     line = line.strip()
+        #     if re.match(r"^\d+\.\s", line):
+        #         items.append(line.split(". ", 1)[1])
+        #     if len(items) >= k:
+        #         break
+        # numbered_items = [f"{i+1}. {itm}" for i, itm in enumerate(items)]
+
         return numbered_items
     
     def recommend(self, img=None, prompt=None, k=K):
@@ -379,6 +389,16 @@ module.exports = {{
             if len(img_emb.shape) == 1:
                 img_emb = img_emb.reshape(1, -1)
             faiss.normalize_L2(img_emb)
+            
+            # Get the category of the input image
+            caption = self.generate_caption(img)
+            input_category = None
+            if caption:
+                # Extract category from caption using Gemini
+                category_prompt = f"Given this product description: '{caption}', what is the main category of this product? Respond with just the category name."
+                input_category = self.generate_with_gemini(category_prompt).strip()
+                logger.info(f"Detected input category: {input_category}")
+            
             if has_txt:
                 logger.info("Processing combined image and text input...")
                 txt_emb = self.embed_text(prompt)
@@ -387,15 +407,38 @@ module.exports = {{
                     txt_emb = txt_emb.reshape(1, -1)
                 faiss.normalize_L2(txt_emb)
                 qv = np.concatenate([img_emb, txt_emb], axis=1).astype("float32")
-                Dv, Iv = self.sim_index.search(qv, k)
+                Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
             else:
                 logger.info("Processing image-only input...")
                 zero_txt = np.zeros((1, self.txt_embs.shape[1]), dtype=np.float32)
                 qv = np.concatenate([img_emb, zero_txt], axis=1).astype("float32")
                 faiss.normalize_L2(qv)
-                Dv, Iv = self.sim_index.search(qv, k)
-            sim_df = self.df.iloc[Iv[0]][["productId", "text"]].copy()
+                Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
+            
+            # Filter results by category if available
+            sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
             sim_df["score_img"] = Dv[0]
+            
+            if input_category:
+                # More flexible category matching
+                category_matches = (
+                    sim_df["masterCategory"].str.contains(input_category, case=False, na=False) |
+                    sim_df["subCategory"].str.contains(input_category, case=False, na=False)
+                )
+                
+                if category_matches.any():
+                    sim_df = sim_df[category_matches]
+                else:
+                    logger.warning(f"No exact category matches found for {input_category}, using top similarity scores")
+            
+            # Ensure we have enough results
+            if len(sim_df) < k:
+                logger.warning(f"Not enough category-filtered results ({len(sim_df)}), using top similarity scores")
+                sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
+                sim_df["score_img"] = Dv[0]
+            
+            sim_df = sim_df.head(k)  # Take top k after filtering
+            
         elif has_txt:
             logger.info("Processing text-only input...")
             txt_emb = self.embed_text(prompt)
@@ -404,8 +447,9 @@ module.exports = {{
                 txt_emb = txt_emb.reshape(1, -1)
             faiss.normalize_L2(txt_emb)
             Dt, It = self.txt_index.search(txt_emb, k)
-            sim_df = self.df.iloc[It[0]][["productId", "text"]].copy()
+            sim_df = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
             sim_df["score_txt"] = Dt[0]
+        
         logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
         
         # Caption + Complementary Retrieval
@@ -414,8 +458,22 @@ module.exports = {{
             caption = self.generate_caption(img) if has_img else ""
             if caption:
                 logger.info(f"Generated caption: {caption}")
+            
+            # Get complementary categories
             cats = self.ask_complements_local(caption, prompt if has_txt else "")
             logger.info(f"Generated {len(cats)} complementary categories")
+            
+            # Extract categories from the complementary items
+            complementary_categories = []
+            for cat in cats:
+                try:
+                    category = cat.split("Category: ")[1].split(";")[0].strip()
+                    complementary_categories.append(category)
+                except:
+                    continue
+            
+            logger.info(f"Complementary categories: {complementary_categories}")
+            
             cand = []
             for cat in cats:
                 q_t = self.embed_text(cat)
@@ -423,10 +481,23 @@ module.exports = {{
                 if len(q_t.shape) == 1:
                     q_t = q_t.reshape(1, -1)
                 faiss.normalize_L2(q_t)
-                Dt, It = self.txt_index.search(q_t, k)
-                dfc = self.df.iloc[It[0]][["productId", "text"]].copy()
+                Dt, It = self.txt_index.search(q_t, k*3)  # Increased search size
+                dfc = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
                 dfc["score_txt"] = Dt[0]
+                
+                # Filter by complementary categories
+                if complementary_categories:
+                    category_matches = (
+                        dfc["masterCategory"].isin(complementary_categories) |
+                        dfc["subCategory"].isin(complementary_categories)
+                    )
+                    if category_matches.any():
+                        dfc = dfc[category_matches]
+                    else:
+                        logger.warning(f"No exact category matches found for complementary categories, using top similarity scores")
+                
                 cand.append(dfc)
+            
             if cand:
                 all_rec = pd.concat(cand, ignore_index=True)
                 unique_rec = (
@@ -435,12 +506,16 @@ module.exports = {{
                     .drop_duplicates(subset="productId", keep="first")
                 )
                 rec_df = unique_rec.head(k)
+        
         logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
         
         # Process recommendations and download images
-        self.process_recommendations(sim_df, rec_df)
+        if not sim_df.empty or not rec_df.empty:
+            self.process_recommendations(sim_df, rec_df)
+            logger.info("Recommendation process completed successfully")
+        else:
+            logger.warning("No recommendations generated")
         
-        logger.info("Recommendation process completed successfully")
         return sim_df, rec_df
     
     def get_product_details(self, product_ids):
