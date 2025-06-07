@@ -188,21 +188,25 @@
 #chatbot-actions {
     display: flex;
     justify-content: center;
+    gap: 10px;
     padding: 10px;
     background: #fff;
     border-top: 1px solid #ddd;
 }
 
-#chatbot-recommend-btn {
-    background: #28a745;
-    color: white;
-    border: none;
+#chatbot-recommend-btn, #chatbot-clear-btn {
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease;
     font-weight: bold;
+    border: none;
+}
+
+#chatbot-recommend-btn {
+    background: #28a745;
+    color: white;
 }
 
 #chatbot-recommend-btn:hover {
@@ -211,4 +215,17 @@
 
 #chatbot-recommend-btn:active {
     background: #1e7e34;
+}
+
+#chatbot-clear-btn {
+    background: #dc3545;
+    color: white;
+}
+
+#chatbot-clear-btn:hover {
+    background: #c82333;
+}
+
+#chatbot-clear-btn:active {
+    background: #bd2130;
 }

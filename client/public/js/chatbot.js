@@ -181,3 +181,40 @@ recommendBtn.addEventListener("click", async () => {
 		);
 	}
 });
+
+// Clear History Button
+const clearBtn = document.getElementById("chatbot-clear-btn");
+
+clearBtn.addEventListener("click", async () => {
+	try {
+		// Call the clear-history endpoint
+		const response = await fetch("/chatbot/clear-history", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error("Failed to clear history");
+		}
+
+		// Clear the messages container except for the initial welcome messages
+		const messages = document.getElementById("chatbot-messages");
+		while (messages.children.length > 2) {
+			messages.removeChild(messages.lastChild);
+		}
+
+		// Show confirmation message
+		appendMessage(
+			"History cleared successfully! How can I help you today?",
+			"bot"
+		);
+	} catch (error) {
+		console.error("Error:", error);
+		appendMessage(
+			"Sorry, there was an error clearing the history. Please try again.",
+			"bot"
+		);
+	}
+});

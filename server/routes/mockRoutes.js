@@ -522,6 +522,27 @@ router.post("/chatbot/text", (req, res) => {
 	log(`=== Chatbot Text Input Complete ===`);
 });
 
+router.post("/chatbot/clear-history", (req, res) => {
+	log(`=== Processing Clear History Request ===`);
+	try {
+		// Clear all chatbot-related session data
+		delete req.session.userText;
+		delete req.session.uploadedImage;
+		delete req.session.recommendationResults;
+
+		log(`Session cleared successfully`, "INFO");
+		log(`=== Clear History Request Complete ===`);
+		res.json({ success: true, message: "History cleared successfully" });
+	} catch (error) {
+		log(`Error clearing history: ${error.message}`, "ERROR");
+		res.status(500).json({
+			success: false,
+			message: "Failed to clear history",
+			error: error.message,
+		});
+	}
+});
+
 router.get("/session-debug", (req, res) => {
 	log(`=== Processing Session Debug Request ===`);
 	log(`Session data:`, "INFO", req.session);
