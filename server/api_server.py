@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 # Add the server directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data.model import FashionRecommender
+from server.data.model import FashionRecommender
 
 app = FastAPI()
 
