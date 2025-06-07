@@ -334,9 +334,9 @@ module.exports = {{
         
         logger.info("Loading valid indices...")
         self.valid_indices = np.load(os.path.join(DATA_DIR, "valid_indices.npy"))
-        logger.info(f"Valid indices shape: {self.valid_indices.shape}")
-        logger.info(f"Valid indices sample: {self.valid_indices[:10]}")
-        logger.info("=== Embeddings Loading Complete ===")
+        logger.info(f"img_embs shape: {self.img_embs.shape}, sample: {self.img_embs[0][:5]}")
+        logger.info(f"txt_embs shape: {self.txt_embs.shape}, sample: {self.txt_embs[0][:5]}")
+        logger.info(f"valid_indices shape: {self.valid_indices.shape}, sample: {self.valid_indices[:10]}")
     
     def build_indexes(self):
         """Build FAISS indexes from loaded embeddings"""
@@ -433,7 +433,9 @@ module.exports = {{
             f"\nCustomer said: \"{user_prompt}\"."
             f"\nList exactly 5 complementary and matching items for this."
             f"\nEach item MUST follow this format strictly:"
-            f"\nCategory: <category>; Article Type: <article_type>; Color/Style: <color_or_style>; Usage: <usage>"
+            f"\nCategory: <category>; subCategory: <subcategory> ;Article Type: <article_type>; Color/Style: <color_or_style>; Usage: <usage>"
+            f"\nChoose <category> from ['Apparel','Accessories','Footwear','Personal Care','Free Items','Sporting Goods','Home']"
+            f"\nChoose <subcategory> from ['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
             f"\nSeparate each item with '//' on a single line."
             f"\nDO NOT include any explanations or extra text. Only output the 5 formatted items."
             f"\nDo not give same item as shown in the image in the recommendations."
@@ -443,8 +445,19 @@ module.exports = {{
         out = self.generate_with_gemini(prompt)
         items = [itm.strip() for itm in out.split('//') if itm.strip()][:k]
         numbered_items = [f"{i+1}. {itm}" for i, itm in enumerate(items)]
-        logger.info(f"Generated {len(numbered_items)} complementary items")
         logger.info("=== Complementary Recommendations Generation Complete ===")
+
+        print(numbered_items)  # Debugging output
+        logger.info(f"Generated {len(numbered_items)} complementary items: {numbered_items}")
+        # items = []
+        # for line in out.splitlines():
+        #     line = line.strip()
+        #     if re.match(r"^\d+\.\s", line):
+        #         items.append(line.split(". ", 1)[1])
+        #     if len(items) >= k:
+        #         break
+        # numbered_items = [f"{i+1}. {itm}" for i, itm in enumerate(items)]
+
         return numbered_items
     
     def recommend(self, img=None, prompt=None, k=K):
@@ -478,7 +491,7 @@ module.exports = {{
             input_category = None
             if caption:
                 # Extract category from caption using Gemini
-                category_prompt = f"Given this product description: '{caption}', what is the main category of this product? Respond with just the category name."
+                category_prompt = f"Given this product description: '{caption}', what is the sub category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
                 input_category = self.generate_with_gemini(category_prompt).strip()
                 logger.info(f"Detected input category: {input_category}")
             
@@ -534,7 +547,7 @@ module.exports = {{
             sim_df = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
             sim_df["score_txt"] = Dt[0]
         
-        logger.info(f"Found {len(sim_df)} similar products")
+        logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
         
         # Caption + Complementary Retrieval
         if has_txt or has_img:
@@ -593,7 +606,7 @@ module.exports = {{
                 rec_df = unique_rec.head(k)
                 logger.info(f"Found {len(rec_df)} recommended products")
         
-        logger.info(f"Final results - Similar: {len(sim_df)}, Recommended: {len(rec_df)}")
+        logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
         
         # Process recommendations and download images
         if not sim_df.empty or not rec_df.empty:
