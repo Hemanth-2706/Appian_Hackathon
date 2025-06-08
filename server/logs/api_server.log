@@ -1,719 +1,392 @@
-2025-06-07 18:03:01,838 - faiss.loader - INFO - Loading faiss.
-2025-06-07 18:03:01,859 - faiss.loader - INFO - Successfully loaded faiss.
-2025-06-07 18:03:10,800 - data.model - INFO - === Starting Model Initialization ===
-2025-06-07 18:03:10,800 - data.model - INFO - Using device: cuda
-2025-06-07 18:03:10,800 - data.model - INFO - === Loading CLIP Model ===
-2025-06-07 18:03:10,800 - data.model - INFO - Initializing CLIP model for visual search...
-2025-06-07 18:03:14,973 - data.model - INFO - CLIP model loaded successfully
-2025-06-07 18:03:14,977 - data.model - INFO - === CLIP Model Loading Complete ===
-2025-06-07 18:03:14,978 - data.model - INFO - === Loading BLIP Model ===
-2025-06-07 18:03:14,978 - data.model - INFO - Initializing BLIP model for image captioning...
-2025-06-07 18:03:18,180 - data.model - INFO - BLIP model loaded successfully
-2025-06-07 18:03:18,180 - data.model - INFO - === BLIP Model Loading Complete ===
-2025-06-07 18:03:18,186 - data.model - INFO - === Configuration Settings ===
-2025-06-07 18:03:18,186 - data.model - INFO - Base Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
-2025-06-07 18:03:18,186 - data.model - INFO - Data Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
-2025-06-07 18:03:18,190 - data.model - INFO - Output Recommendation Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:03:18,190 - data.model - INFO - Output Similar Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:03:18,190 - data.model - INFO - Products JS Path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
-2025-06-07 18:03:18,190 - data.model - INFO - === Configuration Settings Complete ===
-2025-06-07 18:03:18,190 - data.model - INFO - === Configuring Gemini API ===
-2025-06-07 18:03:18,190 - data.model - INFO - Gemini API configured successfully
-2025-06-07 18:03:18,190 - data.model - INFO - === Gemini API Configuration Complete ===
-2025-06-07 18:03:18,190 - __main__ - INFO - === Starting API Server Initialization ===
-2025-06-07 18:03:18,190 - __main__ - INFO - Initializing FashionRecommender...
-2025-06-07 18:03:18,190 - data.model - INFO - === Initializing FashionRecommender ===
-2025-06-07 18:03:18,190 - data.model - INFO - Embeddings directory: ./
-2025-06-07 18:03:18,190 - data.model - INFO - Output directory: ./
-2025-06-07 18:03:18,190 - data.model - INFO - Loading models...
-2025-06-07 18:03:18,208 - data.model - INFO - === Loading Models ===
-2025-06-07 18:03:18,208 - data.model - INFO - Loading CLIP model...
-2025-06-07 18:03:21,704 - data.model - INFO - CLIP model loaded successfully
-2025-06-07 18:03:21,706 - data.model - INFO - Loading BLIP model...
-2025-06-07 18:03:25,336 - data.model - INFO - BLIP model loaded successfully
-2025-06-07 18:03:25,336 - data.model - INFO - === Model Loading Complete ===
-2025-06-07 18:03:25,338 - data.model - INFO - Loading embeddings...
-2025-06-07 18:03:25,338 - data.model - INFO - === Loading Embeddings ===
-2025-06-07 18:03:25,338 - data.model - INFO - Loading image embeddings...
-2025-06-07 18:03:25,342 - data.model - INFO - Image embeddings shape: (5000, 512)
-2025-06-07 18:03:25,344 - data.model - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
-2025-06-07 18:03:25,344 - data.model - INFO - Loading text embeddings...
-2025-06-07 18:03:25,350 - data.model - INFO - Text embeddings shape: (5000, 512)
-2025-06-07 18:03:25,350 - data.model - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
-2025-06-07 18:03:25,350 - data.model - INFO - Loading valid indices...
-2025-06-07 18:03:25,350 - data.model - INFO - Valid indices shape: (5000,)
-2025-06-07 18:03:25,350 - data.model - INFO - Valid indices sample: [0 1 2 3 4 5 6 7 8 9]
-2025-06-07 18:03:25,350 - data.model - INFO - === Embeddings Loading Complete ===
-2025-06-07 18:03:25,350 - data.model - INFO - Building indexes...
-2025-06-07 18:03:25,354 - data.model - INFO - === Building FAISS Indexes ===
-2025-06-07 18:03:25,354 - data.model - INFO - Building fused index for multimodal search...
-2025-06-07 18:03:25,384 - data.model - INFO - Fused index built with dimension: 1024
-2025-06-07 18:03:25,384 - data.model - INFO - Building text-only index...
-2025-06-07 18:03:25,389 - data.model - INFO - Text index built with dimension: 512
-2025-06-07 18:03:25,389 - data.model - INFO - === FAISS Index Building Complete ===
-2025-06-07 18:03:25,396 - data.model - INFO - Loading dataset...
-2025-06-07 18:03:25,396 - data.model - INFO - === Loading Dataset ===
-2025-06-07 18:03:25,396 - data.model - INFO - Loading dataset from: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\filtered_df.csv
-2025-06-07 18:03:25,528 - data.model - INFO - Renaming 'id' column to 'productId'
-2025-06-07 18:03:25,538 - data.model - INFO - Dataset shape: (44446, 13)
-2025-06-07 18:03:25,544 - data.model - INFO - Dataset columns: ['productId', 'gender', 'masterCategory', 'subCategory', 'articleType', 'baseColour', 'season', 'year', 'usage', 'productDisplayName', 'image_path', 'text', 'link']
-2025-06-07 18:03:25,546 - data.model - INFO - First few records: {'productId': {0: '15970', 1: '39386', 2: '59263', 3: '21379', 4: '53759'}, 'gender': {0: 'Men', 1: 'Men', 2: 'Women', 3: 'Men', 4: 'Men'}, 'masterCategory': {0: 'Apparel', 1: 'Apparel', 2: 'Accessories', 3: 'Apparel', 4: 'Apparel'}, 'subCategory': {0: 'Topwear', 1: 'Bottomwear', 2: 'Watches', 3: 'Bottomwear', 4: 'Topwear'}, 'articleType': {0: 'Shirts', 1: 'Jeans', 2: 'Watches', 3: 'Track Pants', 4: 'Tshirts'}, 'baseColour': {0: 'Navy Blue', 1: 'Blue', 2: 'Silver', 3: 'Black', 4: 'Grey'}, 'season': {0: 'Fall', 1: 'Summer', 2: 'Winter', 3: 'Fall', 4: 'Summer'}, 'year': {0: '2011', 1: '2012', 2: '2016', 3: '2011', 4: '2012'}, 'usage': {0: 'Casual', 1: 'Casual', 2: 'Casual', 3: 'Casual', 4: 'Casual'}, 'productDisplayName': {0: 'Turtle Check Men Navy Blue Shirt', 1: 'Peter England Men Party Blue Jeans', 2: 'Titan Women Silver Watch', 3: 'Manchester United Men Solid Black Track Pants', 4: 'Puma Men Grey T-shirt'}, 'image_path': {0: '/kaggle/input/fashion-product-images-dataset/fashion-dataset/images/15970.jpg', 1: '/kaggle/input/fashion-product-images-dataset/fashion-dataset/images/39386.jpg', 2: '/kaggle/input/fashion-product-images-dataset/fashion-dataset/images/59263.jpg', 3: '/kaggle/input/fashion-product-images-dataset/fashion-dataset/images/21379.jpg', 4: '/kaggle/input/fashion-product-images-dataset/fashion-dataset/images/53759.jpg'}, 'text': {0: 'Casual | Turtle Check Men Navy Blue Shirt', 1: 'Casual | Peter England Men Party Blue Jeans', 2: 'Casual | Titan Women Silver Watch', 3: 'Casual | Manchester United Men Solid Black Track Pants', 4: 'Casual | Puma Men Grey T-shirt'}, 'link': {0: 'http://assets.myntassets.com/v1/images/style/properties/7a5b82d1372a7a5c6de67ae7a314fd91_images.jpg', 1: 'http://assets.myntassets.com/v1/images/style/properties/4850873d0c417e6480a26059f83aac29_images.jpg', 2: 'http://assets.myntassets.com/v1/images/style/properties/Titan-Women-Silver-Watch_b4ef04538840c0020e4829ecc042ead1_images.jpg', 3: 'http://assets.myntassets.com/v1/images/style/properties/8153dc35d9a5420eeb93922067137db6_images.jpg', 4: 'http://assets.myntassets.com/v1/images/style/properties/Puma-Men-Grey-T-shirt_32668f8a61454d0cc028a808cf21b383_images.jpg'}}
-2025-06-07 18:03:25,548 - data.model - INFO - Loaded 44446 records
-2025-06-07 18:03:25,548 - data.model - INFO - === Dataset Loading Complete ===
-2025-06-07 18:03:25,548 - data.model - INFO - === FashionRecommender Initialization Complete ===
-2025-06-07 18:03:25,548 - __main__ - INFO - FashionRecommender initialized successfully
-2025-06-07 18:03:25,548 - __main__ - INFO - === API Server Initialization Complete ===
-2025-06-07 18:03:25,554 - __main__ - INFO - === Starting FastAPI Server ===
-2025-06-07 18:03:25,554 - __main__ - INFO - Server will be available at http://0.0.0.0:5001
-2025-06-07 18:05:16,426 - __main__ - INFO - === Starting Recommendation Processing ===
-2025-06-07 18:05:16,430 - __main__ - INFO - Request received - Text present: True, Image present: True
-2025-06-07 18:05:16,430 - __main__ - INFO - Processing image from request...
-2025-06-07 18:05:16,430 - __main__ - INFO - === Starting Base64 Image Processing ===
-2025-06-07 18:05:16,430 - __main__ - INFO - Removed data URL prefix from base64 string
-2025-06-07 18:05:16,430 - __main__ - INFO - First 100 chars of base64 image: iVBORw0KGgoAAAANSUhEUgAAAcsAAAHLCAYAAACnArNHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIA
-2025-06-07 18:05:16,430 - __main__ - INFO - Ensured temp directory exists at: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp
-2025-06-07 18:05:16,430 - __main__ - INFO - Generated temp file path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:05:16,430 - __main__ - INFO - Successfully saved image to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:05:16,446 - __main__ - INFO - === Base64 Image Processing Complete ===
-2025-06-07 18:05:16,448 - __main__ - INFO - Image processed and saved to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:05:16,448 - __main__ - INFO - Calling recommender.recommend() with parameters:
-2025-06-07 18:05:16,448 - __main__ - INFO - - Image path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:05:16,448 - __main__ - INFO - - Text prompt: Related shirts
-2025-06-07 18:05:16,448 - __main__ - INFO - - K value: 10
-2025-06-07 18:05:16,448 - data.model - INFO - === Starting Recommendation Process ===
-2025-06-07 18:05:16,455 - data.model - INFO - Input parameters - Image: Present, Prompt: Present
-2025-06-07 18:05:16,458 - data.model - INFO - Processing image input...
-2025-06-07 18:05:16,463 - data.model - INFO - === Generating Image Embedding for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:05:16,934 - data.model - INFO - Image loaded successfully
-2025-06-07 18:05:16,935 - data.model - INFO - Processing image with CLIP...
-2025-06-07 18:05:18,691 - data.model - INFO - Image embedding generated successfully
-2025-06-07 18:05:18,691 - data.model - INFO - === Image Embedding Generation Complete ===
-2025-06-07 18:05:18,691 - data.model - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:05:18,720 - data.model - INFO - Image loaded successfully
-2025-06-07 18:05:18,720 - data.model - INFO - Processing image with BLIP...
-2025-06-07 18:05:21,359 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:05:21,359 - data.model - INFO - === Caption Generation Complete ===
-2025-06-07 18:05:21,359 - data.model - INFO - === Generating Response with Gemini for: Given this product description: 'a pair of white and blue sneakers on a wooden rail', what is the ma... ===
-2025-06-07 18:05:23,331 - data.model - INFO - Generated response: Sneakers
+2025-06-08 10:55:27,523 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 10:55:27,555 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - Using device: cuda
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 10:55:37,145 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Base Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Data Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Output Recommendation Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Output Similar Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Products JS Path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Loading models...
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 10:55:42,932 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 10:55:42,933 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 10:55:45,935 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Image embeddings shape: (5000, 512)
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Text embeddings shape: (5000, 512)
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - img_embs shape: (5000, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - txt_embs shape: (5000, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - valid_indices shape: (5000,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Building indexes...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 10:55:45,978 - (api_server.py) - INFO - Fused index built with dimension: 1024
+2025-06-08 10:55:45,978 - (api_server.py) - INFO - Building text-only index...
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Text index built with dimension: 512
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - === FAISS Index Building Complete ===
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Loading dataset...
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - === Loading Dataset ===
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Loading dataset from: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\dataset.csv
+2025-06-08 10:55:46,095 - (api_server.py) - INFO - Dataset shape: (44445, 12)
+2025-06-08 10:55:46,095 - (api_server.py) - INFO - Dataset columns: ['productId', 'gender', 'masterCategory', 'subCategory', 'articleType', 'baseColour', 'season', 'usage', 'productDisplayName', 'text', 'link', 'price']
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - First few records: {'productId': {0: '15970', 1: '39386', 2: '21379', 3: '53759', 4: '1855'}, 'gender': {0: 'Men', 1: 'Men', 2: 'Men', 3: 'Men', 4: 'Men'}, 'masterCategory': {0: 'Apparel', 1: 'Apparel', 2: 'Apparel', 3: 'Apparel', 4: 'Apparel'}, 'subCategory': {0: 'Topwear', 1: 'Bottomwear', 2: 'Bottomwear', 3: 'Topwear', 4: 'Topwear'}, 'articleType': {0: 'Shirts', 1: 'Jeans', 2: 'Track Pants', 3: 'Tshirts', 4: 'Tshirts'}, 'baseColour': {0: 'Navy Blue', 1: 'Blue', 2: 'Black', 3: 'Grey', 4: 'Grey'}, 'season': {0: 'Fall', 1: 'Summer', 2: 'Fall', 3: 'Summer', 4: 'Summer'}, 'usage': {0: 'Casual', 1: 'Casual', 2: 'Casual', 3: 'Casual', 4: 'Casual'}, 'productDisplayName': {0: 'Turtle Check Men Navy Blue Shirt', 1: 'Peter England Men Party Blue Jeans', 2: 'Manchester United Men Solid Black Track Pants', 3: 'Puma Men Grey T-shirt', 4: 'Inkfruit Mens Chain Reaction T-shirt'}, 'text': {0: 'Casual | Turtle Check Men Navy Blue Shirt', 1: 'Casual | Peter England Men Party Blue Jeans', 2: 'Casual | Manchester United Men Solid Black Track Pants', 3: 'Casual | Puma Men Grey T-shirt', 4: 'Casual | Inkfruit Mens Chain Reaction T-shirt'}, 'link': {0: 'http://assets.myntassets.com/v1/images/style/properties/7a5b82d1372a7a5c6de67ae7a314fd91_images.jpg', 1: 'http://assets.myntassets.com/v1/images/style/properties/4850873d0c417e6480a26059f83aac29_images.jpg', 2: 'http://assets.myntassets.com/v1/images/style/properties/8153dc35d9a5420eeb93922067137db6_images.jpg', 3: 'http://assets.myntassets.com/v1/images/style/properties/Puma-Men-Grey-T-shirt_32668f8a61454d0cc028a808cf21b383_images.jpg', 4: 'http://assets.myntassets.com/v1/images/style/properties/9c1b19682ecf926c296f520d5d6e0972_images.jpg'}, 'price': {0: '842', 1: '1531', 2: '1882', 3: '882', 4: '1085'}}
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - Loaded 44445 records
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === Dataset Loading Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === FashionRecommender Initialization Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - FashionRecommender initialized successfully
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === API Server Initialization Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === Starting FastAPI Server ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - Server will be available at http://0.0.0.0:5001
+2025-06-08 10:56:06,509 - (api_server.py) - INFO - === Starting Recommendation Processing ===
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Request received - Text present: True, Image present: True
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Processing image from request...
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - === Starting Base64 Image Processing ===
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Removed data URL prefix from base64 string
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - First 100 chars of base64 image: iVBORw0KGgoAAAANSUhEUgAAAVkAAAHLCAYAAABiXOuTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIA
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Ensured temp directory exists at: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp
+2025-06-08 10:56:06,525 - (api_server.py) - INFO - Generated temp file path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,526 - (api_server.py) - INFO - Successfully saved image to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - === Base64 Image Processing Complete ===
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Image processed and saved to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Calling recommender.recommend() with parameters:
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - Image path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - Text prompt: suggest shirts
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - K value: 10
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - === Starting Recommendation Process ===
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Input parameters - Image: Present, Prompt: Present
+2025-06-08 10:56:06,543 - (api_server.py) - INFO - Processing image input...
+2025-06-08 10:56:06,543 - (api_server.py) - INFO - === Generating Image Embedding for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:06,966 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:06,966 - (api_server.py) - INFO - Processing image with CLIP...
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - Image embedding generated successfully
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - === Image Embedding Generation Complete ===
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:07,907 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:07,907 - (api_server.py) - INFO - Processing image with BLIP...
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - === Caption Generation Complete ===
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - === Generating Response with Gemini for: Given this product description: 'a red jacket with a white shirt and jeans', what is the sub categor... ===
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Generated response: Apparel Set
 ...
-2025-06-07 18:05:23,349 - data.model - INFO - === Gemini Response Generation Complete ===
-2025-06-07 18:05:23,349 - data.model - INFO - Detected input category: Sneakers
-2025-06-07 18:05:23,351 - data.model - INFO - Processing combined image and text input...
-2025-06-07 18:05:23,353 - data.model - INFO - === Generating Text Embedding for: Related shirts... ===
-2025-06-07 18:05:23,460 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:23,460 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:23,482 - data.model - WARNING - No exact category matches found for Sneakers, using top similarity scores
-2025-06-07 18:05:23,488 - data.model - INFO - Found 10 similar products
-2025-06-07 18:05:23,488 - data.model - INFO - Generating complementary recommendations...
-2025-06-07 18:05:23,490 - data.model - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:05:23,499 - data.model - INFO - Image loaded successfully
-2025-06-07 18:05:23,499 - data.model - INFO - Processing image with BLIP...
-2025-06-07 18:05:25,383 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:05:25,384 - data.model - INFO - === Caption Generation Complete ===
-2025-06-07 18:05:25,384 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:05:25,386 - data.model - INFO - === Generating Complementary Recommendations ===
-2025-06-07 18:05:25,388 - data.model - INFO - Caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:05:25,388 - data.model - INFO - User prompt: Related shirts
-2025-06-07 18:05:25,388 - data.model - INFO - Generating complementary items with Gemini...
-2025-06-07 18:05:25,388 - data.model - INFO - === Generating Response with Gemini for: You are a professional fashion stylist.
-You are given a product: "a pair of white and blue sneakers ... ===
-2025-06-07 18:05:27,858 - data.model - INFO - Generated response: Category: Tops; Article Type: T-Shirt; Color/Style: Light Blue; Usage: Casual everyday wear
-//
-Categ...
-2025-06-07 18:05:27,858 - data.model - INFO - === Gemini Response Generation Complete ===
-2025-06-07 18:05:27,858 - data.model - INFO - Generated 5 complementary items
-2025-06-07 18:05:27,858 - data.model - INFO - === Complementary Recommendations Generation Complete ===
-2025-06-07 18:05:27,858 - data.model - INFO - Generated 5 complementary categories
-2025-06-07 18:05:27,858 - data.model - INFO - Complementary categories: ['Tops', 'Tops', 'Tops', 'Outerwear', 'Tops']
-2025-06-07 18:05:27,865 - data.model - INFO - === Generating Text Embedding for: 1. Category: Tops; Article Type: T-Shirt; Color/Style: Light Blue; Usage: Casual everyday wear... ===
-2025-06-07 18:05:27,928 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:27,928 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:27,938 - data.model - WARNING - No exact category matches found for complementary categories, using top similarity scores
-2025-06-07 18:05:27,942 - data.model - INFO - === Generating Text Embedding for: 2. Category: Tops; Article Type: Polo Shirt; Color/Style: White; Usage: Smart casual outings... ===
-2025-06-07 18:05:27,999 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:27,999 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:28,010 - data.model - WARNING - No exact category matches found for complementary categories, using top similarity scores
-2025-06-07 18:05:28,013 - data.model - INFO - === Generating Text Embedding for: 3. Category: Tops; Article Type: Henley Shirt; Color/Style: Navy Blue; Usage: Weekend activities... ===
-2025-06-07 18:05:28,076 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:28,078 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:28,089 - data.model - WARNING - No exact category matches found for complementary categories, using top similarity scores
-2025-06-07 18:05:28,089 - data.model - INFO - === Generating Text Embedding for: 4. Category: Outerwear; Article Type: Light Jacket; Color/Style: Denim; Usage: Layering for cooler w... ===
-2025-06-07 18:05:28,156 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:28,158 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:28,165 - data.model - WARNING - No exact category matches found for complementary categories, using top similarity scores
-2025-06-07 18:05:28,166 - data.model - INFO - === Generating Text Embedding for: 5. Category: Tops; Article Type: Linen Shirt; Color/Style: White with thin blue stripes; Usage: Summ... ===
-2025-06-07 18:05:28,219 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:05:28,219 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:05:28,238 - data.model - WARNING - No exact category matches found for complementary categories, using top similarity scores
-2025-06-07 18:05:28,246 - data.model - INFO - Found 10 recommended products
-2025-06-07 18:05:28,246 - data.model - INFO - Final results - Similar: 10, Recommended: 10
-2025-06-07 18:05:28,246 - data.model - INFO - Processing final recommendations...
-2025-06-07 18:05:28,246 - data.model - INFO - === Processing Recommendations ===
-2025-06-07 18:05:28,246 - data.model - INFO - Clearing existing images...
-2025-06-07 18:05:28,246 - data.model - INFO - === Clearing Output Directories ===
-2025-06-07 18:05:28,246 - data.model - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:05:28,252 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\15949.jpg
-2025-06-07 18:05:28,252 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\21783.jpg
-2025-06-07 18:05:28,252 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\44116.jpg
-2025-06-07 18:05:28,260 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\44126.jpg
-2025-06-07 18:05:28,260 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\46683.jpg
-2025-06-07 18:05:28,260 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\48319.jpg
-2025-06-07 18:05:28,264 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\48578.jpg
-2025-06-07 18:05:28,266 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\48579.jpg
-2025-06-07 18:05:28,268 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\59264.jpg
-2025-06-07 18:05:28,268 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\59458.jpg
-2025-06-07 18:05:28,268 - data.model - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:05:28,274 - data.model - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:05:28,276 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16950.jpg
-2025-06-07 18:05:28,279 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16957.jpg
-2025-06-07 18:05:28,280 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16958.jpg
-2025-06-07 18:05:28,281 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16961.jpg
-2025-06-07 18:05:28,285 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\21348.jpg
-2025-06-07 18:05:28,288 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\2672.jpg
-2025-06-07 18:05:28,288 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\28404.jpg
-2025-06-07 18:05:28,288 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\28405.jpg
-2025-06-07 18:05:28,293 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\41669.jpg
-2025-06-07 18:05:28,294 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\47131.jpg
-2025-06-07 18:05:28,296 - data.model - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:05:28,296 - data.model - INFO - === Output Directories Clearing Complete ===
-2025-06-07 18:05:28,298 - data.model - INFO - Creating output directories...
-2025-06-07 18:05:28,301 - data.model - INFO - Found 10 similar products and 10 recommended products
-2025-06-07 18:05:28,301 - data.model - INFO - 
---- Downloading Recommendation Product Images ---
-2025-06-07 18:05:28,304 - data.model - INFO - === Starting Image Download for 10 Products ===
-2025-06-07 18:05:28,307 - data.model - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:05:28,312 - data.model - INFO - Processing Product ID 29787...
-2025-06-07 18:05:28,324 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Basics-Men-White-T-shirt_09fac0ea8036d4de33ceec2351630e04_images.jpg
-2025-06-07 18:05:28,374 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:28,378 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29787.jpg
-2025-06-07 18:05:28,378 - data.model - INFO - Processing Product ID 26536...
-2025-06-07 18:05:28,378 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/9bbb0a99f2262993b7b659959fbcf3bc_images.jpg
-2025-06-07 18:05:28,410 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:28,410 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
-2025-06-07 18:05:28,410 - data.model - INFO - Processing Product ID 9464...
-2025-06-07 18:05:28,410 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/a909b6d0de20fb26fcf2da90273739ad_images.jpg
-2025-06-07 18:05:28,711 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:28,714 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\9464.jpg
-2025-06-07 18:05:28,714 - data.model - INFO - Processing Product ID 27870...
-2025-06-07 18:05:28,716 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Scullers-For-Her-Women-White-Striped-Shirt_b4833b5129730298114c075d80980d96_images.jpg
-2025-06-07 18:05:28,926 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:28,929 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\27870.jpg
-2025-06-07 18:05:28,929 - data.model - INFO - Processing Product ID 16539...
-2025-06-07 18:05:28,929 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/071f93920fa13ef44d4ef381909745e6_images.jpg
-2025-06-07 18:05:28,991 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:28,991 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16539.jpg
-2025-06-07 18:05:28,991 - data.model - INFO - Processing Product ID 40580...
-2025-06-07 18:05:28,991 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/cfde2a914d0fb065fcee8e30dcb62ca5_images.jpg
-2025-06-07 18:05:29,287 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:29,289 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\40580.jpg
-2025-06-07 18:05:29,291 - data.model - INFO - Processing Product ID 35947...
-2025-06-07 18:05:29,291 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/7ff02b9461087d72a9214544e83fe3a8_images.jpg
-2025-06-07 18:05:29,410 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:29,410 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\35947.jpg
-2025-06-07 18:05:29,410 - data.model - INFO - Processing Product ID 12196...
-2025-06-07 18:05:29,416 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5b2994f4e228714f93ac84a17cb1469d_images.jpg
-2025-06-07 18:05:29,586 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:29,590 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\12196.jpg
-2025-06-07 18:05:29,590 - data.model - INFO - Processing Product ID 11714...
-2025-06-07 18:05:29,592 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/052aab597dd3d014e348e706c6f3106e_images.jpg
-2025-06-07 18:05:29,759 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:29,764 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\11714.jpg
-2025-06-07 18:05:29,767 - data.model - INFO - Processing Product ID 4540...
-2025-06-07 18:05:29,769 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/fe2d29a4b5a00803b2b185cf6409881a_images.jpg
-2025-06-07 18:05:30,006 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:30,009 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\4540.jpg
-2025-06-07 18:05:30,009 - data.model - INFO - === Image Download Complete - Processed 10 Images ===
-2025-06-07 18:05:30,009 - data.model - INFO - 
---- Downloading Similar Product Images ---
-2025-06-07 18:05:30,009 - data.model - INFO - === Starting Image Download for 10 Products ===
-2025-06-07 18:05:30,014 - data.model - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:05:30,023 - data.model - INFO - Processing Product ID 39988...
-2025-06-07 18:05:30,025 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/9c3d77147758ab10f12caf6184fe13ef_images.jpg
-2025-06-07 18:05:30,371 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:30,371 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39988.jpg
-2025-06-07 18:05:30,376 - data.model - INFO - Processing Product ID 30233...
-2025-06-07 18:05:30,376 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/115e53e76402ea9af077f2d5e44a7ea4_images.jpg
-2025-06-07 18:05:30,489 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:30,493 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\30233.jpg
-2025-06-07 18:05:30,494 - data.model - INFO - Processing Product ID 13073...
-2025-06-07 18:05:30,494 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/26e93a4246e479e84c16a0ae547d2158_images.jpg
-2025-06-07 18:05:30,841 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:30,844 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13073.jpg
-2025-06-07 18:05:30,846 - data.model - INFO - Processing Product ID 26536...
-2025-06-07 18:05:30,846 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/9bbb0a99f2262993b7b659959fbcf3bc_images.jpg
-2025-06-07 18:05:30,928 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:30,930 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\26536.jpg
-2025-06-07 18:05:30,930 - data.model - INFO - Processing Product ID 54517...
-2025-06-07 18:05:30,930 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/F-Sports-Men-White-Bratt-Sports-Shoes_23e61fa2aeee5c1b6f8636b3135c9371_images.jpg
-2025-06-07 18:05:31,218 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,225 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54517.jpg
-2025-06-07 18:05:31,226 - data.model - INFO - Processing Product ID 39980...
-2025-06-07 18:05:31,229 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/a7a8fe472fe8efb3f3b92a1a21ba1b6f_images.jpg
-2025-06-07 18:05:31,322 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,327 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39980.jpg
-2025-06-07 18:05:31,328 - data.model - INFO - Processing Product ID 24260...
-2025-06-07 18:05:31,328 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/201ee2059f025456791058e25fd72c4b_images.jpg
-2025-06-07 18:05:31,626 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,631 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\24260.jpg
-2025-06-07 18:05:31,631 - data.model - INFO - Processing Product ID 54516...
-2025-06-07 18:05:31,631 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/F-Sports-Men-White-Velocity-Sports-Shoes_14345420e63e868eda0ec2e246cdb3b8_images.jpg
-2025-06-07 18:05:31,728 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,746 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54516.jpg
-2025-06-07 18:05:31,749 - data.model - INFO - Processing Product ID 35384...
-2025-06-07 18:05:31,750 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/84a4af40b337addd2014f17f0afcac15_images.jpg
-2025-06-07 18:05:31,860 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,860 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\35384.jpg
-2025-06-07 18:05:31,860 - data.model - INFO - Processing Product ID 13679...
-2025-06-07 18:05:31,870 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/d75102040c965cd59488b69007f766fe_images.jpg
-2025-06-07 18:05:31,988 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:05:31,992 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13679.jpg
-2025-06-07 18:05:31,992 - data.model - INFO - === Image Download Complete - Processed 10 Images ===
-2025-06-07 18:05:31,994 - data.model - INFO - 
---- Creating products.js file ---
-2025-06-07 18:05:31,994 - data.model - INFO - === Creating Products.js File ===
-2025-06-07 18:05:31,996 - data.model - INFO - Processing base products...
-2025-06-07 18:05:31,998 - data.model - INFO - === Creating Product Object for ID: 15970 ===
-2025-06-07 18:05:32,000 - data.model - INFO - Created product object: {'productId': '15970', 'productName': 'Turtle Check Men Navy Blue Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Navy Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/15970.jpg', 'price': 0.0}
-2025-06-07 18:05:32,000 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,000 - data.model - INFO - === Creating Product Object for ID: 39386 ===
-2025-06-07 18:05:32,000 - data.model - INFO - Created product object: {'productId': '39386', 'productName': 'Peter England Men Party Blue Jeans', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Jeans', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/products/39386.jpg', 'price': 0.0}
-2025-06-07 18:05:32,000 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,000 - data.model - INFO - === Creating Product Object for ID: 59263 ===
-2025-06-07 18:05:32,000 - data.model - INFO - Created product object: {'productId': '59263', 'productName': 'Titan Women Silver Watch', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'Silver', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/products/59263.jpg', 'price': 0.0}
-2025-06-07 18:05:32,000 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,000 - data.model - INFO - Created 3 base products
-2025-06-07 18:05:32,000 - data.model - INFO - Processing similar products...
-2025-06-07 18:05:32,000 - data.model - INFO - === Creating Product Object for ID: 39988 ===
-2025-06-07 18:05:32,018 - data.model - INFO - Created product object: {'productId': '39988', 'productName': 'Gas Men Europa White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/similarProducts/39988.jpg', 'price': 0.0}
-2025-06-07 18:05:32,018 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,018 - data.model - INFO - === Creating Product Object for ID: 30233 ===
-2025-06-07 18:05:32,024 - data.model - INFO - Created product object: {'productId': '30233', 'productName': 'Numero Uno Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/30233.jpg', 'price': 0.0}
-2025-06-07 18:05:32,024 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,026 - data.model - INFO - === Creating Product Object for ID: 13073 ===
-2025-06-07 18:05:32,026 - data.model - INFO - Created product object: {'productId': '13073', 'productName': 'Numero Uno Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/similarProducts/13073.jpg', 'price': 0.0}
-2025-06-07 18:05:32,028 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,028 - data.model - INFO - === Creating Product Object for ID: 26536 ===
-2025-06-07 18:05:32,028 - data.model - INFO - Created product object: {'productId': '26536', 'productName': 'ID Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/26536.jpg', 'price': 0.0}
-2025-06-07 18:05:32,031 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,031 - data.model - INFO - === Creating Product Object for ID: 54517 ===
-2025-06-07 18:05:32,033 - data.model - INFO - Created product object: {'productId': '54517', 'productName': 'F Sports Men White Bratt Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Sports', 'image': '/images/similarProducts/54517.jpg', 'price': 0.0}
-2025-06-07 18:05:32,033 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,033 - data.model - INFO - === Creating Product Object for ID: 39980 ===
-2025-06-07 18:05:32,033 - data.model - INFO - Created product object: {'productId': '39980', 'productName': 'Gas Men Flint Brown Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'Brown', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/39980.jpg', 'price': 0.0}
-2025-06-07 18:05:32,037 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,037 - data.model - INFO - === Creating Product Object for ID: 24260 ===
-2025-06-07 18:05:32,039 - data.model - INFO - Created product object: {'productId': '24260', 'productName': 'Numero Uno Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/24260.jpg', 'price': 0.0}
-2025-06-07 18:05:32,040 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,040 - data.model - INFO - === Creating Product Object for ID: 54516 ===
-2025-06-07 18:05:32,042 - data.model - INFO - Created product object: {'productId': '54516', 'productName': 'F Sports Men White Velocity Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Sports', 'image': '/images/similarProducts/54516.jpg', 'price': 0.0}
-2025-06-07 18:05:32,044 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,044 - data.model - INFO - === Creating Product Object for ID: 35384 ===
-2025-06-07 18:05:32,046 - data.model - INFO - Created product object: {'productId': '35384', 'productName': 'Enroute Teens Black Shoes', 'gender': 'Boys', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'Black', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/35384.jpg', 'price': 0.0}
-2025-06-07 18:05:32,046 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,046 - data.model - INFO - === Creating Product Object for ID: 13679 ===
-2025-06-07 18:05:32,048 - data.model - INFO - Created product object: {'productId': '13679', 'productName': 'ADIDAS Men Court Switch Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Spring', 'usage': 'Sports', 'image': '/images/similarProducts/13679.jpg', 'price': 0.0}
-2025-06-07 18:05:32,048 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,050 - data.model - INFO - Created 10 similar products
-2025-06-07 18:05:32,050 - data.model - INFO - Processing recommended products...
-2025-06-07 18:05:32,063 - data.model - INFO - === Creating Product Object for ID: 29787 ===
-2025-06-07 18:05:32,066 - data.model - INFO - Created product object: {'productId': '29787', 'productName': 'Basics Men White T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/29787.jpg', 'price': 0.0}
-2025-06-07 18:05:32,067 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,069 - data.model - INFO - === Creating Product Object for ID: 26536 ===
-2025-06-07 18:05:32,069 - data.model - INFO - Created product object: {'productId': '26536', 'productName': 'ID Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/26536.jpg', 'price': 0.0}
-2025-06-07 18:05:32,070 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,070 - data.model - INFO - === Creating Product Object for ID: 9464 ===
-2025-06-07 18:05:32,072 - data.model - INFO - Created product object: {'productId': '9464', 'productName': 'John Miller Men  White Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Formal', 'image': '/images/recommendProducts/9464.jpg', 'price': 0.0}
-2025-06-07 18:05:32,072 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,072 - data.model - INFO - === Creating Product Object for ID: 27870 ===
-2025-06-07 18:05:32,072 - data.model - INFO - Created product object: {'productId': '27870', 'productName': 'Scullers For Her Women White Striped Shirt', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Smart Casual', 'image': '/images/recommendProducts/27870.jpg', 'price': 0.0}
-2025-06-07 18:05:32,076 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,078 - data.model - INFO - === Creating Product Object for ID: 16539 ===
-2025-06-07 18:05:32,078 - data.model - INFO - Created product object: {'productId': '16539', 'productName': 'Basics Men White Slim Fit Striped Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/16539.jpg', 'price': 0.0}
-2025-06-07 18:05:32,078 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,078 - data.model - INFO - === Creating Product Object for ID: 40580 ===
-2025-06-07 18:05:32,078 - data.model - INFO - Created product object: {'productId': '40580', 'productName': 'W Women White Top', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tops', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/40580.jpg', 'price': 0.0}
-2025-06-07 18:05:32,083 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,083 - data.model - INFO - === Creating Product Object for ID: 35947 ===
-2025-06-07 18:05:32,084 - data.model - INFO - Created product object: {'productId': '35947', 'productName': 'Flying Machine Men White Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/35947.jpg', 'price': 0.0}
-2025-06-07 18:05:32,086 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,087 - data.model - INFO - === Creating Product Object for ID: 12196 ===
-2025-06-07 18:05:32,087 - data.model - INFO - Created product object: {'productId': '12196', 'productName': 'Basics Men White Polo T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/12196.jpg', 'price': 0.0}
-2025-06-07 18:05:32,089 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,089 - data.model - INFO - === Creating Product Object for ID: 11714 ===
-2025-06-07 18:05:32,089 - data.model - INFO - Created product object: {'productId': '11714', 'productName': 'Lee Women Check Blue Shirts', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/11714.jpg', 'price': 0.0}
-2025-06-07 18:05:32,091 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,092 - data.model - INFO - === Creating Product Object for ID: 4540 ===
-2025-06-07 18:05:32,092 - data.model - INFO - Created product object: {'productId': '4540', 'productName': "Classic Polo Men's White Polo T-shirt", 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/4540.jpg', 'price': 0.0}
-2025-06-07 18:05:32,092 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:05:32,096 - data.model - INFO - Created 10 recommended products
-2025-06-07 18:05:32,096 - data.model - INFO - Generating JavaScript content...
-2025-06-07 18:05:32,100 - data.model - INFO - Writing to products.js at D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
-2025-06-07 18:05:32,167 - data.model - INFO - === Products.js Creation Complete ===
-2025-06-07 18:05:32,169 - data.model - INFO - === Recommendation Processing Complete ===
-2025-06-07 18:05:32,169 - data.model - INFO - Recommendation process completed successfully
-2025-06-07 18:05:32,169 - data.model - INFO - === Recommendation Process Complete ===
-2025-06-07 18:05:32,172 - __main__ - INFO - Received results from recommender
-2025-06-07 18:05:32,172 - __main__ - INFO - Converting similar products to dictionary format...
-2025-06-07 18:05:32,172 - __main__ - INFO - === Starting DataFrame Conversion ===
-2025-06-07 18:05:32,172 - __main__ - INFO - Original DataFrame shape: (10, 5)
-2025-06-07 18:05:32,172 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_img']
-2025-06-07 18:05:32,172 - __main__ - INFO - Renaming column text to productName
-2025-06-07 18:05:32,172 - __main__ - INFO - Renaming column subCategory to subCategory
-2025-06-07 18:05:32,172 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
-2025-06-07 18:05:32,184 - __main__ - INFO - Using existing productId column
-2025-06-07 18:05:32,186 - __main__ - INFO - Using existing productName column
-2025-06-07 18:05:32,188 - __main__ - INFO - Adding missing column: articleType
-2025-06-07 18:05:32,188 - __main__ - INFO - Adding missing column: subCategory
-2025-06-07 18:05:32,188 - __main__ - INFO - Adding missing column: season
-2025-06-07 18:05:32,192 - __main__ - INFO - Adding missing column: usage
-2025-06-07 18:05:32,192 - __main__ - INFO - Adding missing column: image
-2025-06-07 18:05:32,196 - __main__ - INFO - Adding missing column: price
-2025-06-07 18:05:32,206 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
-2025-06-07 18:05:32,206 - __main__ - INFO - === DataFrame Conversion Complete ===
-2025-06-07 18:05:32,208 - __main__ - INFO - Converted 10 similar products
-2025-06-07 18:05:32,208 - __main__ - INFO - Converting recommended products to dictionary format...
-2025-06-07 18:05:32,208 - __main__ - INFO - === Starting DataFrame Conversion ===
-2025-06-07 18:05:32,208 - __main__ - INFO - Original DataFrame shape: (10, 5)
-2025-06-07 18:05:32,208 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_txt']
-2025-06-07 18:05:32,208 - __main__ - INFO - Renaming column text to productName
-2025-06-07 18:05:32,214 - __main__ - INFO - Renaming column subCategory to subCategory
-2025-06-07 18:05:32,214 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
-2025-06-07 18:05:32,218 - __main__ - INFO - Using existing productId column
-2025-06-07 18:05:32,218 - __main__ - INFO - Using existing productName column
-2025-06-07 18:05:32,218 - __main__ - INFO - Adding missing column: articleType
-2025-06-07 18:05:32,224 - __main__ - INFO - Adding missing column: subCategory
-2025-06-07 18:05:32,226 - __main__ - INFO - Adding missing column: season
-2025-06-07 18:05:32,229 - __main__ - INFO - Adding missing column: usage
-2025-06-07 18:05:32,229 - __main__ - INFO - Adding missing column: image
-2025-06-07 18:05:32,233 - __main__ - INFO - Adding missing column: price
-2025-06-07 18:05:32,238 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
-2025-06-07 18:05:32,238 - __main__ - INFO - === DataFrame Conversion Complete ===
-2025-06-07 18:05:32,246 - __main__ - INFO - Converted 10 recommended products
-2025-06-07 18:05:32,248 - __main__ - INFO - Total processed products - Similar: 10, Recommended: 10
-2025-06-07 18:05:32,249 - __main__ - INFO - Cleaned up temporary image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:05:32,249 - __main__ - INFO - === Recommendation Processing Complete ===
-2025-06-07 18:06:05,813 - __main__ - INFO - === Starting Recommendation Processing ===
-2025-06-07 18:06:05,813 - __main__ - INFO - Request received - Text present: True, Image present: True
-2025-06-07 18:06:05,818 - __main__ - INFO - Processing image from request...
-2025-06-07 18:06:05,819 - __main__ - INFO - === Starting Base64 Image Processing ===
-2025-06-07 18:06:05,819 - __main__ - INFO - Removed data URL prefix from base64 string
-2025-06-07 18:06:05,821 - __main__ - INFO - First 100 chars of base64 image: iVBORw0KGgoAAAANSUhEUgAAAcsAAAHLCAYAAACnArNHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIA
-2025-06-07 18:06:05,821 - __main__ - INFO - Ensured temp directory exists at: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp
-2025-06-07 18:06:05,821 - __main__ - INFO - Generated temp file path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:06:05,836 - __main__ - INFO - Successfully saved image to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:06:05,841 - __main__ - INFO - === Base64 Image Processing Complete ===
-2025-06-07 18:06:05,841 - __main__ - INFO - Image processed and saved to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:06:05,844 - __main__ - INFO - Calling recommender.recommend() with parameters:
-2025-06-07 18:06:05,846 - __main__ - INFO - - Image path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:06:05,849 - __main__ - INFO - - Text prompt: show watches
-2025-06-07 18:06:05,849 - __main__ - INFO - - K value: 10
-2025-06-07 18:06:05,854 - data.model - INFO - === Starting Recommendation Process ===
-2025-06-07 18:06:05,856 - data.model - INFO - Input parameters - Image: Present, Prompt: Present
-2025-06-07 18:06:05,858 - data.model - INFO - Processing image input...
-2025-06-07 18:06:05,858 - data.model - INFO - === Generating Image Embedding for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:06:05,882 - data.model - INFO - Image loaded successfully
-2025-06-07 18:06:05,886 - data.model - INFO - Processing image with CLIP...
-2025-06-07 18:06:06,701 - data.model - INFO - Image embedding generated successfully
-2025-06-07 18:06:06,701 - data.model - INFO - === Image Embedding Generation Complete ===
-2025-06-07 18:06:06,701 - data.model - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:06:06,732 - data.model - INFO - Image loaded successfully
-2025-06-07 18:06:06,732 - data.model - INFO - Processing image with BLIP...
-2025-06-07 18:06:08,523 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:06:08,523 - data.model - INFO - === Caption Generation Complete ===
-2025-06-07 18:06:08,523 - data.model - INFO - === Generating Response with Gemini for: Given this product description: 'a pair of white and blue sneakers on a wooden rail', what is the ma... ===
-2025-06-07 18:06:09,241 - data.model - INFO - Generated response: Sneakers
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - === Gemini Response Generation Complete ===
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Detected input category: Apparel Set
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Processing combined image and text input...
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - === Generating Text Embedding for: suggest shirts... ===
+2025-06-08 10:56:11,749 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:11,749 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:11,760 - (api_server.py) - WARNING - No exact category matches found for Apparel Set, using top similarity scores
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - Similar product IDs: ['43760', '9497', '22758', '21143', '27646', '48182', '5601', '41660', '55055', '30832']
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - Generating complementary recommendations...
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:11,782 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:11,782 - (api_server.py) - INFO - Processing image with BLIP...
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Caption Generation Complete ===
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Generating Complementary Recommendations ===
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - User prompt: suggest shirts
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generating complementary items with Gemini...
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Generating Response with Gemini for: You are a professional fashion stylist.
+You are given a product: "a red jacket with a white shirt an... ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated response: Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual //
 ...
-2025-06-07 18:06:09,242 - data.model - INFO - === Gemini Response Generation Complete ===
-2025-06-07 18:06:09,242 - data.model - INFO - Detected input category: Sneakers
-2025-06-07 18:06:09,242 - data.model - INFO - Processing combined image and text input...
-2025-06-07 18:06:09,242 - data.model - INFO - === Generating Text Embedding for: show watches... ===
-2025-06-07 18:06:09,309 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:09,309 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:09,321 - data.model - WARNING - No exact category matches found for Sneakers, using top similarity scores
-2025-06-07 18:06:09,321 - data.model - INFO - Found 10 similar products
-2025-06-07 18:06:09,325 - data.model - INFO - Generating complementary recommendations...
-2025-06-07 18:06:09,325 - data.model - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg ===
-2025-06-07 18:06:09,340 - data.model - INFO - Image loaded successfully
-2025-06-07 18:06:09,340 - data.model - INFO - Processing image with BLIP...
-2025-06-07 18:06:11,144 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:06:11,144 - data.model - INFO - === Caption Generation Complete ===
-2025-06-07 18:06:11,146 - data.model - INFO - Generated caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:06:11,146 - data.model - INFO - === Generating Complementary Recommendations ===
-2025-06-07 18:06:11,148 - data.model - INFO - Caption: a pair of white and blue sneakers on a wooden rail
-2025-06-07 18:06:11,148 - data.model - INFO - User prompt: show watches
-2025-06-07 18:06:11,148 - data.model - INFO - Generating complementary items with Gemini...
-2025-06-07 18:06:11,148 - data.model - INFO - === Generating Response with Gemini for: You are a professional fashion stylist.
-You are given a product: "a pair of white and blue sneakers ... ===
-2025-06-07 18:06:14,231 - data.model - INFO - Generated response: Category: Accessories; Article Type: Watch; Color/Style: Stainless steel with blue face; Usage: Casu...
-2025-06-07 18:06:14,231 - data.model - INFO - === Gemini Response Generation Complete ===
-2025-06-07 18:06:14,231 - data.model - INFO - Generated 5 complementary items
-2025-06-07 18:06:14,231 - data.model - INFO - === Complementary Recommendations Generation Complete ===
-2025-06-07 18:06:14,233 - data.model - INFO - Generated 5 complementary categories
-2025-06-07 18:06:14,234 - data.model - INFO - Complementary categories: ['Accessories', 'Accessories', 'Accessories', 'Accessories', 'Accessories']
-2025-06-07 18:06:14,234 - data.model - INFO - === Generating Text Embedding for: 1. Category: Accessories; Article Type: Watch; Color/Style: Stainless steel with blue face; Usage: C... ===
-2025-06-07 18:06:14,310 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:14,311 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:14,320 - data.model - INFO - Filtered complementary results by categories
-2025-06-07 18:06:14,320 - data.model - INFO - === Generating Text Embedding for: 2. Category: Accessories; Article Type: Watch; Color/Style: White ceramic with white dial; Usage: Sp... ===
-2025-06-07 18:06:14,380 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:14,382 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:14,392 - data.model - INFO - Filtered complementary results by categories
-2025-06-07 18:06:14,394 - data.model - INFO - === Generating Text Embedding for: 3. Category: Accessories; Article Type: Watch; Color/Style: Brown leather strap with white dial; Usa... ===
-2025-06-07 18:06:14,466 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:14,466 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:14,477 - data.model - INFO - Filtered complementary results by categories
-2025-06-07 18:06:14,477 - data.model - INFO - === Generating Text Embedding for: 4. Category: Accessories; Article Type: Watch; Color/Style: Navy blue nylon strap with digital displ... ===
-2025-06-07 18:06:14,539 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:14,539 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:14,558 - data.model - INFO - Filtered complementary results by categories
-2025-06-07 18:06:14,558 - data.model - INFO - === Generating Text Embedding for: 5. Category: Accessories; Article Type: Watch; Color/Style: Rose gold with a blue leather strap; Usa... ===
-2025-06-07 18:06:14,629 - data.model - INFO - Text embedding generated successfully
-2025-06-07 18:06:14,630 - data.model - INFO - === Text Embedding Generation Complete ===
-2025-06-07 18:06:14,638 - data.model - INFO - Filtered complementary results by categories
-2025-06-07 18:06:14,646 - data.model - INFO - Found 10 recommended products
-2025-06-07 18:06:14,646 - data.model - INFO - Final results - Similar: 10, Recommended: 10
-2025-06-07 18:06:14,648 - data.model - INFO - Processing final recommendations...
-2025-06-07 18:06:14,648 - data.model - INFO - === Processing Recommendations ===
-2025-06-07 18:06:14,649 - data.model - INFO - Clearing existing images...
-2025-06-07 18:06:14,649 - data.model - INFO - === Clearing Output Directories ===
-2025-06-07 18:06:14,651 - data.model - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:06:14,653 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13073.jpg
-2025-06-07 18:06:14,653 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13679.jpg
-2025-06-07 18:06:14,657 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\24260.jpg
-2025-06-07 18:06:14,662 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\26536.jpg
-2025-06-07 18:06:14,664 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\30233.jpg
-2025-06-07 18:06:14,669 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\35384.jpg
-2025-06-07 18:06:14,673 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39980.jpg
-2025-06-07 18:06:14,678 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39988.jpg
-2025-06-07 18:06:14,681 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54516.jpg
-2025-06-07 18:06:14,686 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54517.jpg
-2025-06-07 18:06:14,690 - data.model - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:06:14,690 - data.model - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:06:14,692 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\11714.jpg
-2025-06-07 18:06:14,696 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\12196.jpg
-2025-06-07 18:06:14,698 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16539.jpg
-2025-06-07 18:06:14,700 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\26536.jpg
-2025-06-07 18:06:14,702 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\27870.jpg
-2025-06-07 18:06:14,704 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29787.jpg
-2025-06-07 18:06:14,706 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\35947.jpg
-2025-06-07 18:06:14,709 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\40580.jpg
-2025-06-07 18:06:14,712 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\4540.jpg
-2025-06-07 18:06:14,712 - data.model - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\9464.jpg
-2025-06-07 18:06:14,714 - data.model - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:06:14,716 - data.model - INFO - === Output Directories Clearing Complete ===
-2025-06-07 18:06:14,717 - data.model - INFO - Creating output directories...
-2025-06-07 18:06:14,720 - data.model - INFO - Found 10 similar products and 10 recommended products
-2025-06-07 18:06:14,720 - data.model - INFO - 
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Gemini Response Generation Complete ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Complementary Recommendations Generation Complete ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated 5 complementary items: ['1. Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual', '2. Category: Apparel; subCategory: Topwear; Article Type: Henley Shirt; Color/Style: Navy Blue; Usage: Casual', '3. Category: Apparel; subCategory: Topwear; Article Type: Polo Shirt; Color/Style: Black; Usage: Smart Casual', '4. Category: Apparel; subCategory: Topwear; Article Type: Turtleneck; Color/Style: Cream; Usage: Casual', '5. Category: Apparel; subCategory: Topwear; Article Type: Button-Down Shirt; Color/Style: Light Blue; Usage: Formal']
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated 5 complementary categories
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Complementary categories: ['Apparel', 'Apparel', 'Apparel', 'Apparel', 'Apparel']
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Generating Text Embedding for: 1. Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual... ===
+2025-06-08 10:56:15,447 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,447 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,463 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,463 - (api_server.py) - INFO - === Generating Text Embedding for: 2. Category: Apparel; subCategory: Topwear; Article Type: Henley Shirt; Color/Style: Navy Blue; Usag... ===
+2025-06-08 10:56:15,505 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,505 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,523 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,523 - (api_server.py) - INFO - === Generating Text Embedding for: 3. Category: Apparel; subCategory: Topwear; Article Type: Polo Shirt; Color/Style: Black; Usage: Sma... ===
+2025-06-08 10:56:15,564 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - === Generating Text Embedding for: 4. Category: Apparel; subCategory: Topwear; Article Type: Turtleneck; Color/Style: Cream; Usage: Cas... ===
+2025-06-08 10:56:15,639 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,639 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,645 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,645 - (api_server.py) - INFO - === Generating Text Embedding for: 5. Category: Apparel; subCategory: Topwear; Article Type: Button-Down Shirt; Color/Style: Light Blue... ===
+2025-06-08 10:56:15,681 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,681 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Found 10 recommended products
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Recommended product IDs: ['29548', '16394', '30832', '11173', '57961', '54725', '25340', '46276', '7551', '9064']
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Processing final recommendations...
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - === Processing Recommendations ===
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Clearing existing images...
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - === Clearing Output Directories ===
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\22704.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\31574.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\38469.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\43198.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\47501.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\51039.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\59059.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\7965.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9692.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9695.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\12303.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\14657.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16394.jpg
+2025-06-08 10:56:15,740 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\22758.jpg
+2025-06-08 10:56:15,740 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29548.jpg
+2025-06-08 10:56:15,744 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\33072.jpg
+2025-06-08 10:56:15,744 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\43760.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\57961.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\7551.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\8924.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - === Output Directories Clearing Complete ===
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Creating output directories...
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - Found 10 similar products and 10 recommended products
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - 
 --- Downloading Recommendation Product Images ---
-2025-06-07 18:06:14,720 - data.model - INFO - === Starting Image Download for 10 Products ===
-2025-06-07 18:06:14,720 - data.model - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
-2025-06-07 18:06:14,728 - data.model - INFO - Processing Product ID 29917...
-2025-06-07 18:06:14,728 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Police-Men-Steel-Dial-Watch_51e58f90f98b042641c9b54f09b54fd6_images.jpg
-2025-06-07 18:06:15,038 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,038 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29917.jpg
-2025-06-07 18:06:15,038 - data.model - INFO - Processing Product ID 36759...
-2025-06-07 18:06:15,038 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/6addf68b5c1108a0db895cba2157c21f_images.jpg
-2025-06-07 18:06:15,365 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,368 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\36759.jpg
-2025-06-07 18:06:15,368 - data.model - INFO - Processing Product ID 56677...
-2025-06-07 18:06:15,368 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Maxima-Men-White-Dial-Watch_2c70c1ed41ee4cd5fdc723fce9187a94_images.jpg
-2025-06-07 18:06:15,419 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,419 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\56677.jpg
-2025-06-07 18:06:15,419 - data.model - INFO - Processing Product ID 23285...
-2025-06-07 18:06:15,424 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Maxima-Ssteele-Men-White-Watch94d49cca9358df86d9cf1582b66857eb_images.jpg
-2025-06-07 18:06:15,490 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,496 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\23285.jpg
-2025-06-07 18:06:15,496 - data.model - INFO - Processing Product ID 45039...
-2025-06-07 18:06:15,499 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/abbd1b739fdfb4524e4974ac24044b6b_images.jpg
-2025-06-07 18:06:15,790 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,800 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\45039.jpg
-2025-06-07 18:06:15,800 - data.model - INFO - Processing Product ID 36769...
-2025-06-07 18:06:15,804 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/c9ca010ea281fd8a4b6a83ed7609faad_images.jpg
-2025-06-07 18:06:15,851 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:15,851 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\36769.jpg
-2025-06-07 18:06:15,851 - data.model - INFO - Processing Product ID 36760...
-2025-06-07 18:06:15,851 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/3c00989e96fc95e3bf04bcacfe3006f7_images.jpg
-2025-06-07 18:06:16,309 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:16,312 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\36760.jpg
-2025-06-07 18:06:16,312 - data.model - INFO - Processing Product ID 36794...
-2025-06-07 18:06:16,314 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/56e35bf5c46b494e9be60449dbf591ec_images.jpg
-2025-06-07 18:06:16,392 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:16,392 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\36794.jpg
-2025-06-07 18:06:16,392 - data.model - INFO - Processing Product ID 56671...
-2025-06-07 18:06:16,392 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Maxima-Men-White-Dial-Watch_6d4edee3b4de8b88561ffa20c22aa74c_images.jpg
-2025-06-07 18:06:16,578 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:16,578 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\56671.jpg
-2025-06-07 18:06:16,578 - data.model - INFO - Processing Product ID 45031...
-2025-06-07 18:06:16,591 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/71f14727c49fa9d8a0aa2e9b8a9ebafa_images.jpg
-2025-06-07 18:06:16,703 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:16,708 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\45031.jpg
-2025-06-07 18:06:16,708 - data.model - INFO - === Image Download Complete - Processed 10 Images ===
-2025-06-07 18:06:16,710 - data.model - INFO - 
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - === Starting Image Download for 10 Products ===
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,772 - (api_server.py) - INFO - Processing Product ID 29548...
+2025-06-08 10:56:15,772 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/ea3f97ed1d89b449b782c01da33591b3_images.jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29548.jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Processing Product ID 25340...
+2025-06-08 10:56:16,082 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/ac4a9fab9b82c8f7b3f96e583c96a46c_images.jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\25340.jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Processing Product ID 46276...
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5e0c64f90bfa041a4feadb0a3726b276_images.jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\46276.jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Processing Product ID 57961...
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Prafful-Women-Multi-Coloured-Sari_82607f83f133913af4167094b5354247_images.jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\57961.jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Processing Product ID 54725...
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Shree-Women-Coral-Coloured-Printed-Kurta_0ffffc120af55d15c2bf75ba9f438910_images.jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\54725.jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Processing Product ID 30832...
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4044abbe79e8e12cc1beca06fae7bdc8_images.jpg
+2025-06-08 10:56:16,998 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\30832.jpg
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Processing Product ID 11173...
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5880c43a46731ad11e235232827839ae_images.jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\11173.jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Processing Product ID 16394...
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4aefd2f041e97505c36977e61f06d35f_images.jpg
+2025-06-08 10:56:17,898 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,898 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16394.jpg
+2025-06-08 10:56:17,912 - (api_server.py) - INFO - Processing Product ID 7551...
+2025-06-08 10:56:17,912 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/3124993bf686a60005c72bcb0069f6ff_images.jpg
+2025-06-08 10:56:18,022 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\7551.jpg
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Processing Product ID 9064...
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/6d914cf8cd1c99a8074c5f8d6818cb2f_images.jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\9064.jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - === Image Download Complete - Processed 10 Images ===
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - 
 --- Downloading Similar Product Images ---
-2025-06-07 18:06:16,712 - data.model - INFO - === Starting Image Download for 10 Products ===
-2025-06-07 18:06:16,712 - data.model - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
-2025-06-07 18:06:16,720 - data.model - INFO - Processing Product ID 39988...
-2025-06-07 18:06:16,720 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/9c3d77147758ab10f12caf6184fe13ef_images.jpg
-2025-06-07 18:06:17,052 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,056 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39988.jpg
-2025-06-07 18:06:17,058 - data.model - INFO - Processing Product ID 13073...
-2025-06-07 18:06:17,058 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/26e93a4246e479e84c16a0ae547d2158_images.jpg
-2025-06-07 18:06:17,400 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,406 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13073.jpg
-2025-06-07 18:06:17,407 - data.model - INFO - Processing Product ID 26536...
-2025-06-07 18:06:17,407 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/9bbb0a99f2262993b7b659959fbcf3bc_images.jpg
-2025-06-07 18:06:17,488 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,488 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\26536.jpg
-2025-06-07 18:06:17,488 - data.model - INFO - Processing Product ID 39981...
-2025-06-07 18:06:17,488 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/e8dd5f308885e0e8a533a63b54eaa3ea_images.jpg
-2025-06-07 18:06:17,560 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,562 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39981.jpg
-2025-06-07 18:06:17,562 - data.model - INFO - Processing Product ID 54517...
-2025-06-07 18:06:17,562 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/F-Sports-Men-White-Bratt-Sports-Shoes_23e61fa2aeee5c1b6f8636b3135c9371_images.jpg
-2025-06-07 18:06:17,629 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,629 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54517.jpg
-2025-06-07 18:06:17,629 - data.model - INFO - Processing Product ID 39980...
-2025-06-07 18:06:17,629 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/a7a8fe472fe8efb3f3b92a1a21ba1b6f_images.jpg
-2025-06-07 18:06:17,730 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,730 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39980.jpg
-2025-06-07 18:06:17,730 - data.model - INFO - Processing Product ID 24260...
-2025-06-07 18:06:17,730 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/201ee2059f025456791058e25fd72c4b_images.jpg
-2025-06-07 18:06:17,818 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,818 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\24260.jpg
-2025-06-07 18:06:17,838 - data.model - INFO - Processing Product ID 39987...
-2025-06-07 18:06:17,838 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/de3bcbc7fc0f6e4ad83fa6c9a3ce89b8_images.jpg
-2025-06-07 18:06:17,942 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:17,949 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\39987.jpg
-2025-06-07 18:06:17,950 - data.model - INFO - Processing Product ID 54516...
-2025-06-07 18:06:17,950 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/F-Sports-Men-White-Velocity-Sports-Shoes_14345420e63e868eda0ec2e246cdb3b8_images.jpg
-2025-06-07 18:06:18,049 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:18,070 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\54516.jpg
-2025-06-07 18:06:18,070 - data.model - INFO - Processing Product ID 13679...
-2025-06-07 18:06:18,070 - data.model - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/d75102040c965cd59488b69007f766fe_images.jpg
-2025-06-07 18:06:18,399 - data.model - INFO - Using file extension: .jpg
-2025-06-07 18:06:18,404 - data.model - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\13679.jpg
-2025-06-07 18:06:18,404 - data.model - INFO - === Image Download Complete - Processed 10 Images ===
-2025-06-07 18:06:18,406 - data.model - INFO - 
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - === Starting Image Download for 10 Products ===
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:18,630 - (api_server.py) - INFO - Processing Product ID 9497...
+2025-06-08 10:56:18,630 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/11371998e15f21cf032b30fdba5e972c_images.jpg
+2025-06-08 10:56:18,779 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,779 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9497.jpg
+2025-06-08 10:56:18,798 - (api_server.py) - INFO - Processing Product ID 5601...
+2025-06-08 10:56:18,798 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/31cec799c74c62b9785cc809953ae766_images.jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\5601.jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Processing Product ID 22758...
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/cf45a963291ed53328c18e819e9a64b0_images.jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\22758.jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Processing Product ID 41660...
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/fd1080787a07bc795824b33297197df7_images.jpg
+2025-06-08 10:56:19,922 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,922 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\41660.jpg
+2025-06-08 10:56:19,938 - (api_server.py) - INFO - Processing Product ID 55055...
+2025-06-08 10:56:19,939 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/assets/images/55055/2018/3/9/11520592235667-Lakme-Enrich-Satins-Lipstick-131-4751520592235607-1.jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\55055.jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Processing Product ID 30832...
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4044abbe79e8e12cc1beca06fae7bdc8_images.jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\30832.jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Processing Product ID 21143...
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/da0cf5976e64a1af7465582b3a18e99e_images.jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\21143.jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Processing Product ID 27646...
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5a2379fe9554bed6a59ae2b88c35613e_images.jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\27646.jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Processing Product ID 48182...
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/dafdd4e7e019494f09da9fe012ffa569_images.jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\48182.jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Processing Product ID 43760...
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/d2dc621c3fb70911cdc2068cb3f311c2_images.jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\43760.jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Image Download Complete - Processed 10 Images ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - 
 --- Creating products.js file ---
-2025-06-07 18:06:18,408 - data.model - INFO - === Creating Products.js File ===
-2025-06-07 18:06:18,408 - data.model - INFO - Processing base products...
-2025-06-07 18:06:18,408 - data.model - INFO - === Creating Product Object for ID: 15970 ===
-2025-06-07 18:06:18,408 - data.model - INFO - Created product object: {'productId': '15970', 'productName': 'Turtle Check Men Navy Blue Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Navy Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/15970.jpg', 'price': 0.0}
-2025-06-07 18:06:18,408 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,408 - data.model - INFO - === Creating Product Object for ID: 39386 ===
-2025-06-07 18:06:18,408 - data.model - INFO - Created product object: {'productId': '39386', 'productName': 'Peter England Men Party Blue Jeans', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Jeans', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/products/39386.jpg', 'price': 0.0}
-2025-06-07 18:06:18,417 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,417 - data.model - INFO - === Creating Product Object for ID: 59263 ===
-2025-06-07 18:06:18,417 - data.model - INFO - Created product object: {'productId': '59263', 'productName': 'Titan Women Silver Watch', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'Silver', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/products/59263.jpg', 'price': 0.0}
-2025-06-07 18:06:18,417 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,417 - data.model - INFO - Created 3 base products
-2025-06-07 18:06:18,417 - data.model - INFO - Processing similar products...
-2025-06-07 18:06:18,429 - data.model - INFO - === Creating Product Object for ID: 39988 ===
-2025-06-07 18:06:18,432 - data.model - INFO - Created product object: {'productId': '39988', 'productName': 'Gas Men Europa White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/similarProducts/39988.jpg', 'price': 0.0}
-2025-06-07 18:06:18,432 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,432 - data.model - INFO - === Creating Product Object for ID: 13073 ===
-2025-06-07 18:06:18,432 - data.model - INFO - Created product object: {'productId': '13073', 'productName': 'Numero Uno Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/similarProducts/13073.jpg', 'price': 0.0}
-2025-06-07 18:06:18,432 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,437 - data.model - INFO - === Creating Product Object for ID: 26536 ===
-2025-06-07 18:06:18,439 - data.model - INFO - Created product object: {'productId': '26536', 'productName': 'ID Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/26536.jpg', 'price': 0.0}
-2025-06-07 18:06:18,439 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,439 - data.model - INFO - === Creating Product Object for ID: 39981 ===
-2025-06-07 18:06:18,441 - data.model - INFO - Created product object: {'productId': '39981', 'productName': 'Gas Men Jack Grey Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'Grey', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/39981.jpg', 'price': 0.0}
-2025-06-07 18:06:18,442 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,442 - data.model - INFO - === Creating Product Object for ID: 54517 ===
-2025-06-07 18:06:18,442 - data.model - INFO - Created product object: {'productId': '54517', 'productName': 'F Sports Men White Bratt Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Sports', 'image': '/images/similarProducts/54517.jpg', 'price': 0.0}
-2025-06-07 18:06:18,442 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,446 - data.model - INFO - === Creating Product Object for ID: 39980 ===
-2025-06-07 18:06:18,446 - data.model - INFO - Created product object: {'productId': '39980', 'productName': 'Gas Men Flint Brown Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'Brown', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/39980.jpg', 'price': 0.0}
-2025-06-07 18:06:18,448 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,449 - data.model - INFO - === Creating Product Object for ID: 24260 ===
-2025-06-07 18:06:18,449 - data.model - INFO - Created product object: {'productId': '24260', 'productName': 'Numero Uno Men White Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/24260.jpg', 'price': 0.0}
-2025-06-07 18:06:18,449 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,449 - data.model - INFO - === Creating Product Object for ID: 39987 ===
-2025-06-07 18:06:18,449 - data.model - INFO - Created product object: {'productId': '39987', 'productName': 'Gas Men Europa Blue Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Casual Shoes', 'baseColour': 'Blue', 'season': 'Spring', 'usage': 'Casual', 'image': '/images/similarProducts/39987.jpg', 'price': 0.0}
-2025-06-07 18:06:18,449 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,449 - data.model - INFO - === Creating Product Object for ID: 54516 ===
-2025-06-07 18:06:18,454 - data.model - INFO - Created product object: {'productId': '54516', 'productName': 'F Sports Men White Velocity Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Fall', 'usage': 'Sports', 'image': '/images/similarProducts/54516.jpg', 'price': 0.0}
-2025-06-07 18:06:18,454 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,456 - data.model - INFO - === Creating Product Object for ID: 13679 ===
-2025-06-07 18:06:18,459 - data.model - INFO - Created product object: {'productId': '13679', 'productName': 'ADIDAS Men Court Switch Sports Shoes', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Shoes', 'articleType': 'Sports Shoes', 'baseColour': 'White', 'season': 'Spring', 'usage': 'Sports', 'image': '/images/similarProducts/13679.jpg', 'price': 0.0}
-2025-06-07 18:06:18,459 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,459 - data.model - INFO - Created 10 similar products
-2025-06-07 18:06:18,459 - data.model - INFO - Processing recommended products...
-2025-06-07 18:06:18,466 - data.model - INFO - === Creating Product Object for ID: 29917 ===
-2025-06-07 18:06:18,466 - data.model - INFO - Created product object: {'productId': '29917', 'productName': 'Police Men White Dial Watch PL12698JS', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/29917.jpg', 'price': 0.0}
-2025-06-07 18:06:18,469 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,470 - data.model - INFO - === Creating Product Object for ID: 36759 ===
-2025-06-07 18:06:18,470 - data.model - INFO - Created product object: {'productId': '36759', 'productName': 'Maxima Men White Dial Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/36759.jpg', 'price': 0.0}
-2025-06-07 18:06:18,470 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,472 - data.model - INFO - === Creating Product Object for ID: 56677 ===
-2025-06-07 18:06:18,473 - data.model - INFO - Created product object: {'productId': '56677', 'productName': 'Maxima Men White Dial Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/56677.jpg', 'price': 0.0}
-2025-06-07 18:06:18,473 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,473 - data.model - INFO - === Creating Product Object for ID: 23285 ===
-2025-06-07 18:06:18,478 - data.model - INFO - Created product object: {'productId': '23285', 'productName': 'Maxima Men White Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/23285.jpg', 'price': 0.0}
-2025-06-07 18:06:18,478 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,478 - data.model - INFO - === Creating Product Object for ID: 45039 ===
-2025-06-07 18:06:18,481 - data.model - INFO - Created product object: {'productId': '45039', 'productName': 'Maxima Men White Dial Attivo Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/45039.jpg', 'price': 0.0}
-2025-06-07 18:06:18,481 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,481 - data.model - INFO - === Creating Product Object for ID: 36769 ===
-2025-06-07 18:06:18,481 - data.model - INFO - Created product object: {'productId': '36769', 'productName': 'Maxima Men White Dial Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/36769.jpg', 'price': 0.0}
-2025-06-07 18:06:18,481 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,481 - data.model - INFO - === Creating Product Object for ID: 36760 ===
-2025-06-07 18:06:18,489 - data.model - INFO - Created product object: {'productId': '36760', 'productName': 'Maxima Men White Dial Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/36760.jpg', 'price': 0.0}
-2025-06-07 18:06:18,489 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,489 - data.model - INFO - === Creating Product Object for ID: 36794 ===
-2025-06-07 18:06:18,489 - data.model - INFO - Created product object: {'productId': '36794', 'productName': 'Maxima Men White Dial Attivo Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/36794.jpg', 'price': 0.0}
-2025-06-07 18:06:18,489 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,494 - data.model - INFO - === Creating Product Object for ID: 56671 ===
-2025-06-07 18:06:18,494 - data.model - INFO - Created product object: {'productId': '56671', 'productName': 'Maxima Men White Dial Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/56671.jpg', 'price': 0.0}
-2025-06-07 18:06:18,496 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,498 - data.model - INFO - === Creating Product Object for ID: 45031 ===
-2025-06-07 18:06:18,498 - data.model - INFO - Created product object: {'productId': '45031', 'productName': 'Maxima Men White Watch', 'gender': 'Men', 'masterCategory': 'Accessories', 'subCategory': 'Watches', 'articleType': 'Watches', 'baseColour': 'White', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/recommendProducts/45031.jpg', 'price': 0.0}
-2025-06-07 18:06:18,498 - data.model - INFO - === Product Object Creation Complete ===
-2025-06-07 18:06:18,498 - data.model - INFO - Created 10 recommended products
-2025-06-07 18:06:18,498 - data.model - INFO - Generating JavaScript content...
-2025-06-07 18:06:18,504 - data.model - INFO - Writing to products.js at D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
-2025-06-07 18:06:18,531 - data.model - INFO - === Products.js Creation Complete ===
-2025-06-07 18:06:18,531 - data.model - INFO - === Recommendation Processing Complete ===
-2025-06-07 18:06:18,531 - data.model - INFO - Recommendation process completed successfully
-2025-06-07 18:06:18,531 - data.model - INFO - === Recommendation Process Complete ===
-2025-06-07 18:06:18,531 - __main__ - INFO - Received results from recommender
-2025-06-07 18:06:18,531 - __main__ - INFO - Converting similar products to dictionary format...
-2025-06-07 18:06:18,531 - __main__ - INFO - === Starting DataFrame Conversion ===
-2025-06-07 18:06:18,531 - __main__ - INFO - Original DataFrame shape: (10, 5)
-2025-06-07 18:06:18,531 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_img']
-2025-06-07 18:06:18,531 - __main__ - INFO - Renaming column text to productName
-2025-06-07 18:06:18,531 - __main__ - INFO - Renaming column subCategory to subCategory
-2025-06-07 18:06:18,531 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
-2025-06-07 18:06:18,549 - __main__ - INFO - Using existing productId column
-2025-06-07 18:06:18,551 - __main__ - INFO - Using existing productName column
-2025-06-07 18:06:18,551 - __main__ - INFO - Adding missing column: articleType
-2025-06-07 18:06:18,551 - __main__ - INFO - Adding missing column: subCategory
-2025-06-07 18:06:18,558 - __main__ - INFO - Adding missing column: season
-2025-06-07 18:06:18,558 - __main__ - INFO - Adding missing column: usage
-2025-06-07 18:06:18,558 - __main__ - INFO - Adding missing column: image
-2025-06-07 18:06:18,566 - __main__ - INFO - Adding missing column: price
-2025-06-07 18:06:18,569 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
-2025-06-07 18:06:18,574 - __main__ - INFO - === DataFrame Conversion Complete ===
-2025-06-07 18:06:18,577 - __main__ - INFO - Converted 10 similar products
-2025-06-07 18:06:18,578 - __main__ - INFO - Converting recommended products to dictionary format...
-2025-06-07 18:06:18,578 - __main__ - INFO - === Starting DataFrame Conversion ===
-2025-06-07 18:06:18,578 - __main__ - INFO - Original DataFrame shape: (10, 5)
-2025-06-07 18:06:18,578 - __main__ - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_txt']
-2025-06-07 18:06:18,578 - __main__ - INFO - Renaming column text to productName
-2025-06-07 18:06:18,578 - __main__ - INFO - Renaming column subCategory to subCategory
-2025-06-07 18:06:18,583 - __main__ - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
-2025-06-07 18:06:18,587 - __main__ - INFO - Using existing productId column
-2025-06-07 18:06:18,589 - __main__ - INFO - Using existing productName column
-2025-06-07 18:06:18,589 - __main__ - INFO - Adding missing column: articleType
-2025-06-07 18:06:18,591 - __main__ - INFO - Adding missing column: subCategory
-2025-06-07 18:06:18,595 - __main__ - INFO - Adding missing column: season
-2025-06-07 18:06:18,596 - __main__ - INFO - Adding missing column: usage
-2025-06-07 18:06:18,596 - __main__ - INFO - Adding missing column: image
-2025-06-07 18:06:18,602 - __main__ - INFO - Adding missing column: price
-2025-06-07 18:06:18,609 - __main__ - INFO - Successfully converted DataFrame to dictionary with 10 records
-2025-06-07 18:06:18,609 - __main__ - INFO - === DataFrame Conversion Complete ===
-2025-06-07 18:06:18,609 - __main__ - INFO - Converted 10 recommended products
-2025-06-07 18:06:18,609 - __main__ - INFO - Total processed products - Similar: 10, Recommended: 10
-2025-06-07 18:06:18,614 - __main__ - INFO - Cleaned up temporary image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-2323320573835184492.jpg
-2025-06-07 18:06:18,614 - __main__ - INFO - === Recommendation Processing Complete ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Products.js File ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Processing base products...
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 15970 ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Created product object: {'productId': '15970', 'productName': 'Turtle Check Men Navy Blue Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Navy Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/15970.jpg', 'price': 842.0}
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 39386 ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Created product object: {'productId': '39386', 'productName': 'Peter England Men Party Blue Jeans', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Jeans', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/products/39386.jpg', 'price': 1531.0}
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 21379 ===
+2025-06-08 10:56:21,862 - (api_server.py) - INFO - Created product object: {'productId': '21379', 'productName': 'Manchester United Men Solid Black Track Pants', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Track Pants', 'baseColour': 'Black', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/21379.jpg', 'price': 1882.0}
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Created 3 base products
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Processing similar products...
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Creating Product Object for ID: 9497 ===
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Created product object: {'productId': '9497', 'productName': 'Decathlon Men Arpenaz Black Sandals', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Sandal', 'articleType': 'Sandals', 'baseColour': 'Black', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/9497.jpg', 'price': 1403.0}
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 5601 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '5601', 'productName': "Nike Men's Splash Thong Yellow Black Flip Flop", 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Flip Flops', 'articleType': 'Flip Flops', 'baseColour': 'Brown', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/5601.jpg', 'price': 634.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 22758 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '22758', 'productName': 'BIBA Women Printed Blue Kurta', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Kurtas', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/similarProducts/22758.jpg', 'price': 1105.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 41660 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '41660', 'productName': 'Mark Taylor Men Blue Striped Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Formal', 'image': '/images/similarProducts/41660.jpg', 'price': 447.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 55055 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '55055', 'productName': 'Lakme Enrich Satins Lipstick 131', 'gender': 'Women', 'masterCategory': 'Personal Care', 'subCategory': 'Lips', 'articleType': 'Lipstick', 'baseColour': 'Purple', 'season': 'Spring', 'usage': 'nan', 'image': '/images/similarProducts/55055.jpg', 'price': 350.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Creating Product Object for ID: 30832 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '30832', 'productName': 'Fabindia Women Printed Blue & Red Churidar', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Churidar', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/similarProducts/30832.jpg', 'price': 1133.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Creating Product Object for ID: 21143 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '21143', 'productName': 's.Oliver Women Solid Purple Top', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tops', 'baseColour': 'Purple', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/similarProducts/21143.jpg', 'price': 908.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 27646 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '27646', 'productName': 'Che Guevara Men Printed Black T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'Black', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/27646.jpg', 'price': 829.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 48182 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '48182', 'productName': 'Fossil Women Red Handbag', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Bags', 'articleType': 'Handbags', 'baseColour': 'Red', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/similarProducts/48182.jpg', 'price': 1267.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 43760 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '43760', 'productName': 'Royal Diadem Golden Earrings', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Jewellery', 'articleType': 'Earrings', 'baseColour': 'Gold', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/similarProducts/43760.jpg', 'price': 144.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created 10 similar products
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Processing recommended products...
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 29548 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '29548', 'productName': 'Classic Polo Men Printed Navy Blue T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'Navy Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/29548.jpg', 'price': 633.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 25340 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '25340', 'productName': 'Levis Men Beige Boxer Trunks', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Innerwear', 'articleType': 'Trunk', 'baseColour': 'Beige', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/25340.jpg', 'price': 121.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 46276 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '46276', 'productName': '109F Women Cream Printed Top', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tops', 'baseColour': 'Cream', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/46276.jpg', 'price': 2048.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 57961 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '57961', 'productName': 'Prafful Women Black & Grren Sari', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Saree', 'articleType': 'Sarees', 'baseColour': 'Black', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/recommendProducts/57961.jpg', 'price': 439.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 54725 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '54725', 'productName': 'Shree Women Coral Coloured Printed Kurta', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Kurtas', 'baseColour': 'Pink', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/recommendProducts/54725.jpg', 'price': 1189.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 30832 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '30832', 'productName': 'Fabindia Women Printed Blue & Red Churidar', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Churidar', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/recommendProducts/30832.jpg', 'price': 1133.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Creating Product Object for ID: 11173 ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - Created product object: {'productId': '11173', 'productName': 'Scullers Men Stripes Red Sweaters', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Sweaters', 'baseColour': 'Red', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/11173.jpg', 'price': 1145.0}
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Creating Product Object for ID: 16394 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '16394', 'productName': 'Levis Men Check Blue  Shirts', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/16394.jpg', 'price': 242.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Creating Product Object for ID: 7551 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '7551', 'productName': "Nike Men's As Walkthrough White T-shirt", 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Sports', 'image': '/images/recommendProducts/7551.jpg', 'price': 63.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Creating Product Object for ID: 9064 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '9064', 'productName': 'Mark Taylor Men Blue Striped Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Formal', 'image': '/images/recommendProducts/9064.jpg', 'price': 613.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created 10 recommended products
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Generating JavaScript content...
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Writing to products.js at D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
+2025-06-08 10:56:22,017 - (api_server.py) - INFO - === Products.js Creation Complete ===
+2025-06-08 10:56:22,019 - (api_server.py) - INFO - === Recommendation Processing Complete ===
+2025-06-08 10:56:22,019 - (api_server.py) - INFO - Recommendation process completed successfully
+2025-06-08 10:56:22,020 - (api_server.py) - INFO - === Recommendation Process Complete ===
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Received results from recommender
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Converting similar products to dictionary format...
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - === Starting DataFrame Conversion ===
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Original DataFrame shape: (10, 5)
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_img']
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Renaming column text to productName
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Renaming column subCategory to subCategory
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Using existing productId column
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Using existing productName column
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: articleType
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: subCategory
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: season
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: usage
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: image
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: price
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - === DataFrame Conversion Complete ===
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Converted 10 similar products
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Converting recommended products to dictionary format...
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - === Starting DataFrame Conversion ===
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Original DataFrame shape: (10, 5)
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_txt']
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Renaming column text to productName
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Renaming column subCategory to subCategory
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Using existing productId column
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Using existing productName column
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: articleType
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: subCategory
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: season
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: usage
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Adding missing column: image
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Adding missing column: price
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - === DataFrame Conversion Complete ===
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Converted 10 recommended products
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Total processed products - Similar: 10, Recommended: 10
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Cleaned up temporary image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - === Recommendation Processing Complete ===

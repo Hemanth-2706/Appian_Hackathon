@@ -28,7 +28,7 @@ const allLogFile = fs.createWriteStream(path.join(logsDir, "all_logs.log"), {
 
 function log(message, type = "INFO", data = null) {
 	const timestamp = new Date().toISOString();
-	let logMessage = `${timestamp} - ${type} - ${message}`;
+	let logMessage = `${timestamp} - (mockRoutes.js) - ${type} - ${message}`;
 
 	if (data) {
 		if (typeof data === "object") {
