@@ -26,8 +26,8 @@
         <div class="order-summary">
             <h2>Order Summary</h2>
             <div class="summary-details">
-                <p>Total Items: <span id="totalItems"><%= cartItems.length %></span></p>
-                <p>Total Amount: ₹<span id="totalAmount"><%= totalPrice %></span></p>
+                <p><b>Total Items:</b> <span id="totalItems"><%= cartTotals.totalQuantity %></span></p>
+                <p><b>Total Amount:</b> ₹<span id="totalAmount"><%= cartTotals.totalPrice.toFixed(2) %></span></p>
             </div>
         </div>
 

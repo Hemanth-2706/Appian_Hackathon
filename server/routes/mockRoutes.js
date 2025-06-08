@@ -527,11 +527,21 @@ router.get("/cart", (req, res) => {
 		})
 		.filter((item) => item !== null);
 
-	// Calculate total price
+	// Calculate total price and total quantity
 	const totalPrice = cartItems.reduce(
 		(total, item) => total + item.price * item.quantity,
 		0
 	);
+	const totalQuantity = cartItems.reduce(
+		(total, item) => total + item.quantity,
+		0
+	);
+
+	// Store totals in session
+	req.session.cartTotals = {
+		totalPrice,
+		totalQuantity,
+	};
 
 	log(`[CART] Cart items processed`, "INFO", {
 		totalItems: cartItems.length,
@@ -841,34 +851,19 @@ router.post("/chatbot/clear-history", (req, res) => {
 // Payment page route
 router.get("/payment", (req, res) => {
 	log(`[PAYMENT] === Processing Payment Page Request ===`);
-	try {
-		// Get cart items from session
-		const cartItems = req.session.cartItems || [];
-		const totalPrice = cartItems.reduce(
-			(total, item) => total + item.price * item.quantity,
-			0
-		);
 
-		log(
-			`[PAYMENT] Rendering payment page with ${cartItems.length} items`,
-			"INFO",
-			{
-				totalItems: cartItems.length,
-				totalPrice,
-			}
-		);
+	// Get cart totals from session
+	const cartTotals = req.session.cartTotals || {
+		totalPrice: 0,
+		totalQuantity: 0,
+	};
 
-		res.render("payment", {
-			cartItems,
-			totalPrice,
-		});
-	} catch (error) {
-		log(
-			`[PAYMENT] Error rendering payment page: ${error.message}`,
-			"ERROR"
-		);
-		res.status(500).send("Error loading payment page");
-	}
+	log(`[PAYMENT] Cart totals:`, "INFO", cartTotals);
+	log(`[PAYMENT] === Payment Page Processing Complete ===`);
+
+	res.render("payment", {
+		cartTotals,
+	});
 });
 
 // Process payment route
