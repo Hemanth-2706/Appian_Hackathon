@@ -95,8 +95,8 @@ class FashionRecommender:
     def load_dataset(self):
         """Load the main dataset"""
         logger.info("=== Loading Dataset ===")
-        logger.info(f"Loading dataset from: {os.path.join(DATA_DIR, 'filtered_df.csv')}")
-        self.df = pd.read_csv(os.path.join(DATA_DIR, "filtered_df.csv"), dtype=str)
+        logger.info(f"Loading dataset from: {os.path.join(DATA_DIR, 'dataset.csv')}")
+        self.df = pd.read_csv(os.path.join(DATA_DIR, "dataset.csv"), dtype=str)
         # Robust column renaming for productId
         if "productId" not in self.df.columns and "id" in self.df.columns:
             logger.info("Renaming 'id' column to 'productId'")
