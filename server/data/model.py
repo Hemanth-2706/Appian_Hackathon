@@ -320,7 +320,13 @@ module.exports = {{
         try:
             image = Image.open(image_path).convert("RGB")
             inputs = self.blip_proc(images=image, return_tensors="pt").to(DEVICE)
-            out = self.blip_model.generate(**inputs, max_new_tokens=64)
+            out = self.blip_model.generate(
+                **inputs,
+                max_new_tokens=128,        # allow longer output
+                min_length=64,             # force at least this many tokens
+                num_beams=5,               # beam-search for quality
+                no_repeat_ngram_size=3,    # reduce repetition
+                early_stopping=True)
             caption = self.blip_proc.decode(out[0], skip_special_tokens=True)
             return caption
         except Exception as e:
@@ -397,7 +403,8 @@ module.exports = {{
             
             # Get the category of the input image
             caption = self.generate_caption(img)
-            input_category = None
+            input_category = None      
+            gender = None
             if caption:
                 # Extract category from caption using Gemini
                 category_prompt = f"Given this product description: '{caption}', what is the main category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
@@ -405,6 +412,11 @@ module.exports = {{
                 logger.info(f"Detected input category: {input_category}")
             
             if has_txt:
+                #generate gender from text
+                gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+                gender = self.generate_with_gemini(gender_prompt).strip()
+                logger.info(f"Detected gender from text and image: {gender}")
+
                 logger.info("Processing combined image and text input...")
                 txt_emb = self.embed_text(prompt)
                 txt_emb = txt_emb.astype('float32')
@@ -412,22 +424,27 @@ module.exports = {{
                     txt_emb = txt_emb.reshape(1, -1)
                 faiss.normalize_L2(txt_emb)
                 qv = np.concatenate([img_emb, txt_emb], axis=1).astype("float32")
+                faiss.normalize_L2(qv)
                 Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
             else:
                 logger.info("Processing image-only input...")
+
+                gender_prompt = f"Given this product description: '{caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+                gender = self.generate_with_gemini(gender_prompt).strip()
+                logger.info(f"Detected gender from image: {gender}")
+
                 zero_txt = np.zeros((1, self.txt_embs.shape[1]), dtype=np.float32)
                 qv = np.concatenate([img_emb, zero_txt], axis=1).astype("float32")
                 faiss.normalize_L2(qv)
                 Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
             
             # Filter results by category if available
-            sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
+            sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
             sim_df["score_img"] = Dv[0]
             
             if input_category:
                 # More flexible category matching
                 category_matches = (
-                    sim_df["masterCategory"].str.contains(input_category, case=False, na=False) |
                     sim_df["subCategory"].str.contains(input_category, case=False, na=False)
                 )
                 
@@ -435,25 +452,49 @@ module.exports = {{
                     sim_df = sim_df[category_matches]
                 else:
                     logger.warning(f"No exact category matches found for {input_category}, using top similarity scores")
+
+            if gender:
+                gender_matches = (
+                    sim_df["gender"].str.contains(gender, case=False, na=False)
+                )
+                if gender_matches.any():
+                    sim_df = sim_df[gender_matches]
+                else:
+                    logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
+                    
             
             # Ensure we have enough results
             if len(sim_df) < k:
                 logger.warning(f"Not enough category-filtered results ({len(sim_df)}), using top similarity scores")
-                sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
+                sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
                 sim_df["score_img"] = Dv[0]
             
             sim_df = sim_df.head(k)  # Take top k after filtering
             
         elif has_txt:
             logger.info("Processing text-only input...")
+
+            gender_prompt = f"Given this product requirement: '{prompt}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+            gender = self.generate_with_gemini(gender_prompt).strip()
+            logger.info(f"Detected gender from text: {gender}")
+
             txt_emb = self.embed_text(prompt)
             txt_emb = txt_emb.astype('float32')
             if len(txt_emb.shape) == 1:
                 txt_emb = txt_emb.reshape(1, -1)
             faiss.normalize_L2(txt_emb)
             Dt, It = self.txt_index.search(txt_emb, k)
-            sim_df = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
+            sim_df = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
             sim_df["score_txt"] = Dt[0]
+
+            if gender:
+                gender_matches = (
+                    sim_df["gender"].str.contains(gender, case=False, na=False)
+                )
+                if gender_matches.any():
+                    sim_df = sim_df[gender_matches]
+                else:
+                    logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
         
         logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
         
@@ -487,20 +528,28 @@ module.exports = {{
                     q_t = q_t.reshape(1, -1)
                 faiss.normalize_L2(q_t)
                 Dt, It = self.txt_index.search(q_t, k*3)  # Increased search size
-                dfc = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory"]].copy()
+                dfc = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
                 dfc["score_txt"] = Dt[0]
                 
                 # Filter by complementary categories
                 if complementary_categories:
                     category_matches = (
-                        dfc["masterCategory"].isin(complementary_categories) |
                         dfc["subCategory"].isin(complementary_categories)
                     )
                     if category_matches.any():
                         dfc = dfc[category_matches]
                     else:
                         logger.warning(f"No exact category matches found for complementary categories, using top similarity scores")
-                
+
+                if gender:
+                    gender_matches = (
+                        dfc["gender"].str.contains(gender, case=False, na=False)
+                    )
+                    if gender_matches.any():
+                        dfc = dfc[gender_matches]
+                    else:
+                        logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
+                        
                 cand.append(dfc)
             
             if cand:

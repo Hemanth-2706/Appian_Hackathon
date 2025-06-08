@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopSmarter - Order Confirmation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .order-id {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        .confirmation-message {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-container">
+        <!-- Header with Search on Left and Login/Cart on Right -->
+        <header class="header">
+            <div class="left-section">
+                <a href="/" class="logo" style="text-decoration: none; color: inherit;">🛍️ HSM ShopSmarter</a>
+            </div>
+            <div class="right-section">
+                <button class="header-btn">Login</button>
+                <a href="/cart" class="header-btn cart-icon" style="text-decoration: none;">Cart 🛒</a>
+            </div>
+        </header>
+    </div>
+
+    <main class="confirmation-container">
+        <div class="confirmation-icon">✓</div>
+        <h1 class="confirmation-title">Order Confirmed!</h1>
+        <p class="confirmation-message">Thank you for your purchase. Your order has been successfully placed.</p>
+        <div class="order-id">
+            Order ID: <%= orderId %>
+        </div>
+        <p class="confirmation-message">
+            A confirmation email has been sent to your registered email address.<br>
+            You can track your order status in your account dashboard.
+        </p>
+        <a href="/" class="home-btn">Continue Shopping</a>
+    </main>
+</body>
+</html> 
