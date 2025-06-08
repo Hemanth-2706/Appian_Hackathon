@@ -12,7 +12,93 @@ Combining the power of **Computer Vision**, **Recommendation Systems**, and **Co
 Imagine seeing an outfit you love on Instagram, snapping a photo, and instantly getting similar (or even complementary!) products from your favorite online store.  
 **ShopSmarter** makes that vision a reality by turning image inputs into smart, personalized recommendations across an e-commerce platform.
 
+<<<<<<< Updated upstream
 ---
+=======
+-    Node.js (v22.11.0)
+-    Python 3.9 or higher
+-    GPU (recommended for better performance, but will run on CPU also)
+
+### Python Dependencies
+
+-    FastAPI
+-    Uvicorn
+-    PyTorch (>=1.10.0)
+-    FAISS-CPU (>=1.7.2)
+-    NumPy (>=1.21.0)
+-    Pandas (>=1.3.0)
+-    Pillow (>=8.3.0)
+-    Transformers (>=4.30.0)
+-    Google Generative AI (>=0.3.0)
+-    Requests (>=2.26.0)
+-    PyQt5 (>=5.15.0)
+-    Sentence Transformers
+
+### Node.js Dependencies
+
+-    Express.js
+-    EJS
+-    Axios
+-    Dotenv
+-    Express-session
+-    Mongoose
+
+### Backend Setup (Server)
+
+1. Install Node.js dependencies:
+
+```bash
+npm install
+```
+
+2. For the chatbot recommendation system to work, you also have to start a python server in port 5001:
+
+```bash
+cd server
+python api_server.py
+```
+
+Wait for all the model to load and the server to start
+
+3. Then start the Node server in port 5003:
+   Open another terminal simultaneously and run this
+
+```bash
+cd server
+node app.js
+```
+
+You can use the website in http://localhost:5003
+
+### Recommendation System Setup
+
+1. Create and activate a Python virtual environment:
+
+```bash
+python -m venv env
+source env/bin/activate  # On Unix/macOS
+# or
+env\Scripts\activate     # On Windows
+```
+
+2. Navigate to the recommendation system directory:
+
+```bash
+cd MainRecommendationSystem
+```
+
+3. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Start the recommendation service:
+
+```bash
+python service.py
+```
+>>>>>>> Stashed changes
 
 ## 🎯 Key Features
 

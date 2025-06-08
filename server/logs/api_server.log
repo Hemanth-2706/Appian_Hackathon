@@ -1,0 +1,692 @@
+2025-06-08 10:55:27,523 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 10:55:27,555 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - Using device: cuda
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 10:55:34,285 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 10:55:37,145 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 10:55:37,149 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Base Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Data Directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Output Recommendation Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Output Similar Folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Products JS Path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 10:55:40,365 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Loading models...
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 10:55:40,368 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 10:55:42,932 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 10:55:42,933 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 10:55:45,925 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 10:55:45,935 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Image embeddings shape: (5000, 512)
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 10:55:45,940 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Text embeddings shape: (5000, 512)
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - img_embs shape: (5000, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - txt_embs shape: (5000, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - valid_indices shape: (5000,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Building indexes...
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 10:55:45,947 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 10:55:45,978 - (api_server.py) - INFO - Fused index built with dimension: 1024
+2025-06-08 10:55:45,978 - (api_server.py) - INFO - Building text-only index...
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Text index built with dimension: 512
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - === FAISS Index Building Complete ===
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Loading dataset...
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - === Loading Dataset ===
+2025-06-08 10:55:45,983 - (api_server.py) - INFO - Loading dataset from: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\dataset.csv
+2025-06-08 10:55:46,095 - (api_server.py) - INFO - Dataset shape: (44445, 12)
+2025-06-08 10:55:46,095 - (api_server.py) - INFO - Dataset columns: ['productId', 'gender', 'masterCategory', 'subCategory', 'articleType', 'baseColour', 'season', 'usage', 'productDisplayName', 'text', 'link', 'price']
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - First few records: {'productId': {0: '15970', 1: '39386', 2: '21379', 3: '53759', 4: '1855'}, 'gender': {0: 'Men', 1: 'Men', 2: 'Men', 3: 'Men', 4: 'Men'}, 'masterCategory': {0: 'Apparel', 1: 'Apparel', 2: 'Apparel', 3: 'Apparel', 4: 'Apparel'}, 'subCategory': {0: 'Topwear', 1: 'Bottomwear', 2: 'Bottomwear', 3: 'Topwear', 4: 'Topwear'}, 'articleType': {0: 'Shirts', 1: 'Jeans', 2: 'Track Pants', 3: 'Tshirts', 4: 'Tshirts'}, 'baseColour': {0: 'Navy Blue', 1: 'Blue', 2: 'Black', 3: 'Grey', 4: 'Grey'}, 'season': {0: 'Fall', 1: 'Summer', 2: 'Fall', 3: 'Summer', 4: 'Summer'}, 'usage': {0: 'Casual', 1: 'Casual', 2: 'Casual', 3: 'Casual', 4: 'Casual'}, 'productDisplayName': {0: 'Turtle Check Men Navy Blue Shirt', 1: 'Peter England Men Party Blue Jeans', 2: 'Manchester United Men Solid Black Track Pants', 3: 'Puma Men Grey T-shirt', 4: 'Inkfruit Mens Chain Reaction T-shirt'}, 'text': {0: 'Casual | Turtle Check Men Navy Blue Shirt', 1: 'Casual | Peter England Men Party Blue Jeans', 2: 'Casual | Manchester United Men Solid Black Track Pants', 3: 'Casual | Puma Men Grey T-shirt', 4: 'Casual | Inkfruit Mens Chain Reaction T-shirt'}, 'link': {0: 'http://assets.myntassets.com/v1/images/style/properties/7a5b82d1372a7a5c6de67ae7a314fd91_images.jpg', 1: 'http://assets.myntassets.com/v1/images/style/properties/4850873d0c417e6480a26059f83aac29_images.jpg', 2: 'http://assets.myntassets.com/v1/images/style/properties/8153dc35d9a5420eeb93922067137db6_images.jpg', 3: 'http://assets.myntassets.com/v1/images/style/properties/Puma-Men-Grey-T-shirt_32668f8a61454d0cc028a808cf21b383_images.jpg', 4: 'http://assets.myntassets.com/v1/images/style/properties/9c1b19682ecf926c296f520d5d6e0972_images.jpg'}, 'price': {0: '842', 1: '1531', 2: '1882', 3: '882', 4: '1085'}}
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - Loaded 44445 records
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === Dataset Loading Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === FashionRecommender Initialization Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - FashionRecommender initialized successfully
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === API Server Initialization Complete ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - === Starting FastAPI Server ===
+2025-06-08 10:55:46,099 - (api_server.py) - INFO - Server will be available at http://0.0.0.0:5001
+2025-06-08 10:56:06,509 - (api_server.py) - INFO - === Starting Recommendation Processing ===
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Request received - Text present: True, Image present: True
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Processing image from request...
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - === Starting Base64 Image Processing ===
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Removed data URL prefix from base64 string
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - First 100 chars of base64 image: iVBORw0KGgoAAAANSUhEUgAAAVkAAAHLCAYAAABiXOuTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIA
+2025-06-08 10:56:06,518 - (api_server.py) - INFO - Ensured temp directory exists at: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp
+2025-06-08 10:56:06,525 - (api_server.py) - INFO - Generated temp file path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,526 - (api_server.py) - INFO - Successfully saved image to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - === Base64 Image Processing Complete ===
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Image processed and saved to: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Calling recommender.recommend() with parameters:
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - Image path: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - Text prompt: suggest shirts
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - - K value: 10
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - === Starting Recommendation Process ===
+2025-06-08 10:56:06,533 - (api_server.py) - INFO - Input parameters - Image: Present, Prompt: Present
+2025-06-08 10:56:06,543 - (api_server.py) - INFO - Processing image input...
+2025-06-08 10:56:06,543 - (api_server.py) - INFO - === Generating Image Embedding for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:06,966 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:06,966 - (api_server.py) - INFO - Processing image with CLIP...
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - Image embedding generated successfully
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - === Image Embedding Generation Complete ===
+2025-06-08 10:56:07,889 - (api_server.py) - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:07,907 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:07,907 - (api_server.py) - INFO - Processing image with BLIP...
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - === Caption Generation Complete ===
+2025-06-08 10:56:09,607 - (api_server.py) - INFO - === Generating Response with Gemini for: Given this product description: 'a red jacket with a white shirt and jeans', what is the sub categor... ===
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Generated response: Apparel Set
+...
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - === Gemini Response Generation Complete ===
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Detected input category: Apparel Set
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - Processing combined image and text input...
+2025-06-08 10:56:11,660 - (api_server.py) - INFO - === Generating Text Embedding for: suggest shirts... ===
+2025-06-08 10:56:11,749 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:11,749 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:11,760 - (api_server.py) - WARNING - No exact category matches found for Apparel Set, using top similarity scores
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - Similar product IDs: ['43760', '9497', '22758', '21143', '27646', '48182', '5601', '41660', '55055', '30832']
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - Generating complementary recommendations...
+2025-06-08 10:56:11,760 - (api_server.py) - INFO - === Generating Caption for: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg ===
+2025-06-08 10:56:11,782 - (api_server.py) - INFO - Image loaded successfully
+2025-06-08 10:56:11,782 - (api_server.py) - INFO - Processing image with BLIP...
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Caption Generation Complete ===
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generated caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Generating Complementary Recommendations ===
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Caption: a red jacket with a white shirt and jeans
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - User prompt: suggest shirts
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - Generating complementary items with Gemini...
+2025-06-08 10:56:12,866 - (api_server.py) - INFO - === Generating Response with Gemini for: You are a professional fashion stylist.
+You are given a product: "a red jacket with a white shirt an... ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated response: Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual //
+...
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Gemini Response Generation Complete ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Complementary Recommendations Generation Complete ===
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated 5 complementary items: ['1. Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual', '2. Category: Apparel; subCategory: Topwear; Article Type: Henley Shirt; Color/Style: Navy Blue; Usage: Casual', '3. Category: Apparel; subCategory: Topwear; Article Type: Polo Shirt; Color/Style: Black; Usage: Smart Casual', '4. Category: Apparel; subCategory: Topwear; Article Type: Turtleneck; Color/Style: Cream; Usage: Casual', '5. Category: Apparel; subCategory: Topwear; Article Type: Button-Down Shirt; Color/Style: Light Blue; Usage: Formal']
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Generated 5 complementary categories
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - Complementary categories: ['Apparel', 'Apparel', 'Apparel', 'Apparel', 'Apparel']
+2025-06-08 10:56:15,404 - (api_server.py) - INFO - === Generating Text Embedding for: 1. Category: Apparel; subCategory: Topwear; Article Type: T-Shirt; Color/Style: Gray; Usage: Casual... ===
+2025-06-08 10:56:15,447 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,447 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,463 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,463 - (api_server.py) - INFO - === Generating Text Embedding for: 2. Category: Apparel; subCategory: Topwear; Article Type: Henley Shirt; Color/Style: Navy Blue; Usag... ===
+2025-06-08 10:56:15,505 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,505 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,523 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,523 - (api_server.py) - INFO - === Generating Text Embedding for: 3. Category: Apparel; subCategory: Topwear; Article Type: Polo Shirt; Color/Style: Black; Usage: Sma... ===
+2025-06-08 10:56:15,564 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,572 - (api_server.py) - INFO - === Generating Text Embedding for: 4. Category: Apparel; subCategory: Topwear; Article Type: Turtleneck; Color/Style: Cream; Usage: Cas... ===
+2025-06-08 10:56:15,639 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,639 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,645 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,645 - (api_server.py) - INFO - === Generating Text Embedding for: 5. Category: Apparel; subCategory: Topwear; Article Type: Button-Down Shirt; Color/Style: Light Blue... ===
+2025-06-08 10:56:15,681 - (api_server.py) - INFO - Text embedding generated successfully
+2025-06-08 10:56:15,681 - (api_server.py) - INFO - === Text Embedding Generation Complete ===
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Filtered complementary results by categories
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Found 10 recommended products
+2025-06-08 10:56:15,697 - (api_server.py) - INFO - Recommended product IDs: ['29548', '16394', '30832', '11173', '57961', '54725', '25340', '46276', '7551', '9064']
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Processing final recommendations...
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - === Processing Recommendations ===
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Clearing existing images...
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - === Clearing Output Directories ===
+2025-06-08 10:56:15,707 - (api_server.py) - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\22704.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\31574.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\38469.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\43198.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\47501.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\51039.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\59059.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\7965.jpg
+2025-06-08 10:56:15,713 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9692.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9695.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Clearing D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\12303.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\14657.jpg
+2025-06-08 10:56:15,728 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16394.jpg
+2025-06-08 10:56:15,740 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\22758.jpg
+2025-06-08 10:56:15,740 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29548.jpg
+2025-06-08 10:56:15,744 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\33072.jpg
+2025-06-08 10:56:15,744 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\43760.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\57961.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\7551.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Removed file: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\8924.jpg
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Cleared D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - === Output Directories Clearing Complete ===
+2025-06-08 10:56:15,749 - (api_server.py) - INFO - Creating output directories...
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - Found 10 similar products and 10 recommended products
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - 
+--- Downloading Recommendation Product Images ---
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - === Starting Image Download for 10 Products ===
+2025-06-08 10:56:15,757 - (api_server.py) - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts
+2025-06-08 10:56:15,772 - (api_server.py) - INFO - Processing Product ID 29548...
+2025-06-08 10:56:15,772 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/ea3f97ed1d89b449b782c01da33591b3_images.jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\29548.jpg
+2025-06-08 10:56:16,072 - (api_server.py) - INFO - Processing Product ID 25340...
+2025-06-08 10:56:16,082 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/ac4a9fab9b82c8f7b3f96e583c96a46c_images.jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\25340.jpg
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Processing Product ID 46276...
+2025-06-08 10:56:16,461 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5e0c64f90bfa041a4feadb0a3726b276_images.jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\46276.jpg
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Processing Product ID 57961...
+2025-06-08 10:56:16,631 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Prafful-Women-Multi-Coloured-Sari_82607f83f133913af4167094b5354247_images.jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\57961.jpg
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Processing Product ID 54725...
+2025-06-08 10:56:16,689 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/Shree-Women-Coral-Coloured-Printed-Kurta_0ffffc120af55d15c2bf75ba9f438910_images.jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\54725.jpg
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Processing Product ID 30832...
+2025-06-08 10:56:16,807 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4044abbe79e8e12cc1beca06fae7bdc8_images.jpg
+2025-06-08 10:56:16,998 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\30832.jpg
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Processing Product ID 11173...
+2025-06-08 10:56:17,014 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5880c43a46731ad11e235232827839ae_images.jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\11173.jpg
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Processing Product ID 16394...
+2025-06-08 10:56:17,381 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4aefd2f041e97505c36977e61f06d35f_images.jpg
+2025-06-08 10:56:17,898 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:17,898 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\16394.jpg
+2025-06-08 10:56:17,912 - (api_server.py) - INFO - Processing Product ID 7551...
+2025-06-08 10:56:17,912 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/3124993bf686a60005c72bcb0069f6ff_images.jpg
+2025-06-08 10:56:18,022 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\7551.jpg
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Processing Product ID 9064...
+2025-06-08 10:56:18,039 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/6d914cf8cd1c99a8074c5f8d6818cb2f_images.jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\recommendProducts\9064.jpg
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - === Image Download Complete - Processed 10 Images ===
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - 
+--- Downloading Similar Product Images ---
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - === Starting Image Download for 10 Products ===
+2025-06-08 10:56:18,612 - (api_server.py) - INFO - Output folder: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts
+2025-06-08 10:56:18,630 - (api_server.py) - INFO - Processing Product ID 9497...
+2025-06-08 10:56:18,630 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/11371998e15f21cf032b30fdba5e972c_images.jpg
+2025-06-08 10:56:18,779 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:18,779 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\9497.jpg
+2025-06-08 10:56:18,798 - (api_server.py) - INFO - Processing Product ID 5601...
+2025-06-08 10:56:18,798 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/31cec799c74c62b9785cc809953ae766_images.jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\5601.jpg
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Processing Product ID 22758...
+2025-06-08 10:56:19,262 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/cf45a963291ed53328c18e819e9a64b0_images.jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\22758.jpg
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Processing Product ID 41660...
+2025-06-08 10:56:19,655 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/fd1080787a07bc795824b33297197df7_images.jpg
+2025-06-08 10:56:19,922 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:19,922 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\41660.jpg
+2025-06-08 10:56:19,938 - (api_server.py) - INFO - Processing Product ID 55055...
+2025-06-08 10:56:19,939 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/assets/images/55055/2018/3/9/11520592235667-Lakme-Enrich-Satins-Lipstick-131-4751520592235607-1.jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\55055.jpg
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Processing Product ID 30832...
+2025-06-08 10:56:20,356 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/4044abbe79e8e12cc1beca06fae7bdc8_images.jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\30832.jpg
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Processing Product ID 21143...
+2025-06-08 10:56:20,705 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/da0cf5976e64a1af7465582b3a18e99e_images.jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\21143.jpg
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Processing Product ID 27646...
+2025-06-08 10:56:20,797 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/5a2379fe9554bed6a59ae2b88c35613e_images.jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\27646.jpg
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Processing Product ID 48182...
+2025-06-08 10:56:21,231 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/dafdd4e7e019494f09da9fe012ffa569_images.jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\48182.jpg
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Processing Product ID 43760...
+2025-06-08 10:56:21,546 - (api_server.py) - INFO - Downloading image from URL: http://assets.myntassets.com/v1/images/style/properties/d2dc621c3fb70911cdc2068cb3f311c2_images.jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Using file extension: .jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Successfully saved image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images\similarProducts\43760.jpg
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Image Download Complete - Processed 10 Images ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - 
+--- Creating products.js file ---
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Products.js File ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Processing base products...
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 15970 ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Created product object: {'productId': '15970', 'productName': 'Turtle Check Men Navy Blue Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Navy Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/15970.jpg', 'price': 842.0}
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 39386 ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - Created product object: {'productId': '39386', 'productName': 'Peter England Men Party Blue Jeans', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Jeans', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/products/39386.jpg', 'price': 1531.0}
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,846 - (api_server.py) - INFO - === Creating Product Object for ID: 21379 ===
+2025-06-08 10:56:21,862 - (api_server.py) - INFO - Created product object: {'productId': '21379', 'productName': 'Manchester United Men Solid Black Track Pants', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Track Pants', 'baseColour': 'Black', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/products/21379.jpg', 'price': 1882.0}
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Created 3 base products
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Processing similar products...
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Creating Product Object for ID: 9497 ===
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - Created product object: {'productId': '9497', 'productName': 'Decathlon Men Arpenaz Black Sandals', 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Sandal', 'articleType': 'Sandals', 'baseColour': 'Black', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/9497.jpg', 'price': 1403.0}
+2025-06-08 10:56:21,863 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 5601 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '5601', 'productName': "Nike Men's Splash Thong Yellow Black Flip Flop", 'gender': 'Men', 'masterCategory': 'Footwear', 'subCategory': 'Flip Flops', 'articleType': 'Flip Flops', 'baseColour': 'Brown', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/5601.jpg', 'price': 634.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 22758 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '22758', 'productName': 'BIBA Women Printed Blue Kurta', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Kurtas', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/similarProducts/22758.jpg', 'price': 1105.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 41660 ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - Created product object: {'productId': '41660', 'productName': 'Mark Taylor Men Blue Striped Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Formal', 'image': '/images/similarProducts/41660.jpg', 'price': 447.0}
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,878 - (api_server.py) - INFO - === Creating Product Object for ID: 55055 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '55055', 'productName': 'Lakme Enrich Satins Lipstick 131', 'gender': 'Women', 'masterCategory': 'Personal Care', 'subCategory': 'Lips', 'articleType': 'Lipstick', 'baseColour': 'Purple', 'season': 'Spring', 'usage': 'nan', 'image': '/images/similarProducts/55055.jpg', 'price': 350.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Creating Product Object for ID: 30832 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '30832', 'productName': 'Fabindia Women Printed Blue & Red Churidar', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Churidar', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/similarProducts/30832.jpg', 'price': 1133.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Creating Product Object for ID: 21143 ===
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - Created product object: {'productId': '21143', 'productName': 's.Oliver Women Solid Purple Top', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tops', 'baseColour': 'Purple', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/similarProducts/21143.jpg', 'price': 908.0}
+2025-06-08 10:56:21,887 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 27646 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '27646', 'productName': 'Che Guevara Men Printed Black T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'Black', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/similarProducts/27646.jpg', 'price': 829.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 48182 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '48182', 'productName': 'Fossil Women Red Handbag', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Bags', 'articleType': 'Handbags', 'baseColour': 'Red', 'season': 'Winter', 'usage': 'Casual', 'image': '/images/similarProducts/48182.jpg', 'price': 1267.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Creating Product Object for ID: 43760 ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created product object: {'productId': '43760', 'productName': 'Royal Diadem Golden Earrings', 'gender': 'Women', 'masterCategory': 'Accessories', 'subCategory': 'Jewellery', 'articleType': 'Earrings', 'baseColour': 'Gold', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/similarProducts/43760.jpg', 'price': 144.0}
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Created 10 similar products
+2025-06-08 10:56:21,894 - (api_server.py) - INFO - Processing recommended products...
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 29548 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '29548', 'productName': 'Classic Polo Men Printed Navy Blue T-shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'Navy Blue', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/29548.jpg', 'price': 633.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 25340 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '25340', 'productName': 'Levis Men Beige Boxer Trunks', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Innerwear', 'articleType': 'Trunk', 'baseColour': 'Beige', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/25340.jpg', 'price': 121.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 46276 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '46276', 'productName': '109F Women Cream Printed Top', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tops', 'baseColour': 'Cream', 'season': 'Summer', 'usage': 'Casual', 'image': '/images/recommendProducts/46276.jpg', 'price': 2048.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 57961 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '57961', 'productName': 'Prafful Women Black & Grren Sari', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Saree', 'articleType': 'Sarees', 'baseColour': 'Black', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/recommendProducts/57961.jpg', 'price': 439.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 54725 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '54725', 'productName': 'Shree Women Coral Coloured Printed Kurta', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Kurtas', 'baseColour': 'Pink', 'season': 'Fall', 'usage': 'Ethnic', 'image': '/images/recommendProducts/54725.jpg', 'price': 1189.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Creating Product Object for ID: 30832 ===
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - Created product object: {'productId': '30832', 'productName': 'Fabindia Women Printed Blue & Red Churidar', 'gender': 'Women', 'masterCategory': 'Apparel', 'subCategory': 'Bottomwear', 'articleType': 'Churidar', 'baseColour': 'Blue', 'season': 'Summer', 'usage': 'Ethnic', 'image': '/images/recommendProducts/30832.jpg', 'price': 1133.0}
+2025-06-08 10:56:21,910 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Creating Product Object for ID: 11173 ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - Created product object: {'productId': '11173', 'productName': 'Scullers Men Stripes Red Sweaters', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Sweaters', 'baseColour': 'Red', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/11173.jpg', 'price': 1145.0}
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,926 - (api_server.py) - INFO - === Creating Product Object for ID: 16394 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '16394', 'productName': 'Levis Men Check Blue  Shirts', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Casual', 'image': '/images/recommendProducts/16394.jpg', 'price': 242.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Creating Product Object for ID: 7551 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '7551', 'productName': "Nike Men's As Walkthrough White T-shirt", 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Tshirts', 'baseColour': 'White', 'season': 'Summer', 'usage': 'Sports', 'image': '/images/recommendProducts/7551.jpg', 'price': 63.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Creating Product Object for ID: 9064 ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created product object: {'productId': '9064', 'productName': 'Mark Taylor Men Blue Striped Shirt', 'gender': 'Men', 'masterCategory': 'Apparel', 'subCategory': 'Topwear', 'articleType': 'Shirts', 'baseColour': 'Blue', 'season': 'Fall', 'usage': 'Formal', 'image': '/images/recommendProducts/9064.jpg', 'price': 613.0}
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - === Product Object Creation Complete ===
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Created 10 recommended products
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Generating JavaScript content...
+2025-06-08 10:56:21,930 - (api_server.py) - INFO - Writing to products.js at D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\products.js
+2025-06-08 10:56:22,017 - (api_server.py) - INFO - === Products.js Creation Complete ===
+2025-06-08 10:56:22,019 - (api_server.py) - INFO - === Recommendation Processing Complete ===
+2025-06-08 10:56:22,019 - (api_server.py) - INFO - Recommendation process completed successfully
+2025-06-08 10:56:22,020 - (api_server.py) - INFO - === Recommendation Process Complete ===
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Received results from recommender
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Converting similar products to dictionary format...
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - === Starting DataFrame Conversion ===
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Original DataFrame shape: (10, 5)
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_img']
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Renaming column text to productName
+2025-06-08 10:56:22,023 - (api_server.py) - INFO - Renaming column subCategory to subCategory
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Using existing productId column
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Using existing productName column
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: articleType
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: subCategory
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: season
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: usage
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: image
+2025-06-08 10:56:22,029 - (api_server.py) - INFO - Adding missing column: price
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - === DataFrame Conversion Complete ===
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Converted 10 similar products
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Converting recommended products to dictionary format...
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - === Starting DataFrame Conversion ===
+2025-06-08 10:56:22,047 - (api_server.py) - INFO - Original DataFrame shape: (10, 5)
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Original DataFrame columns: ['productId', 'text', 'masterCategory', 'subCategory', 'score_txt']
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Renaming column text to productName
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Renaming column subCategory to subCategory
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Required columns: ['productId', 'productName', 'articleType', 'subCategory', 'season', 'usage', 'image', 'price']
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Using existing productId column
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Using existing productName column
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: articleType
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: subCategory
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: season
+2025-06-08 10:56:22,055 - (api_server.py) - INFO - Adding missing column: usage
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Adding missing column: image
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Adding missing column: price
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Successfully converted DataFrame to dictionary with 10 records
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - === DataFrame Conversion Complete ===
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Converted 10 recommended products
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Total processed products - Similar: 10, Recommended: 10
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - Cleaned up temporary image: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\temp\temp_image_-1064043691941109830.jpg
+2025-06-08 10:56:22,071 - (api_server.py) - INFO - === Recommendation Processing Complete ===
+2025-06-08 16:36:52,322 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 16:36:52,659 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 16:36:52,672 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 16:37:15,653 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 16:37:15,653 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 16:37:15,653 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 16:37:15,653 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 16:37:20,266 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 16:37:20,266 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 16:37:20,266 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 16:37:20,266 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 16:37:25,686 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 16:37:25,688 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 16:37:25,690 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - Loading models...
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 16:37:25,691 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 16:37:29,086 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 16:37:29,088 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 16:37:33,280 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 16:37:33,281 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 16:37:33,281 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 16:37:33,281 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 16:37:33,281 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 16:37:33,309 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 16:37:33,310 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 16:37:33,310 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 16:37:33,345 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 16:37:33,348 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 16:37:33,348 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 16:37:33,350 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 16:37:33,350 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 16:37:33,351 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 16:37:33,351 - (api_server.py) - INFO - Building indexes...
+2025-06-08 16:37:33,351 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 16:37:33,351 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 16:38:54,314 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 16:38:54,332 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 16:38:54,334 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 16:38:56,416 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 16:38:56,417 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 16:38:56,417 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 16:38:56,417 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 16:39:01,416 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 16:39:01,416 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 16:39:01,416 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 16:39:01,417 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 16:39:05,465 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Loading models...
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 16:39:05,466 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 16:39:10,078 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 16:39:10,079 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 16:39:15,273 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 16:39:15,274 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 16:39:15,274 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 16:39:15,274 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 16:39:15,274 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 16:39:15,312 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 16:39:15,314 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 16:39:15,314 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 16:39:15,364 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 16:39:15,365 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 16:39:15,365 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 16:39:15,366 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 16:39:15,366 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 16:39:15,367 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 16:39:15,367 - (api_server.py) - INFO - Building indexes...
+2025-06-08 16:39:15,367 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 16:39:15,367 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 17:23:33,294 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 17:23:33,966 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 17:23:33,984 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 17:23:56,461 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 17:23:56,462 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 17:23:56,462 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 17:23:56,462 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 17:24:00,609 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:24:00,609 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 17:24:00,609 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 17:24:00,609 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 17:24:07,416 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 17:24:07,418 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 17:24:07,419 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 17:24:07,420 - (api_server.py) - INFO - Loading models...
+2025-06-08 17:24:07,420 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 17:24:07,420 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 17:24:10,760 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:24:10,761 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 17:24:14,863 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:24:14,865 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 17:24:14,865 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 17:24:14,865 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 17:24:14,865 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 17:24:14,899 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 17:24:14,901 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:24:14,901 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 17:24:14,950 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 17:24:14,954 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:24:14,955 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 17:24:14,956 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:24:14,956 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:24:14,957 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 17:24:14,957 - (api_server.py) - INFO - Building indexes...
+2025-06-08 17:24:14,957 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 17:24:14,957 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 17:38:45,408 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 17:38:45,427 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 17:38:45,429 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 17:38:47,779 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 17:38:47,779 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 17:38:47,779 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 17:38:47,779 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 17:38:52,125 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:38:52,126 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 17:38:52,126 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 17:38:52,126 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 17:38:56,669 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:38:56,670 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 17:38:56,670 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 17:38:56,670 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:38:56,670 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 17:38:56,671 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - Loading models...
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 17:38:56,673 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 17:39:00,079 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:39:00,079 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 17:39:04,693 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:39:04,694 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 17:39:04,694 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 17:39:04,694 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 17:39:04,694 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 17:39:04,719 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 17:39:04,720 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:39:04,720 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 17:39:04,768 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 17:39:04,769 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:39:04,769 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - Building indexes...
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 17:39:04,770 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 17:39:58,924 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 17:39:58,934 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 17:39:58,937 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 17:40:00,930 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 17:40:00,930 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 17:40:00,930 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 17:40:00,930 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 17:40:05,787 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:40:05,787 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 17:40:05,787 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 17:40:05,787 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 17:40:09,975 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 17:40:09,976 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 17:40:09,977 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 17:40:09,977 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 17:40:09,977 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 17:40:09,977 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - Loading models...
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 17:40:09,978 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 17:40:13,328 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:40:13,328 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 17:40:17,645 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:40:17,646 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 17:40:17,646 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 17:40:17,646 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 17:40:17,646 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 17:40:17,671 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 17:40:17,672 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:40:17,672 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 17:40:17,722 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 17:40:17,723 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:40:17,723 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 17:40:17,726 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:40:17,726 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:40:17,726 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 17:40:17,726 - (api_server.py) - INFO - Building indexes...
+2025-06-08 17:40:17,727 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 17:40:17,727 - (api_server.py) - INFO - Building fused index for multimodal search...
+2025-06-08 17:44:03,966 - (api_server.py) - INFO - Loading faiss.
+2025-06-08 17:44:03,987 - (api_server.py) - INFO - Successfully loaded faiss.
+2025-06-08 17:44:03,989 - (api_server.py) - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-06-08 17:44:06,114 - (api_server.py) - INFO - === Starting Model Initialization ===
+2025-06-08 17:44:06,114 - (api_server.py) - INFO - Using device: cpu
+2025-06-08 17:44:06,114 - (api_server.py) - INFO - === Loading CLIP Model ===
+2025-06-08 17:44:06,114 - (api_server.py) - INFO - Initializing CLIP model for visual search...
+2025-06-08 17:44:11,438 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:44:11,438 - (api_server.py) - INFO - === CLIP Model Loading Complete ===
+2025-06-08 17:44:11,438 - (api_server.py) - INFO - === Loading BLIP Model ===
+2025-06-08 17:44:11,438 - (api_server.py) - INFO - Initializing BLIP model for image captioning...
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === BLIP Model Loading Complete ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Configuration Settings ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Base Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Data Directory: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Output Recommendation Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/recommendProducts
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Output Similar Folder: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/images/similarProducts
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Products JS Path: /Users/sbhandari/Appian_Hackathon/Appian_Hackathon/server/data/products.js
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Configuration Settings Complete ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Configuring Gemini API ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Gemini API configured successfully
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Gemini API Configuration Complete ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Starting API Server Initialization ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Initializing FashionRecommender...
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - === Initializing FashionRecommender ===
+2025-06-08 17:44:15,484 - (api_server.py) - INFO - Embeddings directory: ./
+2025-06-08 17:44:15,485 - (api_server.py) - INFO - Output directory: ./
+2025-06-08 17:44:15,485 - (api_server.py) - INFO - Loading models...
+2025-06-08 17:44:15,485 - (api_server.py) - INFO - === Loading Models ===
+2025-06-08 17:44:15,485 - (api_server.py) - INFO - Loading CLIP model...
+2025-06-08 17:44:18,952 - (api_server.py) - INFO - CLIP model loaded successfully
+2025-06-08 17:44:18,953 - (api_server.py) - INFO - Loading BLIP model...
+2025-06-08 17:44:23,062 - (api_server.py) - INFO - BLIP model loaded successfully
+2025-06-08 17:44:23,063 - (api_server.py) - INFO - === Model Loading Complete ===
+2025-06-08 17:44:23,063 - (api_server.py) - INFO - Loading embeddings...
+2025-06-08 17:44:23,063 - (api_server.py) - INFO - === Loading Embeddings ===
+2025-06-08 17:44:23,063 - (api_server.py) - INFO - Loading image embeddings...
+2025-06-08 17:44:23,090 - (api_server.py) - INFO - Image embeddings shape: (39996, 512)
+2025-06-08 17:44:23,094 - (api_server.py) - INFO - Image embeddings sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:44:23,094 - (api_server.py) - INFO - Loading text embeddings...
+2025-06-08 17:44:23,145 - (api_server.py) - INFO - Text embeddings shape: (39996, 512)
+2025-06-08 17:44:23,147 - (api_server.py) - INFO - Text embeddings sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:44:23,147 - (api_server.py) - INFO - Loading valid indices...
+2025-06-08 17:44:23,148 - (api_server.py) - INFO - img_embs shape: (39996, 512), sample: [-0.05377   0.01663   0.01843   0.00818   0.005554]
+2025-06-08 17:44:23,149 - (api_server.py) - INFO - txt_embs shape: (39996, 512), sample: [ 0.01625503 -0.00373982 -0.01780827 -0.00368375 -0.02755962]
+2025-06-08 17:44:23,149 - (api_server.py) - INFO - valid_indices shape: (39996,), sample: [0 1 2 3 4 5 6 7 8 9]
+2025-06-08 17:44:23,149 - (api_server.py) - INFO - Building indexes...
+2025-06-08 17:44:23,149 - (api_server.py) - INFO - === Building FAISS Indexes ===
+2025-06-08 17:44:23,149 - (api_server.py) - INFO - Building fused index for multimodal search...
