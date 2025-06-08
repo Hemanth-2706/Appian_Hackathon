@@ -838,6 +838,128 @@ router.post("/chatbot/clear-history", (req, res) => {
 	}
 });
 
+// Payment page route
+router.get("/payment", (req, res) => {
+	log(`[PAYMENT] === Processing Payment Page Request ===`);
+	try {
+		// Get cart items from session
+		const cartItems = req.session.cartItems || [];
+		const totalPrice = cartItems.reduce(
+			(total, item) => total + item.price * item.quantity,
+			0
+		);
+
+		log(
+			`[PAYMENT] Rendering payment page with ${cartItems.length} items`,
+			"INFO",
+			{
+				totalItems: cartItems.length,
+				totalPrice,
+			}
+		);
+
+		res.render("payment", {
+			cartItems,
+			totalPrice,
+		});
+	} catch (error) {
+		log(
+			`[PAYMENT] Error rendering payment page: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).send("Error loading payment page");
+	}
+});
+
+// Process payment route
+router.post("/process-payment", (req, res) => {
+	log(`[PROCESS_PAYMENT] === Processing Payment Request ===`);
+	try {
+		const paymentData = req.body;
+
+		// Log payment data (excluding sensitive information)
+		const safePaymentData = {
+			...paymentData,
+			paymentDetails:
+				paymentData.paymentMethod === "upi"
+					? { upiId: "***" }
+					: {
+							cardNumber: "**** **** **** ****",
+							expiryDate: "**/**",
+							cvv: "***",
+					  },
+		};
+		log(
+			`[PROCESS_PAYMENT] Payment data received`,
+			"INFO",
+			safePaymentData
+		);
+
+		// Here you would typically:
+		// 1. Validate the payment data
+		// 2. Process the payment through a payment gateway
+		// 3. Create an order in the database
+		// 4. Clear the cart
+		// 5. Send confirmation emails
+
+		// For now, we'll simulate a successful payment
+		req.session.cartItems = []; // Clear the cart
+		req.session.orderId = `ORD${Date.now()}`; // Generate a mock order ID
+
+		log(`[PROCESS_PAYMENT] Payment processed successfully`, "INFO", {
+			orderId: req.session.orderId,
+		});
+
+		res.json({
+			success: true,
+			message: "Payment processed successfully",
+			orderId: req.session.orderId,
+		});
+	} catch (error) {
+		log(
+			`[PROCESS_PAYMENT] Error processing payment: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).json({
+			success: false,
+			message: "Error processing payment",
+		});
+	}
+});
+
+// Order confirmation page route
+router.get("/order-confirmation", (req, res) => {
+	log(
+		`[ORDER_CONFIRMATION] === Processing Order Confirmation Page Request ===`
+	);
+	try {
+		const orderId = req.session.orderId;
+
+		if (!orderId) {
+			log(`[ORDER_CONFIRMATION] No order ID found in session`, "WARN");
+			return res.redirect("/");
+		}
+
+		log(
+			`[ORDER_CONFIRMATION] Rendering order confirmation page`,
+			"INFO",
+			{
+				orderId,
+			}
+		);
+
+		res.render("order-confirmation", {
+			orderId,
+		});
+	} catch (error) {
+		log(
+			`[ORDER_CONFIRMATION] Error rendering order confirmation page: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).send("Error loading order confirmation page");
+	}
+});
+
 router.get("/session-debug", (req, res) => {
 	log(`[SESSION_DEBUG] === Processing Session Debug Request ===`);
 	log(`[SESSION_DEBUG] === Session Debug Complete ===`);
