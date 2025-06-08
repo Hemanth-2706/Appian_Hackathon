@@ -2,10 +2,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
-const { products, similarProducts, recommendProducts } = require(path.join(
-	__dirname,
-	"../data/products"
-));
+
 // log("finding model");
 // const { FashionRecommender } = require(path.join(__dirname, "../data/model"));
 // log("model found");
@@ -68,7 +65,7 @@ function getImagesFromDirectory(dirPath) {
 
 // Home Route - loads product data and banner images
 router.get("/", (req, res) => {
-	log(`=== Processing Home Route Request ===`);
+	log(`[HOME] === Processing Home Route Request ===`);
 	const bannerDir = path.join(
 		__dirname,
 		"../../client/public/images/banner"
@@ -77,26 +74,34 @@ router.get("/", (req, res) => {
 	let bannerImages = [];
 
 	try {
-		log(`Reading banner images from: ${bannerDir}`);
+		log(`[HOME] Reading banner images from: ${bannerDir}`);
 		bannerImages = fs.readdirSync(bannerDir);
 		log(
-			`Found ${bannerImages.length} banner images`,
+			`[HOME] Found ${bannerImages.length} banner images`,
 			"INFO",
 			bannerImages
 		);
 	} catch (err) {
-		log(`Error reading banner images folder: ${err.message}`, "ERROR");
+		log(
+			`[HOME] Error reading banner images folder: ${err.message}`,
+			"ERROR"
+		);
 	}
 
 	// Get only the images from the root of data/images directory
-	log(`Reading root images from: ${dataImagesDir}`);
+	log(`[HOME] Reading root images from: ${dataImagesDir}`);
 	const rootImages = getImagesFromDirectory(dataImagesDir);
 
+	const { homeProducts } = require(path.join(
+		__dirname,
+		"../data/homeProducts"
+	));
+	log(`[HOME] homeProducts = `, "INFO", homeProducts);
 	// Create featured products using product details from products.js and root images
 	log(
-		`Creating featured products from ${products.length} available products`
+		`[HOME] Creating featured products from ${homeProducts.length} available products`
 	);
-	const featuredProducts = products
+	const featuredProducts = homeProducts
 		.map((product, index) => {
 			const imageName = rootImages[index % rootImages.length];
 			return {
@@ -107,11 +112,11 @@ router.get("/", (req, res) => {
 		.slice(0, 8);
 
 	log(
-		`Created ${featuredProducts.length} featured products`,
+		`[HOME] Created ${featuredProducts.length} featured products`,
 		"INFO",
 		featuredProducts
 	);
-	log(`=== Home Route Processing Complete ===`);
+	log(`[HOME] === Home Route Processing Complete ===`);
 
 	res.render("home", {
 		products: featuredProducts,
@@ -121,23 +126,28 @@ router.get("/", (req, res) => {
 
 // Process recommendations endpoint
 router.post("/process-recommendations", async (req, res) => {
-	log(`=== Processing Recommendation Request ===`);
+	log(`[PROCESS_RECOMMENDATIONS] === Processing Recommendation Request ===`);
 	try {
 		// Get user input from session
 		const userText = req.session.userText || null;
 		const userImage = req.session.uploadedImage || null;
-		log(`Session data retrieved`, "INFO", {
+		log(`[PROCESS_RECOMMENDATIONS] Session data retrieved`, "INFO", {
 			hasText: !!userText,
 			hasImage: !!userImage,
 		});
 
 		if (!userText && !userImage) {
-			log("No input provided in session", "WARN");
+			log(
+				`[PROCESS_RECOMMENDATIONS] No input provided in session`,
+				"WARN"
+			);
 			return res.status(400).json({ error: "No input provided" });
 		}
 
 		// Call FastAPI endpoint to use the Python model
-		log("Calling FastAPI endpoint for recommendations");
+		log(
+			`[PROCESS_RECOMMENDATIONS] Calling FastAPI endpoint for recommendations`
+		);
 		const response = await axios.post(
 			"http://localhost:5001/process-recommendations",
 			{
@@ -160,19 +170,40 @@ router.post("/process-recommendations", async (req, res) => {
 		}
 
 		// Store the results in session
-		log("Storing recommendation results in session");
-		req.session.recommendationResults = response.data;
-		log(`Recommendation results stored`, "INFO", {
-			similarProductsCount: response.data.similarProducts?.length || 0,
-			recommendProductsCount:
-				response.data.recommendProducts?.length || 0,
-		});
+		log(
+			`[PROCESS_RECOMMENDATIONS] Storing recommendation results in session`
+		);
+		// === Dynamically reload updated products.js ===
+		const productsPath = path.join(__dirname, "../data/products.js");
+		delete require.cache[require.resolve(productsPath)];
+		const { similarProducts, recommendProducts } = require(productsPath);
+		req.session.recommendationResults = {
+			success: true,
+			similarProducts: similarProducts,
+			recommendProducts: recommendProducts,
+		};
 
-		log(`=== Recommendation Processing Complete ===`);
+		// Store the products arrays separately in session for easier access
+		req.session.similarProducts = similarProducts || [];
+		req.session.recommendProducts = recommendProducts || [];
+
+		log(
+			`[PROCESS_RECOMMENDATIONS] Recommendation results stored`,
+			"INFO",
+			{
+				similarProductsCount: req.session.similarProducts.length,
+				recommendProductsCount:
+					req.session.recommendProducts.length,
+			}
+		);
+
+		log(
+			`[PROCESS_RECOMMENDATIONS] === Recommendation Processing Complete ===`
+		);
 		res.json({ success: true });
 	} catch (error) {
 		log(
-			`Error processing recommendations: ${
+			`[PROCESS_RECOMMENDATIONS] Error processing recommendations: ${
 				error.response?.data || error.message
 			}`,
 			"ERROR"
@@ -186,18 +217,28 @@ router.post("/process-recommendations", async (req, res) => {
 
 // Get product details endpoint
 router.post("/get-product-details", async (req, res) => {
-	log(`=== Processing Product Details Request ===`);
-	log(`Requested product IDs:`, "INFO", req.body.product_ids);
+	log(`[GET_PRODUCT_DETAILS] === Processing Product Details Request ===`);
+	log(
+		`[GET_PRODUCT_DETAILS] Requested product IDs:`,
+		"INFO",
+		req.body.product_ids
+	);
 	try {
 		const { product_ids } = req.body;
 
 		if (!product_ids || !Array.isArray(product_ids)) {
-			log("Invalid product IDs provided", "WARN", { product_ids });
+			log(
+				`[GET_PRODUCT_DETAILS] Invalid product IDs provided`,
+				"WARN",
+				{ product_ids }
+			);
 			return res.status(400).json({ error: "Invalid product IDs" });
 		}
 
 		// Call FastAPI endpoint to get product details
-		log("Calling FastAPI endpoint for product details");
+		log(
+			`[GET_PRODUCT_DETAILS] Calling FastAPI endpoint for product details`
+		);
 		const response = await axios.post(
 			"http://localhost:5001/get-product-details",
 			{ product_ids },
@@ -215,14 +256,18 @@ router.post("/get-product-details", async (req, res) => {
 			);
 		}
 
-		log(`Product details retrieved successfully`, "INFO", {
-			productsCount: response.data.products?.length || 0,
-		});
-		log(`=== Product Details Request Complete ===`);
+		log(
+			`[GET_PRODUCT_DETAILS] Product details retrieved successfully`,
+			"INFO",
+			{
+				productsCount: response.data.products?.length || 0,
+			}
+		);
+		log(`[GET_PRODUCT_DETAILS] === Product Details Request Complete ===`);
 		res.json(response.data);
 	} catch (error) {
 		log(
-			`Error getting product details: ${
+			`[GET_PRODUCT_DETAILS] Error getting product details: ${
 				error.response?.data || error.message
 			}`,
 			"ERROR"
@@ -236,19 +281,19 @@ router.post("/get-product-details", async (req, res) => {
 
 // Health check endpoint
 router.get("/model-health", async (req, res) => {
-	log(`=== Processing Health Check Request ===`);
+	log(`[MODEL_HEALTH] === Processing Health Check Request ===`);
 	try {
 		const response = await axios.get("http://localhost:5001/health", {
 			headers: {
 				Accept: "application/json",
 			},
 		});
-		log("Health check successful", "INFO", response.data);
-		log(`=== Health Check Complete ===`);
+		log(`[MODEL_HEALTH] Health check successful`, "INFO", response.data);
+		log(`[MODEL_HEALTH] === Health Check Complete ===`);
 		res.json(response.data);
 	} catch (error) {
 		log(
-			`Error checking model health: ${
+			`[MODEL_HEALTH] Error checking model health: ${
 				error.response?.data || error.message
 			}`,
 			"ERROR"
@@ -262,17 +307,17 @@ router.get("/model-health", async (req, res) => {
 
 // Recommend page route
 router.get("/recommend", (req, res) => {
-	log(`=== Processing Recommend Page Request ===`);
+	log(`[RECOMMEND] === Processing Recommend Page Request ===`);
 	// Get the processed results from session
 	const results = req.session.recommendationResults;
 
 	if (!results) {
-		log("No recommendation results found in session", "WARN");
+		log(`[RECOMMEND] No recommendation results found in session`, "WARN");
 		return res.redirect("/"); // Redirect to home if no results
 	}
 
 	// Process similar products to ensure proper image paths
-	log("Processing similar products");
+	log(`[RECOMMEND] Processing similar products`);
 	const processedSimilarProducts = (results?.similarProducts || []).map(
 		(product) => ({
 			...product,
@@ -281,7 +326,7 @@ router.get("/recommend", (req, res) => {
 	);
 
 	// Process recommended products to ensure proper image paths
-	log("Processing recommended products");
+	log(`[RECOMMEND] Processing recommended products`);
 	const processedRecommendProducts = (results?.recommendProducts || []).map(
 		(product) => ({
 			...product,
@@ -290,45 +335,53 @@ router.get("/recommend", (req, res) => {
 	);
 
 	// Log detailed product information
-	log("Similar Products Details:", "INFO", processedSimilarProducts);
-	log("Recommended Products Details:", "INFO", processedRecommendProducts);
+	log(
+		`[RECOMMEND] Similar Products Details:`,
+		"INFO",
+		processedSimilarProducts
+	);
+	log(
+		`[RECOMMEND] Recommended Products Details:`,
+		"INFO",
+		processedRecommendProducts
+	);
 
-	log(`Rendering recommend page`, "INFO", {
+	log(`[RECOMMEND] Rendering recommend page`, "INFO", {
 		similarProductsCount: processedSimilarProducts.length,
 		recommendProductsCount: processedRecommendProducts.length,
 	});
-	log(`=== Recommend Page Processing Complete ===`);
+	log(`[RECOMMEND] === Recommend Page Processing Complete ===`);
 
 	res.render("recommend", {
-		products: products,
 		similarProducts: processedSimilarProducts,
 		recommendProducts: processedRecommendProducts,
 	});
 });
 
 router.get("/product/:id", (req, res) => {
-	log(`=== Processing Product Details Page Request ===`);
-	log(`Requested product ID: ${req.params.id}`);
+	log(`[PRODUCT] === Processing Product Details Page Request ===`);
+	log(`[PRODUCT] Requested product ID: ${req.params.id}`);
+
+	// Get products from session
+	const sessionSimilarProducts = req.session.similarProducts || [];
+	const sessionRecommendProducts = req.session.recommendProducts || [];
 
 	// Search for the product across all product arrays
 	let foundInArray = "";
 	const product =
-		products.find((p) => {
-			if (p.productId === req.params.id) {
-				foundInArray = "products";
-				return true;
-			}
-			return false;
-		}) ||
-		similarProducts.find((p) => {
-			if (p.productId === req.params.id) {
+		sessionSimilarProducts.find((p) => {
+			if (
+				String(p.productId).trim() === String(req.params.id).trim()
+			) {
 				foundInArray = "similarProducts";
 				return true;
 			}
 			return false;
 		}) ||
-		recommendProducts.find((p) => {
-			if (p.productId === req.params.id) {
+		sessionRecommendProducts.find((p) => {
+			if (
+				String(p.productId).trim() === String(req.params.id).trim()
+			) {
 				foundInArray = "recommendProducts";
 				return true;
 			}
@@ -336,11 +389,12 @@ router.get("/product/:id", (req, res) => {
 		});
 
 	if (!product) {
-		log("Product not found", "WARN", {
+		log(`[PRODUCT] Product not found`, "WARN", {
 			availableIds: {
-				products: products.map((p) => p.productId),
-				similarProducts: similarProducts.map((p) => p.productId),
-				recommendProducts: recommendProducts.map(
+				similarProducts: sessionSimilarProducts.map(
+					(p) => p.productId
+				),
+				recommendProducts: sessionRecommendProducts.map(
 					(p) => p.productId
 				),
 			},
@@ -348,28 +402,29 @@ router.get("/product/:id", (req, res) => {
 		return res.status(404).send("Product not found");
 	}
 
-	log(`Product found in ${foundInArray} array`, "INFO", product);
+	log(`[PRODUCT] Product found in ${foundInArray} array`, "INFO", product);
 
 	// Get similar products based on category
-	log("Filtering similar products by category");
-	const filteredSimilarProducts = similarProducts.filter((p) => {
+	log(`[PRODUCT] Filtering similar products by category`);
+	const filteredSimilarProducts = sessionSimilarProducts.filter((p) => {
 		const matches =
-			p.productId !== product.productId &&
-			p.category === product.category;
+			String(p.productId).trim() !==
+				String(product.productId).trim() &&
+			p.category == product.category;
 		return matches;
 	});
 
 	// Show all recommended products except the current one
-	log("Filtering recommended products");
-	const filteredRecommendProducts = recommendProducts.filter(
-		(p) => p.productId !== product.productId
+	log(`[PRODUCT] Filtering recommended products`);
+	const filteredRecommendProducts = sessionRecommendProducts.filter(
+		(p) => String(p.productId).trim() !== String(product.productId).trim()
 	);
 
-	log(`Filtered products`, "INFO", {
+	log(`[PRODUCT] Filtered products`, "INFO", {
 		similarProductsCount: filteredSimilarProducts.length,
 		recommendProductsCount: filteredRecommendProducts.length,
 	});
-	log(`=== Product Details Page Processing Complete ===`);
+	log(`[PRODUCT] === Product Details Page Processing Complete ===`);
 
 	res.render("product", {
 		product,
@@ -379,78 +434,153 @@ router.get("/product/:id", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-	log(`=== Processing Cart Page Request ===`);
+	log(`[CART] === Processing Cart Page Request ===`);
 	const sessionCart = req.session.cart || [];
 
-	log(`Processing ${sessionCart.length} cart items`);
+	// Get products from session
+	const sessionSimilarProducts =
+		req.session.recommendationResults?.similarProducts || [];
+	const sessionRecommendProducts =
+		req.session.recommendationResults?.recommendProducts || [];
+
+	log(`[CART] Processing ${sessionCart.length} cart items`);
+	log(`[CART] Session cart data:`, "INFO", sessionCart);
+	log(`[CART] Using products from session:`, "INFO", {
+		hasSessionSimilarProducts: sessionSimilarProducts.length > 0,
+		hasSessionRecommendProducts: sessionRecommendProducts.length > 0,
+		similarProductsCount: sessionSimilarProducts.length,
+		recommendProductsCount: sessionRecommendProducts.length,
+	});
+
 	const cartItems = sessionCart
 		.map((cartItem) => {
-			// Search for the product across all product arrays
-			let product = products.find(
-				(p) => p.productId === cartItem.productId
+			log(`[CART] Processing cart item:`, "INFO", cartItem);
+
+			// Convert productId to string for consistent comparison
+			const cartItemId = String(cartItem.productId).trim();
+
+			// Search for the product in similar and recommended products
+			let product = sessionSimilarProducts.find(
+				(p) => String(p.productId).trim() === cartItemId
 			);
 			let imagePath = product?.image;
 
 			if (!product) {
-				product = similarProducts.find(
-					(p) => p.productId === cartItem.productId
+				log(
+					`[CART] Product ${cartItemId} not found in session similarProducts array`,
+					"INFO"
+				);
+				product = sessionRecommendProducts.find(
+					(p) => String(p.productId).trim() === cartItemId
 				);
 				if (product) {
-					imagePath = `/images/similarProducts/${product.productId}.jpg`;
+					imagePath = `/images/recommendProducts/${product.productId}.jpg`;
+					log(
+						`[CART] Product found in session recommendProducts array`,
+						"INFO",
+						product
+					);
 				}
 			}
 
 			if (!product) {
-				product = recommendProducts.find(
-					(p) => p.productId === cartItem.productId
+				log(
+					`[CART] Product ${cartItemId} not found in any array`,
+					"WARN"
 				);
-				if (product) {
-					imagePath = `/images/recommendProducts/${product.productId}.jpg`;
-				}
+				return null;
 			}
 
-			if (product) {
-				return {
-					productId: product.productId,
-					productName: product.productName,
-					articleType: product.articleType,
-					subCategory: product.subCategory,
-					season: product.season,
-					usage: product.usage,
-					image: imagePath,
-					price: product.price,
-					quantity: cartItem.quantity,
-				};
-			}
-			return null;
+			// Create cart item with all necessary data
+			const cartItemData = {
+				productId: product.productId,
+				productName: product.productName,
+				articleType: product.articleType,
+				subCategory: product.subCategory,
+				season: product.season,
+				usage: product.usage,
+				image: imagePath,
+				price: parseFloat(product.price),
+				quantity: parseInt(cartItem.quantity),
+			};
+
+			log(`[CART] Created cart item data:`, "INFO", cartItemData);
+			return cartItemData;
 		})
 		.filter((item) => item !== null);
 
-	log(`Cart items processed`, "INFO", {
+	// Calculate total price
+	const totalPrice = cartItems.reduce(
+		(total, item) => total + item.price * item.quantity,
+		0
+	);
+
+	log(`[CART] Cart items processed`, "INFO", {
 		totalItems: cartItems.length,
 		items: cartItems,
+		totalPrice: totalPrice,
 	});
-	log(`=== Cart Page Processing Complete ===`);
+	log(`[CART] === Cart Page Processing Complete ===`);
 
-	res.render("cart", { cartItems });
+	res.render("cart", {
+		cartItems,
+		totalPrice: totalPrice.toFixed(2),
+	});
 });
 
 router.get("/checkout/:id", (req, res) => {
-	const product = products.find((p) => p.productId === req.params.id);
+	const product = products.find((p) => p.productId == req.params.id);
 	res.render("payment", { product });
 });
 
 router.post("/cart/add", (req, res) => {
-	log(`=== Processing Add to Cart Request ===`);
-	log(`Request body:`, "INFO", req.body);
+	log(`[CART_ADD] === Processing Add to Cart Request ===`);
+	log(`[CART_ADD] Request body:`, "INFO", req.body);
 
 	const { productId, quantity } = req.body;
 
 	if (!productId || !quantity) {
-		log("Missing required fields", "WARN", { productId, quantity });
+		log(`[CART_ADD] Missing required fields`, "WARN", {
+			productId,
+			quantity,
+		});
 		return res.status(400).json({
 			success: false,
 			message: "Missing required fields",
+		});
+	}
+
+	// Get products from session
+	const sessionSimilarProducts =
+		req.session.recommendationResults?.similarProducts || [];
+	const sessionRecommendProducts =
+		req.session.recommendationResults?.recommendProducts || [];
+
+	log(`[CART_ADD] Session products:`, "INFO", {
+		hasSessionSimilarProducts: sessionSimilarProducts.length > 0,
+		hasSessionRecommendProducts: sessionRecommendProducts.length > 0,
+		similarProductsCount: sessionSimilarProducts.length,
+		recommendProductsCount: sessionRecommendProducts.length,
+	});
+
+	// Convert productId to string for consistent comparison
+	const searchId = String(productId).trim();
+	log(`[CART_ADD] Searching for product with ID: ${searchId}`);
+
+	// Verify product exists in one of the arrays
+	const product =
+		sessionSimilarProducts.find(
+			(p) => String(p.productId).trim() === searchId
+		) ||
+		sessionRecommendProducts.find(
+			(p) => String(p.productId).trim() === searchId
+		);
+
+	if (!product) {
+		log(`[CART_ADD] Product ${searchId} not found in any array`, "WARN");
+		return res.status(404).json({
+			success: false,
+			message: "Product not found",
 		});
 	}
 
@@ -461,80 +591,204 @@ router.post("/cart/add", (req, res) => {
 
 	// Add or update product
 	const index = req.session.cart.findIndex(
-		(item) => item.productId === productId
+		(item) => String(item.productId).trim() === searchId
 	);
 	if (index !== -1) {
 		req.session.cart[index].quantity += parseInt(quantity);
-		log(`Updated existing cart item`, "INFO", req.session.cart[index]);
+		log(
+			`[CART_ADD] Updated existing cart item`,
+			"INFO",
+			req.session.cart[index]
+		);
 	} else {
-		req.session.cart.push({ productId, quantity: parseInt(quantity) });
-		log(`Added new item to cart`, "INFO", { productId, quantity });
+		req.session.cart.push({
+			productId: searchId,
+			quantity: parseInt(quantity),
+		});
+		log(`[CART_ADD] Added new item to cart`, "INFO", {
+			productId: searchId,
+			quantity,
+		});
 	}
 
-	log(`Cart updated`, "INFO", req.session.cart);
-	log(`=== Add to Cart Request Complete ===`);
-	res.json({ success: true, message: "Product added to cart successfully" });
+	// Save session
+	req.session.save((err) => {
+		if (err) {
+			log(`[CART_ADD] Error saving session: ${err.message}`, "ERROR");
+			return res.status(500).json({
+				success: false,
+				message: "Failed to update cart",
+				error: err.message,
+			});
+		}
+		log(`[CART_ADD] Cart updated`, "INFO", req.session.cart);
+		log(`[CART_ADD] === Add to Cart Request Complete ===`);
+		res.json({
+			success: true,
+			message: "Product added to cart successfully",
+			cart: req.session.cart,
+		});
+	});
+});
+
+router.post("/cart/add-multiple", (req, res) => {
+	log(`[CART_ADD_MULTIPLE] === Processing Add Multiple to Cart Request ===`);
+	log(`[CART_ADD_MULTIPLE] Request body:`, "INFO", req.body);
+
+	const { products } = req.body;
+
+	if (!products || !Array.isArray(products)) {
+		log(`[CART_ADD_MULTIPLE] Invalid products data`, "WARN", {
+			products,
+		});
+		return res.status(400).json({
+			success: false,
+			message: "Invalid products data",
+		});
+	}
+
+	// Initialize cart if not present
+	if (!req.session.cart) {
+		req.session.cart = [];
+	}
+
+	// Add or update products
+	products.forEach(({ productId, quantity }) => {
+		const index = req.session.cart.findIndex(
+			(item) => item.productId == productId
+		);
+		if (index !== -1) {
+			req.session.cart[index].quantity += parseInt(quantity);
+		} else {
+			req.session.cart.push({
+				productId,
+				quantity: parseInt(quantity),
+			});
+		}
+	});
+
+	// Save session
+	req.session.save((err) => {
+		if (err) {
+			log(
+				`[CART_ADD_MULTIPLE] Error saving session: ${err.message}`,
+				"ERROR"
+			);
+			return res.status(500).json({
+				success: false,
+				message: "Failed to update cart",
+				error: err.message,
+			});
+		}
+		log(
+			`[CART_ADD_MULTIPLE] Cart updated with multiple items`,
+			"INFO",
+			req.session.cart
+		);
+		log(
+			`[CART_ADD_MULTIPLE] === Add Multiple to Cart Request Complete ===`
+		);
+		res.json({
+			success: true,
+			message: "Products added to cart successfully",
+			cart: req.session.cart,
+		});
+	});
 });
 
 router.post("/cart/remove", (req, res) => {
-	log(`=== Processing Remove from Cart Request ===`);
-	log(`Request body:`, "INFO", req.body);
+	log(`[CART_REMOVE] === Processing Remove from Cart Request ===`);
+	log(`[CART_REMOVE] Request body:`, "INFO", req.body);
 	const { productId } = req.body;
 
 	if (!req.session.cart) {
 		req.session.cart = [];
 	}
 
+	const initialLength = req.session.cart.length;
 	req.session.cart = req.session.cart.filter(
 		(item) => item.productId !== productId
 	);
 
-	log(`Cart updated after removal`, "INFO", req.session.cart);
-	log(`=== Remove from Cart Request Complete ===`);
-	res.json({ success: true, message: "Item removed from cart" });
+	// Save session
+	req.session.save((err) => {
+		if (err) {
+			log(
+				`[CART_REMOVE] Error saving session: ${err.message}`,
+				"ERROR"
+			);
+			return res.status(500).json({
+				success: false,
+				message: "Failed to remove item from cart",
+				error: err.message,
+			});
+		}
+
+		const removed = initialLength > req.session.cart.length;
+		log(`[CART_REMOVE] Cart updated after removal`, "INFO", {
+			removed,
+			newCartLength: req.session.cart.length,
+			cart: req.session.cart,
+		});
+		log(`[CART_REMOVE] === Remove from Cart Request Complete ===`);
+		res.json({
+			success: true,
+			message: removed
+				? "Item removed from cart"
+				: "Item not found in cart",
+			cart: req.session.cart,
+		});
+	});
 });
 
 router.post("/chatbot/image", (req, res) => {
-	log(`=== Processing Chatbot Image Upload ===`);
+	log(`[CHATBOT_IMAGE] === Processing Chatbot Image Upload ===`);
 	const { image } = req.body;
 	if (image) {
 		req.session.uploadedImage = image;
-		log(`Image stored in session`, "INFO", { hasImage: true });
+		log(`[CHATBOT_IMAGE] Image stored in session`, "INFO", {
+			hasImage: true,
+		});
 		res.json({ success: true });
 	} else {
-		log("No image provided", "WARN");
+		log(`[CHATBOT_IMAGE] No image provided`, "WARN");
 		res.json({ success: false });
 	}
-	log(`=== Chatbot Image Upload Complete ===`);
+	log(`[CHATBOT_IMAGE] === Chatbot Image Upload Complete ===`);
 });
 
 router.post("/chatbot/text", (req, res) => {
-	log(`=== Processing Chatbot Text Input ===`);
+	log(`[CHATBOT_TEXT] === Processing Chatbot Text Input ===`);
 	const { text } = req.body;
 	if (text) {
 		req.session.userText = text;
-		log(`Text stored in session`, "INFO", { hasText: true });
+		log(`[CHATBOT_TEXT] Text stored in session`, "INFO", {
+			hasText: true,
+		});
 		res.json({ success: true });
 	} else {
-		log("No text provided", "WARN");
+		log(`[CHATBOT_TEXT] No text provided`, "WARN");
 		res.json({ success: false });
 	}
-	log(`=== Chatbot Text Input Complete ===`);
+	log(`[CHATBOT_TEXT] === Chatbot Text Input Complete ===`);
 });
 
 router.post("/chatbot/clear-history", (req, res) => {
-	log(`=== Processing Clear History Request ===`);
+	log(`[CHATBOT_CLEAR] === Processing Clear History Request ===`);
 	try {
 		// Clear all chatbot-related session data
 		delete req.session.userText;
 		delete req.session.uploadedImage;
 		delete req.session.recommendationResults;
 
-		log(`Session cleared successfully`, "INFO");
-		log(`=== Clear History Request Complete ===`);
+		log(`[CHATBOT_CLEAR] Session cleared successfully`, "INFO");
+		log(`[CHATBOT_CLEAR] === Clear History Request Complete ===`);
 		res.json({ success: true, message: "History cleared successfully" });
 	} catch (error) {
-		log(`Error clearing history: ${error.message}`, "ERROR");
+		log(
+			`[CHATBOT_CLEAR] Error clearing history: ${error.message}`,
+			"ERROR"
+		);
 		res.status(500).json({
 			success: false,
 			message: "Failed to clear history",
@@ -544,9 +798,8 @@ router.post("/chatbot/clear-history", (req, res) => {
 });
 
 router.get("/session-debug", (req, res) => {
-	log(`=== Processing Session Debug Request ===`);
-	log(`Session data:`, "INFO", req.session);
-	log(`=== Session Debug Complete ===`);
+	log(`[SESSION_DEBUG] === Processing Session Debug Request ===`);
+	log(`[SESSION_DEBUG] === Session Debug Complete ===`);
 	res.json(req.session);
 });
 

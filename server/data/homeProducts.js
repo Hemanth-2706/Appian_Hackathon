@@ -1,0 +1,45 @@
+const homeProducts = [
+	{
+		productId: "15970",
+		productName: "Turtle Check Men Navy Blue Shirt",
+		gender: "Men",
+		masterCategory: "Apparel",
+		subCategory: "Topwear",
+		articleType: "Shirts",
+		baseColour: "Navy Blue",
+		season: "Fall",
+		usage: "Casual",
+		image: "/images/products/15970.jpg",
+		price: 2615.0,
+	},
+	{
+		productId: "39386",
+		productName: "Peter England Men Party Blue Jeans",
+		gender: "Men",
+		masterCategory: "Apparel",
+		subCategory: "Bottomwear",
+		articleType: "Jeans",
+		baseColour: "Blue",
+		season: "Summer",
+		usage: "Casual",
+		image: "/images/products/39386.jpg",
+		price: 2381.0,
+	},
+	{
+		productId: "59263",
+		productName: "Titan Women Silver Watch",
+		gender: "Women",
+		masterCategory: "Accessories",
+		subCategory: "Watches",
+		articleType: "Watches",
+		baseColour: "Silver",
+		season: "Winter",
+		usage: "Casual",
+		image: "/images/products/59263.jpg",
+		price: 2437.0,
+	},
+];
+
+module.exports = {
+	homeProducts,
+};
