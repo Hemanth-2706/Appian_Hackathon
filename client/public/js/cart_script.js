@@ -12,12 +12,15 @@ function showToast(message = "Notification", type = "success") {
 
 // Handle quantity updates
 document.querySelectorAll(".quantity-dropdown").forEach((select) => {
+	// Store the initial value
+	select.setAttribute("data-previous-value", select.value);
+
 	select.addEventListener("change", async function () {
 		const productId = this.getAttribute("data-product-id");
 		const quantity = parseInt(this.value);
 
 		try {
-			const response = await fetch("/cart/add", {
+			const response = await fetch("/cart/set-quantity", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -32,20 +35,26 @@ document.querySelectorAll(".quantity-dropdown").forEach((select) => {
 
 			if (data.success) {
 				showToast(`Quantity updated to ${quantity}`);
+
 				// Update the item total
 				const cartItem = this.closest(".cart-item");
 				const priceElement = cartItem.querySelector(".item-price");
 				const totalElement =
 					cartItem.querySelector(".item-total p");
+
 				const price = parseFloat(
 					priceElement.textContent.replace("Price: ₹", "")
 				);
+
 				totalElement.textContent = `Total: ₹${(
 					price * quantity
 				).toFixed(2)}`;
 
 				// Update the cart total
 				updateCartTotal();
+
+				// Save current value as the new previous
+				this.setAttribute("data-previous-value", this.value);
 			} else {
 				throw new Error(
 					data.message || "Failed to update quantity"
@@ -54,13 +63,11 @@ document.querySelectorAll(".quantity-dropdown").forEach((select) => {
 		} catch (error) {
 			showToast(error.message || "Error updating quantity", "error");
 			console.error("Error:", error);
+
 			// Reset to previous value
 			this.value = this.getAttribute("data-previous-value") || "1";
 		}
 	});
-
-	// Store the initial value
-	select.setAttribute("data-previous-value", select.value);
 });
 
 // Handle remove buttons
