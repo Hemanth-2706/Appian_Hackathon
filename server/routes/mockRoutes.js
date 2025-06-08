@@ -3,6 +3,8 @@ const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 
+const { homeProducts } = require(path.join(__dirname, "../data/homeProducts"));
+
 // log("finding model");
 // const { FashionRecommender } = require(path.join(__dirname, "../data/model"));
 // log("model found");
@@ -92,10 +94,6 @@ router.get("/", (req, res) => {
 	log(`[HOME] Reading root images from: ${dataImagesDir}`);
 	const rootImages = getImagesFromDirectory(dataImagesDir);
 
-	const { homeProducts } = require(path.join(
-		__dirname,
-		"../data/homeProducts"
-	));
 	log(`[HOME] homeProducts = `, "INFO", homeProducts);
 	// Create featured products using product details from products.js and root images
 	log(
@@ -437,7 +435,7 @@ router.get("/cart", (req, res) => {
 	log(`[CART] === Processing Cart Page Request ===`);
 	const sessionCart = req.session.cart || [];
 
-	// Get products from session
+	// Get products from session and homeProducts
 	const sessionSimilarProducts =
 		req.session.recommendationResults?.similarProducts || [];
 	const sessionRecommendProducts =
@@ -448,8 +446,10 @@ router.get("/cart", (req, res) => {
 	log(`[CART] Using products from session:`, "INFO", {
 		hasSessionSimilarProducts: sessionSimilarProducts.length > 0,
 		hasSessionRecommendProducts: sessionRecommendProducts.length > 0,
+		hasHomeProducts: homeProducts.length > 0,
 		similarProductsCount: sessionSimilarProducts.length,
 		recommendProductsCount: sessionRecommendProducts.length,
+		homeProductsCount: homeProducts.length,
 	});
 
 	const cartItems = sessionCart
@@ -459,7 +459,7 @@ router.get("/cart", (req, res) => {
 			// Convert productId to string for consistent comparison
 			const cartItemId = String(cartItem.productId).trim();
 
-			// Search for the product in similar and recommended products
+			// Search for the product in similar, recommended, and home products
 			let product = sessionSimilarProducts.find(
 				(p) => String(p.productId).trim() === cartItemId
 			);
@@ -477,6 +477,24 @@ router.get("/cart", (req, res) => {
 					imagePath = `/images/recommendProducts/${product.productId}.jpg`;
 					log(
 						`[CART] Product found in session recommendProducts array`,
+						"INFO",
+						product
+					);
+				}
+			}
+
+			if (!product) {
+				log(
+					`[CART] Product ${cartItemId} not found in session arrays, checking homeProducts`,
+					"INFO"
+				);
+				product = homeProducts.find(
+					(p) => String(p.productId).trim() === cartItemId
+				);
+				if (product) {
+					imagePath = `/images/${product.productId}.png`;
+					log(
+						`[CART] Product found in homeProducts array`,
 						"INFO",
 						product
 					);
@@ -574,7 +592,8 @@ router.post("/cart/add", (req, res) => {
 		) ||
 		sessionRecommendProducts.find(
 			(p) => String(p.productId).trim() === searchId
-		);
+		) ||
+		homeProducts.find((p) => String(p.productId).trim() === searchId);
 
 	if (!product) {
 		log(`[CART_ADD] Product ${searchId} not found in any array`, "WARN");
@@ -739,6 +758,28 @@ router.post("/cart/remove", (req, res) => {
 			cart: req.session.cart,
 		});
 	});
+});
+
+// Express route for setting quantity
+router.post("/cart/set-quantity", (req, res) => {
+	const { productId, quantity } = req.body;
+
+	// Get user's cart from session or DB
+	const cart = req.session.cart || [];
+
+	// Find the item
+	const item = cart.find((p) => p.productId === productId);
+
+	if (item) {
+		// Replace the quantity
+		item.quantity = quantity;
+	} else {
+		// Add as new item
+		cart.push({ productId, quantity });
+	}
+
+	req.session.cart = cart;
+	res.json({ success: true });
 });
 
 router.post("/chatbot/image", (req, res) => {
