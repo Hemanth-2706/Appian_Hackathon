@@ -10,6 +10,11 @@ import json
 import pandas as pd
 import logging
 import base64
+import threading
+import webbrowser
+
+def open_browser():
+    webbrowser.open("http://localhost:5000")
 
 # Configure logging
 logging.basicConfig(
@@ -249,6 +254,8 @@ async def health_check():
     )
 
 if __name__ == "__main__":
+    # Start browser opening in a delayed background thread
+    threading.Timer(2.0, open_browser).start()
     logger.info("=== Starting FastAPI Server ===")
     logger.info("Server will be available at http://0.0.0.0:5001")
     uvicorn.run(app, host="0.0.0.0", port=5001) 
