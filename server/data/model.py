@@ -376,6 +376,50 @@ module.exports = {{
 
         return numbered_items
     
+    def generate_meaningful_caption(self, has_img, has_txt, img_caption, prompt, sim_df, rec_df):
+        """Generate a meaningful caption using Gemini about what was identified and recommended"""
+        try:
+            # Create a detailed prompt for Gemini
+            gemini_prompt = "You are a fashion assistant. Create a natural, conversational response about what was identified and recommended. "
+            
+            if has_img and has_txt:
+                gemini_prompt += f"\nThe user provided an image and text. From the image, I identified: {img_caption}\nThe user's text request was: {prompt}"
+            elif has_img:
+                gemini_prompt += f"\nThe user provided an image. I identified: {img_caption}"
+            else:
+                gemini_prompt += f"\nThe user's text request was: {prompt}"
+            
+            # Add information about similar and recommended products
+            if not sim_df.empty:
+                similar_items = sim_df['text'].tolist()
+                gemini_prompt += f"\nI found these similar items: {', '.join(similar_items[:3])}"
+            
+            if not rec_df.empty:
+                recommended_items = rec_df['text'].tolist()
+                gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:10])}"
+            
+            gemini_prompt += "\nEnd with asking if this is what they were looking for. Keep the response friendly and conversational."
+            
+            # Generate response using Gemini
+            response = self.generate_with_gemini(gemini_prompt)
+            
+            # Save to chatbot_g_n_a.js
+            js_content = f"""const chatbotResponse = {json.dumps(response, indent=2)};
+
+module.exports = {{
+    chatbotResponse
+}};
+"""
+            with open(os.path.join(DATA_DIR, "chatbot_g_n_a.js"), 'w', encoding='utf-8') as f:
+                f.write(js_content)
+            
+            logger.info("Generated and saved chatbot response")
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error generating meaningful caption: {e}")
+            return "I apologize, but I encountered an error while generating the response."
+
     def recommend(self, img=None, prompt=None, k=K):
         """Complete recommendation function"""
         logger.info(f"recommend called with img: {img}, prompt: {prompt}")
@@ -388,6 +432,7 @@ module.exports = {{
         
         sim_df = pd.DataFrame()
         rec_df = pd.DataFrame()
+        img_caption = ""
         
         # Visual or Text Similarity
         if has_img:
@@ -402,18 +447,18 @@ module.exports = {{
             faiss.normalize_L2(img_emb)
             
             # Get the category of the input image
-            caption = self.generate_caption(img)
+            img_caption = self.generate_caption(img)
             input_category = None      
             gender = None
-            if caption:
+            if img_caption:
                 # Extract category from caption using Gemini
-                category_prompt = f"Given this product description: '{caption}', what is the main category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
+                category_prompt = f"Given this product description: '{img_caption}', what is the main category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
                 input_category = self.generate_with_gemini(category_prompt).strip()
                 logger.info(f"Detected input category: {input_category}")
             
             if has_txt:
                 #generate gender from text
-                gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+                gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
                 gender = self.generate_with_gemini(gender_prompt).strip()
                 logger.info(f"Detected gender from text and image: {gender}")
 
@@ -429,7 +474,7 @@ module.exports = {{
             else:
                 logger.info("Processing image-only input...")
 
-                gender_prompt = f"Given this product description: '{caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+                gender_prompt = f"Given this product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
                 gender = self.generate_with_gemini(gender_prompt).strip()
                 logger.info(f"Detected gender from image: {gender}")
 
@@ -521,6 +566,8 @@ module.exports = {{
             logger.info(f"Complementary categories: {complementary_categories}")
             
             cand = []
+            items_per_cat=k//5
+            score_threshold=0.5
             for cat in cats:
                 q_t = self.embed_text(cat)
                 q_t = q_t.astype('float32')
@@ -549,23 +596,28 @@ module.exports = {{
                         dfc = dfc[gender_matches]
                     else:
                         logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
-                        
-                cand.append(dfc)
+                # Only keep items above threshold and take top items_per_cat
+                dfc = dfc[dfc["score_txt"] >= score_threshold]
+                if not dfc.empty:
+                    dfc = dfc.head(items_per_cat)
+                    cand.append(dfc)
             
             if cand:
-                all_rec = pd.concat(cand, ignore_index=True)
-                unique_rec = (
-                    all_rec
+                rec_df = pd.concat(cand, ignore_index=True)
+                rec_df = (
+                    rec_df
                     .sort_values("score_txt", ascending=False)
                     .drop_duplicates(subset="productId", keep="first")
                 )
-                rec_df = unique_rec.head(k)
         
         logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
         
         # Process recommendations and download images
         if not sim_df.empty or not rec_df.empty:
             self.process_recommendations(sim_df, rec_df)
+            # Generate meaningful caption
+            meaningful_caption = self.generate_meaningful_caption(has_img, has_txt, img_caption, prompt, sim_df, rec_df)
+            logger.info(f"Generated meaningful caption: {meaningful_caption}")
             logger.info("Recommendation process completed successfully")
         else:
             logger.warning("No recommendations generated")

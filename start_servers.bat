@@ -19,6 +19,7 @@ if exist "server\logs\api_server.log" type nul > "server\logs\api_server.log"
 if exist "server\logs\model.log" type nul > "server\logs\model.log"
 if exist "server\logs\mockRoutes.log" type nul > "server\logs\mockRoutes.log"
 if exist "server\data\products.js" type nul > "server\data\products.js"
+if exist "server\data\chatbot_g_n_a.js" type nul > "server\data\chatbot_g_n_a.js"
 echo Log files cleared.
 
 REM Start the Node.js server (main application)
