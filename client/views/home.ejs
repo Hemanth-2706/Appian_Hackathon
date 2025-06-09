@@ -5,8 +5,167 @@
   <title>ShopSmarter - Home</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/chatbot.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <style>
+    .door-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .door {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-color: transparent;
+      background-image: url('/images/door_img.jpg');
+      background-size: cover;
+      background-position: center;
+      transition: transform 2.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .door-left {
+      left: 0;
+      transform: translateX(0);
+      border-right: 2px solid #654321;
+    }
+
+    .door-right {
+      right: 0;
+      transform: translateX(0);
+      border-left: 2px solid #654321;
+    }
+
+    .door-left.open {
+      transform: translateX(-100%);
+    }
+
+    .door-right.open {
+      transform: translateX(100%);
+    }
+
+
+    .split-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4.5em;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 4px 4px rgba(0,0,0,0.5);
+      white-space: nowrap;
+      opacity: 1;
+      z-index: 1;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      width: 100%;
+      text-align: center;
+    }
+
+    .split-text-left {
+      right: 0;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+
+    .split-text-right {
+      right: 0;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+
+    .store-sign {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .store-sign.visible {
+      opacity: 1;
+    }
+
+    .door-content {
+      color: #fff;
+      font-size: 1.5em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .door-content.visible {
+      opacity: 1;
+    }
+
+    /* Website content fade in */
+    .sticky-container {
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+    }
+
+    .sticky-container.visible {
+      opacity: 1;
+    }
+
+    .banner-carousel {
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+    }
+
+    .banner-carousel.visible {
+      opacity: 1;
+    }
+
+    main {
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+    }
+
+    main.visible {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <!-- Door Animation -->
+  <div class="door-animation">
+    <div class="door door-left">
+      <div class="door-handle"></div>
+      <div class="split-text split-text-left">HSM Shop</div>
+    </div>
+    <div class="door door-right">
+      <div class="door-handle"></div>
+      <div class="split-text split-text-right">Smarter</div>
+    </div>
+  </div>
 
 <div class="sticky-container">
 
@@ -156,6 +315,33 @@
     <%- include('partials/chatbot') %>
     <script src="/js/chatbot.js"></script>
 
+  <script>
+    // Door animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const doorLeft = document.querySelector('.door-left');
+      const doorRight = document.querySelector('.door-right');
+      const stickyContainer = document.querySelector('.sticky-container');
+      const bannerCarousel = document.querySelector('.banner-carousel');
+      const mainContent = document.querySelector('main');
+
+      // Start animation
+      setTimeout(() => {
+        doorLeft.classList.add('open');
+        doorRight.classList.add('open');
+        
+        // Start revealing website content immediately
+        stickyContainer.classList.add('visible');
+        bannerCarousel.classList.add('visible');
+        mainContent.classList.add('visible');
+      }, 500);
+
+      // Remove animation elements after animation completes
+      setTimeout(() => {
+        const doorAnimation = document.querySelector('.door-animation');
+        doorAnimation.style.display = 'none';
+      }, 3500);
+    });
+  </script>
   <script src="/js/script.js" defer></script>
 </body>
 </html>
