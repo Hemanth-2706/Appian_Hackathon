@@ -194,6 +194,7 @@ async function sendMessage() {
 
 // Function to speak text
 function speakText(text) {
+	console.log('speakText: Input text for speech:', text); // Debug log
 	// Stop any ongoing speech
 	window.speechSynthesis.cancel();
 	
@@ -211,8 +212,10 @@ function speakText(text) {
 	
 	// If voices aren't loaded yet, wait for them
 	if (voices.length === 0) {
+		console.log('speakText: No voices available yet, waiting...'); // Debug log
 		window.speechSynthesis.onvoiceschanged = () => {
 			voices = window.speechSynthesis.getVoices();
+			console.log('speakText: Voices loaded:', voices); // Debug log
 			setVoiceAndSpeak(utterance, voices);
 		};
 	} else {
@@ -222,6 +225,7 @@ function speakText(text) {
 
 // Helper function to set voice and speak
 function setVoiceAndSpeak(utterance, voices) {
+	console.log('setVoiceAndSpeak: Setting voice and initiating speech.'); // Debug log
 	// Try to get a female voice
 	const femaleVoice = voices.find(voice => 
 		voice.name.includes('female') || 
@@ -231,7 +235,10 @@ function setVoiceAndSpeak(utterance, voices) {
 	);
 	
 	if (femaleVoice) {
+		console.log('setVoiceAndSpeak: Using female voice:', femaleVoice.name); // Debug log
 		utterance.voice = femaleVoice;
+	} else {
+		console.log('setVoiceAndSpeak: No specific female voice found, using default.'); // Debug log
 	}
 	
 	// Add some emotion by varying the pitch and rate
@@ -245,35 +252,60 @@ function setVoiceAndSpeak(utterance, voices) {
 	// Ensure speech synthesis is working
 	try {
 		window.speechSynthesis.speak(utterance);
+		console.log('setVoiceAndSpeak: Speech initiated.'); // Debug log
 	} catch (error) {
-		console.error('Speech synthesis error:', error);
+		console.error('setVoiceAndSpeak: Speech synthesis error:', error); // Debug log
 	}
 }
 
 // Function to convert markdown bullet points to HTML
 function convertMarkdownToHtml(text) {
-	return text.split('\n').map(line => {
-		if (line.trim().startsWith('*')) {
-			return `<li>${line.trim().substring(1).trim()}</li>`;
+	console.log('convertMarkdownToHtml: Input text:', text); // Debug log
+	const lines = text.split('\n');
+	let htmlContent = '';
+	let inList = false;
+
+	lines.forEach(line => {
+		const trimmedLine = line.trim();
+		if (trimmedLine.startsWith('*')) {
+			// If not currently in a list, start a new one
+			if (!inList) {
+				htmlContent += '<ul>';
+				inList = true;
+			}
+			// Add the list item
+			htmlContent += `<li>${trimmedLine.substring(1).trim()}</li>`;
+		} else {
+			// If currently in a list, close it before adding non-list content
+			if (inList) {
+				htmlContent += '</ul>';
+				inList = false;
+			}
+			// Add non-list content as a paragraph, if it's not an empty line
+			if (trimmedLine) {
+				htmlContent += `<p>${trimmedLine}</p>`;
+			}
 		}
-		return line;
-	}).join('\n');
+	});
+
+	// If the text ended with a list, close the list tag
+	if (inList) {
+		htmlContent += '</ul>';
+	}
+	console.log('convertMarkdownToHtml: Output HTML:', htmlContent); // Debug log
+	return htmlContent;
 }
 
 // Function to append message to chat
 function appendMessage(message, sender) {
+	console.log('appendMessage: Message content:', message); // Debug log
+	console.log('appendMessage: Sender:', sender); // Debug log
+
 	const messageDiv = document.createElement("div");
 	messageDiv.className = `message ${sender}-message`;
 	
-	// Convert markdown bullet points to HTML
-	const formattedMessage = convertMarkdownToHtml(message);
-	
-	// Check if the message contains bullet points
-	if (formattedMessage.includes('<li>')) {
-		messageDiv.innerHTML = `<ul>${formattedMessage}</ul>`;
-	} else {
-		messageDiv.textContent = message;
-	}
+	// Convert markdown bullet points to HTML and set as innerHTML
+	messageDiv.innerHTML = convertMarkdownToHtml(message);
 	
 	messages.appendChild(messageDiv);
 	messages.scrollTop = messages.scrollHeight;
@@ -283,21 +315,17 @@ function appendMessage(message, sender) {
 		// Add a small delay to ensure the message is displayed before speaking
 		setTimeout(() => {
 			speakText(message);
-		}, 100);
+		}, 500); // Increased delay to ensure everything is ready
 	}
 	
 	return messageDiv;
 }
 
-// Initialize speech synthesis
+// Initialize speech synthesis (only to trigger voices to load if not already)
 document.addEventListener('DOMContentLoaded', () => {
-	// Load voices
-	window.speechSynthesis.getVoices();
-	
-	// Add event listener for voices changed
-	window.speechSynthesis.onvoiceschanged = () => {
-		window.speechSynthesis.getVoices();
-	};
+	console.log('DOMContentLoaded: Initializing speech synthesis.'); // Debug log
+	window.speechSynthesis.getVoices(); // This call often prompts the browser to load voices
+	console.log('DOMContentLoaded: getVoices() called.'); // Debug log
 });
 
 // Chatbot Image Upload Feature$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

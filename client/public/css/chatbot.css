@@ -91,16 +91,29 @@
 }
 
 .bot-message ul {
-  margin: 0;
+  margin: 8px 0;
   padding-left: 20px;
+  list-style-type: disc;
 }
 
 .bot-message li {
-  margin: 5px 0;
+  margin: 8px 0;
   line-height: 1.4;
 }
 
 .bot-message li:last-child {
+  margin-bottom: 0;
+}
+
+.bot-message p {
+  margin: 8px 0;
+}
+
+.bot-message p:first-child {
+  margin-top: 0;
+}
+
+.bot-message p:last-child {
   margin-bottom: 0;
 }
 
