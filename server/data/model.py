@@ -380,7 +380,7 @@ module.exports = {{
         """Generate a meaningful caption using Gemini about what was identified and recommended"""
         try:
             # Create a detailed prompt for Gemini
-            gemini_prompt = "You are a fashion assistant. Create a natural, conversational response about what was identified and recommended. "
+            gemini_prompt = "You are a fashion assistant. Create a detailed but well-structured response (5-6 bullet points with each bullet point having max 20 words) about what was identified and recommended. Structure your response in bullet points using markdown format (*) for each point. Make each point informative but concise. "
             
             if has_img and has_txt:
                 gemini_prompt += f"\nThe user provided an image and text. From the image, I identified: {img_caption}\nThe user's text request was: {prompt}"
@@ -396,9 +396,9 @@ module.exports = {{
             
             if not rec_df.empty:
                 recommended_items = rec_df['text'].tolist()
-                gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:10])}"
+                gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:5])}"
             
-            gemini_prompt += "\nEnd with asking if this is what they were looking for. Keep the response friendly and conversational."
+            gemini_prompt += "\nStructure your response with these bullet points:\n* Start with what you identified from the image/text\n* List 2-3 similar items found\n* List 2-3 complementary recommendations\n* Add a brief style suggestion or tip\n* End with a friendly question about their preferences\nKeep the response friendly and conversational. Use markdown bullet points (*) for each point."
             
             # Generate response using Gemini
             response = self.generate_with_gemini(gemini_prompt)
