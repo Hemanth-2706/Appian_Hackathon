@@ -622,7 +622,7 @@ module.exports = {{
         else:
             logger.warning("No recommendations generated")
         
-        return sim_df, rec_df
+        return sim_df, rec_df, meaningful_caption
     
     def get_product_details(self, product_ids):
         """Get detailed information for a list of product IDs"""

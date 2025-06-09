@@ -162,8 +162,7 @@ router.post("/process-recommendations", async (req, res) => {
 
 		if (!response.data.success) {
 			throw new Error(
-				response.data.detail ||
-					"Failed to process recommendations. Failed axios.post()"
+				response.data.detail || "Failed to process recommendations"
 			);
 		}
 
@@ -175,15 +174,20 @@ router.post("/process-recommendations", async (req, res) => {
 		const productsPath = path.join(__dirname, "../data/products.js");
 		delete require.cache[require.resolve(productsPath)];
 		const { similarProducts, recommendProducts } = require(productsPath);
+
+		// Store the meaningful caption from the response
+		const meaningfulCaption = response.data.meaningfulCaption;
 		req.session.recommendationResults = {
 			success: true,
 			similarProducts: similarProducts,
 			recommendProducts: recommendProducts,
+			meaningfulCaption: meaningfulCaption,
 		};
 
 		// Store the products arrays separately in session for easier access
 		req.session.similarProducts = similarProducts || [];
 		req.session.recommendProducts = recommendProducts || [];
+		req.session.meaningfulCaption = meaningfulCaption;
 
 		log(
 			`[PROCESS_RECOMMENDATIONS] Recommendation results stored`,
@@ -192,6 +196,7 @@ router.post("/process-recommendations", async (req, res) => {
 				similarProductsCount: req.session.similarProducts.length,
 				recommendProductsCount:
 					req.session.recommendProducts.length,
+				hasCaption: !!meaningfulCaption,
 			}
 		);
 
@@ -332,6 +337,10 @@ router.get("/recommend", (req, res) => {
 		})
 	);
 
+	// Get the meaningful caption
+	const meaningfulCaption =
+		results.meaningfulCaption || "Here are your recommendations!";
+
 	// Log detailed product information
 	log(
 		`[RECOMMEND] Similar Products Details:`,
@@ -343,16 +352,19 @@ router.get("/recommend", (req, res) => {
 		"INFO",
 		processedRecommendProducts
 	);
+	log(`[RECOMMEND] Meaningful Caption:`, "INFO", meaningfulCaption);
 
 	log(`[RECOMMEND] Rendering recommend page`, "INFO", {
 		similarProductsCount: processedSimilarProducts.length,
 		recommendProductsCount: processedRecommendProducts.length,
+		hasCaption: !!meaningfulCaption,
 	});
 	log(`[RECOMMEND] === Recommend Page Processing Complete ===`);
 
 	res.render("recommend", {
 		similarProducts: processedSimilarProducts,
 		recommendProducts: processedRecommendProducts,
+		meaningfulCaption: meaningfulCaption,
 	});
 });
 
@@ -870,31 +882,31 @@ router.post("/chatbot/init-session", async (req, res) => {
 			};
 		}
 
-		// Get questions from Python script
-		try {
-			const response = await axios.get(
-				"http://localhost:5001/chatbot/questions"
-			);
-			req.session.chatbotQuestions = response.data.questions;
-			log(
-				`[CHATBOT_INIT] Retrieved questions from Python script`,
-				"INFO",
-				{
-					questionCount: req.session.chatbotQuestions.length,
-				}
-			);
-		} catch (error) {
-			log(
-				`[CHATBOT_INIT] Error getting questions: ${error.message}`,
-				"ERROR"
-			);
-			req.session.chatbotQuestions = []; // Fallback to empty array
-		}
+		// // Get questions from Python script
+		// try {
+		// 	const response = await axios.get(
+		// 		"http://localhost:5001/chatbot/questions"
+		// 	);
+		// 	req.session.chatbotQuestions = response.data.questions;
+		// 	log(
+		// 		`[CHATBOT_INIT] Retrieved questions from Python script`,
+		// 		"INFO",
+		// 		{
+		// 			questionCount: req.session.chatbotQuestions.length,
+		// 		}
+		// 	);
+		// } catch (error) {
+		// 	log(
+		// 		`[CHATBOT_INIT] Error getting questions: ${error.message}`,
+		// 		"ERROR"
+		// 	);
+		// 	req.session.chatbotQuestions = []; // Fallback to empty array
+		// }
 
-		log(`[CHATBOT_INIT] Chat session initialized`, "INFO", {
-			historyLength: req.session.chatHistory.length,
-			questionCount: req.session.chatbotQuestions.length,
-		});
+		// log(`[CHATBOT_INIT] Chat session initialized`, "INFO", {
+		// 	historyLength: req.session.chatHistory.length,
+		// 	questionCount: req.session.chatbotQuestions.length,
+		// });
 		log(`[CHATBOT_INIT] === Chat Session Initialization Complete ===`);
 		res.json({ success: true });
 	} catch (error) {

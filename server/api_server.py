@@ -180,7 +180,7 @@ async def process_recommendations(request: RecommendationRequest):
         logger.info(f"- Text prompt: {request.text}")
         logger.info(f"- K value: 10")
         
-        sim_results, comp_results = recommender.recommend(
+        sim_results, comp_results, meaningful_caption = recommender.recommend(
             img=image_path,
             prompt=request.text,
             k=10
@@ -197,18 +197,20 @@ async def process_recommendations(request: RecommendationRequest):
         logger.info(f"Converted {len(recommend_products)} recommended products")
 
         logger.info(f"Total processed products - Similar: {len(similar_products)}, Recommended: {len(recommend_products)}")
+        logger.info(f"Generated meaningful caption: {meaningful_caption}")
 
-        # Clean up temporary image if it exists
-        if image_path and os.path.exists(image_path):
-            os.remove(image_path)
-            logger.info(f"Cleaned up temporary image: {image_path}")
+        # # Clean up temporary image if it exists
+        # if image_path and os.path.exists(image_path):
+        #     os.remove(image_path)
+        #     logger.info(f"Cleaned up temporary image: {image_path}")
 
         logger.info("=== Recommendation Processing Complete ===")
         return JSONResponse(
             content={
                 "success": True,
                 "similarProducts": similar_products,
-                "recommendProducts": recommend_products
+                "recommendProducts": recommend_products,
+                "meaningfulCaption": meaningful_caption
             },
             media_type="application/json"
         )

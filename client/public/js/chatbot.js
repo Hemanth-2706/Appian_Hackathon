@@ -47,18 +47,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 			},
 		});
 
-		// Get current question
-		const questionResponse = await fetch("/chatbot/current-question");
-		const questionData = await questionResponse.json();
+		// Get session data
+		const sessionResponse = await fetch("/session-debug");
+		const sessionData = await sessionResponse.json();
 
 		// Clear messages container
 		messages.innerHTML = "";
 
-		if (questionData.success) {
-			// Display the current question
-			appendMessage(questionData.question, "bot");
+		// Check if we have chat history
+		if (sessionData.chatHistory && sessionData.chatHistory.length > 0) {
+			// Display chat history
+			sessionData.chatHistory.forEach((msg) => {
+				if (msg.type === "image") {
+					appendImage(msg.content, msg.sender);
+				} else {
+					appendMessage(msg.content, msg.sender);
+				}
+			});
+
+			// If we have a meaningful caption from recommendations, display it
+			if (sessionData.recommendationResults?.meaningfulCaption) {
+				appendMessage(
+					sessionData.recommendationResults.meaningfulCaption,
+					"bot"
+				);
+			}
 		} else {
-			// Show initial messages if no questions available
+			// Show initial messages if no history
 			initialResponses.forEach((response) => {
 				appendMessage(response, "bot");
 			});
@@ -70,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 			setTimeout(() => {
 				chatbot.classList.add("show");
 			}, 50);
-		}, 500); // Show after 1 second
+		}, 500);
 	} catch (error) {
 		console.error("Error initializing chat:", error);
 		// Show initial messages even if there's an error
@@ -271,7 +286,7 @@ recommendBtn.addEventListener("click", async () => {
 	}
 
 	// Show processing message
-	appendMessage("Processing your request...", "bot");
+	const thinkingMsg = appendMessage(getRandomResponse("processing"), "bot");
 
 	try {
 		// Call the process endpoint
@@ -286,9 +301,28 @@ recommendBtn.addEventListener("click", async () => {
 			throw new Error("Failed to process recommendations");
 		}
 
-		// Redirect to recommendations page
-		window.location.href = "/recommend";
+		// Remove thinking message
+		messages.removeChild(thinkingMsg);
+
+		// Get updated session data to get the meaningful caption
+		const sessionResponse = await fetch("/session-debug");
+		const sessionData = await sessionResponse.json();
+
+		// Display the meaningful caption if available
+		if (sessionData.recommendationResults?.meaningfulCaption) {
+			appendMessage(
+				sessionData.recommendationResults.meaningfulCaption,
+				"bot"
+			);
+		}
+
+		// Redirect to recommendations page after a short delay
+		setTimeout(() => {
+			window.location.href = "/recommend";
+		}, 2000);
 	} catch (error) {
+		// Remove thinking message on error
+		messages.removeChild(thinkingMsg);
 		console.error("Error:", error);
 		appendMessage(
 			"Sorry, there was an error processing your request. Please try again.",
