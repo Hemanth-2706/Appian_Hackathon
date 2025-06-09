@@ -55,15 +55,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 		messages.innerHTML = "";
 
 		// Check if we have chat history
-		if (sessionData.chatHistory && sessionData.chatHistory.length > 0) {
-			// Display chat history
-			sessionData.chatHistory.forEach((msg) => {
-				if (msg.type === "image") {
-					appendImage(msg.content, msg.sender);
-				} else {
-					appendMessage(msg.content, msg.sender);
-				}
-			});
+		if (sessionData.chatHistory) {
+			// Display image if exists
+			if (sessionData.chatHistory.image) {
+				appendImage(sessionData.chatHistory.image.content, "user");
+			}
+			// Display text if exists
+			if (sessionData.chatHistory.userText) {
+				appendMessage(
+					sessionData.chatHistory.userText.content,
+					"user"
+				);
+			}
 
 			// If we have a meaningful caption from recommendations, display it
 			if (sessionData.recommendationResults?.meaningfulCaption) {
@@ -124,6 +127,19 @@ async function sendMessage() {
 	// Display user's answer
 	appendMessage(text, "user");
 	input.value = "";
+
+	// Store text in session
+	try {
+		await fetch("/chatbot/text", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ text }),
+		});
+	} catch (error) {
+		console.error("Error storing text:", error);
+	}
 
 	// Show bot thinking with random processing message
 	const thinkingMsg = appendMessage(getRandomResponse("processing"), "bot");
@@ -277,7 +293,13 @@ const recommendBtn = document.getElementById("chatbot-recommend-btn");
 
 recommendBtn.addEventListener("click", async () => {
 	// Check if we have either text or image in the session
-	if (!document.querySelector(".user-message")) {
+	const sessionResponse = await fetch("/session-debug");
+	const sessionData = await sessionResponse.json();
+
+	if (
+		!sessionData.chatHistory?.image &&
+		!sessionData.chatHistory?.userText
+	) {
 		appendMessage(
 			"Please describe what you're looking for or upload an image first!",
 			"bot"
@@ -305,21 +327,19 @@ recommendBtn.addEventListener("click", async () => {
 		messages.removeChild(thinkingMsg);
 
 		// Get updated session data to get the meaningful caption
-		const sessionResponse = await fetch("/session-debug");
-		const sessionData = await sessionResponse.json();
+		const updatedSessionResponse = await fetch("/session-debug");
+		const updatedSessionData = await updatedSessionResponse.json();
 
 		// Display the meaningful caption if available
-		if (sessionData.recommendationResults?.meaningfulCaption) {
+		if (updatedSessionData.recommendationResults?.meaningfulCaption) {
 			appendMessage(
-				sessionData.recommendationResults.meaningfulCaption,
+				updatedSessionData.recommendationResults.meaningfulCaption,
 				"bot"
 			);
 		}
 
 		// Redirect to recommendations page after a short delay
-		setTimeout(() => {
-			window.location.href = "/recommend";
-		}, 2000);
+		window.location.href = "/recommend";
 	} catch (error) {
 		// Remove thinking message on error
 		messages.removeChild(thinkingMsg);

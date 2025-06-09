@@ -127,8 +127,8 @@ router.post("/process-recommendations", async (req, res) => {
 	log(`[PROCESS_RECOMMENDATIONS] === Processing Recommendation Request ===`);
 	try {
 		// Get user input from session
-		const userText = req.session.userText || null;
-		const userImage = req.session.uploadedImage || null;
+		const userText = req.session.chatHistory?.userText?.content || null;
+		const userImage = req.session.chatHistory?.image?.content || null;
 		log(`[PROCESS_RECOMMENDATIONS] Session data retrieved`, "INFO", {
 			hasText: !!userText,
 			hasImage: !!userImage,
@@ -178,24 +178,21 @@ router.post("/process-recommendations", async (req, res) => {
 		// Store the meaningful caption from the response
 		const meaningfulCaption = response.data.meaningfulCaption;
 		req.session.recommendationResults = {
-			success: true,
-			similarProducts: similarProducts,
-			recommendProducts: recommendProducts,
-			meaningfulCaption: meaningfulCaption,
+			similarProducts: similarProducts || [],
+			recommendProducts: recommendProducts || [],
+			meaningfulCaption: meaningfulCaption || "",
 		};
-
-		// Store the products arrays separately in session for easier access
-		req.session.similarProducts = similarProducts || [];
-		req.session.recommendProducts = recommendProducts || [];
-		req.session.meaningfulCaption = meaningfulCaption;
 
 		log(
 			`[PROCESS_RECOMMENDATIONS] Recommendation results stored`,
 			"INFO",
 			{
-				similarProductsCount: req.session.similarProducts.length,
+				similarProductsCount:
+					req.session.recommendationResults.similarProducts
+						.length,
 				recommendProductsCount:
-					req.session.recommendProducts.length,
+					req.session.recommendationResults.recommendProducts
+						.length,
 				hasCaption: !!meaningfulCaption,
 			}
 		);
@@ -373,8 +370,10 @@ router.get("/product/:id", (req, res) => {
 	log(`[PRODUCT] Requested product ID: ${req.params.id}`);
 
 	// Get products from session
-	const sessionSimilarProducts = req.session.similarProducts || [];
-	const sessionRecommendProducts = req.session.recommendProducts || [];
+	const sessionSimilarProducts =
+		req.session.recommendationResults?.similarProducts || [];
+	const sessionRecommendProducts =
+		req.session.recommendationResults?.recommendProducts || [];
 
 	// Search for the product across all product arrays
 	let foundInArray = "";
@@ -810,22 +809,18 @@ router.post("/chatbot/image", (req, res) => {
 	if (image) {
 		// Initialize chat history if it doesn't exist
 		if (!req.session.chatHistory) {
-			req.session.chatHistory = [];
+			req.session.chatHistory = {
+				image: null,
+				userText: null,
+			};
 		}
 
-		// Add image to chat history
-		req.session.chatHistory.push({
-			type: "image",
+		// Store image in chat history
+		req.session.chatHistory.image = {
 			content: image,
-			sender: "user",
 			timestamp: new Date().toISOString(),
-		});
+		};
 
-		req.session.uploadedImage = image;
-		log(`[CHATBOT_IMAGE] Image stored in session`, "INFO", {
-			hasImage: true,
-			historyLength: req.session.chatHistory.length,
-		});
 		res.json({ success: true });
 	} else {
 		log(`[CHATBOT_IMAGE] No image provided`, "WARN");
@@ -840,21 +835,20 @@ router.post("/chatbot/text", (req, res) => {
 	if (text) {
 		// Initialize chat history if it doesn't exist
 		if (!req.session.chatHistory) {
-			req.session.chatHistory = [];
+			req.session.chatHistory = {
+				image: null,
+				userText: null,
+			};
 		}
 
-		// Add text to chat history
-		req.session.chatHistory.push({
-			type: "text",
+		// Store text in chat history
+		req.session.chatHistory.userText = {
 			content: text,
-			sender: "user",
 			timestamp: new Date().toISOString(),
-		});
+		};
 
-		req.session.userText = text;
 		log(`[CHATBOT_TEXT] Text stored in session`, "INFO", {
 			hasText: true,
-			historyLength: req.session.chatHistory.length,
 		});
 		res.json({ success: true });
 	} else {
@@ -868,45 +862,23 @@ router.post("/chatbot/text", (req, res) => {
 router.post("/chatbot/init-session", async (req, res) => {
 	log(`[CHATBOT_INIT] === Processing Chat Session Initialization ===`);
 	try {
-		// Initialize chat history if it doesn't exist
+		// Initialize chat history with the new structure
 		if (!req.session.chatHistory) {
-			req.session.chatHistory = [];
-		}
-
-		// Initialize Q&A state if it doesn't exist
-		if (!req.session.chatbotState) {
-			req.session.chatbotState = {
-				currentQuestionIndex: 0,
-				answers: {},
-				isComplete: false,
+			req.session.chatHistory = {
+				image: null,
+				userText: null,
 			};
 		}
 
-		// // Get questions from Python script
-		// try {
-		// 	const response = await axios.get(
-		// 		"http://localhost:5001/chatbot/questions"
-		// 	);
-		// 	req.session.chatbotQuestions = response.data.questions;
-		// 	log(
-		// 		`[CHATBOT_INIT] Retrieved questions from Python script`,
-		// 		"INFO",
-		// 		{
-		// 			questionCount: req.session.chatbotQuestions.length,
-		// 		}
-		// 	);
-		// } catch (error) {
-		// 	log(
-		// 		`[CHATBOT_INIT] Error getting questions: ${error.message}`,
-		// 		"ERROR"
-		// 	);
-		// 	req.session.chatbotQuestions = []; // Fallback to empty array
-		// }
+		// Initialize recommendation results with the new structure
+		if (!req.session.recommendationResults) {
+			req.session.recommendationResults = {
+				similarProducts: [],
+				recommendProducts: [],
+				meaningfulCaption: "",
+			};
+		}
 
-		// log(`[CHATBOT_INIT] Chat session initialized`, "INFO", {
-		// 	historyLength: req.session.chatHistory.length,
-		// 	questionCount: req.session.chatbotQuestions.length,
-		// });
 		log(`[CHATBOT_INIT] === Chat Session Initialization Complete ===`);
 		res.json({ success: true });
 	} catch (error) {
@@ -1056,17 +1028,20 @@ router.post("/chatbot/answer", async (req, res) => {
 	}
 });
 
-// Modify clear history to also clear Q&A state
+// Modify clear history to match new structure
 router.post("/chatbot/clear-history", (req, res) => {
 	log(`[CHATBOT_CLEAR] === Processing Clear History Request ===`);
 	try {
 		// Clear all chatbot-related session data
-		delete req.session.userText;
-		delete req.session.uploadedImage;
-		delete req.session.recommendationResults;
-		delete req.session.chatHistory;
-		delete req.session.chatbotState;
-		delete req.session.chatbotQuestions;
+		req.session.chatHistory = {
+			image: null,
+			userText: null,
+		};
+		req.session.recommendationResults = {
+			similarProducts: [],
+			recommendProducts: [],
+			meaningfulCaption: "",
+		};
 
 		log(`[CHATBOT_CLEAR] Session cleared successfully`, "INFO");
 		log(`[CHATBOT_CLEAR] === Clear History Request Complete ===`);
