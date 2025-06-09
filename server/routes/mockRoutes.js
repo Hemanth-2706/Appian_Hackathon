@@ -796,9 +796,23 @@ router.post("/chatbot/image", (req, res) => {
 	log(`[CHATBOT_IMAGE] === Processing Chatbot Image Upload ===`);
 	const { image } = req.body;
 	if (image) {
+		// Initialize chat history if it doesn't exist
+		if (!req.session.chatHistory) {
+			req.session.chatHistory = [];
+		}
+
+		// Add image to chat history
+		req.session.chatHistory.push({
+			type: "image",
+			content: image,
+			sender: "user",
+			timestamp: new Date().toISOString(),
+		});
+
 		req.session.uploadedImage = image;
 		log(`[CHATBOT_IMAGE] Image stored in session`, "INFO", {
 			hasImage: true,
+			historyLength: req.session.chatHistory.length,
 		});
 		res.json({ success: true });
 	} else {
@@ -812,9 +826,23 @@ router.post("/chatbot/text", (req, res) => {
 	log(`[CHATBOT_TEXT] === Processing Chatbot Text Input ===`);
 	const { text } = req.body;
 	if (text) {
+		// Initialize chat history if it doesn't exist
+		if (!req.session.chatHistory) {
+			req.session.chatHistory = [];
+		}
+
+		// Add text to chat history
+		req.session.chatHistory.push({
+			type: "text",
+			content: text,
+			sender: "user",
+			timestamp: new Date().toISOString(),
+		});
+
 		req.session.userText = text;
 		log(`[CHATBOT_TEXT] Text stored in session`, "INFO", {
 			hasText: true,
+			historyLength: req.session.chatHistory.length,
 		});
 		res.json({ success: true });
 	} else {
@@ -824,6 +852,199 @@ router.post("/chatbot/text", (req, res) => {
 	log(`[CHATBOT_TEXT] === Chatbot Text Input Complete ===`);
 });
 
+// Initialize chat session with Q&A flow
+router.post("/chatbot/init-session", async (req, res) => {
+	log(`[CHATBOT_INIT] === Processing Chat Session Initialization ===`);
+	try {
+		// Initialize chat history if it doesn't exist
+		if (!req.session.chatHistory) {
+			req.session.chatHistory = [];
+		}
+
+		// Initialize Q&A state if it doesn't exist
+		if (!req.session.chatbotState) {
+			req.session.chatbotState = {
+				currentQuestionIndex: 0,
+				answers: {},
+				isComplete: false,
+			};
+		}
+
+		// Get questions from Python script
+		try {
+			const response = await axios.get(
+				"http://localhost:5001/chatbot/questions"
+			);
+			req.session.chatbotQuestions = response.data.questions;
+			log(
+				`[CHATBOT_INIT] Retrieved questions from Python script`,
+				"INFO",
+				{
+					questionCount: req.session.chatbotQuestions.length,
+				}
+			);
+		} catch (error) {
+			log(
+				`[CHATBOT_INIT] Error getting questions: ${error.message}`,
+				"ERROR"
+			);
+			req.session.chatbotQuestions = []; // Fallback to empty array
+		}
+
+		log(`[CHATBOT_INIT] Chat session initialized`, "INFO", {
+			historyLength: req.session.chatHistory.length,
+			questionCount: req.session.chatbotQuestions.length,
+		});
+		log(`[CHATBOT_INIT] === Chat Session Initialization Complete ===`);
+		res.json({ success: true });
+	} catch (error) {
+		log(
+			`[CHATBOT_INIT] Error initializing chat session: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).json({
+			success: false,
+			message: "Failed to initialize chat session",
+			error: error.message,
+		});
+	}
+});
+
+// Get current question
+router.get("/chatbot/current-question", (req, res) => {
+	log(`[CHATBOT_QUESTION] === Processing Current Question Request ===`);
+	try {
+		const { chatbotState, chatbotQuestions } = req.session;
+
+		if (
+			!chatbotState ||
+			!chatbotQuestions ||
+			chatbotQuestions.length === 0
+		) {
+			return res.json({
+				success: false,
+				message: "No questions available",
+			});
+		}
+
+		const currentQuestion =
+			chatbotQuestions[chatbotState.currentQuestionIndex];
+		log(`[CHATBOT_QUESTION] Retrieved current question`, "INFO", {
+			questionIndex: chatbotState.currentQuestionIndex,
+			question: currentQuestion,
+		});
+
+		res.json({
+			success: true,
+			question: currentQuestion,
+			isComplete: chatbotState.isComplete,
+			currentIndex: chatbotState.currentQuestionIndex,
+			totalQuestions: chatbotQuestions.length,
+		});
+	} catch (error) {
+		log(
+			`[CHATBOT_QUESTION] Error getting current question: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).json({
+			success: false,
+			message: "Failed to get current question",
+			error: error.message,
+		});
+	}
+});
+
+// Process answer and get next question
+router.post("/chatbot/answer", async (req, res) => {
+	log(`[CHATBOT_ANSWER] === Processing Answer ===`);
+	try {
+		const { answer } = req.body;
+		const { chatbotState, chatbotQuestions } = req.session;
+
+		if (!chatbotState || !chatbotQuestions) {
+			return res.status(400).json({
+				success: false,
+				message: "Chat session not initialized",
+			});
+		}
+
+		// Store the answer
+		chatbotState.answers[chatbotState.currentQuestionIndex] = answer;
+
+		// Add answer to chat history
+		req.session.chatHistory.push({
+			type: "text",
+			content: answer,
+			sender: "user",
+			timestamp: new Date().toISOString(),
+		});
+
+		// Get next question or recommendations
+		try {
+			const response = await axios.post(
+				"http://localhost:5001/chatbot/process-answer",
+				{
+					questionIndex: chatbotState.currentQuestionIndex,
+					answer: answer,
+					answers: chatbotState.answers,
+				}
+			);
+
+			// Add bot response to chat history
+			if (response.data.botResponse) {
+				req.session.chatHistory.push({
+					type: "text",
+					content: response.data.botResponse,
+					sender: "bot",
+					timestamp: new Date().toISOString(),
+				});
+			}
+
+			// Update state
+			chatbotState.currentQuestionIndex++;
+			chatbotState.isComplete = response.data.isComplete;
+
+			if (response.data.recommendations) {
+				req.session.recommendationResults =
+					response.data.recommendations;
+			}
+
+			log(`[CHATBOT_ANSWER] Processed answer`, "INFO", {
+				questionIndex: chatbotState.currentQuestionIndex - 1,
+				isComplete: chatbotState.isComplete,
+			});
+
+			res.json({
+				success: true,
+				isComplete: chatbotState.isComplete,
+				botResponse: response.data.botResponse,
+				hasRecommendations: !!response.data.recommendations,
+			});
+		} catch (error) {
+			log(
+				`[CHATBOT_ANSWER] Error processing answer: ${error.message}`,
+				"ERROR"
+			);
+			res.status(500).json({
+				success: false,
+				message: "Failed to process answer",
+				error: error.message,
+			});
+		}
+	} catch (error) {
+		log(
+			`[CHATBOT_ANSWER] Error handling answer: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).json({
+			success: false,
+			message: "Failed to handle answer",
+			error: error.message,
+		});
+	}
+});
+
+// Modify clear history to also clear Q&A state
 router.post("/chatbot/clear-history", (req, res) => {
 	log(`[CHATBOT_CLEAR] === Processing Clear History Request ===`);
 	try {
@@ -831,6 +1052,9 @@ router.post("/chatbot/clear-history", (req, res) => {
 		delete req.session.userText;
 		delete req.session.uploadedImage;
 		delete req.session.recommendationResults;
+		delete req.session.chatHistory;
+		delete req.session.chatbotState;
+		delete req.session.chatbotQuestions;
 
 		log(`[CHATBOT_CLEAR] Session cleared successfully`, "INFO");
 		log(`[CHATBOT_CLEAR] === Clear History Request Complete ===`);
