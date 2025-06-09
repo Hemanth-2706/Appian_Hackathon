@@ -152,60 +152,10 @@ async function sendMessage() {
 
 	// Show bot thinking with random processing message
 	const thinkingMsg = appendMessage(getRandomResponse("processing"), "bot");
-
-	try {
-		// Add a delay to show the thinking message
-		await new Promise((resolve) => setTimeout(resolve, 15000));
-
-		const response = await fetch("/chatbot/answer", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ answer: text }),
-		});
-
-		const data = await response.json();
-
-		// Remove thinking message
+	// Remove thinking message after a delay
+	setTimeout(() => {
 		messages.removeChild(thinkingMsg);
-
-		if (data.success) {
-			// If there's a bot response, display it
-			if (data.botResponse) {
-				appendMessage(data.botResponse, "bot");
-			}
-
-			// If the Q&A is complete and we have recommendations
-			if (data.isComplete && data.hasRecommendations) {
-				appendMessage(
-					"Great! Let me show you some recommendations based on your preferences.",
-					"bot"
-				);
-				setTimeout(() => {
-					window.location.href = "/recommend";
-				}, 2000);
-			} else if (!data.isComplete) {
-				// Get and display next question
-				const questionResponse = await fetch(
-					"/chatbot/current-question"
-				);
-				const questionData = await questionResponse.json();
-
-				if (questionData.success) {
-					appendMessage(questionData.question, "bot");
-				}
-			}
-		}
-	} catch (error) {
-		// Remove thinking message on error
-		messages.removeChild(thinkingMsg);
-		console.error("Error sending message:", error);
-		appendMessage(
-			"Sorry, there was an error processing your answer. Please try again.",
-			"bot"
-		);
-	}
+	}, 15000);
 }
 
 // IMPROVED TEXT-TO-SPEECH FUNCTIONS
@@ -482,29 +432,12 @@ imageInput.addEventListener("change", async (e) => {
 				// Remove thinking message after a delay
 				setTimeout(() => {
 					messages.removeChild(thinkingMsg);
-					// Get and display next question
-					fetch("/chatbot/current-question")
-						.then((response) => response.json())
-						.then((questionData) => {
-							if (questionData.success) {
-								appendMessage(
-									questionData.question,
-									"bot"
-								);
-							}
-						})
-						.catch((error) => {
-							console.error(
-								"Error getting next question:",
-								error
-							);
-						});
 				}, 15000);
 			} catch (err) {
 				messages.removeChild(thinkingMsg);
 				console.error("Upload error", err);
 				appendMessage(
-					"Sorry, there was an error processing your image. Please try again.",
+					"Sorry, there was an error uploading your image. Please try again.",
 					"bot"
 				);
 			}
@@ -566,9 +499,6 @@ recommendBtn.addEventListener("click", async () => {
 			throw new Error("Failed to process recommendations");
 		}
 
-		// Remove thinking message
-		messages.removeChild(thinkingMsg);
-
 		// Get updated session data to get the meaningful caption
 		const updatedSessionResponse = await fetch("/session-debug");
 		const updatedSessionData = await updatedSessionResponse.json();
@@ -580,7 +510,7 @@ recommendBtn.addEventListener("click", async () => {
 				"bot"
 			);
 		}
-
+		console.log("Redirecting to /recommend");
 		// Redirect to recommendations page after a short delay
 		window.location.href = "/recommend";
 	} catch (error) {
