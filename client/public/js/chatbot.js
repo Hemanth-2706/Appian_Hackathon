@@ -192,14 +192,113 @@ async function sendMessage() {
 	}
 }
 
-function appendMessage(text, sender) {
-	const msg = document.createElement("div");
-	msg.className = sender + "-message";
-	msg.textContent = text;
-	messages.appendChild(msg);
-	messages.scrollTop = messages.scrollHeight;
-	return msg;
+// Function to speak text
+function speakText(text) {
+	// Stop any ongoing speech
+	window.speechSynthesis.cancel();
+	
+	// Remove markdown bullet points for speech
+	const cleanText = text.replace(/\*/g, '');
+	const utterance = new SpeechSynthesisUtterance(cleanText);
+	
+	// Set voice properties
+	utterance.rate = 1.0;
+	utterance.pitch = 1.1; // Slightly higher pitch for female voice
+	utterance.volume = 1.0;
+	
+	// Get available voices
+	let voices = window.speechSynthesis.getVoices();
+	
+	// If voices aren't loaded yet, wait for them
+	if (voices.length === 0) {
+		window.speechSynthesis.onvoiceschanged = () => {
+			voices = window.speechSynthesis.getVoices();
+			setVoiceAndSpeak(utterance, voices);
+		};
+	} else {
+		setVoiceAndSpeak(utterance, voices);
+	}
 }
+
+// Helper function to set voice and speak
+function setVoiceAndSpeak(utterance, voices) {
+	// Try to get a female voice
+	const femaleVoice = voices.find(voice => 
+		voice.name.includes('female') || 
+		voice.name.includes('Female') || 
+		voice.name.includes('Samantha') || 
+		voice.name.includes('Google UK English Female')
+	);
+	
+	if (femaleVoice) {
+		utterance.voice = femaleVoice;
+	}
+	
+	// Add some emotion by varying the pitch and rate
+	utterance.onboundary = (event) => {
+		if (event.name === 'sentence') {
+			// Vary pitch slightly for each sentence
+			utterance.pitch = 1.0 + Math.random() * 0.2;
+		}
+	};
+	
+	// Ensure speech synthesis is working
+	try {
+		window.speechSynthesis.speak(utterance);
+	} catch (error) {
+		console.error('Speech synthesis error:', error);
+	}
+}
+
+// Function to convert markdown bullet points to HTML
+function convertMarkdownToHtml(text) {
+	return text.split('\n').map(line => {
+		if (line.trim().startsWith('*')) {
+			return `<li>${line.trim().substring(1).trim()}</li>`;
+		}
+		return line;
+	}).join('\n');
+}
+
+// Function to append message to chat
+function appendMessage(message, sender) {
+	const messageDiv = document.createElement("div");
+	messageDiv.className = `message ${sender}-message`;
+	
+	// Convert markdown bullet points to HTML
+	const formattedMessage = convertMarkdownToHtml(message);
+	
+	// Check if the message contains bullet points
+	if (formattedMessage.includes('<li>')) {
+		messageDiv.innerHTML = `<ul>${formattedMessage}</ul>`;
+	} else {
+		messageDiv.textContent = message;
+	}
+	
+	messages.appendChild(messageDiv);
+	messages.scrollTop = messages.scrollHeight;
+	
+	// Speak the message if it's from the bot
+	if (sender === 'bot') {
+		// Add a small delay to ensure the message is displayed before speaking
+		setTimeout(() => {
+			speakText(message);
+		}, 100);
+	}
+	
+	return messageDiv;
+}
+
+// Initialize speech synthesis
+document.addEventListener('DOMContentLoaded', () => {
+	// Load voices
+	window.speechSynthesis.getVoices();
+	
+	// Add event listener for voices changed
+	window.speechSynthesis.onvoiceschanged = () => {
+		window.speechSynthesis.getVoices();
+	};
+});
 
 // Chatbot Image Upload Feature$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 

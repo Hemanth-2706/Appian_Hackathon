@@ -380,7 +380,7 @@ module.exports = {{
         """Generate a meaningful caption using Gemini about what was identified and recommended"""
         try:
             # Create a detailed prompt for Gemini
-            gemini_prompt = "You are a fashion assistant. Create a natural, conversational response about what was identified and recommended. "
+            gemini_prompt = "You are a fashion assistant. Create a detailed but well-structured response (5-6 bullet points with each bullet point having max 20 words) about what was identified and recommended. Structure your response in bullet points using markdown format (*) for each point. Make each point informative but concise. "
             
             if has_img and has_txt:
                 gemini_prompt += f"\nThe user provided an image and text. From the image, I identified: {img_caption}\nThe user's text request was: {prompt}"
@@ -396,9 +396,9 @@ module.exports = {{
             
             if not rec_df.empty:
                 recommended_items = rec_df['text'].tolist()
-                gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:10])}"
+                gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:5])}"
             
-            gemini_prompt += "\nEnd with asking if this is what they were looking for. Keep the response friendly and conversational."
+            gemini_prompt += "\nStructure your response with these bullet points:\n* Start with what you identified from the image/text\n* List 2-3 similar items found\n* List 2-3 complementary recommendations\n* Add a brief style suggestion or tip\n* End with a friendly question about their preferences\nKeep the response friendly and conversational. Use markdown bullet points (*) for each point."
             
             # Generate response using Gemini
             response = self.generate_with_gemini(gemini_prompt)
@@ -421,198 +421,142 @@ module.exports = {{
             return "I apologize, but I encountered an error while generating the response."
 
     def recommend(self, img=None, prompt=None, k=K):
-        """Complete recommendation function"""
+        """Complete recommendation function, now parallelized."""
         logger.info(f"recommend called with img: {img}, prompt: {prompt}")
         has_img = img is not None
         has_txt = prompt is not None
-        
+
         if not has_img and not has_txt:
             logger.error("Both image and prompt are missing")
-            return None, None
-        
-        sim_df = pd.DataFrame()
-        rec_df = pd.DataFrame()
+            return None, None, ""
+
+        # --- 1) Precompute shared data once ---
+        img_emb = None
+        txt_emb = None
         img_caption = ""
-        
-        # Visual or Text Similarity
+        input_category = None
+        gender = None
+
         if has_img:
-            logger.info("Processing image input...")
             img_emb = self.embed_image(img)
             if img_emb is None:
                 logger.error("Could not process image")
-                return None, None
+                return None, None, ""
             img_emb = img_emb.astype('float32')
-            if len(img_emb.shape) == 1:
+            if img_emb.ndim == 1:
                 img_emb = img_emb.reshape(1, -1)
             faiss.normalize_L2(img_emb)
-            
-            # Get the category of the input image
+
             img_caption = self.generate_caption(img)
-            input_category = None      
-            gender = None
             if img_caption:
-                # Extract category from caption using Gemini
+                # extract category
                 category_prompt = f"Given this product description: '{img_caption}', what is the main category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
                 input_category = self.generate_with_gemini(category_prompt).strip()
-                logger.info(f"Detected input category: {input_category}")
-            
-            if has_txt:
-                #generate gender from text
-                gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
-                gender = self.generate_with_gemini(gender_prompt).strip()
-                logger.info(f"Detected gender from text and image: {gender}")
 
-                logger.info("Processing combined image and text input...")
-                txt_emb = self.embed_text(prompt)
-                txt_emb = txt_emb.astype('float32')
-                if len(txt_emb.shape) == 1:
-                    txt_emb = txt_emb.reshape(1, -1)
-                faiss.normalize_L2(txt_emb)
-                qv = np.concatenate([img_emb, txt_emb], axis=1).astype("float32")
-                faiss.normalize_L2(qv)
-                Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
-            else:
-                logger.info("Processing image-only input...")
-
-                gender_prompt = f"Given this product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
-                gender = self.generate_with_gemini(gender_prompt).strip()
-                logger.info(f"Detected gender from image: {gender}")
-
-                zero_txt = np.zeros((1, self.txt_embs.shape[1]), dtype=np.float32)
-                qv = np.concatenate([img_emb, zero_txt], axis=1).astype("float32")
-                faiss.normalize_L2(qv)
-                Dv, Iv = self.sim_index.search(qv, k*3)  # Increased search size for better filtering
-            
-            # Filter results by category if available
-            sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
-            sim_df["score_img"] = Dv[0]
-            
-            if input_category:
-                # More flexible category matching
-                category_matches = (
-                    sim_df["subCategory"].str.contains(input_category, case=False, na=False)
-                )
-                
-                if category_matches.any():
-                    sim_df = sim_df[category_matches]
-                else:
-                    logger.warning(f"No exact category matches found for {input_category}, using top similarity scores")
-
-            if gender:
-                gender_matches = (
-                    sim_df["gender"].str.contains(gender, case=False, na=False)
-                )
-                if gender_matches.any():
-                    sim_df = sim_df[gender_matches]
-                else:
-                    logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
-                    
-            
-            # Ensure we have enough results
-            if len(sim_df) < k:
-                logger.warning(f"Not enough category-filtered results ({len(sim_df)}), using top similarity scores")
-                sim_df = self.df.iloc[Iv[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
-                sim_df["score_img"] = Dv[0]
-            
-            sim_df = sim_df.head(k)  # Take top k after filtering
-            
-        elif has_txt:
-            logger.info("Processing text-only input...")
-
-            gender_prompt = f"Given this product requirement: '{prompt}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
-            gender = self.generate_with_gemini(gender_prompt).strip()
-            logger.info(f"Detected gender from text: {gender}")
-
-            txt_emb = self.embed_text(prompt)
-            txt_emb = txt_emb.astype('float32')
-            if len(txt_emb.shape) == 1:
+        if has_txt:
+            txt_emb = self.embed_text(prompt).astype('float32')
+            if txt_emb.ndim == 1:
                 txt_emb = txt_emb.reshape(1, -1)
             faiss.normalize_L2(txt_emb)
-            Dt, It = self.txt_index.search(txt_emb, k)
-            sim_df = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
-            sim_df["score_txt"] = Dt[0]
 
+            # extract gender
+            gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+            gender = self.generate_with_gemini(gender_prompt).strip()
+        elif has_img and img_caption:
+            # image-only gender
+            gender_prompt = f"Given this product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
+            gender = self.generate_with_gemini(gender_prompt).strip()   
+
+        # --- 2) Define the two search tasks ---
+        def sim_search():
+            # multimodal (or text-only) FAISS search + filtering
+            if img_emb is not None and txt_emb is not None:
+                q = np.concatenate([img_emb, txt_emb], axis=1).astype('float32')
+                faiss.normalize_L2(q)
+                D, I = self.sim_index.search(q, k * 3)
+                df = self.df.iloc[I[0]].copy()
+                df["score"] = D[0]
+            elif img_emb is not None:
+                zero = np.zeros((1, self.txt_embs.shape[1]), dtype='float32')
+                q = np.concatenate([img_emb, zero], axis=1).astype('float32')
+                faiss.normalize_L2(q)
+                D, I = self.sim_index.search(q, k * 3)
+                df = self.df.iloc[I[0]].copy()
+                df["score"] = D[0]
+            else:
+                D, I = self.txt_index.search(txt_emb, k * 3)
+                df = self.df.iloc[I[0]].copy()
+                df["score"] = D[0]
+
+            # apply category filter
+            if input_category:
+                mask = df["subCategory"].str.contains(input_category, case=False, na=False)
+                if mask.any():
+                    df = df[mask]
+
+            # apply gender filter
             if gender:
-                gender_matches = (
-                    sim_df["gender"].str.contains(gender, case=False, na=False)
-                )
-                if gender_matches.any():
-                    sim_df = sim_df[gender_matches]
-                else:
-                    logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
-        
-        logger.info(f"Similar product IDs: {sim_df['productId'].tolist() if not sim_df.empty else 'None'}")
-        
-        # Caption + Complementary Retrieval
-        if has_txt or has_img:
-            logger.info("Generating complementary recommendations...")
-            caption = self.generate_caption(img) if has_img else ""
-            if caption:
-                logger.info(f"Generated caption: {caption}")
-            
-            # Get complementary categories
-            cats = self.ask_complements_local(caption, prompt if has_txt else "")
-            logger.info(f"Generated {len(cats)} complementary categories")
-            
-            # Extract categories from the complementary items
-            complementary_categories = []
-            for cat in cats:
-                try:
-                    category = cat.split("Category: ")[1].split(";")[0].strip()
-                    complementary_categories.append(category)
-                except:
-                    continue
-            
-            logger.info(f"Complementary categories: {complementary_categories}")
-            
-            cand = []
-            items_per_cat=k//5
-            score_threshold=0.5
-            for cat in cats:
-                q_t = self.embed_text(cat)
-                q_t = q_t.astype('float32')
-                if len(q_t.shape) == 1:
-                    q_t = q_t.reshape(1, -1)
-                faiss.normalize_L2(q_t)
-                Dt, It = self.txt_index.search(q_t, k*3)  # Increased search size
-                dfc = self.df.iloc[It[0]][["productId", "text", "masterCategory", "subCategory","gender"]].copy()
-                dfc["score_txt"] = Dt[0]
-                
-                # Filter by complementary categories
-                if complementary_categories:
-                    category_matches = (
-                        dfc["subCategory"].isin(complementary_categories)
-                    )
-                    if category_matches.any():
-                        dfc = dfc[category_matches]
-                    else:
-                        logger.warning(f"No exact category matches found for complementary categories, using top similarity scores")
+                mask = df["gender"].str.contains(gender, case=False, na=False)
+                if mask.any():
+                    df = df[mask]
 
+            # fallback if too few
+            if len(df) < k:
+                df = self.df.iloc[I[0]].copy()
+                df["score"] = D[0]
+
+            return df.head(k)
+
+        def comp_search():
+            # generate complementary descriptors
+            caption_for_comp = img_caption or ""
+            cats = self.ask_complements_local(caption_for_comp, prompt or "")
+            cand_dfs = []
+            items_per_cat = max(1, k // len(cats))
+
+            for desc in cats:
+                emb = self.embed_text(desc).astype('float32')
+                faiss.normalize_L2(emb)
+                D, I = self.txt_index.search(emb, k * 3)
+                dfc = self.df.iloc[I[0]].copy()
+                dfc["score_txt"] = D[0]
+
+                # category filter
+                cat_label = desc.split("Category: ")[1].split(";")[0]
+                mask_cat = dfc["subCategory"].str.contains(cat_label, case=False, na=False)
+                if mask_cat.any():
+                    dfc = dfc[mask_cat]
+
+                # gender filter
                 if gender:
-                    gender_matches = (
-                        dfc["gender"].str.contains(gender, case=False, na=False)
-                    )
-                    if gender_matches.any():
-                        dfc = dfc[gender_matches]
-                    else:
-                        logger.warning(f"No exact gender matches found for {gender}, using top similarity scores")
-                # Only keep items above threshold and take top items_per_cat
-                dfc = dfc[dfc["score_txt"] >= score_threshold]
-                if not dfc.empty:
-                    dfc = dfc.head(items_per_cat)
-                    cand.append(dfc)
-            
-            if cand:
-                rec_df = pd.concat(cand, ignore_index=True)
-                rec_df = (
-                    rec_df
+                    mask_g = dfc["gender"].str.contains(gender, case=False, na=False)
+                    if mask_g.any():
+                        dfc = dfc[mask_g]
+
+                # take top for this descriptor
+                cand_dfs.append(dfc.head(items_per_cat))
+
+            if cand_dfs:
+                all_rec = pd.concat(cand_dfs, ignore_index=True)
+                all_rec = (
+                    all_rec
                     .sort_values("score_txt", ascending=False)
-                    .drop_duplicates(subset="productId", keep="first")
+                    .drop_duplicates("productId")
                 )
-        
-        logger.info(f"Recommended product IDs: {rec_df['productId'].tolist() if not rec_df.empty else 'None'}")
-        
-        # Process recommendations and download images
+                return all_rec.head(k)
+            return pd.DataFrame()
+
+        # --- 3) Run both tasks in parallel ---
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+            sim_future = executor.submit(sim_search)
+            comp_future = executor.submit(comp_search)
+            sim_df = sim_future.result()
+            rec_df = comp_future.result()
+
+        logger.info(f"Similar product IDs: {sim_df['productId'].tolist()}")
+        logger.info(f"Recommended product IDs: {rec_df['productId'].tolist()}")
+
+        # --- 4) Downstream processing ---
         if not sim_df.empty or not rec_df.empty:
             self.process_recommendations(sim_df, rec_df)
             # Generate meaningful caption
