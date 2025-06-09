@@ -9,6 +9,8 @@ from transformers import CLIPProcessor, CLIPModel, BlipProcessor, BlipForConditi
 import google.generativeai as genai
 # from sentence_transformers import SentenceTransformer
 import regex as re
+import concurrent.futures
+import time
 
 # Configure logging
 logging.basicConfig(
@@ -72,6 +74,7 @@ class FashionRecommender:
     
     def load_dataset(self):
         """Load the main dataset"""
+        start_time = time.time()
         logger.info("Loading dataset...")
         self.df = pd.read_csv(os.path.join(DATA_DIR, "filtered_df.csv"), dtype=str)
         # Robust column renaming for productId
@@ -82,9 +85,12 @@ class FashionRecommender:
         logger.info(f"DF head: {self.df.head()}\n")
         logger.info(f"DF columns: {self.df.columns.tolist()}")
         logger.info("Dataset loaded with %d records", len(self.df))
+        end_time = time.time()
+        logger.info(f"load_dataset took: {end_time - start_time:.2f} seconds")
     
     def download_images(self, product_ids, output_folder):
         """Download images for given product IDs"""
+        start_time = time.time()
         logger.info(f"Downloading images for {len(product_ids)} products to {output_folder}")
         filtered_df = self.df[self.df["productId"].isin(product_ids)]
         image_extensions = {}
@@ -195,6 +201,7 @@ module.exports = {{
 
     def clear_output_directories(self):
         """Clear existing images from output directories"""
+        start_time = time.time()
         logger.info("Clearing output directories...")
         try:
             # Clear similarProducts directory
@@ -215,9 +222,12 @@ module.exports = {{
         except Exception as e:
             logger.error(f"Error clearing directories: {str(e)}")
             raise
+        end_time = time.time()
+        logger.info(f"clear_output_directories took: {end_time - start_time:.2f} seconds")
 
     def process_recommendations(self, sim_results, comp_results):
         """Process recommendation results and create products.js"""
+        start_time = time.time()
         try:
             # Clear existing images first
             self.clear_output_directories()
@@ -245,9 +255,12 @@ module.exports = {{
         except Exception as e:
             logger.error(f"Error processing recommendations: {str(e)}")
             raise
+        end_time = time.time()
+        logger.info(f"process_recommendations took: {end_time - start_time:.2f} seconds")
 
     def load_models(self):
         """Load all models needed for inference"""
+        start_time = time.time()
         if self.models_loaded:
             return
             
@@ -265,9 +278,12 @@ module.exports = {{
         
         self.models_loaded = True
         logger.info("Models loaded successfully!")
+        end_time = time.time()
+        logger.info(f"load_models took: {end_time - start_time:.2f} seconds")
     
     def load_embeddings(self):
         """Load pre-computed embeddings and metadata"""
+        start_time = time.time()
         logger.info("Loading embeddings and metadata...")
         self.img_embs = np.load(os.path.join(DATA_DIR, "img_embs.npy"))
         self.txt_embs = np.load(os.path.join(DATA_DIR, "txt_embs.npy"))
@@ -275,9 +291,12 @@ module.exports = {{
         logger.info(f"img_embs shape: {self.img_embs.shape}, sample: {self.img_embs[0][:5]}")
         logger.info(f"txt_embs shape: {self.txt_embs.shape}, sample: {self.txt_embs[0][:5]}")
         logger.info(f"valid_indices shape: {self.valid_indices.shape}, sample: {self.valid_indices[:5]}")
+        end_time = time.time()
+        logger.info(f"load_embeddings took: {end_time - start_time:.2f} seconds")
     
     def build_indexes(self):
         """Build FAISS indexes from loaded embeddings"""
+        start_time = time.time()
         logger.info("Building FAISS indexes...")
         
         # Fused index for multimodal search
@@ -291,9 +310,12 @@ module.exports = {{
         self.txt_index.add(self.txt_embs)
         
         logger.info("Indexes built successfully!")
+        end_time = time.time()
+        logger.info(f"build_indexes took: {end_time - start_time:.2f} seconds")
     
     def embed_image(self, image_path):
         """Generate embedding for a new image"""
+        start_time = time.time()
         try:
             img = Image.open(image_path).convert("RGB")
         except FileNotFoundError:
@@ -304,19 +326,27 @@ module.exports = {{
         with torch.no_grad():
             emb = self.clip_model.get_image_features(**inp)
             emb /= emb.norm(p=2, dim=-1, keepdim=True)
+        
+        end_time = time.time()
+        logger.info(f"embed_image took: {end_time - start_time:.2f} seconds")
         return emb.cpu().numpy().astype('float32')
     
     def embed_text(self, text: str) -> np.ndarray:
         """Generate embedding for text"""
+        start_time = time.time()
         inputs = self.clip_proc(text=[text], return_tensors="pt", padding=True).to(DEVICE)
         with torch.no_grad():
             txt_feats = self.clip_model.get_text_features(**inputs)
         arr = txt_feats.cpu().numpy().astype("float32")
         faiss.normalize_L2(arr)
+        
+        end_time = time.time()
+        logger.info(f"embed_text took: {end_time - start_time:.2f} seconds")
         return arr
     
     def generate_caption(self, image_path: str):
         """Generate caption for an image using BLIP"""
+        start_time = time.time()
         try:
             image = Image.open(image_path).convert("RGB")
             inputs = self.blip_proc(images=image, return_tensors="pt").to(DEVICE)
@@ -328,6 +358,9 @@ module.exports = {{
                 no_repeat_ngram_size=3,    # reduce repetition
                 early_stopping=True)
             caption = self.blip_proc.decode(out[0], skip_special_tokens=True)
+            
+            end_time = time.time()
+            logger.info(f"generate_caption took: {end_time - start_time:.2f} seconds")
             return caption
         except Exception as e:
             logger.error(f"Error generating caption: {e}")
@@ -335,9 +368,13 @@ module.exports = {{
     
     def generate_with_gemini(self, prompt: str) -> str:
         """Generate response using Gemini API"""
+        start_time = time.time()
         try:
             model = genai.GenerativeModel("gemini-1.5-pro")
             response = model.generate_content(prompt)
+            
+            end_time = time.time()
+            logger.info(f"generate_with_gemini took: {end_time - start_time:.2f} seconds")
             return response.text if hasattr(response, 'text') else str(response)
         except Exception as e:
             logger.error(f"Error with Gemini API: {e}")
@@ -345,6 +382,7 @@ module.exports = {{
     
     def ask_complements_local(self, caption, user_prompt, k=K):
         """Get complementary item recommendations using Gemini"""
+        start_time = time.time()
         prompt = (
             f"You are a professional fashion stylist."
             f"\nYou are given a product: \"{caption}\"."
@@ -374,13 +412,15 @@ module.exports = {{
         #         break
         # numbered_items = [f"{i+1}. {itm}" for i, itm in enumerate(items)]
 
+        end_time = time.time()
+        logger.info(f"ask_complements_local took: {end_time - start_time:.2f} seconds")
         return numbered_items
     
     def generate_meaningful_caption(self, has_img, has_txt, img_caption, prompt, sim_df, rec_df):
         """Generate a meaningful caption using Gemini about what was identified and recommended"""
         try:
             # Create a detailed prompt for Gemini
-            gemini_prompt = "You are a fashion assistant. Create a detailed but well-structured response (5-6 bullet points with each bullet point having max 20 words) about what was identified and recommended. Structure your response in bullet points using markdown format (*) for each point. Make each point informative but concise. "
+            gemini_prompt = "You are a fashion assistant. Create a natural, conversational response about what was identified and recommended. Structure your response in bullet points using markdown format (*) for each point. "
             
             if has_img and has_txt:
                 gemini_prompt += f"\nThe user provided an image and text. From the image, I identified: {img_caption}\nThe user's text request was: {prompt}"
@@ -398,7 +438,7 @@ module.exports = {{
                 recommended_items = rec_df['text'].tolist()
                 gemini_prompt += f"\nI recommend these complementary items: {', '.join(recommended_items[:5])}"
             
-            gemini_prompt += "\nStructure your response with these bullet points:\n* Start with what you identified from the image/text\n* List 2-3 similar items found\n* List 2-3 complementary recommendations\n* Add a brief style suggestion or tip\n* End with a friendly question about their preferences\nKeep the response friendly and conversational. Use markdown bullet points (*) for each point."
+            gemini_prompt += "\nEnd with asking if this is what they were looking for. Keep the response friendly and conversational. Ensure all points are formatted as markdown bullet points (*)."
             
             # Generate response using Gemini
             response = self.generate_with_gemini(gemini_prompt)
@@ -422,6 +462,7 @@ module.exports = {{
 
     def recommend(self, img=None, prompt=None, k=K):
         """Complete recommendation function, now parallelized."""
+        overall_start_time = time.time()
         logger.info(f"recommend called with img: {img}, prompt: {prompt}")
         has_img = img is not None
         has_txt = prompt is not None
@@ -438,7 +479,11 @@ module.exports = {{
         gender = None
 
         if has_img:
+            img_embed_start_time = time.time()
             img_emb = self.embed_image(img)
+            img_embed_end_time = time.time()
+            logger.info(f"Image embedding in recommend took: {img_embed_end_time - img_embed_start_time:.2f} seconds")
+
             if img_emb is None:
                 logger.error("Could not process image")
                 return None, None, ""
@@ -447,28 +492,44 @@ module.exports = {{
                 img_emb = img_emb.reshape(1, -1)
             faiss.normalize_L2(img_emb)
 
+            caption_gen_start_time = time.time()
             img_caption = self.generate_caption(img)
+            caption_gen_end_time = time.time()
+            logger.info(f"Caption generation in recommend took: {caption_gen_end_time - caption_gen_start_time:.2f} seconds")
+
             if img_caption:
-                # extract category
+                category_prompt_start_time = time.time()
                 category_prompt = f"Given this product description: '{img_caption}', what is the main category of this product? Respond with just the category name.choose any one from:['Topwear','Shoes','Bags','Bottomwear','Watches','Innerwear','Jewellery','Eyewear','Fragrance','Sandal','Wallets','Flip Flops','Belts','Socks','Lips','Dress','Loungewear and Nightwear','Saree','Nails','Makeup','Headwear','Ties','Accessories','Scarves','Cufflinks','Apparel Set','Free Gifts','Stoles','Skin Care','Skin','Eyes','Mufflers','Shoe Accessories','Sports Equipment','Gloves','Hair','Bath and Body','Water Bottle','Perfumes','Umbrellas','Beauty Accessories','Wristbands','Sports Accessories','Home Furnishing','Vouchers']"
                 input_category = self.generate_with_gemini(category_prompt).strip()
+                category_prompt_end_time = time.time()
+                logger.info(f"Category extraction took: {category_prompt_end_time - category_prompt_start_time:.2f} seconds")
 
         if has_txt:
+            txt_embed_start_time = time.time()
             txt_emb = self.embed_text(prompt).astype('float32')
+            txt_embed_end_time = time.time()
+            logger.info(f"Text embedding in recommend took: {txt_embed_end_time - txt_embed_start_time:.2f} seconds")
+
             if txt_emb.ndim == 1:
                 txt_emb = txt_emb.reshape(1, -1)
             faiss.normalize_L2(txt_emb)
 
-            # extract gender
+            gender_prompt_start_time = time.time()
             gender_prompt = f"Given this product requirement : '{prompt}' and product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
             gender = self.generate_with_gemini(gender_prompt).strip()
+            gender_prompt_end_time = time.time()
+            logger.info(f"Gender extraction took: {gender_prompt_end_time - gender_prompt_start_time:.2f} seconds")
+
         elif has_img and img_caption:
-            # image-only gender
+            gender_prompt_start_time = time.time()
             gender_prompt = f"Given this product description: '{img_caption}', what is the gender of this product? Respond with just the gender name.choose any one from:['Boys','Girls','Men','Women','Unisex']"
-            gender = self.generate_with_gemini(gender_prompt).strip()   
+            gender = self.generate_with_gemini(gender_prompt).strip()
+            gender_prompt_end_time = time.time()
+            logger.info(f"Gender extraction (image-only) took: {gender_prompt_end_time - gender_prompt_start_time:.2f} seconds")
 
         # --- 2) Define the two search tasks ---
         def sim_search():
+            sim_search_start_time = time.time()
             # multimodal (or text-only) FAISS search + filtering
             if img_emb is not None and txt_emb is not None:
                 q = np.concatenate([img_emb, txt_emb], axis=1).astype('float32')
@@ -505,9 +566,12 @@ module.exports = {{
                 df = self.df.iloc[I[0]].copy()
                 df["score"] = D[0]
 
+            sim_search_end_time = time.time()
+            logger.info(f"sim_search took: {sim_search_end_time - sim_search_start_time:.2f} seconds")
             return df.head(k)
 
         def comp_search():
+            comp_search_start_time = time.time()
             # generate complementary descriptors
             caption_for_comp = img_caption or ""
             cats = self.ask_complements_local(caption_for_comp, prompt or "")
@@ -543,15 +607,22 @@ module.exports = {{
                     .sort_values("score_txt", ascending=False)
                     .drop_duplicates("productId")
                 )
+                comp_search_end_time = time.time()
+                logger.info(f"comp_search took: {comp_search_end_time - comp_search_start_time:.2f} seconds")
                 return all_rec.head(k)
+            comp_search_end_time = time.time()
+            logger.info(f"comp_search took: {comp_search_end_time - comp_search_start_time:.2f} seconds")
             return pd.DataFrame()
 
         # --- 3) Run both tasks in parallel ---
+        parallel_tasks_start_time = time.time()
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             sim_future = executor.submit(sim_search)
             comp_future = executor.submit(comp_search)
             sim_df = sim_future.result()
             rec_df = comp_future.result()
+        parallel_tasks_end_time = time.time()
+        logger.info(f"Parallel search tasks took: {parallel_tasks_end_time - parallel_tasks_start_time:.2f} seconds")
 
         logger.info(f"Similar product IDs: {sim_df['productId'].tolist()}")
         logger.info(f"Recommended product IDs: {rec_df['productId'].tolist()}")
@@ -559,15 +630,18 @@ module.exports = {{
         # --- 4) Downstream processing ---
         if not sim_df.empty or not rec_df.empty:
             self.process_recommendations(sim_df, rec_df)
-            # Generate meaningful caption
-            meaningful_caption = self.generate_meaningful_caption(has_img, has_txt, img_caption, prompt, sim_df, rec_df)
-            logger.info(f"Generated meaningful caption: {meaningful_caption}")
-            logger.info("Recommendation process completed successfully")
-        else:
-            logger.warning("No recommendations generated")
-        
-        return sim_df, rec_df, meaningful_caption
-    
+            meaningful_caption = self.generate_meaningful_caption(
+                has_img, has_txt, img_caption, prompt, sim_df, rec_df
+            )
+            overall_end_time = time.time()
+            logger.info(f"Overall recommend function took: {overall_end_time - overall_start_time:.2f} seconds")
+            return sim_df, rec_df, meaningful_caption
+
+        logger.warning("No recommendations generated")
+        overall_end_time = time.time()
+        logger.info(f"Overall recommend function took: {overall_end_time - overall_start_time:.2f} seconds")
+        return sim_df, rec_df, ""
+
     def get_product_details(self, product_ids):
         """Get detailed information for a list of product IDs"""
         if isinstance(product_ids, str):
