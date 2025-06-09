@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			);
 			const quantity = parseInt(quantitySelect.value);
 
+			// Disable button during request
+			this.disabled = true;
+			this.textContent = "Adding...";
+
 			try {
 				const response = await fetch("/cart/add", {
 					method: "POST",
@@ -21,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					}),
 				});
 
-				if (response.ok) {
+				const data = await response.json();
+
+				if (response.ok && data.success) {
 					showNotification(
 						`Added ${quantity} item(s) to cart!`,
 						"success"
@@ -29,11 +35,20 @@ document.addEventListener("DOMContentLoaded", function () {
 					// Reset quantity to 1 after successful addition
 					quantitySelect.value = "1";
 				} else {
-					throw new Error("Failed to add product to cart");
+					throw new Error(
+						data.message || "Failed to add product to cart"
+					);
 				}
 			} catch (error) {
-				showNotification("Error adding product to cart", "error");
+				showNotification(
+					error.message || "Error adding product to cart",
+					"error"
+				);
 				console.error("Error:", error);
+			} finally {
+				// Re-enable button
+				this.disabled = false;
+				this.textContent = "Add to Cart";
 			}
 		});
 	});
@@ -52,6 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				return { productId, quantity };
 			});
 
+			// Disable button during request
+			this.disabled = true;
+			this.textContent = "Adding...";
+
 			try {
 				const response = await fetch("/cart/add-multiple", {
 					method: "POST",
@@ -61,7 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					body: JSON.stringify({ products }),
 				});
 
-				if (response.ok) {
+				const data = await response.json();
+
+				if (response.ok && data.success) {
 					showNotification(
 						"All products added to cart successfully!",
 						"success"
@@ -73,11 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
 							select.value = "1";
 						});
 				} else {
-					throw new Error("Failed to add all products to cart");
+					throw new Error(
+						data.message ||
+							"Failed to add all products to cart"
+					);
 				}
 			} catch (error) {
-				showNotification("Error adding products to cart", "error");
+				showNotification(
+					error.message || "Error adding products to cart",
+					"error"
+				);
 				console.error("Error:", error);
+			} finally {
+				// Re-enable button
+				this.disabled = false;
+				this.textContent = "Add All to Cart";
 			}
 		});
 

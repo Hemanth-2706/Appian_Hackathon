@@ -110,35 +110,50 @@
     <main class="cart-container">
         <h1 class="cart-title">My Cart</h1>
         <div class="cart-items">
-            <% if (cartItems.length === 0) { %>
-            <p>Your cart is empty.</p>
-            <% } else { %>
-            <% cartItems.forEach(item => { %>
-                <div class="cart-item">
-                    <img src="<%= item.image %>" alt="<%= item.productName %>" class="cart-image">
-                    <div class="item-details">
-                        <h2 class="item-name"><%= item.productName %></h2>
-                        <p class="item-category"><%= item.articleType %> | <%= item.subCategory %></p>
-                        <p class="item-season">Season: <%= item.season %></p>
-                        <p class="item-usage">Usage: <%= item.usage %></p>
-                        <p class="item-price">Price: ₹<%= item.price %></p>
-                        <p class="item-qty">Quantity: <%= item.quantity %></p>
-                        <form action="/cart/remove" method="POST">
-                            <input type="hidden" name="productId" value="<%= item.productId %>">
-                            <button type="submit" class="remove-btn">Remove</button>
-                        </form>
-                    </div>
+            <% if (!cartItems || cartItems.length === 0) { %>
+                <div class="empty-cart">
+                    <p>Your cart is empty...</p>
+                    <a href="/" class="continue-shopping">Continue Shopping👉👉👉</a>
                 </div>
-            <% }) %>
+            <% } else { %>
+                <% cartItems.forEach(item => { %>
+                    <div class="cart-item" data-product-id="<%= item.productId %>">
+                        <img src="<%= item.image %>" alt="<%= item.productName %>" class="cart-image">
+                        <div class="item-details">
+                            <h2 class="item-name"><%= item.productName %></h2>
+                            <p class="item-category"><%= item.articleType %> | <%= item.subCategory %></p>
+                            <p class="item-season">Season: <%= item.season %></p>
+                            <p class="item-usage">Usage: <%= item.usage %></p>
+                            <div class="price-quantity">
+                                <p class="item-price">Price: ₹<%= item.price.toFixed(2) %></p>
+                                <div class="quantity-controls">
+                                    <label for="quantity-<%= item.productId %>">Quantity:</label>
+                                    <select id="quantity-<%= item.productId %>" class="quantity-dropdown" data-product-id="<%= item.productId %>">
+                                        <% for(let i = 1; i <= 5; i++) { %>
+                                            <option value="<%= i %>" <%= item.quantity === i ? 'selected' : '' %>><%= i %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item-total">
+                                <p>Total: ₹<%= (item.price * item.quantity).toFixed(2) %></p>
+                            </div>
+                            <button class="remove-btn" data-product-id="<%= item.productId %>">Remove</button>
+                        </div>
+                    </div>
+                <% }) %>
             <% } %>
         </div>
-        <% if (cartItems.length > 0) { %>
+        <% if (cartItems && cartItems.length > 0) { %>
+            <div class="cart-actions">
+                <a href="/" class="continue-shopping">Continue Shopping👉👉👉</a>
+            </div>
             <div class="cart-summary">
                 <div class="total-price">
                     <span>Total Price:</span>
-                    <span>₹<%= cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2) %></span>
+                    <span>₹<%= totalPrice %></span>
                 </div>
-                <button class="checkout-btn">Proceed to Payment</button>
+                <a href="/payment" class="checkout-btn">Proceed to Payment</a>
             </div>
         <% } %>
     </main>

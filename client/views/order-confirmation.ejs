@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopSmarter - Order Confirmation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+        }
+
+        .confirmation-icon {
+            font-size: 4.5rem;
+            color: #28a745;
+            margin-bottom: 1.5rem;
+            background-color: #e8f5e9;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .confirmation-title {
+            color: #2b2e4a;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .order-id {
+            background-color: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #495057;
+            border: 1px solid #e9ecef;
+            display: inline-block;
+        }
+
+        .confirmation-message {
+            color: #495057;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .savings-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid #c8e6c9;
+        }
+
+        .home-btn {
+            margin: 0rem 0;
+            text-align: center;
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: rgba(2, 20, 187, 0.69);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(2, 20, 187, 0.69);
+        }
+
+        .home-btn:hover {
+            background-color: #fff;
+            color: rgba(2, 20, 187, 0.69);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .email-note {
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-container">
+        <!-- Header with Search on Left and Login/Cart on Right -->
+        <header class="header">
+            <div class="left-section">
+                <a href="/" class="logo" style="text-decoration: none; color: inherit;">🛍️ HSM ShopSmarter</a>
+            </div>
+            <div class="right-section">
+                <button class="header-btn">Login</button>
+                <a href="/cart" class="header-btn cart-icon" style="text-decoration: none;">Cart 🛒</a>
+            </div>
+        </header>
+    </div>
+
+    <main class="confirmation-container">
+        <div class="confirmation-icon">✓</div>
+        <h1 class="confirmation-title">Order Confirmed!</h1>
+        <p class="confirmation-message">Thank you for your purchase. Your order has been successfully placed.</p>
+        <div class="savings-message">You have saved ₹200 on this purchase!</div>
+        <div class="order-id">
+            Order ID: <%= orderId %>
+        </div>
+        <p class="email-note">
+            A confirmation email has been sent to your registered email address.<br>
+            You can track your order status in your account dashboard.
+        </p>
+        <a href="/" class="home-btn">Continue Shopping 👉👉👉</a>
+    </main>
+</body>
+</html> 

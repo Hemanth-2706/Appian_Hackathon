@@ -1,134 +1,1833 @@
-2025-05-25T07:10:08.366Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:10:08.375Z - INFO - Found 3 images in directory
-2025-05-25T07:10:17.352Z - INFO - Received recommendation request
-2025-05-25T07:10:17.353Z - INFO - Session data - Text: Present, Image: None
-2025-05-25T07:10:17.355Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:10:19.177Z - ERROR - Error processing recommendations: [object Object]
-2025-05-25T07:15:51.924Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:15:51.927Z - INFO - Found 3 images in directory
-2025-05-25T07:16:01.686Z - INFO - Received recommendation request
-2025-05-25T07:16:01.688Z - INFO - Session data - Text: Present, Image: None
-2025-05-25T07:16:01.689Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:16:43.000Z - INFO - Storing recommendation results in session
-2025-05-25T07:16:43.000Z - INFO - Processed 10 similar products and 10 recommended products
-2025-05-25T07:16:43.086Z - INFO - Recommend page requested
-2025-05-25T07:16:43.087Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:19:31.061Z - INFO - Received recommendation request
-2025-05-25T07:19:31.062Z - INFO - Session data - Text: Present, Image: Present
-2025-05-25T07:19:31.064Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:19:31.713Z - INFO - Storing recommendation results in session
-2025-05-25T07:19:31.714Z - INFO - Processed 0 similar products and 0 recommended products
-2025-05-25T07:19:31.778Z - INFO - Recommend page requested
-2025-05-25T07:19:31.779Z - INFO - Rendering recommend page with 0 similar products and 0 recommended products
-2025-05-25T07:24:43.074Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:24:43.079Z - INFO - Found 3 images in directory
-2025-05-25T07:25:09.633Z - INFO - Received recommendation request
-2025-05-25T07:25:09.635Z - INFO - Session data - Text: Present, Image: Present
-2025-05-25T07:25:09.636Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:25:10.097Z - INFO - Storing recommendation results in session
-2025-05-25T07:25:10.100Z - INFO - Processed 0 similar products and 0 recommended products
-2025-05-25T07:25:10.180Z - INFO - Recommend page requested
-2025-05-25T07:25:10.181Z - INFO - Rendering recommend page with 0 similar products and 0 recommended products
-2025-05-25T07:31:40.962Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:31:40.965Z - INFO - Found 3 images in directory
-2025-05-25T07:31:58.834Z - INFO - Received recommendation request
-2025-05-25T07:31:58.835Z - INFO - Session data - Text: Present, Image: None
-2025-05-25T07:31:58.836Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:32:40.066Z - INFO - Storing recommendation results in session
-2025-05-25T07:32:40.067Z - INFO - Processed 10 similar products and 10 recommended products
-2025-05-25T07:32:40.157Z - INFO - Recommend page requested
-2025-05-25T07:32:40.158Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:34:30.847Z - INFO - Recommend page requested
-2025-05-25T07:34:30.848Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:35:02.696Z - INFO - Recommend page requested
-2025-05-25T07:35:02.696Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:37:21.890Z - INFO - Recommend page requested
-2025-05-25T07:37:21.891Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:43:48.722Z - INFO - Recommend page requested
-2025-05-25T07:43:48.723Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T07:47:15.676Z - INFO - Recommend page requested
-2025-05-25T07:47:15.678Z - WARN - No recommendation results found in session
-2025-05-25T07:47:15.694Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:47:15.695Z - INFO - Found 3 images in directory
-2025-05-25T07:47:22.493Z - INFO - Recommend page requested
-2025-05-25T07:47:22.494Z - WARN - No recommendation results found in session
-2025-05-25T07:47:22.509Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:47:22.511Z - INFO - Found 3 images in directory
-2025-05-25T07:47:29.912Z - INFO - Recommend page requested
-2025-05-25T07:47:29.913Z - WARN - No recommendation results found in session
-2025-05-25T07:47:29.921Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:47:29.922Z - INFO - Found 3 images in directory
-2025-05-25T07:48:43.956Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T07:48:43.958Z - INFO - Found 3 images in directory
-2025-05-25T07:48:56.194Z - INFO - Received recommendation request
-2025-05-25T07:48:56.196Z - INFO - Session data - Text: Present, Image: None
-2025-05-25T07:48:56.196Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T07:49:15.986Z - INFO - Storing recommendation results in session
-2025-05-25T07:49:15.987Z - INFO - Processed 10 similar products and 10 recommended products
-2025-05-25T07:49:16.108Z - INFO - Recommend page requested
-2025-05-25T07:49:16.109Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-05-25T08:04:56.436Z - INFO - Reading images from directory: C:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\shopsmarter\server\data\images
-2025-05-25T08:04:56.442Z - INFO - Found 3 images in directory
-2025-05-25T08:05:15.206Z - INFO - Received recommendation request
-2025-05-25T08:05:15.207Z - INFO - Session data - Text: Present, Image: None
-2025-05-25T08:05:15.207Z - INFO - Calling FastAPI endpoint for recommendations
-2025-05-25T08:06:03.374Z - INFO - Storing recommendation results in session
-2025-05-25T08:06:03.378Z - INFO - Processed 10 similar products and 10 recommended products
-2025-05-25T08:06:03.408Z - INFO - Recommend page requested
-2025-05-25T08:06:03.409Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-06-06T07:03:30.272Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:03:30.276Z - INFO - Found 3 images in directory
-2025-06-06T07:03:40.632Z - INFO - post to /chatbot/text triggered
-2025-06-06T07:03:42.597Z - INFO - Received recommendation request
-2025-06-06T07:03:42.598Z - INFO - Session data - Text: Present, Image: None
-2025-06-06T07:03:42.599Z - INFO - Calling FastAPI endpoint for recommendations
-2025-06-06T07:04:07.804Z - INFO - Storing recommendation results in session
-2025-06-06T07:04:07.805Z - INFO - Processed 10 similar products and 10 recommended products
-2025-06-06T07:04:07.869Z - INFO - Recommend page requested
-2025-06-06T07:04:07.870Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-06-06T07:15:38.497Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:15:38.501Z - INFO - Found 3 images in directory
-2025-06-06T07:15:48.781Z - INFO - post to /chatbot/text triggered
-2025-06-06T07:15:52.340Z - INFO - Received recommendation request
-2025-06-06T07:15:52.342Z - INFO - Session data - Text: Present, Image: None
-2025-06-06T07:15:52.343Z - INFO - Calling FastAPI endpoint for recommendations
-2025-06-06T07:16:12.215Z - INFO - Storing recommendation results in session
-2025-06-06T07:16:12.216Z - INFO - Processed 10 similar products and 10 recommended products
-2025-06-06T07:16:12.272Z - INFO - Recommend page requested
-2025-06-06T07:16:12.273Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-06-06T07:43:42.125Z - INFO - Recommend page requested
-2025-06-06T07:43:42.129Z - WARN - No recommendation results found in session
-2025-06-06T07:43:42.166Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:43:42.168Z - INFO - Found 3 images in directory
-2025-06-06T07:43:49.525Z - INFO - Recommend page requested
-2025-06-06T07:43:49.527Z - WARN - No recommendation results found in session
-2025-06-06T07:43:49.544Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:43:49.546Z - INFO - Found 3 images in directory
-2025-06-06T07:45:18.910Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:45:18.916Z - INFO - Found 3 images in directory
-2025-06-06T07:45:23.790Z - INFO - post to /chatbot/text triggered
-2025-06-06T07:45:25.801Z - INFO - Received recommendation request
-2025-06-06T07:45:25.802Z - INFO - Session data - Text: Present, Image: None
-2025-06-06T07:45:25.803Z - INFO - Calling FastAPI endpoint for recommendations
-2025-06-06T07:45:52.380Z - INFO - Storing recommendation results in session
-2025-06-06T07:45:52.381Z - INFO - Processed 10 similar products and 10 recommended products
-2025-06-06T07:45:52.414Z - INFO - Recommend page requested
-2025-06-06T07:45:52.416Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-06-06T07:54:46.214Z - INFO - Reading images from directory: D:\Not Synced Storage\Hackathons\Appian Hackathon\Round 2\Github Repo\Appian_Hackathon\Appian_Hackathon\server\data\images
-2025-06-06T07:54:46.217Z - INFO - Found 3 images in directory
-2025-06-06T07:54:56.703Z - INFO - post to /chatbot/text triggered
-2025-06-06T07:54:58.335Z - INFO - Received recommendation request
-2025-06-06T07:54:58.336Z - INFO - Session data - Text: Present, Image: None
-2025-06-06T07:54:58.336Z - INFO - Calling FastAPI endpoint for recommendations
-2025-06-06T07:55:40.516Z - INFO - Storing recommendation results in session
-2025-06-06T07:55:40.517Z - INFO - Processed 10 similar products and 10 recommended products
-2025-06-06T07:55:40.558Z - INFO - Recommend page requested
-2025-06-06T07:55:40.559Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
-2025-06-06T07:56:10.466Z - INFO - post to /chatbot/text triggered
-2025-06-06T07:56:11.835Z - INFO - Received recommendation request
-2025-06-06T07:56:11.836Z - INFO - Session data - Text: Present, Image: None
-2025-06-06T07:56:11.836Z - INFO - Calling FastAPI endpoint for recommendations
-2025-06-06T07:56:59.588Z - INFO - Storing recommendation results in session
-2025-06-06T07:56:59.589Z - INFO - Processed 10 similar products and 10 recommended products
-2025-06-06T07:56:59.621Z - INFO - Recommend page requested
-2025-06-06T07:56:59.622Z - INFO - Rendering recommend page with 10 similar products and 10 recommended products
+2025-06-09T17:22:44.009Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:22:44.011Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:22:44.013Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:22:44.013Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:22:44.014Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:22:44.014Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:22:44.015Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:22:44.015Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:22:44.016Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:22:44.017Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:22:44.017Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:22:44.018Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:22:44.414Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:22:44.414Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:22:44.464Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:22:44.465Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:23:47.683Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:23:47.683Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:23:47.683Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:23:47.684Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:23:47.684Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:23:47.685Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:23:47.685Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:23:47.685Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:23:47.685Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:23:47.686Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:23:47.686Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:23:47.686Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:23:47.721Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:23:47.721Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:23:47.737Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:23:47.737Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:23:51.073Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:23:51.074Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:23:51.074Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:23:51.074Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:23:51.074Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:23:51.075Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:23:51.075Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:23:51.075Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:23:51.075Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:23:51.075Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:23:51.076Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:23:51.076Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:23:51.120Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:23:51.120Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:23:51.128Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:23:51.129Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:24:10.351Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:24:10.352Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:24:10.352Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:24:10.352Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:24:10.353Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:24:10.353Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:24:10.353Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:24:10.353Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:24:10.353Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:24:10.354Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:24:10.354Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:24:10.354Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:24:10.388Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:24:10.388Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:24:10.399Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:24:10.402Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:24:32.773Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:24:32.774Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:24:32.774Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:24:32.774Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:24:32.775Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:24:32.775Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:24:32.775Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:24:32.775Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:24:32.775Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:24:32.776Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:24:32.776Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:24:32.776Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:24:32.821Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:24:32.821Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:24:32.830Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:24:32.831Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:25:51.203Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:25:51.204Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:25:55.537Z - (mockRoutes.js) - INFO - [CHATBOT_IMAGE] === Processing Chatbot Image Upload ===
+2025-06-09T17:25:55.541Z - (mockRoutes.js) - INFO - [CHATBOT_IMAGE] === Chatbot Image Upload Complete ===
+2025-06-09T17:25:59.527Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:25:59.528Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:25:59.543Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] === Processing Recommendation Request ===
+2025-06-09T17:25:59.544Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] Session data retrieved
+Data: {
+  "hasText": false,
+  "hasImage": true
+}
+2025-06-09T17:25:59.544Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] Calling FastAPI endpoint for recommendations
+2025-06-09T17:26:10.553Z - (mockRoutes.js) - INFO - [CHATBOT_QUESTION] === Processing Current Question Request ===
+2025-06-09T17:26:27.064Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] Storing recommendation results in session
+2025-06-09T17:26:27.070Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] Recommendation results stored
+Data: {
+  "similarProductsCount": 10,
+  "recommendProductsCount": 8,
+  "hasCaption": true
+}
+2025-06-09T17:26:27.070Z - (mockRoutes.js) - INFO - [PROCESS_RECOMMENDATIONS] === Recommendation Processing Complete ===
+2025-06-09T17:26:27.096Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:26:27.096Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:26:27.154Z - (mockRoutes.js) - INFO - [RECOMMEND] === Processing Recommend Page Request ===
+2025-06-09T17:26:27.163Z - (mockRoutes.js) - INFO - [RECOMMEND] Processing similar products
+2025-06-09T17:26:27.164Z - (mockRoutes.js) - INFO - [RECOMMEND] Processing recommended products
+2025-06-09T17:26:27.167Z - (mockRoutes.js) - INFO - [RECOMMEND] Similar Products Details:
+Data: [
+  {
+    "productId": "36359",
+    "productName": "Reid & Taylor Men Blue Tie",
+    "gender": "Men",
+    "masterCategory": "Accessories",
+    "subCategory": "Ties",
+    "articleType": "Ties",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Formal",
+    "image": "/images/similarProducts/36359.jpg",
+    "price": 708
+  },
+  {
+    "productId": "55399",
+    "productName": "Revlon Grow Luscious Emerald Lash Liner",
+    "gender": "Women",
+    "masterCategory": "Personal Care",
+    "subCategory": "Makeup",
+    "articleType": "Kajal and Eyeliner",
+    "baseColour": "Green",
+    "season": "Spring",
+    "usage": "Casual",
+    "image": "/images/similarProducts/55399.jpg",
+    "price": 104
+  },
+  {
+    "productId": "27374",
+    "productName": "Tantra Men Circles Black T-shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Tshirts",
+    "baseColour": "Black",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/similarProducts/27374.jpg",
+    "price": 228
+  },
+  {
+    "productId": "50280",
+    "productName": "Parx Men Light Blue Tie",
+    "gender": "Men",
+    "masterCategory": "Accessories",
+    "subCategory": "Ties",
+    "articleType": "Ties",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Formal",
+    "image": "/images/similarProducts/50280.jpg",
+    "price": 3223
+  },
+  {
+    "productId": "34888",
+    "productName": "Envirosax Women Blue Bag",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Bags",
+    "articleType": "Handbags",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/similarProducts/34888.jpg",
+    "price": 82
+  },
+  {
+    "productId": "58895",
+    "productName": "Hakashi Men Black Tie",
+    "gender": "Men",
+    "masterCategory": "Accessories",
+    "subCategory": "Ties",
+    "articleType": "Ties",
+    "baseColour": "Black",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/similarProducts/58895.jpg",
+    "price": 3169
+  },
+  {
+    "productId": "56378",
+    "productName": "DKNY Women Sweet Delicious 50 ml Perfume",
+    "gender": "Women",
+    "masterCategory": "Personal Care",
+    "subCategory": "Fragrance",
+    "articleType": "Perfume and Body Mist",
+    "baseColour": "Pink",
+    "season": "Spring",
+    "usage": "Casual",
+    "image": "/images/similarProducts/56378.jpg",
+    "price": 271
+  },
+  {
+    "productId": "48619",
+    "productName": "Lucera Women Gold Earrings",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Jewellery",
+    "articleType": "Earrings",
+    "baseColour": "Silver",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/similarProducts/48619.jpg",
+    "price": 448
+  },
+  {
+    "productId": "50282",
+    "productName": "Parx Men Grey and Black Tie",
+    "gender": "Men",
+    "masterCategory": "Accessories",
+    "subCategory": "Ties",
+    "articleType": "Ties",
+    "baseColour": "Grey",
+    "season": "Summer",
+    "usage": "Formal",
+    "image": "/images/similarProducts/50282.jpg",
+    "price": 1826
+  },
+  {
+    "productId": "56379",
+    "productName": "DKNY Women Sweet Delicious 50 ml Perfume",
+    "gender": "Women",
+    "masterCategory": "Personal Care",
+    "subCategory": "Fragrance",
+    "articleType": "Perfume and Body Mist",
+    "baseColour": "Green",
+    "season": "Spring",
+    "usage": "Casual",
+    "image": "/images/similarProducts/56379.jpg",
+    "price": 2150
+  }
+]
+2025-06-09T17:26:27.168Z - (mockRoutes.js) - INFO - [RECOMMEND] Recommended Products Details:
+Data: [
+  {
+    "productId": "33716",
+    "productName": "Pieces Women Black Handbag",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Bags",
+    "articleType": "Handbags",
+    "baseColour": "Black",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/33716.jpg",
+    "price": 720
+  },
+  {
+    "productId": "24078",
+    "productName": "productDisplayName",
+    "gender": "Women",
+    "masterCategory": "Footwear",
+    "subCategory": "Shoes",
+    "articleType": "Heels",
+    "baseColour": "Black",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/24078.jpg",
+    "price": 2617
+  },
+  {
+    "productId": "58155",
+    "productName": "Be For Bag Women Multi Coloured Bag",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Bags",
+    "articleType": "Handbags",
+    "baseColour": "Pink",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/58155.jpg",
+    "price": 1274
+  },
+  {
+    "productId": "42845",
+    "productName": "French Connection Women Light Brown Handbag",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Bags",
+    "articleType": "Handbags",
+    "baseColour": "Brown",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/42845.jpg",
+    "price": 2229
+  },
+  {
+    "productId": "48347",
+    "productName": "Pitaraa Golden Necklace",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Jewellery",
+    "articleType": "Necklace and Chains",
+    "baseColour": "Gold",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/48347.jpg",
+    "price": 295
+  },
+  {
+    "productId": "42875",
+    "productName": "French Connection Women Black Purse",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Bags",
+    "articleType": "Clutches",
+    "baseColour": "Black",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/42875.jpg",
+    "price": 1591
+  },
+  {
+    "productId": "4295",
+    "productName": "Tantra   T-shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Tshirts",
+    "baseColour": "Orange",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/4295.jpg",
+    "price": 144
+  },
+  {
+    "productId": "50417",
+    "productName": "Miss Sixty Silver Dial Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/recommendProducts/50417.jpg",
+    "price": 2911
+  }
+]
+2025-06-09T17:26:27.170Z - (mockRoutes.js) - INFO - [RECOMMEND] Meaningful Caption:
+Data: * Okay, so I saw a picture of the periodic table, and it looks like the element names are labeled in a bunch of bright, fun colors –  lots of pinks, oranges, yellows, greens, blues, and even some purples!  That's a cool image!
+
+* I found a few items that might vibe with the colorful theme, though they aren't directly related to the periodic table itself.  I saw some gold earrings, a blue bag, and even a sweet-smelling perfume.
+
+* For complementary items, I thought you might like this "[productDisplayName]" (not sure what that is exactly, but it sounds interesting!), a T-shirt, a light brown handbag, a multicolored bag (to match all those element colors!), and a silver watch.
+
+* Is this kind of what you were thinking of? Let me know!  I'm happy to keep looking if these aren't quite right. 😊
+
+2025-06-09T17:26:27.170Z - (mockRoutes.js) - INFO - [RECOMMEND] Rendering recommend page
+Data: {
+  "similarProductsCount": 10,
+  "recommendProductsCount": 8,
+  "hasCaption": true
+}
+2025-06-09T17:26:27.171Z - (mockRoutes.js) - INFO - [RECOMMEND] === Recommend Page Processing Complete ===
+2025-06-09T17:26:27.360Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:26:27.361Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:26:27.422Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:26:27.423Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:26:38.583Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] === Processing Clear History Request ===
+2025-06-09T17:26:38.583Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] Session cleared successfully
+2025-06-09T17:26:38.584Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] === Clear History Request Complete ===
+2025-06-09T17:26:44.509Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:26:44.509Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:26:44.509Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:26:44.510Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:26:44.510Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:26:44.510Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:26:44.511Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:26:44.511Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:26:44.511Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:26:44.511Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:26:44.512Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:26:44.512Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:26:44.559Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:26:44.560Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:26:44.566Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:26:44.566Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:26:53.581Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:26:53.581Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:26:53.581Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:26:53.582Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:26:53.582Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:26:53.582Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:26:53.582Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:26:53.582Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:26:53.583Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:26:53.583Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:26:53.583Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:26:53.583Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:26:53.625Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:26:53.625Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:26:53.632Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:26:53.632Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:02.241Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:02.242Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:02.242Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:02.243Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:02.243Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:02.243Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:02.243Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:02.244Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:02.244Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:02.244Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:02.244Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:02.244Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:02.279Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:02.280Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:02.287Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:02.287Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:13.531Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:13.531Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:13.532Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:13.532Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:13.532Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:13.532Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:13.532Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:13.533Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:13.533Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:13.533Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:13.533Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:13.534Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:13.572Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:13.572Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:13.582Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:13.582Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:18.337Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:18.337Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:18.337Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:18.338Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:18.338Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:18.338Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:18.339Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:18.348Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:18.348Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:18.349Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:18.349Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:18.349Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:18.389Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:18.389Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:18.395Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:18.395Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:21.994Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:21.994Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:21.995Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:21.995Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:21.995Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:21.995Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:21.996Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:21.996Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:21.996Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:21.996Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:21.996Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:21.997Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:22.033Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:22.033Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:22.040Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:22.040Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:25.524Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:25.525Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:25.525Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:25.525Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:25.525Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:25.525Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:25.526Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:25.526Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:25.526Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:25.526Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:25.526Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:25.527Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:25.568Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:25.568Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:25.574Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:25.575Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:29.680Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:29.680Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:29.681Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:29.681Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:29.681Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:29.681Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:29.681Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:29.682Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:29.682Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:29.682Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:29.682Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:29.682Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:29.718Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:29.719Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:29.728Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:29.728Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
+2025-06-09T17:27:32.982Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] === Processing Clear History Request ===
+2025-06-09T17:27:32.983Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] Session cleared successfully
+2025-06-09T17:27:32.983Z - (mockRoutes.js) - INFO - [CHATBOT_CLEAR] === Clear History Request Complete ===
+2025-06-09T17:27:37.007Z - (mockRoutes.js) - INFO - [HOME] === Processing Home Route Request ===
+2025-06-09T17:27:37.008Z - (mockRoutes.js) - INFO - [HOME] Reading banner images from: D:\Appian_Hackathon\client\public\images\banner
+2025-06-09T17:27:37.008Z - (mockRoutes.js) - INFO - [HOME] Found 5 banner images
+Data: [
+  "banner1.png",
+  "banner2.png",
+  "banner3.png",
+  "banner4.png",
+  "banner5.png"
+]
+2025-06-09T17:27:37.009Z - (mockRoutes.js) - INFO - [HOME] Reading root images from: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:37.009Z - (mockRoutes.js) - INFO - === Reading Images from Directory ===
+2025-06-09T17:27:37.009Z - (mockRoutes.js) - INFO - Directory path: D:\Appian_Hackathon\server\data\images
+2025-06-09T17:27:37.010Z - (mockRoutes.js) - INFO - Found 3 images in directory
+Data: [
+  "15970.png",
+  "39386.png",
+  "59263.png"
+]
+2025-06-09T17:27:37.010Z - (mockRoutes.js) - INFO - === Directory Reading Complete ===
+2025-06-09T17:27:37.010Z - (mockRoutes.js) - INFO - [HOME] homeProducts = 
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/products/15970.jpg",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/products/39386.jpg",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/products/59263.jpg",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:37.010Z - (mockRoutes.js) - INFO - [HOME] Creating featured products from 3 available products
+2025-06-09T17:27:37.011Z - (mockRoutes.js) - INFO - [HOME] Created 3 featured products
+Data: [
+  {
+    "productId": "15970",
+    "productName": "Turtle Check Men Navy Blue Shirt",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Topwear",
+    "articleType": "Shirts",
+    "baseColour": "Navy Blue",
+    "season": "Fall",
+    "usage": "Casual",
+    "image": "/images/15970.png",
+    "price": 2615
+  },
+  {
+    "productId": "39386",
+    "productName": "Peter England Men Party Blue Jeans",
+    "gender": "Men",
+    "masterCategory": "Apparel",
+    "subCategory": "Bottomwear",
+    "articleType": "Jeans",
+    "baseColour": "Blue",
+    "season": "Summer",
+    "usage": "Casual",
+    "image": "/images/39386.png",
+    "price": 2381
+  },
+  {
+    "productId": "59263",
+    "productName": "Titan Women Silver Watch",
+    "gender": "Women",
+    "masterCategory": "Accessories",
+    "subCategory": "Watches",
+    "articleType": "Watches",
+    "baseColour": "Silver",
+    "season": "Winter",
+    "usage": "Casual",
+    "image": "/images/59263.png",
+    "price": 2437
+  }
+]
+2025-06-09T17:27:37.011Z - (mockRoutes.js) - INFO - [HOME] === Home Route Processing Complete ===
+2025-06-09T17:27:37.050Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Processing Chat Session Initialization ===
+2025-06-09T17:27:37.050Z - (mockRoutes.js) - INFO - [CHATBOT_INIT] === Chat Session Initialization Complete ===
+2025-06-09T17:27:37.058Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Processing Session Debug Request ===
+2025-06-09T17:27:37.059Z - (mockRoutes.js) - INFO - [SESSION_DEBUG] === Session Debug Complete ===
