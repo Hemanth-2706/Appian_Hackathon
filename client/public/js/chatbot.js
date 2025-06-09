@@ -36,6 +36,61 @@ const botResponses = {
 	],
 };
 
+// Speech synthesis variables
+let speechQueue = [];
+let isSpeaking = false;
+let userHasInteracted = false;
+let voicesLoaded = false;
+let preferredVoice = null;
+
+// Debug speech synthesis capabilities
+console.log("Speech synthesis supported:", "speechSynthesis" in window);
+console.log(
+	"Speech synthesis enabled:",
+	window.speechSynthesis && !window.speechSynthesis.speaking
+);
+
+// Load voices immediately and set up voice loading
+function loadVoices() {
+	const voices = window.speechSynthesis.getVoices();
+	console.log("Available voices:", voices.length);
+
+	if (voices.length > 0) {
+		preferredVoice =
+			voices.find(
+				(voice) =>
+					voice.name.includes("female") ||
+					voice.name.includes("Female") ||
+					voice.name.includes("Samantha") ||
+					voice.name.includes("Google UK English Female")
+			) || voices[0];
+		voicesLoaded = true;
+		console.log("Voices loaded, preferred voice:", preferredVoice?.name);
+	} else {
+		console.log("No voices available yet");
+	}
+}
+
+// Initialize speech synthesis with better voice loading
+if ("speechSynthesis" in window) {
+	// Try to load voices immediately
+	loadVoices();
+
+	// Set up the voices changed event
+	window.speechSynthesis.onvoiceschanged = () => {
+		console.log("Voices changed event fired");
+		loadVoices();
+	};
+
+	// Fallback: try to load voices after a short delay
+	setTimeout(() => {
+		if (!voicesLoaded) {
+			console.log("Fallback voice loading");
+			loadVoices();
+		}
+	}, 100);
+}
+
 // Initialize chatbot and check session history
 document.addEventListener("DOMContentLoaded", async () => {
 	try {
@@ -55,7 +110,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 		messages.innerHTML = "";
 
 		// Check if we have chat history
-		if (sessionData.chatHistory) {
+		if (
+			sessionData.chatHistory.image ||
+			sessionData.chatHistory.userText
+		) {
+			console.log(
+				"sessionData.chatHistory =",
+				sessionData.chatHistory
+			);
 			// Display image if exists
 			if (sessionData.chatHistory.image) {
 				appendImage(sessionData.chatHistory.image.content, "user");
@@ -76,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 				);
 			}
 		} else {
+			console.log("Chatbot is empty");
 			// Show initial messages if no history
 			initialResponses.forEach((response) => {
 				appendMessage(response, "bot");
@@ -97,6 +160,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 			appendMessage(response, "bot");
 		});
 	}
+});
+
+// Track user interaction for speech synthesis
+document.addEventListener("click", () => {
+	userHasInteracted = true;
+	console.log("User interaction detected - speech synthesis enabled");
+});
+
+document.addEventListener("keydown", () => {
+	userHasInteracted = true;
+	console.log("User interaction detected - speech synthesis enabled");
 });
 
 openBtn.onclick = () => {
@@ -140,137 +214,122 @@ async function sendMessage() {
 	} catch (error) {
 		console.error("Error storing text:", error);
 	}
-
-	// Show bot thinking with random processing message
-	appendMessage(getRandomResponse("processing"), "bot");
-
-	try {
-		// Add a minimal delay to show the thinking message
-		await new Promise((resolve) => setTimeout(resolve, 500));
-
-		const response = await fetch("/chatbot/answer", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ answer: text }),
-		});
-
-		const data = await response.json();
-
-		if (data.success) {
-			// If there's a bot response, display it
-			if (data.botResponse) {
-				appendMessage(data.botResponse, "bot");
-			}
-
-			// If the Q&A is complete and we have recommendations
-			if (data.isComplete && data.hasRecommendations) {
-				appendMessage(
-					"Great! Let me show you some recommendations based on your preferences.",
-					"bot"
-				);
-				window.location.href = "/recommend";
-			} else if (!data.isComplete) {
-				// Get and display next question
-				const questionResponse = await fetch(
-					"/chatbot/current-question"
-				);
-				const questionData = await questionResponse.json();
-
-				if (questionData.success) {
-					appendMessage(questionData.question, "bot");
-				}
-			}
-		}
-	} catch (error) {
-		console.error("Error sending message:", error);
-		appendMessage(
-			"Sorry, there was an error processing your answer. Please try again.",
-			"bot"
-		);
-	}
 }
 
-// Function to speak text
-function speakText(text) {
-	console.log('speakText: Input text for speech:', text); // Debug log
-	// Stop any ongoing speech
-	window.speechSynthesis.cancel();
-	
-	// Remove markdown bullet points for speech
-	const cleanText = text.replace(/\*/g, '');
-	const utterance = new SpeechSynthesisUtterance(cleanText);
-	
-	// Set voice properties
-	utterance.rate = 1.0;
-	utterance.pitch = 1.1; // Slightly higher pitch for female voice
-	utterance.volume = 1.0;
-	
-	// Get available voices
-	let voices = window.speechSynthesis.getVoices();
-	
-	// If voices aren't loaded yet, wait for them
-	if (voices.length === 0) {
-		console.log('speakText: No voices available yet, waiting...'); // Debug log
-		window.speechSynthesis.onvoiceschanged = () => {
-			voices = window.speechSynthesis.getVoices();
-			console.log('speakText: Voices loaded:', voices); // Debug log
-			setVoiceAndSpeak(utterance, voices);
+// Function to ensure voices are loaded before speaking
+function ensureVoicesLoaded() {
+	return new Promise((resolve) => {
+		if (voicesLoaded && preferredVoice) {
+			resolve();
+			return;
+		}
+
+		const voices = window.speechSynthesis.getVoices();
+		if (voices.length > 0) {
+			loadVoices();
+			resolve();
+			return;
+		}
+
+		// Wait for voices to load
+		const checkVoices = () => {
+			const voices = window.speechSynthesis.getVoices();
+			if (voices.length > 0) {
+				loadVoices();
+				resolve();
+			} else {
+				setTimeout(checkVoices, 50);
+			}
 		};
-	} else {
-		setVoiceAndSpeak(utterance, voices);
-	}
+
+		// Trigger voice loading
+		window.speechSynthesis.onvoiceschanged = () => {
+			loadVoices();
+			resolve();
+		};
+
+		checkVoices();
+	});
 }
 
-// Helper function to set voice and speak
-function setVoiceAndSpeak(utterance, voices) {
-	console.log('setVoiceAndSpeak: Setting voice and initiating speech.'); // Debug log
-	// Try to get a female voice
-	const femaleVoice = voices.find(voice => 
-		voice.name.includes('female') || 
-		voice.name.includes('Female') || 
-		voice.name.includes('Samantha') || 
-		voice.name.includes('Google UK English Female')
-	);
-	
-	if (femaleVoice) {
-		console.log('setVoiceAndSpeak: Using female voice:', femaleVoice.name); // Debug log
-		utterance.voice = femaleVoice;
-	} else {
-		console.log('setVoiceAndSpeak: No specific female voice found, using default.'); // Debug log
+// Function to speak text - IMPROVED VERSION
+async function speakText(text, speakerBtn) {
+	if (!text || typeof text !== "string") {
+		console.log("Invalid text for speech");
+		return;
 	}
-	
-	// Add some emotion by varying the pitch and rate
-	utterance.onboundary = (event) => {
-		if (event.name === 'sentence') {
-			// Vary pitch slightly for each sentence
-			utterance.pitch = 1.0 + Math.random() * 0.2;
-		}
-	};
-	
-	// Ensure speech synthesis is working
+
+	// Clean text for speech
+	const cleanText = text.replace(/[*#]/g, "").replace(/\s+/g, " ").trim();
+	console.log("Speaking text:", cleanText);
+
 	try {
+		// Ensure voices are loaded before speaking
+		await ensureVoicesLoaded();
+
+		// Cancel any existing speech
+		window.speechSynthesis.cancel();
+
+		// Small delay to ensure cancel has taken effect
+		await new Promise((resolve) => setTimeout(resolve, 100));
+
+		const utterance = new SpeechSynthesisUtterance(cleanText);
+
+		// Set voice properties
+		utterance.rate = 1.0;
+		utterance.pitch = 1.1;
+		utterance.volume = 1.0;
+
+		// Set preferred voice if available
+		if (preferredVoice) {
+			utterance.voice = preferredVoice;
+			console.log("Using voice:", preferredVoice.name);
+		}
+
+		// Set up event handlers
+		utterance.onstart = () => {
+			console.log("Speech started");
+			speakerBtn.innerHTML = "🔇";
+			speakerBtn.classList.add("speaking");
+			speakerBtn.isSpeaking = true;
+		};
+
+		utterance.onend = () => {
+			console.log("Speech ended");
+			speakerBtn.innerHTML = "🔊";
+			speakerBtn.classList.remove("speaking");
+			speakerBtn.isSpeaking = false;
+		};
+
+		utterance.onerror = (event) => {
+			console.log("Speech error:", event.error);
+			speakerBtn.innerHTML = "🔊";
+			speakerBtn.classList.remove("speaking");
+			speakerBtn.isSpeaking = false;
+		};
+
+		// Speak the text
 		window.speechSynthesis.speak(utterance);
-		console.log('setVoiceAndSpeak: Speech initiated.'); // Debug log
 	} catch (error) {
-		console.error('setVoiceAndSpeak: Speech synthesis error:', error); // Debug log
+		console.error("Error in speakText:", error);
+		speakerBtn.innerHTML = "🔊";
+		speakerBtn.classList.remove("speaking");
+		speakerBtn.isSpeaking = false;
 	}
 }
 
 // Function to convert markdown bullet points to HTML
 function convertMarkdownToHtml(text) {
-	console.log('convertMarkdownToHtml: Input text:', text); // Debug log
-	const lines = text.split('\n');
-	let htmlContent = '';
+	const lines = text.split("\n");
+	let htmlContent = "";
 	let inList = false;
 
-	lines.forEach(line => {
+	lines.forEach((line) => {
 		const trimmedLine = line.trim();
-		if (trimmedLine.startsWith('*')) {
+		if (trimmedLine.startsWith("*")) {
 			// If not currently in a list, start a new one
 			if (!inList) {
-				htmlContent += '<ul>';
+				htmlContent += "<ul>";
 				inList = true;
 			}
 			// Add the list item
@@ -278,7 +337,7 @@ function convertMarkdownToHtml(text) {
 		} else {
 			// If currently in a list, close it before adding non-list content
 			if (inList) {
-				htmlContent += '</ul>';
+				htmlContent += "</ul>";
 				inList = false;
 			}
 			// Add non-list content as a paragraph, if it's not an empty line
@@ -290,43 +349,63 @@ function convertMarkdownToHtml(text) {
 
 	// If the text ended with a list, close the list tag
 	if (inList) {
-		htmlContent += '</ul>';
+		htmlContent += "</ul>";
 	}
-	console.log('convertMarkdownToHtml: Output HTML:', htmlContent); // Debug log
+
 	return htmlContent;
 }
 
-// Function to append message to chat
+// Function to append message to chat - IMPROVED VERSION
 function appendMessage(message, sender) {
-	console.log('appendMessage: Message content:', message); // Debug log
-	console.log('appendMessage: Sender:', sender); // Debug log
-
+	userHasInteracted = true;
 	const messageDiv = document.createElement("div");
 	messageDiv.className = `message ${sender}-message`;
-	
+
 	// Convert markdown bullet points to HTML and set as innerHTML
 	messageDiv.innerHTML = convertMarkdownToHtml(message);
-	
+
+	// Add speaker button for bot messages
+	if (sender === "bot") {
+		const speakerBtn = document.createElement("button");
+		speakerBtn.className = "speaker-btn";
+		speakerBtn.innerHTML = "🔊";
+		speakerBtn.title = "Read aloud";
+		speakerBtn.isSpeaking = false;
+
+		speakerBtn.addEventListener("click", async () => {
+			if (speakerBtn.isSpeaking) {
+				// Stop speaking
+				console.log("Stopping speech");
+				window.speechSynthesis.cancel();
+				speakerBtn.innerHTML = "🔊";
+				speakerBtn.classList.remove("speaking");
+				speakerBtn.isSpeaking = false;
+				return;
+			}
+
+			// Start speaking
+			console.log("Starting speech");
+			speakerBtn.innerHTML = "🔇";
+			speakerBtn.classList.add("speaking");
+			speakerBtn.isSpeaking = true;
+
+			// Cancel any existing speech first
+			window.speechSynthesis.cancel();
+
+			// Small delay to ensure cancel has taken effect, then speak
+			setTimeout(() => {
+				speakText(message, speakerBtn);
+			}, 100);
+		});
+
+		messageDiv.appendChild(speakerBtn);
+	}
+
 	messages.appendChild(messageDiv);
 	messages.scrollTop = messages.scrollHeight;
-	
-	// Speak the message if it's from the bot
-	if (sender === 'bot') {
-		// Add a small delay to ensure the message is displayed before speaking
-		setTimeout(() => {
-			speakText(message);
-		}, 500); // Increased delay to ensure everything is ready
-	}
-	
+
 	return messageDiv;
 }
-
-// Initialize speech synthesis (only to trigger voices to load if not already)
-document.addEventListener('DOMContentLoaded', () => {
-	console.log('DOMContentLoaded: Initializing speech synthesis.'); // Debug log
-	window.speechSynthesis.getVoices(); // This call often prompts the browser to load voices
-	console.log('DOMContentLoaded: getVoices() called.'); // Debug log
-});
 
 // Chatbot Image Upload Feature$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -345,10 +424,7 @@ imageInput.addEventListener("change", async (e) => {
 			appendImage(event.target.result, "user");
 
 			// Show bot thinking with random image upload message
-			const thinkingMsg = appendMessage(
-				getRandomResponse("imageUpload"),
-				"bot"
-			);
+			appendMessage(getRandomResponse("imageUpload"), "bot");
 
 			// Send image to server to store in session
 			try {
@@ -359,22 +435,7 @@ imageInput.addEventListener("change", async (e) => {
 						"Content-Type": "application/json",
 					},
 				});
-				// Get and display next question
-				fetch("/chatbot/current-question")
-					.then((response) => response.json())
-					.then((questionData) => {
-						if (questionData.success) {
-							appendMessage(questionData.question, "bot");
-						}
-					})
-					.catch((error) => {
-						console.error(
-							"Error getting next question:",
-							error
-						);
-					});
 			} catch (err) {
-				messages.removeChild(thinkingMsg);
 				console.error("Upload error", err);
 				appendMessage(
 					"Sorry, there was an error processing your image. Please try again.",
@@ -451,8 +512,10 @@ recommendBtn.addEventListener("click", async () => {
 			);
 		}
 
-		// Redirect to recommendations page immediately
-		window.location.href = "/recommend";
+		// Redirect to recommendations page after a short delay
+		setTimeout(() => {
+			window.location.href = "/recommend";
+		}, 1000);
 	} catch (error) {
 		console.error("Error:", error);
 		appendMessage(
