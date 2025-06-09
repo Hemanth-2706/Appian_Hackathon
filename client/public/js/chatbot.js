@@ -37,6 +37,7 @@ const botResponses = {
 };
 
 // Initialize chatbot and check session history
+// Initialize chatbot and check session history
 document.addEventListener("DOMContentLoaded", async () => {
 	try {
 		// Initialize empty chat history in session if it doesn't exist
@@ -67,13 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 				appendMessage(
 					sessionData.chatHistory.userText.content,
 					"user"
-				);
-				hasMeaningfulHistory = true;
-			}
-			if (sessionData.recommendationResults?.meaningfulCaption) {
-				appendMessage(
-					sessionData.recommendationResults.meaningfulCaption,
-					"bot"
 				);
 				hasMeaningfulHistory = true;
 			}
@@ -397,17 +391,14 @@ function appendMessage(message, sender) {
 	messages.appendChild(messageDiv);
 	messages.scrollTop = messages.scrollHeight;
 	
-	// Enhanced TTS for bot messages
+	// Enhanced TTS for bot messages - removed previous setTimeout and simplified
 	if (sender === 'bot') {
-		// Longer delay to ensure message is fully rendered and speech system is ready
-		setTimeout(() => {
-			// Double-check that speech synthesis is available
-			if ('speechSynthesis' in window && window.speechSynthesis) {
-				speakText(message);
-			} else {
-				console.warn('Speech synthesis not available');
-			}
-		}, 200);
+		// Double-check that speech synthesis is available
+		if ('speechSynthesis' in window && window.speechSynthesis) {
+			speakText(message);
+		} else {
+			console.warn('Speech synthesis not available');
+		}
 	}
 	
 	return messageDiv;
