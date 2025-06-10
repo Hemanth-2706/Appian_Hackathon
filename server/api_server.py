@@ -178,12 +178,12 @@ async def process_recommendations(request: RecommendationRequest):
         logger.info("Calling recommender.recommend() with parameters:")
         logger.info(f"- Image path: {image_path}")
         logger.info(f"- Text prompt: {request.text}")
-        logger.info(f"- K value: 10")
+        logger.info(f"- K value: 20")
         
         sim_results, comp_results, meaningful_caption = recommender.recommend(
             img=image_path,
             prompt=request.text,
-            k=10
+            k=20
         )
         logger.info("Received results from recommender")
 
