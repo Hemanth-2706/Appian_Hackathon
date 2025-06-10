@@ -51,7 +51,6 @@ ShopSmarter/
 -    Google Generative AI (>=0.3.0)
 -    Requests (>=2.26.0)
 -    PyQt5 (>=5.15.0)
--    Sentence Transformers
 
 ### Node.js Dependencies
 
@@ -60,7 +59,6 @@ ShopSmarter/
 -    Axios
 -    Dotenv
 -    Express-session
--    Mongoose
 
 ### Backend Setup (Server)
 
@@ -92,7 +90,7 @@ for mac
 
 This will start the node server in port 5000 and the python server in port 5001 and automatically open the website in locahhost:5000.
 
-### Recommendation System Setup
+### Recommendation System Setup (This was used earlier for Round 2. Not in use now)
 
 1. Create and activate a Python virtual environment:
 
