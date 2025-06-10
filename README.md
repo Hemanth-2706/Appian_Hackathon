@@ -26,6 +26,10 @@ ShopSmarter/
 └── MainRecommendationSystem/    # ML recommendation engine
 ```
 
+## Flowchart
+
+![Flow Chart](./Flowchart.jpg)
+
 ## 🚀 Setup Instructions
 
 ### System Requirements
