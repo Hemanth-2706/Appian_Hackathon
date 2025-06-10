@@ -46,7 +46,7 @@ blip_model = BlipForConditionalGeneration.from_pretrained(
 logger.info("BLIP model loaded successfully")
 
 # Configuration
-K = 10
+K = 5
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR)
 OUTPUT_RECOMMENDATION_FOLDER = os.path.join(DATA_DIR, "images", "recommendProducts")
@@ -550,6 +550,7 @@ module.exports = {{
                 df["score"] = D[0]
 
             # apply category filter
+            df = df[df["score"] >= 0.5]
             if input_category:
                 mask = df["subCategory"].str.contains(input_category, case=False, na=False)
                 if mask.any():
@@ -674,7 +675,7 @@ if __name__ == "__main__":
     sim_results, comp_results = recommender.recommend(
         img=user_image,  # Will be None if no image in session
         prompt=user_text,  # Will be None if no text in session
-        k=20
+        k=5  # Number of recommendations to return
     )
     
     logger.info("\n" + "="*60)
