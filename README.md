@@ -2,6 +2,8 @@
 
 An AI-Powered Personal Shopping Assistant for E-Commerce that combines Computer Vision, Recommendation Systems, and Conversational AI to enhance your shopping experience.
 
+### `"End-to-end experience of shopping with a personalised guide"`
+
 ## 🗂️ Project Structure
 
 ```
@@ -16,7 +18,7 @@ ShopSmarter/
 │
 ├── server/                      # Express.js backend server
 │   ├── controllers/            # Route controllers
-│   ├── models/                 # Data models
+│   ├── models/                 # Embedding Generator model
 │   ├── routes/                 # API routes
 │   ├── data/                   # Mock data and images
 │   └── app.js                  # Main server file
@@ -64,24 +66,27 @@ ShopSmarter/
 npm install
 ```
 
-2. For the chatbot recommendation system to work, you also have to start a python server in port 5001:
+2. Install python packages:
 
 ```bash
-cd server
-python api_server.py
+pip install -r requirements.txt
 ```
 
-Wait for all the model to load and the server to start
-
-3. Then start the Node server in port 5000:
-   Open another terminal simultaneously and run this
+3. Then, to start both the servers:
 
 ```bash
-cd server
-node app.js
+.\start_servers.bat
 ```
 
-You can use the website in http://localhost:5000
+for windows and
+
+```bash
+.\start_servers.zsh
+```
+
+for mac
+
+This will start the node server in port 5000 and the python server in port 5001 and automatically open the website in locahhost:5000.
 
 ### Recommendation System Setup
 
@@ -147,6 +152,15 @@ Natural language queries with image support:
 -    "Show me similar jackets"
 -    "Find matching accessories"
 -    "What goes well with this?"
+
+🔉 **Audio integrated**
+
+-    The AI assistant will read out the suggestions for the user
+-    The user gets real shopping feel
+
+*    <i> For using this feature, turn on the sound setting for this website in the browser</i>
+
+### <b><u>NOTE:</b></u> <i>For everyone to use the payment page, the common username is "username" and password is "password".</i>
 
 ## 👥 Team HSM
 
