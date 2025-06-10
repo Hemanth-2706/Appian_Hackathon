@@ -922,140 +922,6 @@ router.post("/chatbot/init-session", async (req, res) => {
 	}
 });
 
-// Get current question
-router.get("/chatbot/current-question", (req, res) => {
-	log(`[CHATBOT_QUESTION] === Processing Current Question Request ===`);
-	try {
-		const { chatbotState, chatbotQuestions } = req.session;
-
-		if (
-			!chatbotState ||
-			!chatbotQuestions ||
-			chatbotQuestions.length === 0
-		) {
-			return res.json({
-				success: false,
-				message: "No questions available",
-			});
-		}
-
-		const currentQuestion =
-			chatbotQuestions[chatbotState.currentQuestionIndex];
-		log(`[CHATBOT_QUESTION] Retrieved current question`, "INFO", {
-			questionIndex: chatbotState.currentQuestionIndex,
-			question: currentQuestion,
-		});
-
-		res.json({
-			success: true,
-			question: currentQuestion,
-			isComplete: chatbotState.isComplete,
-			currentIndex: chatbotState.currentQuestionIndex,
-			totalQuestions: chatbotQuestions.length,
-		});
-	} catch (error) {
-		log(
-			`[CHATBOT_QUESTION] Error getting current question: ${error.message}`,
-			"ERROR"
-		);
-		res.status(500).json({
-			success: false,
-			message: "Failed to get current question",
-			error: error.message,
-		});
-	}
-});
-
-// Process answer and get next question
-router.post("/chatbot/answer", async (req, res) => {
-	log(`[CHATBOT_ANSWER] === Processing Answer ===`);
-	try {
-		const { answer } = req.body;
-		const { chatbotState, chatbotQuestions } = req.session;
-
-		if (!chatbotState || !chatbotQuestions) {
-			return res.status(400).json({
-				success: false,
-				message: "Chat session not initialized",
-			});
-		}
-
-		// Store the answer
-		chatbotState.answers[chatbotState.currentQuestionIndex] = answer;
-
-		// Add answer to chat history
-		req.session.chatHistory.push({
-			type: "text",
-			content: answer,
-			sender: "user",
-			timestamp: new Date().toISOString(),
-		});
-
-		// Get next question or recommendations
-		try {
-			const response = await axios.post(
-				"http://localhost:5001/chatbot/process-answer",
-				{
-					questionIndex: chatbotState.currentQuestionIndex,
-					answer: answer,
-					answers: chatbotState.answers,
-				}
-			);
-
-			// Add bot response to chat history
-			if (response.data.botResponse) {
-				req.session.chatHistory.push({
-					type: "text",
-					content: response.data.botResponse,
-					sender: "bot",
-					timestamp: new Date().toISOString(),
-				});
-			}
-
-			// Update state
-			chatbotState.currentQuestionIndex++;
-			chatbotState.isComplete = response.data.isComplete;
-
-			if (response.data.recommendations) {
-				req.session.recommendationResults =
-					response.data.recommendations;
-			}
-
-			log(`[CHATBOT_ANSWER] Processed answer`, "INFO", {
-				questionIndex: chatbotState.currentQuestionIndex - 1,
-				isComplete: chatbotState.isComplete,
-			});
-
-			res.json({
-				success: true,
-				isComplete: chatbotState.isComplete,
-				botResponse: response.data.botResponse,
-				hasRecommendations: !!response.data.recommendations,
-			});
-		} catch (error) {
-			log(
-				`[CHATBOT_ANSWER] Error processing answer: ${error.message}`,
-				"ERROR"
-			);
-			res.status(500).json({
-				success: false,
-				message: "Failed to process answer",
-				error: error.message,
-			});
-		}
-	} catch (error) {
-		log(
-			`[CHATBOT_ANSWER] Error handling answer: ${error.message}`,
-			"ERROR"
-		);
-		res.status(500).json({
-			success: false,
-			message: "Failed to handle answer",
-			error: error.message,
-		});
-	}
-});
-
 // Modify clear history to match new structure
 router.post("/chatbot/clear-history", (req, res) => {
 	log(`[CHATBOT_CLEAR] === Processing Clear History Request ===`);
@@ -1230,7 +1096,7 @@ const users = [
 	},
 	{
 		id: 2,
-		email: "mm24b024@smail.iitm.ac.in",
+		email: "mm24b048@smail.iitm.ac.in",
 		username: "admin",
 		password: "password",
 		name: "Admin User",

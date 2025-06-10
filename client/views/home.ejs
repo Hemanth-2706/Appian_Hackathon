@@ -286,14 +286,12 @@
       <% products.forEach(product => { %>
         <div class="product-card-container">
           <div class="product-card">
-            <a href="/product/<%= product.productId %>" class="product-link">
               <img src="<%= product.image %>" alt="<%= product.productName %>" />
               <h3><%= product.productName %></h3>
               <p class="category"><%= product.articleType %> | <%= product.subCategory %></p>
               <p class="season">Season: <%= product.season %></p>
               <p class="usage">Usage: <%= product.usage %></p>
               <p class="price">₹<%= product.price %></p>
-            </a>
 
             <!-- Quantity Control -->
             <div class="quantity-control">

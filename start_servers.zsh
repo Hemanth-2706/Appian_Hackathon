@@ -12,6 +12,26 @@ echo "Starting the application servers..."
 mkdir -p server/data/images/recommendProducts
 mkdir -p server/data/images/similarProducts
 mkdir -p server/data/images/banner
+mkdir -p server/logs
+mkdir -p server/temp
+
+# ------------------------------------------------------------
+# 1a. Clear temp directory
+# ------------------------------------------------------------
+echo "Clearing temp directory..."
+rm -f server/temp/* 2>/dev/null || true
+
+# ------------------------------------------------------------
+# 1b. Clear log files
+# ------------------------------------------------------------
+echo "Clearing log files..."
+: > server/logs/all_logs.log
+: > server/logs/api_server.log
+: > server/logs/model.log
+: > server/logs/mockRoutes.log
+: > server/data/products.js
+: > server/data/chatbot_g_n_a.js
+echo "Log files cleared."
 
 # ------------------------------------------------------------
 # 2. Launch the Node.js server in a NEW Terminal window
