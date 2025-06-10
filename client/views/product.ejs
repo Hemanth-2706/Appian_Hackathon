@@ -112,9 +112,11 @@
     <div class="product-detail-card">
       <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image"/>
       <div class="product-info">
-        <h1><%= product.name %></h1>
-        <p class="category"><strong>Category:</strong> <%= product.category %></p>
-        <p class="price"><strong>Price:</strong> $<%= product.price %></p>
+        <h1><%= product.productName %></h1>
+        <p class="category"><strong>Category:</strong> <%= product.articleType %> | <%= product.subCategory %></p>
+        <p class="season"><strong>Season:</strong> <%= product.season %></p>
+        <p class="usage"><strong>Usage:</strong> <%= product.usage %></p>
+        <p class="price"><strong>Price:</strong> ₹<%= product.price %></p>
         <p class="description"><strong>Details:</strong> <%= product.description %></p>
         
         <div class="add-to-cart-section">
@@ -144,11 +146,13 @@
             <% similarProducts.forEach(product => { %>
               <div class="product-card">
                 <a href="/product/<%= product.productId %>" class="product-link">
-                  <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                  <img src="<%= product.image %>" alt="<%= product.productName %>" class="product-image">
                   <div class="product-details">
-                    <h3><%= product.name %></h3>
-                    <p class="description"><%= product.description %></p>
-                    <p class="price">$<%= product.price %></p>
+                    <h3><%= product.productName %></h3>
+                    <p class="category"><%= product.articleType %> | <%= product.subCategory %></p>
+                    <p class="season">Season: <%= product.season %></p>
+                    <p class="usage">Usage: <%= product.usage %></p>
+                    <p class="price">₹<%= product.price %></p>
                   </div>
                 </a>
                 <div class="buttons">
@@ -186,11 +190,13 @@
             <% recommendProducts.forEach(product => { %>
               <div class="product-card">
                 <a href="/product/<%= product.productId %>" class="product-link">
-                  <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                  <img src="<%= product.image %>" alt="<%= product.productName %>" class="product-image">
                   <div class="product-details">
-                    <h3><%= product.name %></h3>
-                    <p class="description"><%= product.description %></p>
-                    <p class="price">$<%= product.price %></p>
+                    <h3><%= product.productName %></h3>
+                    <p class="category"><%= product.articleType %> | <%= product.subCategory %></p>
+                    <p class="season">Season: <%= product.season %></p>
+                    <p class="usage">Usage: <%= product.usage %></p>
+                    <p class="price">₹<%= product.price %></p>
                   </div>
                 </a>
                 <div class="buttons">
