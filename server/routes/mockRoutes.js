@@ -1226,7 +1226,7 @@ const users = [
 		username: "user",
 		password: "password", // In a real app, this would be hashed
 		name: "Test User",
-		role: "user",
+		role: "admin",
 	},
 	{
 		id: 2,
@@ -1238,11 +1238,27 @@ const users = [
 	},
 	{
 		id: 3,
-		email: "username",
+		email: "ce24b119@smail.iitm.ac.in",
 		username: "admin",
 		password: "password",
 		name: "Admin User",
 		role: "admin",
+	},
+	{
+		id: 4,
+		email: "cs24b033@smail.iitm.ac.in",
+		username: "admin",
+		password: "password",
+		name: "Admin User",
+		role: "admin",
+	},
+	{
+		id: 5,
+		email: "username",
+		username: "admin",
+		password: "password",
+		name: "Admin User",
+		role: "user",
 	},
 ];
 
