@@ -25,6 +25,30 @@ const allLogFile = fs.createWriteStream(path.join(logsDir, "all_logs.log"), {
 	flags: "a",
 });
 
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+	if (req.session.user) {
+		next();
+	} else {
+		// Redirect to login page with error message
+		return res.redirect(
+			"/login?error=Please login to proceed to payment"
+		);
+	}
+};
+
+// Middleware to check if user is admin
+const isAdmin = (req, res, next) => {
+	if (req.session.user && req.session.user.role === "admin") {
+		next();
+	} else {
+		res.status(403).json({
+			success: false,
+			message: "Access denied. Admin privileges required.",
+		});
+	}
+};
+
 function log(message, type = "INFO", data = null) {
 	const timestamp = new Date().toISOString();
 	let logMessage = `${timestamp} - (mockRoutes.js) - ${type} - ${message}`;
@@ -442,9 +466,12 @@ router.get("/product/:id", (req, res) => {
 	});
 });
 
+// Cart page route
 router.get("/cart", (req, res) => {
 	log(`[CART] === Processing Cart Page Request ===`);
+
 	const sessionCart = req.session.cart || [];
+	const user = req.session.user;
 
 	// Get products from session and homeProducts
 	const sessionSimilarProducts =
@@ -564,6 +591,7 @@ router.get("/cart", (req, res) => {
 	res.render("cart", {
 		cartItems,
 		totalPrice: totalPrice.toFixed(2),
+		user: req.session.user, // Pass user data to the template
 	});
 });
 
@@ -1060,9 +1088,15 @@ router.post("/chatbot/clear-history", (req, res) => {
 });
 
 // Payment page route
-router.get("/payment", (req, res) => {
+router.get("/payment", isAuthenticated, (req, res) => {
 	log(`[PAYMENT] === Processing Payment Page Request ===`);
-
+	// Check if user is authenticated
+	if (!req.session.user) {
+		log(`[PAYMENT] Unauthorized access attempt`, "WARN");
+		return res.redirect(
+			"/login?error=Please login to proceed to payment"
+		);
+	}
 	// Get cart totals from session
 	const cartTotals = req.session.cartTotals || {
 		totalPrice: 0,
@@ -1077,9 +1111,15 @@ router.get("/payment", (req, res) => {
 	});
 });
 
-// Process payment route
-router.post("/process-payment", (req, res) => {
+// Update process payment route to require authentication
+router.post("/process-payment", isAuthenticated, (req, res) => {
 	log(`[PROCESS_PAYMENT] === Processing Payment Request ===`);
+	if (!req.session.user) {
+		log(`[PROCESS-PAYMENT] Unauthorized access attempt`, "WARN");
+		return res.redirect(
+			"/login?error=Please login to proceed to payment"
+		);
+	}
 	try {
 		const paymentData = req.body;
 
@@ -1138,6 +1178,12 @@ router.get("/order-confirmation", (req, res) => {
 	log(
 		`[ORDER_CONFIRMATION] === Processing Order Confirmation Page Request ===`
 	);
+	if (!req.session.user) {
+		log(`[ORDER_CONFIRMATION] Unauthorized access attempt`, "WARN");
+		return res.redirect(
+			"/login?error=Please login to proceed to payment"
+		);
+	}
 	try {
 		const orderId = req.session.orderId;
 
@@ -1170,6 +1216,237 @@ router.get("/session-debug", (req, res) => {
 	log(`[SESSION_DEBUG] === Processing Session Debug Request ===`);
 	log(`[SESSION_DEBUG] === Session Debug Complete ===`);
 	res.json(req.session);
+});
+
+// Mock user database (in a real app, this would be in a database)
+const users = [
+	{
+		id: 1,
+		email: "ee24b024@smail.iitm.ac.in",
+		username: "user",
+		password: "password", // In a real app, this would be hashed
+		name: "Test User",
+		role: "user",
+	},
+	{
+		id: 2,
+		email: "mm24b024@smail.iitm.ac.in",
+		username: "admin",
+		password: "password",
+		name: "Admin User",
+		role: "admin",
+	},
+	{
+		id: 3,
+		email: "username",
+		username: "admin",
+		password: "password",
+		name: "Admin User",
+		role: "admin",
+	},
+];
+
+// Login endpoint
+router.post("/login", async (req, res) => {
+	log(`[LOGIN] === Processing Login Request ===`);
+	try {
+		const { email, password } = req.body;
+
+		// Validate input
+		if (!email || !password) {
+			log(`[LOGIN] Missing credentials`, "WARN");
+			return res.status(400).json({
+				success: false,
+				message: "Please provide both email and password",
+			});
+		}
+
+		// Find user by email or username
+		const user = users.find(
+			(u) =>
+				u.email.toLowerCase() === email.toLowerCase() ||
+				u.username.toLowerCase() === email.toLowerCase()
+		);
+
+		// Check if user exists and password matches
+		if (!user || user.password !== password) {
+			log(`[LOGIN] Invalid credentials`, "WARN");
+			return res.status(401).json({
+				success: false,
+				message: "Invalid email/username or password",
+			});
+		}
+
+		// Create user session
+		req.session.user = {
+			id: user.id,
+			email: user.email,
+			username: user.username,
+			name: user.name,
+			role: user.role,
+		};
+
+		// Initialize cart if not exists
+		if (!req.session.cart) {
+			req.session.cart = [];
+		}
+
+		// Save session
+		req.session.save((err) => {
+			if (err) {
+				log(
+					`[LOGIN] Error saving session: ${err.message}`,
+					"ERROR"
+				);
+				return res.status(500).json({
+					success: false,
+					message: "Error creating session",
+				});
+			}
+
+			log(`[LOGIN] User logged in successfully`, "INFO", {
+				userId: user.id,
+				username: user.username,
+			});
+
+			// Return success response with user data (excluding sensitive info)
+			res.json({
+				success: true,
+				message: "Login successful",
+				user: {
+					id: user.id,
+					email: user.email,
+					username: user.username,
+					name: user.name,
+					role: user.role,
+				},
+				redirectUrl: user.role === "admin" ? "/" : "/",
+			});
+		});
+	} catch (error) {
+		log(`[LOGIN] Error during login: ${error.message}`, "ERROR");
+		res.status(500).json({
+			success: false,
+			message: "An error occurred during login",
+		});
+	}
+	log(`[LOGIN] === Login Request Processing Complete ===`);
+});
+
+// Logout endpoint
+router.post("/logout", (req, res) => {
+	log(`[LOGOUT] === Processing Logout Request ===`);
+	try {
+		// Clear user session
+		req.session.user = null;
+
+		// Save session
+		req.session.save((err) => {
+			if (err) {
+				log(
+					`[LOGOUT] Error saving session: ${err.message}`,
+					"ERROR"
+				);
+				return res.status(500).json({
+					success: false,
+					message: "Error clearing session",
+				});
+			}
+
+			log(`[LOGOUT] User logged out successfully`);
+			res.json({
+				success: true,
+				message: "Logged out successfully",
+			});
+		});
+	} catch (error) {
+		log(`[LOGOUT] Error during logout: ${error.message}`, "ERROR");
+		res.status(500).json({
+			success: false,
+			message: "An error occurred during logout",
+		});
+	}
+	log(`[LOGOUT] === Logout Request Processing Complete ===`);
+});
+
+// Get current user endpoint
+router.get("/me", (req, res) => {
+	log(`[GET_USER] === Processing Get Current User Request ===`);
+	try {
+		if (!req.session.user) {
+			log(`[GET_USER] No user session found`, "WARN");
+			return res.status(401).json({
+				success: false,
+				message: "Not authenticated",
+			});
+		}
+
+		log(`[GET_USER] User data retrieved`, "INFO", {
+			userId: req.session.user.id,
+			username: req.session.user.username,
+		});
+
+		res.json({
+			success: true,
+			user: req.session.user,
+		});
+	} catch (error) {
+		log(`[GET_USER] Error getting user data: ${error.message}`, "ERROR");
+		res.status(500).json({
+			success: false,
+			message: "Error retrieving user data",
+		});
+	}
+	log(`[GET_USER] === Get Current User Request Complete ===`);
+});
+
+// Login page route
+router.get("/login", (req, res) => {
+	log(`[LOGIN_PAGE] === Processing Login Page Request ===`);
+	try {
+		// Check if user is already logged in
+		if (req.session.user) {
+			log(
+				`[LOGIN_PAGE] User already logged in, redirecting to home`,
+				"INFO",
+				{
+					userId: req.session.user.id,
+					username: req.session.user.username,
+				}
+			);
+
+			// Redirect based on user role
+			return res.redirect(
+				req.session.user.role === "admin" ? "/" : "/"
+			);
+		}
+
+		// Get any error messages from query parameters
+		const error = req.query.error;
+		const message = req.query.message;
+
+		log(`[LOGIN_PAGE] Rendering login page`, "INFO", {
+			hasError: !!error,
+			hasMessage: !!message,
+		});
+
+		// Render login page with any error messages
+		res.render("login", {
+			error: error || null,
+			message: message || null,
+			layout: false, // Don't use the default layout
+		});
+	} catch (error) {
+		log(
+			`[LOGIN_PAGE] Error rendering login page: ${error.message}`,
+			"ERROR"
+		);
+		res.status(500).render("error", {
+			message: "Error loading login page",
+			error: process.env.NODE_ENV === "development" ? error : {},
+		});
+	}
+	log(`[LOGIN_PAGE] === Login Page Request Complete ===`);
 });
 
 module.exports = router;

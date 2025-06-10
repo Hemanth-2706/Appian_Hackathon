@@ -514,8 +514,6 @@ recommendBtn.addEventListener("click", async () => {
 		// Redirect to recommendations page after a short delay
 		window.location.href = "/recommend";
 	} catch (error) {
-		// Remove thinking message on error
-		messages.removeChild(thinkingMsg);
 		console.error("Error:", error);
 		appendMessage(
 			"Sorry, there was an error processing your request. Please try again.",
