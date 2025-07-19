@@ -1,8 +1,8 @@
 # 🛍️ ShopSmarter 🧠
 
-An AI-Powered Personal Shopping Assistant for E-Commerce that combines Computer Vision, Recommendation Systems, and Conversational AI to enhance your shopping experience.
+An AI-Powered Personal Shopping Assistant for E-Commerce that combines Computer Vision, Recommendation Systems, and Conversational AI to enhance your shopping experience. 
 
-### `"End-to-end experience of shopping with a personalised guide"`
+Current recommendation system majorly uses CLIP, BLIP, FAISS.
 
 ## 🗂️ Project Structure
 
